@@ -1,4 +1,4 @@
-﻿clone=D:\PROGRAMING\BAND\engineer_nucleus\_verify_clone_necleus
+clone=D:\PROGRAMING\BAND\engineer_nucleus\_verify_clone_necleus
 time=2026-10-24 18:12:13 +03:00
 clone_head=c115c61b82bda8816173caa1e2cc6d607f4bcd97
 source_head=c115c61b82bda8816173caa1e2cc6d607f4bcd97

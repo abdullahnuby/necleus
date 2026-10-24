@@ -50,7 +50,7 @@
 | `git config core.autocrlf false` | 0 | منع تحويل LF/CRLF في شجرة العمل. | هذا التقرير |
 | `git add -A` | 0 | 352 ملفًا مرحّلًا (بعد `.gitignore`). | هذا التقرير |
 | `py -3.14 -m pytest -q tests --no-header -p no:cacheprovider` | 2 | فشل جمع لغياب `matplotlib`. | `logs/2026-10-24-TASK-002/pytest_full.txt` |
-| `py -3.14 -m pytest -q tests/v043 --no-header -p no:cacheprovider` | 0 | `9 passed in 5.56s`. | `logs/2026-10-24-TASK-002/pytest_v043.txt` |
+| `py -3.14 -m pytest -q tests/v043 --no-header -p no:cacheprovider` | 0 | `9 passed in 6.04s`. | `logs/2026-10-24-TASK-002/pytest_v043.txt` |
 | `py -3.14 scripts/verify_handoff.py` | 0 | `HANDOFF VERIFICATION: PASS`. | `logs/2026-10-24-TASK-002/verify_handoff.txt` |
 | `git commit -m "TASK-002: initialize repository, add LF policy, and enforce handoff sync"` | 0 | commit `c115c61` — 352 ملفًا. | `logs/2026-10-24-TASK-002/git_push.txt` |
 | `git push -u origin main` | 0 | `new branch main -> main`، والفرع يتتبع `origin/main`. | `logs/2026-10-24-TASK-002/git_push.txt` |
@@ -59,7 +59,7 @@
 
 ## 5. الاختبارات
 
-- **`tests/v043` محليًا:** 9 ناجحة، 0 فاشلة، 0 متجاوزة في 5.56 ثانية.
+- **`tests/v043` محليًا:** 9 ناجحة، 0 فاشلة، 0 متجاوزة في 6.04 ثانية (آخر تشغيل مطابق للسجل المرفوع).
 - **`tests/v043` على النسخة المستنسخة من GitHub:** 9 ناجحة في 5.76 ثانية.
 - **المجموعة الكاملة `tests/`:** `NOT PASS` — خطأ جمع بسبب `ModuleNotFoundError: No module named 'matplotlib'`، رمز خروج 2. لم تُثبَّت اعتماديات في هذه المهمة.
 - **أداة التسليم محليًا وعلى النسخة المستنسخة:** PASS، 11 قسمًا.
@@ -97,6 +97,7 @@
 6. **اسم المستودع `necleus`** كما زوّده المستخدم، وليس `nucleus`؛ لم يُغيَّر.
 7. **تحذيرات LF/CRLF:** ظهرت عند `git add` قبل ضبط الإعدادات؛ عولجت بـ`.gitattributes` و`core.autocrlf=false`، وتحققت المطابقة بعد الاستنساخ.
 8. **حذف مجلد التحقق:** سيُحذف مجلد الاستنساخ المؤقت بعد انتهاء الفحص؛ سجله يبقى في `clone_verify.txt`.
+9. **ترميز السجلات:** أول كتابة لسجلات PowerShell أنتجت UTF-16/BOM، فبدت بعض الملفات ثنائية. أُعيد توليد سجلات الاختبار والتحقق بصيغة UTF-8/LF دون تغيير أي نتيجة، وأُعيد حساب البصمات بعد ذلك.
 
 ## 10. الاستنتاج
 
