@@ -1,2 +1,2 @@
-README.md: arabic_chars=0 lines=773 words=6859
-docs/README.md: arabic_chars=0 lines=142 words=914
+README.md: arabic_chars=0 lines=772 words=6859
+docs/README.md: arabic_chars=0 lines=141 words=914
