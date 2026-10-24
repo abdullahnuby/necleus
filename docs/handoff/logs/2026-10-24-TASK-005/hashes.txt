@@ -1,0 +1,14 @@
+3ffd992143e68155c03b510b9cf0a0905972f63e5315ea17ec15e31f64af0dd8  docs/handoff/logs/2026-10-24-TASK-005/pytest_v043.txt
+688d5bda5dc7bce1532677e5db1f87d55b63bc4340ee7dd25fe1b09aef0d5162  docs/handoff/logs/2026-10-24-TASK-005/copy_and_hash.txt
+695d2e90eb8d33692095750a7518b92b38fbff193b9e338bde38aace930e974b  docs/handoff/logs/2026-10-24-TASK-005/pytest_full.txt
+6cede12e151d7a5c9d423c38aa2b66d44a81104e712cb2015d6bda4f0fb7123f  docs/CHANGELOG.md
+7c0f3a657ea2cf7fd141f472773e1ec1c3e42e9e9acc437b515a913ec3265f82  docs/handoff/logs/2026-10-24-TASK-005/pytest_v030_hash_test.txt
+915c289da827a80a6c4ca5346f300da5021f68affe8236a2a3a192587f283f94  docs/handoff/logs/2026-10-24-TASK-005/git_start.txt
+99cc4e4b09f6ced126a483cc655e7e02f9f401d32cdacd58f617165327d7e431  docs/handoff/logs/2026-10-24-TASK-005/pytest_v031_threshold_test.txt
+b1d683414bbcfd3e146d0f6a0d6b8bcd176023c58ec0d062a41d72738b283342  docs/handoff/logs/2026-10-24-TASK-005/precheck.txt
+e3cf3ddb2d76028a15770b070483a72959964b5fc9c3177feddb98ccbee0863a  docs/handoff/LATEST_REPORT.md
+e3cf3ddb2d76028a15770b070483a72959964b5fc9c3177feddb98ccbee0863a  docs/handoff/history/2026-10-24-TASK-005.md
+e76c4cf92a8876b75b495f591fb546b88dbf5b97c96094799ab3fd96f78736ca  docs/requirements-benchmark.txt
+e76c4cf92a8876b75b495f591fb546b88dbf5b97c96094799ab3fd96f78736ca  requirements-benchmark.txt
+f031d227e81a405bc514d100ddaf29b712f5984d8ac1f50b79ef2e13a8b999f3  docs/handoff/logs/2026-10-24-TASK-005/verify_handoff_after.txt
+f7897e6dbaf1f28530037a9daa092e294bf977efa8cdf0dfd5b6d06607a8063d  docs/handoff/logs/2026-10-24-TASK-005/verify_handoff_before.txt

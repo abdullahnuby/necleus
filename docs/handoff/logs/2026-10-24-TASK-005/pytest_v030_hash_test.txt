@@ -1,0 +1,5 @@
+time=2026-10-24 19:33:17 +03:00
+command=.venv\Scripts\python.exe -m pytest -q tests/test_learning_curve_v0_30.py::test_frozen_learning_curve_protocol_hashes_match --no-header -p no:cacheprovider
+.                                                                        [100%]
+1 passed in 3.01s
+exit_code=0

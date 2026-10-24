@@ -1,0 +1,11 @@
+time=2026-10-24 19:32:48 +03:00
+command=Copy-Item -LiteralPath docs\requirements-benchmark.txt -Destination requirements-benchmark.txt
+copy_exit=
+root_exists=True
+docs_bytes=65
+root_bytes=65
+docs_sha256=e76c4cf92a8876b75b495f591fb546b88dbf5b97c96094799ab3fd96f78736ca
+root_sha256=e76c4cf92a8876b75b495f591fb546b88dbf5b97c96094799ab3fd96f78736ca
+byte_equal=True
+matches_frozen=True
+copy_exit_note=Copy-Item is a PowerShell cmdlet, so no native exit code is available. Success is proven by root_exists=True, byte_equal=True, and both SHA-256 values matching the frozen hash.
