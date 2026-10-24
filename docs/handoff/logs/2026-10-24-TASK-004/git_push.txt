@@ -1,0 +1,17 @@
+remote=https://github.com/abdullahnuby/necleus.git
+branch=main
+time=2026-10-24 18:55 +03:00
+start_commit=b6355ca67a4e24e033f11d03e4e51182b81f6252
+audit_commit=94069535b45690fa71afa3269373999391737d74
+audit_commit_short=9406953
+commit_subject=TASK-004: audit test environment and v0.43 readiness
+files_in_audit_commit=18
+insertions=724
+deletions=76
+push_command=git push origin main
+push_result=b6355ca..9406953  main -> main
+push_exit=0
+remote_head_after_push=94069535b45690fa71afa3269373999391737d74
+verification_command=git ls-remote origin refs/heads/main
+verification_result=94069535b45690fa71afa3269373999391737d74
+note=PowerShell surfaced Git's stderr progress line as NativeCommandError, but the exit code was 0 and the remote ref advanced. This file is committed in a follow-up evidence commit; that follow-up push is verified separately with git ls-remote.

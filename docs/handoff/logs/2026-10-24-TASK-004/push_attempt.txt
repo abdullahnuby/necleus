@@ -1,0 +1,11 @@
+time=2026-10-24 18:55:20 +03:00
+command=git push origin main
+git : To https://github.com/abdullahnuby/necleus.git
+At line:1 char:239
++ ... oding utf8 "$log/push_attempt.txt"; git push origin main 2>&1 | Tee-O ...
++                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...uby/necleus.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   b6355ca..9406953  main -> main
+push_exit=0
