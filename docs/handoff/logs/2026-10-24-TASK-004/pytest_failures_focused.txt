@@ -16,7 +16,7 @@ ______________ test_frozen_learning_curve_protocol_hashes_match _______________
 
 
 
-tests\test_learning_curve_v0_30.py:78: 
+tests\test_learning_curve_v0_30.py:78:
 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
@@ -80,7 +80,7 @@ _____ test_threshold_is_preregistered_and_test_is_not_used_for_selection ______
 
 
 
-tests\test_incremental_windows_v0_31.py:76: 
+tests\test_incremental_windows_v0_31.py:76:
 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 

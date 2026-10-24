@@ -12,6 +12,7 @@ from .dsl import (
     enumerate_programs, evaluate, expr_code, family_code, family_id, mask_predict,
     point_index, semantic_mask,
 )
+from .integrity import assert_not_disqualified
 
 TaskClass = Literal[
     "IN_SCOPE_IDENTIFIABLE", "IN_SCOPE_AMBIGUOUS", "OUT_OF_SCOPE", "CONTRADICTORY_SUPPORT"
@@ -319,7 +320,7 @@ def generate_task(target: Expr, *, split: str, seed: int, desired_class: str | N
         task_id = "task-" + hashlib.sha256(
             f"nucleus-pulse-v0.43-task-id-v1:{seed}:{task_index}:{attempt}".encode("utf-8")
         ).hexdigest()[:16]
-        return TaskRecord(
+        record = TaskRecord(
             task_id=task_id,
             split=split,
             family_id=target_family_id,
@@ -332,6 +333,14 @@ def generate_task(target: Expr, *, split: str, seed: int, desired_class: str | N
             classification_private=current,
             audit_private=audit,
         )
+        assert_not_disqualified(
+            task_id=record.task_id,
+            family_id=record.family_id,
+            support=[ex.to_dict() for ex in record.support],
+            query_x=record.query_x,
+            split=split,
+        )
+        return record
     raise RuntimeError(
         f"could not generate category={desired_class or 'any'} task for family={target_family_id} "
         f"after {max_attempts} deterministic attempts"
@@ -347,6 +356,14 @@ def split_audit(records: Iterable[TaskRecord]) -> dict[str, Any]:
             raise ValueError(f"duplicate task id: {task.task_id}")
         ids.add(task.task_id)
         by_split[task.split].append(task)
+        if task.split == "test":
+            assert_not_disqualified(
+                task_id=task.task_id,
+                family_id=task.family_id,
+                support=[ex.to_dict() for ex in task.support],
+                query_x=task.query_x,
+                split="test",
+            )
         support_points = [ex.x for ex in task.support]
         if len(support_points) != len(set(support_points)) and task.classification_private != "CONTRADICTORY_SUPPORT":
             raise ValueError(f"duplicate support input in non-contradictory task {task.task_id}")
@@ -393,13 +410,15 @@ def write_jsonl(path: str, rows: Iterable[dict[str, Any]]) -> None:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
 
 
-def generate_ood_task(*, seed: int, task_index: int = 0) -> TaskRecord:
+def generate_ood_task(*, seed: int, task_index: int = 0, split: str = "test") -> TaskRecord:
     """Create a hidden-operation task for the pre-teaching OUT_OF_SCOPE stratum.
 
     The evaluator uses x0 mod 7, a predicate absent from v0.43-core. The public
     payload contains only labelled support examples and unlabelled queries; the
     hidden-operation recipe and labels remain evaluator-private.
     """
+    if split not in ("train", "dev", "test"):
+        raise ValueError("split must be train/dev/test")
     rng = random.Random(seed)
     mask = 0
     for x0 in range(DOMAIN_SIZE):
@@ -409,15 +428,33 @@ def generate_ood_task(*, seed: int, task_index: int = 0) -> TaskRecord:
             y = int(hidden_atom != known_atom)
             if y:
                 mask |= 1 << (x0 * DOMAIN_SIZE + x1)
-    support, query_x, query_y = _balanced_support_and_queries(mask, rng, support_mode="random")
+    # Reject support sets that a known v0.43-core program can fit. Otherwise a
+    # closed-world auditor would answer an out-of-scope task by coincidence.
+    support = query_x = query_y = None
+    for attempt in range(200):
+        candidate_support, candidate_query_x, candidate_query_y = _balanced_support_and_queries(
+            mask, rng, support_mode="random"
+        )
+        labels = [(ex.x, ex.y) for ex in candidate_support]
+        known_consistent = any(
+            all(mask_predict(semantic_mask(expr), x) == y for x, y in labels)
+            for expr in enumerate_programs()
+        )
+        if not known_consistent:
+            support, query_x, query_y = candidate_support, candidate_query_x, candidate_query_y
+            break
+    if support is None or query_x is None or query_y is None:
+        raise RuntimeError("unable to generate an out-of-scope support set outside the known grammar")
     audit = audit_support(support, query_x, out_of_scope=True)
+    audit["known_grammar_consistent"] = False
+    audit["ood_rejection_attempts"] = attempt + 1
     hidden_descriptor = ("HIDDEN_MOD7_IN_0_1_2_XOR_DIV5", "x0", "x1")
     task_id = "task-" + hashlib.sha256(
         f"nucleus-pulse-v0.43-ood-task-id-v1:{seed}:{task_index}".encode("utf-8")
     ).hexdigest()[:16]
-    return TaskRecord(
+    record = TaskRecord(
         task_id=task_id,
-        split="test",
+        split=split,
         family_id="ood-hidden-mod7-family-v1",
         ast_sha256=hashlib.sha256(repr(hidden_descriptor).encode("utf-8")).hexdigest(),
         semantic_sha256=_semantic_hash(mask),
@@ -428,6 +465,14 @@ def generate_ood_task(*, seed: int, task_index: int = 0) -> TaskRecord:
         classification_private="OUT_OF_SCOPE",
         audit_private=audit,
     )
+    assert_not_disqualified(
+        task_id=record.task_id,
+        family_id=record.family_id,
+        support=[ex.to_dict() for ex in record.support],
+        query_x=record.query_x,
+        split=split,
+    )
+    return record
 
 
 def generate_contradictory_task(target: Expr, *, split: str, seed: int, task_index: int = 0) -> TaskRecord:
@@ -450,7 +495,7 @@ def generate_contradictory_task(target: Expr, *, split: str, seed: int, task_ind
     task_id = "task-" + hashlib.sha256(
         f"nucleus-pulse-v0.43-contradictory-task-id-v1:{seed}:{task_index}".encode("utf-8")
     ).hexdigest()[:16]
-    return TaskRecord(
+    record = TaskRecord(
         task_id=task_id,
         split=split,
         family_id=family_id(target),
@@ -463,3 +508,11 @@ def generate_contradictory_task(target: Expr, *, split: str, seed: int, task_ind
         classification_private="CONTRADICTORY_SUPPORT",
         audit_private=audit,
     )
+    assert_not_disqualified(
+        task_id=record.task_id,
+        family_id=record.family_id,
+        support=[ex.to_dict() for ex in record.support],
+        query_x=record.query_x,
+        split=split,
+    )
+    return record

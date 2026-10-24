@@ -1,0 +1,36 @@
+{
+  "schema": "nucleus-pulse-v0.43-exposed-smoke-disqualification-v1",
+  "created_local_date": "2026-10-24",
+  "status": "PERMANENTLY_DISQUALIFIED",
+  "reason": "support/query rows and evaluator metadata were publicly tracked in stage-1 smoke artifacts",
+  "exposed_task_ids": [
+    "task-84d6edfe96ffd28e",
+    "task-92940f0d430a70f6",
+    "task-ff56a93a34464a02"
+  ],
+  "exposed_family_ids": [
+    "001805d0b07b2fce",
+    "00d96a49a204ff33",
+    "00e3601b352f025e"
+  ],
+  "exposed_task_fingerprints": [
+    "27d9d364f5e410eb1ebeab2e4aca9e9297e2b135760068ba7aad0aa3dca9302f",
+    "08dd63b7dcb69865ec828987295739983fda036afc28ccf033a1b7b0dd087881",
+    "cc029704892116cc751f4546ac64d4a8ab43abcdda0b21057b93e207109d5045"
+  ],
+  "exposed_source_files": {
+    "dev_evaluator_private.jsonl": "210fd10dac069bb47cf56edd7b6adb544892a390b3a8efaceb31bb6ebd91b307",
+    "test_evaluator_private.jsonl": "86444abd0e05107e825b63ba9d5b028716ca2b8d8777f3762c2e3bed08d62c4a",
+    "train_evaluator_private.jsonl": "26a8b05fb206b21cd5565062105a42f65cc82feeec29e04bd6aec9d3a62051ce"
+  },
+  "exposed_recheck_source_files": {
+    "dev_evaluator_private.jsonl": "23726979eb7639d5742693705159d81903abe7108becc61363638dc7c7ee935b",
+    "test_evaluator_private.jsonl": "e560e8482239a31f9c795c547c4dbf4b8e0a1661da632b026823ed54faca02ba",
+    "train_evaluator_private.jsonl": "e3e5021871d689e48390fbf76b2a78b1cac1b80f8a48020c0b0366ef3a4cbd76"
+  },
+  "local_forensic_copy": ".local_private/v043_stage1_smoke/",
+  "local_forensic_copy_recheck": ".local_private/v043_stage1_recheck/",
+  "raw_rows_published_again": false,
+  "official_test_allowed": false,
+  "history_rewrite": false
+}

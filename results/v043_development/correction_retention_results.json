@@ -1,0 +1,1591 @@
+{
+  "correction_log": [
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 9,
+      "memory_size_after": 17,
+      "parameter_corrections": 18,
+      "round": 0,
+      "skill_index": 0
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 22,
+      "round": 1,
+      "skill_index": 0
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 23,
+      "round": 2,
+      "skill_index": 0
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 16,
+      "round": 3,
+      "skill_index": 0
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 17,
+      "memory_size_after": 25,
+      "parameter_corrections": 14,
+      "round": 0,
+      "skill_index": 1
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 25,
+      "parameter_corrections": 12,
+      "round": 1,
+      "skill_index": 1
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 25,
+      "parameter_corrections": 7,
+      "round": 2,
+      "skill_index": 1
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 25,
+      "parameter_corrections": 9,
+      "round": 3,
+      "skill_index": 1
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 6,
+      "memory_size_after": 14,
+      "parameter_corrections": 19,
+      "round": 0,
+      "skill_index": 2
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 14,
+      "parameter_corrections": 11,
+      "round": 1,
+      "skill_index": 2
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 14,
+      "parameter_corrections": 10,
+      "round": 2,
+      "skill_index": 2
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 14,
+      "parameter_corrections": 8,
+      "round": 3,
+      "skill_index": 2
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 18,
+      "memory_size_after": 26,
+      "parameter_corrections": 24,
+      "round": 0,
+      "skill_index": 3
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 26,
+      "parameter_corrections": 24,
+      "round": 1,
+      "skill_index": 3
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 26,
+      "parameter_corrections": 9,
+      "round": 2,
+      "skill_index": 3
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 26,
+      "parameter_corrections": 7,
+      "round": 3,
+      "skill_index": 3
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 25,
+      "memory_size_after": 33,
+      "parameter_corrections": 20,
+      "round": 0,
+      "skill_index": 4
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 8,
+      "memory_size_after": 41,
+      "parameter_corrections": 20,
+      "round": 1,
+      "skill_index": 4
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 41,
+      "parameter_corrections": 24,
+      "round": 2,
+      "skill_index": 4
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 41,
+      "parameter_corrections": 18,
+      "round": 3,
+      "skill_index": 4
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 12,
+      "memory_size_after": 20,
+      "parameter_corrections": 14,
+      "round": 0,
+      "skill_index": 5
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 20,
+      "parameter_corrections": 14,
+      "round": 1,
+      "skill_index": 5
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 20,
+      "parameter_corrections": 17,
+      "round": 2,
+      "skill_index": 5
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 20,
+      "parameter_corrections": 11,
+      "round": 3,
+      "skill_index": 5
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 2,
+      "memory_size_after": 10,
+      "parameter_corrections": 22,
+      "round": 0,
+      "skill_index": 6
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 10,
+      "parameter_corrections": 22,
+      "round": 1,
+      "skill_index": 6
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 10,
+      "parameter_corrections": 15,
+      "round": 2,
+      "skill_index": 6
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 10,
+      "parameter_corrections": 19,
+      "round": 3,
+      "skill_index": 6
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 21,
+      "memory_size_after": 29,
+      "parameter_corrections": 22,
+      "round": 0,
+      "skill_index": 7
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 29,
+      "parameter_corrections": 25,
+      "round": 1,
+      "skill_index": 7
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 29,
+      "parameter_corrections": 24,
+      "round": 2,
+      "skill_index": 7
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 29,
+      "parameter_corrections": 17,
+      "round": 3,
+      "skill_index": 7
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 31,
+      "memory_size_after": 39,
+      "parameter_corrections": 31,
+      "round": 0,
+      "skill_index": 8
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 39,
+      "parameter_corrections": 31,
+      "round": 1,
+      "skill_index": 8
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 39,
+      "parameter_corrections": 25,
+      "round": 2,
+      "skill_index": 8
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 39,
+      "parameter_corrections": 21,
+      "round": 3,
+      "skill_index": 8
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 13,
+      "memory_size_after": 21,
+      "parameter_corrections": 19,
+      "round": 0,
+      "skill_index": 9
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 21,
+      "parameter_corrections": 17,
+      "round": 1,
+      "skill_index": 9
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 21,
+      "parameter_corrections": 11,
+      "round": 2,
+      "skill_index": 9
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 21,
+      "parameter_corrections": 10,
+      "round": 3,
+      "skill_index": 9
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 8,
+      "parameter_corrections": 12,
+      "round": 0,
+      "skill_index": 10
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 8,
+      "parameter_corrections": 14,
+      "round": 1,
+      "skill_index": 10
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 8,
+      "parameter_corrections": 2,
+      "round": 2,
+      "skill_index": 10
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 8,
+      "parameter_corrections": 6,
+      "round": 3,
+      "skill_index": 10
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 3,
+      "memory_size_after": 11,
+      "parameter_corrections": 8,
+      "round": 0,
+      "skill_index": 11
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 6,
+      "memory_size_after": 17,
+      "parameter_corrections": 5,
+      "round": 1,
+      "skill_index": 11
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 7,
+      "round": 2,
+      "skill_index": 11
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 4,
+      "round": 3,
+      "skill_index": 11
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 18,
+      "memory_size_after": 26,
+      "parameter_corrections": 25,
+      "round": 0,
+      "skill_index": 12
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 26,
+      "parameter_corrections": 23,
+      "round": 1,
+      "skill_index": 12
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 26,
+      "parameter_corrections": 23,
+      "round": 2,
+      "skill_index": 12
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 26,
+      "parameter_corrections": 29,
+      "round": 3,
+      "skill_index": 12
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 5,
+      "memory_size_after": 13,
+      "parameter_corrections": 19,
+      "round": 0,
+      "skill_index": 13
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 6,
+      "memory_size_after": 19,
+      "parameter_corrections": 18,
+      "round": 1,
+      "skill_index": 13
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 19,
+      "parameter_corrections": 13,
+      "round": 2,
+      "skill_index": 13
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 19,
+      "parameter_corrections": 21,
+      "round": 3,
+      "skill_index": 13
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 6,
+      "memory_size_after": 14,
+      "parameter_corrections": 14,
+      "round": 0,
+      "skill_index": 14
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 6,
+      "memory_size_after": 20,
+      "parameter_corrections": 5,
+      "round": 1,
+      "skill_index": 14
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 20,
+      "parameter_corrections": 4,
+      "round": 2,
+      "skill_index": 14
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 20,
+      "parameter_corrections": 3,
+      "round": 3,
+      "skill_index": 14
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 7,
+      "memory_size_after": 15,
+      "parameter_corrections": 26,
+      "round": 0,
+      "skill_index": 15
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 15,
+      "parameter_corrections": 10,
+      "round": 1,
+      "skill_index": 15
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 15,
+      "parameter_corrections": 12,
+      "round": 2,
+      "skill_index": 15
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 15,
+      "parameter_corrections": 11,
+      "round": 3,
+      "skill_index": 15
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 4,
+      "memory_size_after": 12,
+      "parameter_corrections": 5,
+      "round": 0,
+      "skill_index": 16
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 12,
+      "parameter_corrections": 7,
+      "round": 1,
+      "skill_index": 16
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 12,
+      "parameter_corrections": 7,
+      "round": 2,
+      "skill_index": 16
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 12,
+      "parameter_corrections": 3,
+      "round": 3,
+      "skill_index": 16
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 9,
+      "memory_size_after": 17,
+      "parameter_corrections": 18,
+      "round": 0,
+      "skill_index": 17
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 15,
+      "round": 1,
+      "skill_index": 17
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 15,
+      "round": 2,
+      "skill_index": 17
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 17,
+      "parameter_corrections": 18,
+      "round": 3,
+      "skill_index": 17
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 11,
+      "memory_size_after": 19,
+      "parameter_corrections": 25,
+      "round": 0,
+      "skill_index": 18
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 19,
+      "parameter_corrections": 27,
+      "round": 1,
+      "skill_index": 18
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 19,
+      "parameter_corrections": 21,
+      "round": 2,
+      "skill_index": 18
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 19,
+      "parameter_corrections": 21,
+      "round": 3,
+      "skill_index": 18
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 1,
+      "memory_size_after": 9,
+      "parameter_corrections": 18,
+      "round": 0,
+      "skill_index": 19
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 1,
+      "memory_size_after": 10,
+      "parameter_corrections": 9,
+      "round": 1,
+      "skill_index": 19
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 2,
+      "memory_size_after": 12,
+      "parameter_corrections": 9,
+      "round": 2,
+      "skill_index": 19
+    },
+    {
+      "interaction_queries": 50,
+      "memory_corrections": 0,
+      "memory_size_after": 12,
+      "parameter_corrections": 9,
+      "round": 3,
+      "skill_index": 19
+    }
+  ],
+  "forgetting": {
+    "memory": {
+      "average_forgetting": 0.0,
+      "per_skill": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worst_task_forgetting": 0.0
+    },
+    "parameter": {
+      "average_forgetting": 0.19199999999999995,
+      "per_skill": [
+        0.28,
+        0.39,
+        0.10999999999999999,
+        0.41999999999999993,
+        0.18999999999999995,
+        0.15000000000000002,
+        0.17999999999999994,
+        0.11999999999999994,
+        0.06999999999999995,
+        0.35,
+        0.30000000000000004,
+        0.30999999999999994,
+        0.09999999999999998,
+        0.040000000000000036,
+        0.33,
+        0.22999999999999998,
+        0.21999999999999997,
+        0.010000000000000009,
+        0.040000000000000036,
+        0.0
+      ],
+      "worst_task_forgetting": 0.41999999999999993
+    }
+  },
+  "improvement_round0_to_round3": {
+    "memory_mean": 0.024000000000000004,
+    "memory_worst": 0.0,
+    "parameter_mean": 0.0595,
+    "parameter_worst": -0.30000000000000004
+  },
+  "independent_eval_queries_per_skill": 100,
+  "interaction_queries_per_round": 50,
+  "notes": [
+    "Memory adaptation stores corrected examples per skill; it is not parameter learning.",
+    "Parameter learning updates one shared SGD classifier and can forget earlier skills.",
+    "Evaluation queries are disjoint from support, interaction, and correction rows.",
+    "The official v0.43 test was not opened."
+  ],
+  "official_test_opened": false,
+  "retention_matrix": {
+    "memory": [
+      [
+        1.0
+      ],
+      [
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    ],
+    "parameter": [
+      [
+        0.75
+      ],
+      [
+        0.56,
+        0.86
+      ],
+      [
+        0.51,
+        0.58,
+        0.64
+      ],
+      [
+        0.47,
+        0.6,
+        0.24,
+        0.94
+      ],
+      [
+        0.41,
+        0.58,
+        0.5,
+        0.56,
+        0.59
+      ],
+      [
+        0.52,
+        0.45,
+        0.51,
+        0.5,
+        0.55,
+        0.55
+      ],
+      [
+        0.63,
+        0.56,
+        0.29,
+        0.77,
+        0.61,
+        0.45,
+        0.69
+      ],
+      [
+        0.53,
+        0.47,
+        0.5,
+        0.51,
+        0.52,
+        0.48,
+        0.5,
+        0.53
+      ],
+      [
+        0.36,
+        0.38,
+        0.56,
+        0.45,
+        0.42,
+        0.35,
+        0.51,
+        0.52,
+        0.54
+      ],
+      [
+        0.49,
+        0.64,
+        0.3,
+        0.7,
+        0.46,
+        0.48,
+        0.62,
+        0.42,
+        0.54,
+        0.83
+      ],
+      [
+        0.4,
+        0.63,
+        0.5,
+        0.55,
+        0.38,
+        0.42,
+        0.55,
+        0.51,
+        0.43,
+        0.57,
+        0.81
+      ],
+      [
+        0.45,
+        0.7,
+        0.42,
+        0.56,
+        0.65,
+        0.54,
+        0.47,
+        0.46,
+        0.57,
+        0.53,
+        0.5,
+        0.82
+      ],
+      [
+        0.5,
+        0.48,
+        0.39,
+        0.5,
+        0.51,
+        0.49,
+        0.5,
+        0.49,
+        0.5,
+        0.53,
+        0.5,
+        0.53,
+        0.48
+      ],
+      [
+        0.54,
+        0.48,
+        0.56,
+        0.5,
+        0.51,
+        0.61,
+        0.49,
+        0.53,
+        0.43,
+        0.55,
+        0.59,
+        0.39,
+        0.5,
+        0.47
+      ],
+      [
+        0.53,
+        0.51,
+        0.46,
+        0.4,
+        0.49,
+        0.47,
+        0.5,
+        0.5,
+        0.47,
+        0.51,
+        0.51,
+        0.43,
+        0.48,
+        0.54,
+        0.72
+      ],
+      [
+        0.51,
+        0.58,
+        0.5,
+        0.54,
+        0.56,
+        0.63,
+        0.45,
+        0.49,
+        0.52,
+        0.57,
+        0.46,
+        0.54,
+        0.58,
+        0.48,
+        0.36,
+        0.69
+      ],
+      [
+        0.67,
+        0.52,
+        0.36,
+        0.69,
+        0.69,
+        0.64,
+        0.49,
+        0.58,
+        0.49,
+        0.69,
+        0.44,
+        0.69,
+        0.43,
+        0.52,
+        0.16,
+        0.74,
+        0.74
+      ],
+      [
+        0.54,
+        0.45,
+        0.53,
+        0.51,
+        0.53,
+        0.49,
+        0.52,
+        0.53,
+        0.53,
+        0.47,
+        0.48,
+        0.57,
+        0.52,
+        0.49,
+        0.38,
+        0.51,
+        0.52,
+        0.49
+      ],
+      [
+        0.44,
+        0.48,
+        0.52,
+        0.42,
+        0.52,
+        0.47,
+        0.39,
+        0.48,
+        0.54,
+        0.33,
+        0.45,
+        0.53,
+        0.55,
+        0.54,
+        0.74,
+        0.43,
+        0.56,
+        0.53,
+        0.54
+      ],
+      [
+        0.47,
+        0.47,
+        0.53,
+        0.52,
+        0.5,
+        0.49,
+        0.51,
+        0.46,
+        0.5,
+        0.48,
+        0.51,
+        0.51,
+        0.48,
+        0.5,
+        0.41,
+        0.51,
+        0.52,
+        0.52,
+        0.5,
+        0.67
+      ]
+    ]
+  },
+  "round_accuracy": {
+    "memory": [
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.83,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.92,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.94,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.87,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.96,
+        0.92,
+        1.0,
+        1.0
+      ]
+    ],
+    "parameter": [
+      [
+        0.6,
+        0.53,
+        0.59,
+        0.75
+      ],
+      [
+        0.56,
+        0.54,
+        0.58,
+        0.86
+      ],
+      [
+        0.56,
+        0.75,
+        0.83,
+        0.64
+      ],
+      [
+        0.57,
+        0.84,
+        0.76,
+        0.94
+      ],
+      [
+        0.64,
+        0.51,
+        0.55,
+        0.59
+      ],
+      [
+        0.58,
+        0.73,
+        0.5,
+        0.55
+      ],
+      [
+        0.43,
+        0.58,
+        0.72,
+        0.69
+      ],
+      [
+        0.56,
+        0.54,
+        0.5,
+        0.53
+      ],
+      [
+        0.5,
+        0.55,
+        0.48,
+        0.54
+      ],
+      [
+        0.5,
+        0.53,
+        0.59,
+        0.83
+      ],
+      [
+        0.52,
+        0.89,
+        0.67,
+        0.81
+      ],
+      [
+        0.8,
+        0.79,
+        0.82,
+        0.82
+      ],
+      [
+        0.5,
+        0.51,
+        0.45,
+        0.48
+      ],
+      [
+        0.51,
+        0.5,
+        0.57,
+        0.47
+      ],
+      [
+        0.82,
+        0.9,
+        0.89,
+        0.72
+      ],
+      [
+        0.55,
+        0.57,
+        0.85,
+        0.69
+      ],
+      [
+        0.82,
+        0.61,
+        0.91,
+        0.74
+      ],
+      [
+        0.79,
+        0.83,
+        0.61,
+        0.49
+      ],
+      [
+        0.48,
+        0.5,
+        0.48,
+        0.54
+      ],
+      [
+        0.87,
+        0.79,
+        0.53,
+        0.67
+      ]
+    ]
+  },
+  "rounds_per_skill": 4,
+  "runtime_seconds": 13.276,
+  "schema": "nucleus-pulse-v0.43-correction-retention-v1",
+  "skill_count": 20,
+  "skills": [
+    {
+      "family_id": "01093c4b61fb4e37",
+      "skill_index": 0,
+      "support_size": 8,
+      "task_id": "task-6b2988888d226b44"
+    },
+    {
+      "family_id": "0147808850b1906b",
+      "skill_index": 1,
+      "support_size": 8,
+      "task_id": "task-390955a0e1a92dcf"
+    },
+    {
+      "family_id": "02154f8b81074e3b",
+      "skill_index": 2,
+      "support_size": 8,
+      "task_id": "task-6de51935959ebdcb"
+    },
+    {
+      "family_id": "02a0d9854451d34e",
+      "skill_index": 3,
+      "support_size": 8,
+      "task_id": "task-80857c24480ec7be"
+    },
+    {
+      "family_id": "03619eea2cf6771f",
+      "skill_index": 4,
+      "support_size": 8,
+      "task_id": "task-3ad0cca117c67eea"
+    },
+    {
+      "family_id": "060cee296cc4f56f",
+      "skill_index": 5,
+      "support_size": 8,
+      "task_id": "task-08f0a3eb71f3a059"
+    },
+    {
+      "family_id": "0785d88db033158e",
+      "skill_index": 6,
+      "support_size": 8,
+      "task_id": "task-2ab03996560141af"
+    },
+    {
+      "family_id": "0791a695bb8b7a21",
+      "skill_index": 7,
+      "support_size": 8,
+      "task_id": "task-6672be9119aa9373"
+    },
+    {
+      "family_id": "0a9d023f55ef5d47",
+      "skill_index": 8,
+      "support_size": 8,
+      "task_id": "task-966741ec0a18495c"
+    },
+    {
+      "family_id": "0cf04ddb96c1a2c2",
+      "skill_index": 9,
+      "support_size": 8,
+      "task_id": "task-72b9e9ed1f03c896"
+    },
+    {
+      "family_id": "10fb88ba48ade131",
+      "skill_index": 10,
+      "support_size": 8,
+      "task_id": "task-df454b8ee3ce42b2"
+    },
+    {
+      "family_id": "1105af6cce657720",
+      "skill_index": 11,
+      "support_size": 8,
+      "task_id": "task-68296486ab024eea"
+    },
+    {
+      "family_id": "11249eb717e06c76",
+      "skill_index": 12,
+      "support_size": 8,
+      "task_id": "task-b4193f76562111fb"
+    },
+    {
+      "family_id": "12a3994fe32e4382",
+      "skill_index": 13,
+      "support_size": 8,
+      "task_id": "task-0752b18e7437d691"
+    },
+    {
+      "family_id": "16c9076c11c64644",
+      "skill_index": 14,
+      "support_size": 8,
+      "task_id": "task-ff3e1520488f4e24"
+    },
+    {
+      "family_id": "1a2ab63a5445828d",
+      "skill_index": 15,
+      "support_size": 8,
+      "task_id": "task-bed83964b3ad1d0d"
+    },
+    {
+      "family_id": "1ec198e47fc88729",
+      "skill_index": 16,
+      "support_size": 8,
+      "task_id": "task-c6db07b6aedab559"
+    },
+    {
+      "family_id": "22325e099b235be5",
+      "skill_index": 17,
+      "support_size": 8,
+      "task_id": "task-68998a2a51ad5901"
+    },
+    {
+      "family_id": "26843ef061fb0498",
+      "skill_index": 18,
+      "support_size": 8,
+      "task_id": "task-d50bf8f133b190e7"
+    },
+    {
+      "family_id": "26df69027d5d8351",
+      "skill_index": 19,
+      "support_size": 8,
+      "task_id": "task-64654d22220bb5f4"
+    }
+  ]
+}

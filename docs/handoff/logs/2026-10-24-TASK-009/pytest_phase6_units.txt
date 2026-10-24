@@ -1,0 +1,52 @@
+﻿.......F.........................                                        [100%]
+================================== FAILURES ===================================
+__________ test_cli_smoke_keeps_evaluator_private_out_of_public_tree __________
+
+tmp_path = WindowsPath('D:/PROGRAMING/BAND/engineer_nucleus/necleus/.tmp/pytest-of-Abdullah/pytest-6/test_cli_smoke_keeps_evaluator0')
+capsys = <_pytest.capture.CaptureFixture object at 0x000001D92FBA9310>
+
+    def test_cli_smoke_keeps_evaluator_private_out_of_public_tree(tmp_path: Path, capsys) -> None:
+        public = tmp_path / "public"
+        private = tmp_path / "private"
+>       report = main([
+            "smoke",
+            "--output", str(public),
+            "--private-output", str(private),
+            "--seed", "430043",
+        ])
+
+tests\v043\test_v043_cli.py:23:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+skillbench_v043\cli.py:320: in main
+    report = _smoke(args)
+             ^^^^^^^^^^^^
+skillbench_v043\cli.py:86: in _smoke
+    record = generate_task(
+skillbench_v043\generator.py:336: in generate_task
+    assert_not_disqualified(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+task_id = 'task-84d6edfe96ffd28e', family_id = '001805d0b07b2fce'
+support = [{'x': [59, 4], 'y': 0}, {'x': [26, 20], 'y': 1}, {'x': [36, 98], 'y': 1}, {'x': [23, 4], 'y': 0}, {'x': [49, 70], 'y': 0}, {'x': [34, 99], 'y': 1}, ...]
+query_x = ((85, 28), (24, 97), (92, 62), (11, 94), (56, 76), (3, 26), ...)
+split = 'train'
+
+    def assert_not_disqualified(*, task_id: str, family_id: str,
+                                support: Iterable[Mapping[str, Any]],
+                                query_x: Iterable[Iterable[int]],
+                                split: str | None = None) -> None:
+        """Reject an exposed smoke task or family from official evaluation.
+
+        Family-level exclusion is enforced for the ``test`` split. Exact task IDs
+        and fingerprints are rejected in every split so accidental reuse is caught
+        during development as well.
+        """
+        if task_id in EXPOSED_TASK_IDS:
+>           raise ValueError(f"disqualified exposed smoke task id: {task_id}")
+E           ValueError: disqualified exposed smoke task id: task-84d6edfe96ffd28e
+
+skillbench_v043\integrity.py:71: ValueError
+=========================== short test summary info ===========================
+FAILED tests/v043/test_v043_cli.py::test_cli_smoke_keeps_evaluator_private_out_of_public_tree
+1 failed, 32 passed in 32.88s
+exit_code=1

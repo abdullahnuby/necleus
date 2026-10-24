@@ -1,0 +1,13 @@
+﻿{
+  "corpus_seconds": 94.79,
+  "one_epoch_seconds": 2.66,
+  "history": [
+    {
+      "epoch": 1.0,
+      "train_loss": 0.6665538044137564,
+      "validation_loss": 0.6645385702054319,
+      "validation_accuracy": 0.58925
+    }
+  ]
+}
+exit_code=0

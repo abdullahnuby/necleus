@@ -1,0 +1,47 @@
+﻿{
+  "runtime": 43.25,
+  "calibration": 3,
+  "eval": 4,
+  "classes": {
+    "CONTRADICTORY_SUPPORT": 2,
+    "IN_SCOPE_AMBIGUOUS": 2,
+    "IN_SCOPE_IDENTIFIABLE": 2,
+    "OUT_OF_SCOPE": 1
+  },
+  "threshold": 0.85,
+  "baseline_keys": [
+    "constant",
+    "retrieval",
+    "linear",
+    "decision_tree",
+    "program_induction"
+  ],
+  "deepsets": {
+    "queries": 400,
+    "accuracy": 0.5,
+    "accuracy_ci95": [
+      0.4512336165999552,
+      0.5487663834000448
+    ],
+    "coverage": 0.0,
+    "coverage_ci95": [
+      0.0,
+      0.009512640599680667
+    ],
+    "selective_risk": null,
+    "selective_risk_ci95": null,
+    "abstention": 1.0,
+    "accepted": 0,
+    "confusion_matrix": [
+      [
+        0,
+        200
+      ],
+      [
+        0,
+        200
+      ]
+    ]
+  }
+}
+exit_code=0

@@ -1,0 +1,221 @@
+﻿{
+  "wall_seconds": 599.59,
+  "corpus": {
+    "episodes": 10000,
+    "families": 648,
+    "targets": 3285,
+    "sha256": "cf78f7b28c0b549eefd01e171b8f475df06b8df24bd6b40e23cd31c33fd2a478"
+  },
+  "dev": {
+    "tasks": 28,
+    "families": 25,
+    "classes": {
+      "CONTRADICTORY_SUPPORT": 8,
+      "IN_SCOPE_AMBIGUOUS": 8,
+      "IN_SCOPE_IDENTIFIABLE": 8,
+      "OUT_OF_SCOPE": 4
+    },
+    "calibration": 14,
+    "evaluation": 14
+  },
+  "compute": {
+    "runtime_seconds": 599.569,
+    "peak_tracemalloc_mb": 80.056,
+    "corpus_episodes": 10000,
+    "training_episodes": 9500,
+    "validation_episodes": 500,
+    "seeds": [
+      430043,
+      430044,
+      430045
+    ],
+    "epochs": 10,
+    "hidden": 128,
+    "device": "local CPU, NumPy float64"
+  },
+  "thresholds": {
+    "430043": 0.75,
+    "430044": 0.85,
+    "430045": 0.8
+  },
+  "checkpoints": {
+    "430043": "a9834f87e9af8126ae95de66442c09d0d9d91934054ad4a965688a9e68666054",
+    "430044": "f42e97c8c4c8671f9df00d6f580ee89a1ba7be9eb3b57a2c40f6293242e28098",
+    "430045": "e273e6be91468c9b48eb7be77e5d89d2ddee655ed95d8d2d18d586f578507f29"
+  },
+  "baseline_overall": {
+    "constant": {
+      "queries": 1400,
+      "accuracy": 0.5,
+      "accuracy_ci95": [
+        0.4738442593848501,
+        0.5261557406151499
+      ],
+      "coverage": 1.0,
+      "coverage_ci95": [
+        0.9972635089314918,
+        0.9999999999999998
+      ],
+      "selective_risk": 0.5,
+      "selective_risk_ci95": [
+        0.4738442593848501,
+        0.5261557406151499
+      ],
+      "abstention": 0.0,
+      "accepted": 1400,
+      "confusion_matrix": [
+        [
+          700,
+          0
+        ],
+        [
+          700,
+          0
+        ]
+      ]
+    },
+    "retrieval": {
+      "queries": 1400,
+      "accuracy": 0.5685714285714286,
+      "accuracy_ci95": [
+        0.5424745016363606,
+        0.5942930653028156
+      ],
+      "coverage": 1.0,
+      "coverage_ci95": [
+        0.9972635089314918,
+        0.9999999999999998
+      ],
+      "selective_risk": 0.4314285714285714,
+      "selective_risk_ci95": [
+        0.4057069346971845,
+        0.45752549836363937
+      ],
+      "abstention": 0.0,
+      "accepted": 1400,
+      "confusion_matrix": [
+        [
+          366,
+          334
+        ],
+        [
+          270,
+          430
+        ]
+      ]
+    },
+    "linear": {
+      "queries": 1400,
+      "accuracy": 0.5628571428571428,
+      "accuracy_ci95": [
+        0.5367363309859791,
+        0.5886339387082656
+      ],
+      "coverage": 1.0,
+      "coverage_ci95": [
+        0.9972635089314918,
+        0.9999999999999998
+      ],
+      "selective_risk": 0.43714285714285717,
+      "selective_risk_ci95": [
+        0.41136606129173436,
+        0.46326366901402083
+      ],
+      "abstention": 0.0,
+      "accepted": 1400,
+      "confusion_matrix": [
+        [
+          376,
+          324
+        ],
+        [
+          288,
+          412
+        ]
+      ]
+    },
+    "decision_tree": {
+      "queries": 1400,
+      "accuracy": 0.5792857142857143,
+      "accuracy_ci95": [
+        0.5532430329261345,
+        0.6048944663472878
+      ],
+      "coverage": 1.0,
+      "coverage_ci95": [
+        0.9972635089314918,
+        0.9999999999999998
+      ],
+      "selective_risk": 0.4207142857142857,
+      "selective_risk_ci95": [
+        0.3951055336527121,
+        0.4467569670738654
+      ],
+      "abstention": 0.0,
+      "accepted": 1400,
+      "confusion_matrix": [
+        [
+          394,
+          306
+        ],
+        [
+          283,
+          417
+        ]
+      ]
+    },
+    "program_induction": {
+      "queries": 1400,
+      "accuracy": 0.7335714285714285,
+      "accuracy_ci95": [
+        0.7097970002917281,
+        0.7560675245948402
+      ],
+      "coverage": 0.4257142857142857,
+      "coverage_ci95": [
+        0.40005131329272187,
+        0.4517838225231707
+      ],
+      "selective_risk": 0.06208053691275173,
+      "selective_risk_ci95": [
+        0.045371817845453404,
+        0.08439844150301459
+      ],
+      "abstention": 0.5742857142857143,
+      "accepted": 596,
+      "confusion_matrix": [
+        [
+          627,
+          73
+        ],
+        [
+          300,
+          400
+        ]
+      ]
+    }
+  },
+  "deepsets_aggregate": {
+    "accuracy": {
+      "mean": 0.575952380952381,
+      "std": 0.013966675596249957,
+      "n_seeds": 3
+    },
+    "coverage": {
+      "mean": 0.022142857142857145,
+      "std": 0.010126747770541305,
+      "n_seeds": 3
+    },
+    "selective_risk": {
+      "mean": 0.35125477359519913,
+      "std": 0.03275125662608217,
+      "n_seeds": 3
+    },
+    "abstention": {
+      "mean": 0.9778571428571429,
+      "std": 0.01012674777054133,
+      "n_seeds": 3
+    }
+  }
+}
+exit_code=0

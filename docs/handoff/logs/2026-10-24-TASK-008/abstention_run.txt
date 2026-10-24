@@ -1,0 +1,135 @@
+﻿{
+  "symbolic_task_gate": {
+    "identifiable_pass": true,
+    "identifiable_coverage": 1.0,
+    "identifiable_selective_risk": 0.0,
+    "abstention_classes": {
+      "IN_SCOPE_AMBIGUOUS": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      },
+      "OUT_OF_SCOPE": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      },
+      "CONTRADICTORY_SUPPORT": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "symbolic_query_gate": {
+    "identifiable_pass": true,
+    "identifiable_coverage": 1.0,
+    "identifiable_selective_risk": 0.0,
+    "abstention_classes": {
+      "IN_SCOPE_AMBIGUOUS": {
+        "abstention": 0.6875,
+        "false_acceptance": 0.3125,
+        "pass": false
+      },
+      "OUT_OF_SCOPE": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      },
+      "CONTRADICTORY_SUPPORT": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      }
+    },
+    "all_pass": false
+  },
+  "deepsets": [
+    {
+      "seed": 430043,
+      "status": "PASS",
+      "threshold": 0.75,
+      "gate": {
+        "identifiable_pass": false,
+        "identifiable_coverage": 0.0125,
+        "identifiable_selective_risk": 0.6,
+        "abstention_classes": {
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 0.9525,
+            "false_acceptance": 0.0475,
+            "pass": true
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 0.995,
+            "false_acceptance": 0.005,
+            "pass": true
+          },
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.9425,
+            "false_acceptance": 0.0575,
+            "pass": true
+          }
+        },
+        "all_pass": false
+      }
+    },
+    {
+      "seed": 430044,
+      "status": "PASS",
+      "threshold": 0.85,
+      "gate": {
+        "identifiable_pass": false,
+        "identifiable_coverage": 0.0,
+        "identifiable_selective_risk": null,
+        "abstention_classes": {
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          },
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.935,
+            "false_acceptance": 0.065,
+            "pass": true
+          }
+        },
+        "all_pass": false
+      }
+    },
+    {
+      "seed": 430045,
+      "status": "PASS",
+      "threshold": 0.8,
+      "gate": {
+        "identifiable_pass": false,
+        "identifiable_coverage": 0.0,
+        "identifiable_selective_risk": null,
+        "abstention_classes": {
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          },
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.95,
+            "false_acceptance": 0.05,
+            "pass": true
+          }
+        },
+        "all_pass": false
+      }
+    }
+  ]
+}
+exit_code=0

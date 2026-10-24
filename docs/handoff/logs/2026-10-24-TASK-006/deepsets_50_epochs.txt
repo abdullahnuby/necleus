@@ -1,0 +1,171 @@
+﻿{
+  "corpus_seconds": 62.45,
+  "train_seconds": 111.07,
+  "last_history": {
+    "epoch": 50.0,
+    "train_loss": 0.6123774627150091,
+    "validation_loss": 0.6455830103939991,
+    "validation_accuracy": 0.6215
+  },
+  "history_every_10": [
+    {
+      "epoch": 10.0,
+      "train_loss": 0.629060248355199,
+      "validation_loss": 0.6512714671786661,
+      "validation_accuracy": 0.60875
+    },
+    {
+      "epoch": 20.0,
+      "train_loss": 0.6216128921360667,
+      "validation_loss": 0.6488187695228058,
+      "validation_accuracy": 0.612
+    },
+    {
+      "epoch": 30.0,
+      "train_loss": 0.6182745685756631,
+      "validation_loss": 0.6504747647798946,
+      "validation_accuracy": 0.61825
+    },
+    {
+      "epoch": 40.0,
+      "train_loss": 0.6148010255401053,
+      "validation_loss": 0.6450643959836823,
+      "validation_accuracy": 0.6195
+    },
+    {
+      "epoch": 50.0,
+      "train_loss": 0.6123774627150091,
+      "validation_loss": 0.6455830103939991,
+      "validation_accuracy": 0.6215
+    }
+  ],
+  "threshold": 0.8,
+  "threshold_selection": {
+    "threshold": 0.8,
+    "feasible": false,
+    "identifiable_coverage": 0.0,
+    "identifiable_selective_risk": null,
+    "ambiguous_abstention": 1.0,
+    "score": 1.0
+  },
+  "eval_overall": {
+    "queries": 1400,
+    "accuracy": 0.5707142857142857,
+    "accuracy_ci95": [
+      0.5446272184046058,
+      0.5964143350014196
+    ],
+    "coverage": 0.025,
+    "coverage_ci95": [
+      0.01802991570702768,
+      0.03456975080805493
+    ],
+    "selective_risk": 0.1428571428571429,
+    "selective_risk_ci95": [
+      0.06260138804853496,
+      0.2937588030867426
+    ],
+    "abstention": 0.975,
+    "accepted": 35,
+    "confusion_matrix": [
+      [
+        388,
+        312
+      ],
+      [
+        289,
+        411
+      ]
+    ]
+  },
+  "eval_by_class": {
+    "CONTRADICTORY_SUPPORT": {
+      "queries": 800,
+      "accuracy": 0.57125,
+      "accuracy_ci95": [
+        0.5366952040299795,
+        0.6051237812029322
+      ],
+      "coverage": 0.01125,
+      "coverage_ci95": [
+        0.0059297011344802576,
+        0.021241821215196598
+      ],
+      "selective_risk": 0.4444444444444444,
+      "selective_risk_ci95": [
+        0.188775429471914,
+        0.7333526542559703
+      ],
+      "abstention": 0.98875,
+      "accepted": 9,
+      "confusion_matrix": [
+        [
+          202,
+          198
+        ],
+        [
+          145,
+          255
+        ]
+      ]
+    },
+    "IN_SCOPE_AMBIGUOUS": {
+      "queries": 200,
+      "accuracy": 0.74,
+      "accuracy_ci95": [
+        0.6750912860870691,
+        0.795862631072137
+      ],
+      "coverage": 0.13,
+      "coverage_ci95": [
+        0.09028141365225628,
+        0.18366463072730121
+      ],
+      "selective_risk": 0.038461538461538436,
+      "selective_risk_ci95": [
+        0.0068218089769898765,
+        0.18893176991958405
+      ],
+      "abstention": 0.87,
+      "accepted": 26,
+      "confusion_matrix": [
+        [
+          76,
+          24
+        ],
+        [
+          28,
+          72
+        ]
+      ]
+    },
+    "OUT_OF_SCOPE": {
+      "queries": 400,
+      "accuracy": 0.485,
+      "accuracy_ci95": [
+        0.4363980471740593,
+        0.5338873320439311
+      ],
+      "coverage": 0.0,
+      "coverage_ci95": [
+        0.0,
+        0.009512640599680667
+      ],
+      "selective_risk": null,
+      "selective_risk_ci95": null,
+      "abstention": 1.0,
+      "accepted": 0,
+      "confusion_matrix": [
+        [
+          110,
+          90
+        ],
+        [
+          116,
+          84
+        ]
+      ]
+    }
+  }
+}
+exit_code=0

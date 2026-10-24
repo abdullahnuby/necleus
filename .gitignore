@@ -19,3 +19,8 @@ Thumbs.db
 
 # Local scratch
 *.log
+
+# Evaluator-private artifacts must never be committed to the public repository.
+.local_private/
+*_evaluator_private.jsonl
+*_evaluator_private.json

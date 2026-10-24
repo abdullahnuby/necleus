@@ -30,6 +30,10 @@ The comprehensive project overview is the repository root **[`README.md`](../REA
 | [`V0_43_ERROR_CORRECTION_AND_RETENTION_PROTOCOL_AR.md`](V0_43_ERROR_CORRECTION_AND_RETENTION_PROTOCOL_AR.md) | Three-round correction protocol and forgetting measurements |
 | [`V0_43_PREREGISTRATION_CHECKLIST_AR.md`](V0_43_PREREGISTRATION_CHECKLIST_AR.md) | Readiness checklist that must pass before the official test |
 | [`V0_43_STAGE2_IDENTIFIABILITY_CENSUS_PROTOCOL_AR.md`](V0_43_STAGE2_IDENTIFIABILITY_CENSUS_PROTOCOL_AR.md) | Aborted stage-2 identifiability census protocol; no results were produced |
+| [`V0_43_AUTONOMOUS_EXECUTION_ROADMAP_EN.md`](V0_43_AUTONOMOUS_EXECUTION_ROADMAP_EN.md) | Execution record for Phases 0–7, including failed scientific gates |
+| [`BENCHMARK_INTEGRITY_V0_43.md`](BENCHMARK_INTEGRITY_V0_43.md) | Exposed smoke artifacts, local preservation, disqualification, and recurrence guards |
+| [`V0_43_READINESS_CHECKLIST.md`](V0_43_READINESS_CHECKLIST.md) | PASS/FAIL/BLOCKED readiness review; official test remains closed |
+| [`V0_43_OFFICIAL_TEST_COMMITMENT_PLAN.md`](V0_43_OFFICIAL_TEST_COMMITMENT_PLAN.md) | Commitment plan; not issued because readiness is blocked |
 
 The benchmark code is in [`../skillbench_v043/`](../skillbench_v043/) and its tests are in [`../tests/v043/`](../tests/v043/).
 

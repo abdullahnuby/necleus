@@ -1,0 +1,30 @@
+﻿{
+  "elapsed_seconds": 98.025,
+  "manifest": {
+    "schema": "nucleus-pulse-v0.43-training-corpus-v1",
+    "generator_version": "v0.43-stage2-corpus-v1",
+    "seed": 430043,
+    "requested_episodes": 10000,
+    "actual_episodes": 10000,
+    "unique_families": 648,
+    "unique_targets": 3285,
+    "support_size_values": [
+      8
+    ],
+    "training_query_size_values": [
+      8
+    ],
+    "training_query_positive_counts": [
+      4
+    ],
+    "episode_sha256": "cf78f7b28c0b549eefd01e171b8f475df06b8df24bd6b40e23cd31c33fd2a478",
+    "families_sha256": "3d36a5a831062caabb46a6fb451f21dc7e532e4c7a1a2487d1f43a011746d392",
+    "targets_sha256": "5ae95f7f5e1097a5941ae0cfd1304fcefae1940a85d5877fe46481edede9ba4a",
+    "notes": [
+      "The corpus is regenerated deterministically from this seed and generator version.",
+      "Each episode has 8 support examples and 8 balanced training queries.",
+      "No development or test family contributes to this corpus."
+    ]
+  }
+}
+exit_code=0

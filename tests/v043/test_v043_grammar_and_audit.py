@@ -9,6 +9,7 @@ from skillbench_v043.generator import (
     split_audit, stable_family_split,
 )
 from skillbench_v043.audit import audit_target_splits
+from skillbench_v043.integrity import EXPOSED_FAMILY_IDS
 
 
 def test_bounded_grammar_is_fully_enumerated_and_depth_limited():
@@ -130,11 +131,15 @@ def test_generated_task_records_pass_split_audit():
     # split are not a leakage issue, while cross-split collision is.
     chosen = {}
     for expr, split in targets:
+        if split == "test" and family_id(expr) in EXPOSED_FAMILY_IDS:
+            continue
         chosen.setdefault(split, expr)
     if set(chosen) != {"train", "dev", "test"}:
         catalog = canonical_semantic_programs()
         for expr in catalog:
             split = stable_family_split(family_id(expr))
+            if split == "test" and family_id(expr) in EXPOSED_FAMILY_IDS:
+                continue
             if split not in chosen and semantic_mask(expr) not in {semantic_mask(x) for x in chosen.values()}:
                 chosen[split] = expr
             if len(chosen) == 3:

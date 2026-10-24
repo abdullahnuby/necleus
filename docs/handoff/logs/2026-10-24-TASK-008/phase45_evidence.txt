@@ -1,0 +1,66 @@
+﻿{
+  "abstention_seconds": 30.403,
+  "symbolic_task_gate": {
+    "identifiable_pass": true,
+    "identifiable_coverage": 1.0,
+    "identifiable_selective_risk": 0.0,
+    "abstention_classes": {
+      "IN_SCOPE_AMBIGUOUS": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      },
+      "OUT_OF_SCOPE": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      },
+      "CONTRADICTORY_SUPPORT": {
+        "abstention": 1.0,
+        "false_acceptance": 0.0,
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "new_operation_seconds": 0.824,
+  "new_operation_by_budget": {
+    "8": {
+      "pre_abstention_mean": 1.0,
+      "post_accuracy_mean": 0.6466666666666666,
+      "post_coverage_mean": 0.09000000000000001,
+      "post_selective_risk_mean": 0.0,
+      "exact_hidden_recovered_rate": 1.0,
+      "candidate_count_mean": 15.0
+    },
+    "16": {
+      "pre_abstention_mean": 1.0,
+      "post_accuracy_mean": 1.0,
+      "post_coverage_mean": 1.0,
+      "post_selective_risk_mean": 0.0,
+      "exact_hidden_recovered_rate": 1.0,
+      "candidate_count_mean": 1.0
+    },
+    "32": {
+      "pre_abstention_mean": 1.0,
+      "post_accuracy_mean": 1.0,
+      "post_coverage_mean": 1.0,
+      "post_selective_risk_mean": 0.0,
+      "exact_hidden_recovered_rate": 1.0,
+      "candidate_count_mean": 1.0
+    }
+  },
+  "retention_seconds": 13.276,
+  "retention_improvement": {
+    "memory_mean": 0.024000000000000004,
+    "memory_worst": 0.0,
+    "parameter_mean": 0.0595,
+    "parameter_worst": -0.30000000000000004
+  },
+  "retention_forgetting": {
+    "memory": 0.0,
+    "parameter": 0.19199999999999995,
+    "parameter_worst": 0.41999999999999993
+  }
+}
+exit_code=0

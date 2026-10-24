@@ -1,0 +1,1192 @@
+{
+  "calibration_task_count": 14,
+  "deepsets": [
+    {
+      "checkpoint": ".local_private\\v043_development\\checkpoints\\deepsets_seed_430043.npz",
+      "gate": {
+        "abstention_classes": {
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.9425,
+            "false_acceptance": 0.0575,
+            "pass": true
+          },
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 0.9525,
+            "false_acceptance": 0.0475,
+            "pass": true
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 0.995,
+            "false_acceptance": 0.005,
+            "pass": true
+          }
+        },
+        "all_pass": false,
+        "identifiable_coverage": 0.0125,
+        "identifiable_pass": false,
+        "identifiable_selective_risk": 0.6
+      },
+      "metrics": {
+        "by_class": {
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.9425,
+            "accepted": 23,
+            "accuracy": 0.555,
+            "accuracy_ci95": [
+              0.5060035322825036,
+              0.6029500772515317
+            ],
+            "confusion_matrix": [
+              [
+                120,
+                80
+              ],
+              [
+                98,
+                102
+              ]
+            ],
+            "coverage": 0.0575,
+            "coverage_ci95": [
+              0.038617261729224514,
+              0.08480142520149289
+            ],
+            "queries": 400,
+            "selective_risk": 0.4347826086956522,
+            "selective_risk_ci95": [
+              0.25634368332198654,
+              0.6318895069498304
+            ]
+          },
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 0.9525,
+            "accepted": 19,
+            "accuracy": 0.66,
+            "accuracy_ci95": [
+              0.6122507874202215,
+              0.7047051675878807
+            ],
+            "confusion_matrix": [
+              [
+                143,
+                57
+              ],
+              [
+                79,
+                121
+              ]
+            ],
+            "coverage": 0.0475,
+            "coverage_ci95": [
+              0.030616832107668652,
+              0.07299210763504237
+            ],
+            "queries": 400,
+            "selective_risk": 0.10526315789473684,
+            "selective_risk_ci95": [
+              0.029357941395096593,
+              0.313945504948417
+            ]
+          },
+          "IN_SCOPE_IDENTIFIABLE": {
+            "abstention": 0.9875,
+            "accepted": 5,
+            "accuracy": 0.535,
+            "accuracy_ci95": [
+              0.4860191592087707,
+              0.5833149559492518
+            ],
+            "confusion_matrix": [
+              [
+                116,
+                84
+              ],
+              [
+                102,
+                98
+              ]
+            ],
+            "coverage": 0.0125,
+            "coverage_ci95": [
+              0.005350671853550634,
+              0.02892415273113802
+            ],
+            "queries": 400,
+            "selective_risk": 0.6,
+            "selective_risk_ci95": [
+              0.23071993220883708,
+              0.8823817688407467
+            ]
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 0.995,
+            "accepted": 1,
+            "accuracy": 0.505,
+            "accuracy_ci95": [
+              0.4362687594824017,
+              0.5735427804584151
+            ],
+            "confusion_matrix": [
+              [
+                60,
+                40
+              ],
+              [
+                59,
+                41
+              ]
+            ],
+            "coverage": 0.005,
+            "coverage_ci95": [
+              0.0008831459893662054,
+              0.02777439986977148
+            ],
+            "queries": 200,
+            "selective_risk": 1.0,
+            "selective_risk_ci95": [
+              0.20654329147389294,
+              1.0
+            ]
+          }
+        },
+        "overall": {
+          "abstention": 0.9657142857142857,
+          "accepted": 48,
+          "accuracy": 0.5721428571428572,
+          "accuracy_ci95": [
+            0.5460626371936336,
+            0.5978282405236247
+          ],
+          "confusion_matrix": [
+            [
+              439,
+              261
+            ],
+            [
+              338,
+              362
+            ]
+          ],
+          "coverage": 0.03428571428571429,
+          "coverage_ci95": [
+            0.025956495684403436,
+            0.04516377885369259
+          ],
+          "queries": 1400,
+          "selective_risk": 0.33333333333333337,
+          "selective_risk_ci95": [
+            0.2167660137089678,
+            0.47460153667527943
+          ]
+        },
+        "tasks": 14
+      },
+      "seed": 430043,
+      "status": "PASS",
+      "threshold": 0.75,
+      "threshold_selection": {
+        "chosen": {
+          "ambiguous_abstention": 1.0,
+          "feasible": false,
+          "identifiable_coverage": 0.0,
+          "identifiable_selective_risk": null,
+          "score": 1.0,
+          "threshold": 0.75
+        },
+        "feasible": false,
+        "sweep": [
+          {
+            "ambiguous_abstention": 0.0,
+            "feasible": false,
+            "identifiable_coverage": 1.0,
+            "identifiable_selective_risk": 0.47250000000000003,
+            "score": 0.5275,
+            "threshold": 0.5
+          },
+          {
+            "ambiguous_abstention": 0.26,
+            "feasible": false,
+            "identifiable_coverage": 0.5725,
+            "identifiable_selective_risk": 0.44104803493449785,
+            "score": 0.39145196506550217,
+            "threshold": 0.55
+          },
+          {
+            "ambiguous_abstention": 0.5175000000000001,
+            "feasible": false,
+            "identifiable_coverage": 0.155,
+            "identifiable_selective_risk": 0.3548387096774194,
+            "score": 0.3176612903225807,
+            "threshold": 0.6
+          },
+          {
+            "ambiguous_abstention": 0.8049999999999999,
+            "feasible": false,
+            "identifiable_coverage": 0.075,
+            "identifiable_selective_risk": 0.3666666666666667,
+            "score": 0.5133333333333332,
+            "threshold": 0.65
+          },
+          {
+            "ambiguous_abstention": 0.9675,
+            "feasible": false,
+            "identifiable_coverage": 0.0075,
+            "identifiable_selective_risk": 0.33333333333333337,
+            "score": 0.6416666666666666,
+            "threshold": 0.7
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.75
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.8
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.85
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.9
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.95
+          }
+        ]
+      }
+    },
+    {
+      "checkpoint": ".local_private\\v043_development\\checkpoints\\deepsets_seed_430044.npz",
+      "gate": {
+        "abstention_classes": {
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.935,
+            "false_acceptance": 0.065,
+            "pass": true
+          },
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          }
+        },
+        "all_pass": false,
+        "identifiable_coverage": 0.0,
+        "identifiable_pass": false,
+        "identifiable_selective_risk": null
+      },
+      "metrics": {
+        "by_class": {
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.935,
+            "accepted": 26,
+            "accuracy": 0.555,
+            "accuracy_ci95": [
+              0.5060035322825036,
+              0.6029500772515317
+            ],
+            "confusion_matrix": [
+              [
+                130,
+                70
+              ],
+              [
+                108,
+                92
+              ]
+            ],
+            "coverage": 0.065,
+            "coverage_ci95": [
+              0.04474017569726697,
+              0.09353582162445521
+            ],
+            "queries": 400,
+            "selective_risk": 0.3846153846153846,
+            "selective_risk_ci95": [
+              0.22428359511834428,
+              0.5746547996057992
+            ]
+          },
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 1.0,
+            "accepted": 0,
+            "accuracy": 0.69,
+            "accuracy_ci95": [
+              0.6430481575959021,
+              0.7333370389762192
+            ],
+            "confusion_matrix": [
+              [
+                148,
+                52
+              ],
+              [
+                72,
+                128
+              ]
+            ],
+            "coverage": 0.0,
+            "coverage_ci95": [
+              0.0,
+              0.009512640599680667
+            ],
+            "queries": 400,
+            "selective_risk": null,
+            "selective_risk_ci95": null
+          },
+          "IN_SCOPE_IDENTIFIABLE": {
+            "abstention": 1.0,
+            "accepted": 0,
+            "accuracy": 0.56,
+            "accuracy_ci95": [
+              0.511011885079453,
+              0.6078465980485853
+            ],
+            "confusion_matrix": [
+              [
+                112,
+                88
+              ],
+              [
+                88,
+                112
+              ]
+            ],
+            "coverage": 0.0,
+            "coverage_ci95": [
+              0.0,
+              0.009512640599680667
+            ],
+            "queries": 400,
+            "selective_risk": null,
+            "selective_risk_ci95": null
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 1.0,
+            "accepted": 0,
+            "accuracy": 0.48,
+            "accuracy_ci95": [
+              0.4117904407948983,
+              0.5489633994418346
+            ],
+            "confusion_matrix": [
+              [
+                49,
+                51
+              ],
+              [
+                53,
+                47
+              ]
+            ],
+            "coverage": 0.0,
+            "coverage_ci95": [
+              0.0,
+              0.018846005918320894
+            ],
+            "queries": 200,
+            "selective_risk": null,
+            "selective_risk_ci95": null
+          }
+        },
+        "overall": {
+          "abstention": 0.9814285714285714,
+          "accepted": 26,
+          "accuracy": 0.5842857142857143,
+          "accuracy_ci95": [
+            0.5582725981515018,
+            0.6098375362112354
+          ],
+          "confusion_matrix": [
+            [
+              439,
+              261
+            ],
+            [
+              321,
+              379
+            ]
+          ],
+          "coverage": 0.018571428571428572,
+          "coverage_ci95": [
+            0.012704680200254906,
+            0.02707302691427995
+          ],
+          "queries": 1400,
+          "selective_risk": 0.3846153846153846,
+          "selective_risk_ci95": [
+            0.22428359511834428,
+            0.5746547996057992
+          ]
+        },
+        "tasks": 14
+      },
+      "seed": 430044,
+      "status": "PASS",
+      "threshold": 0.85,
+      "threshold_selection": {
+        "chosen": {
+          "ambiguous_abstention": 1.0,
+          "feasible": false,
+          "identifiable_coverage": 0.0,
+          "identifiable_selective_risk": null,
+          "score": 1.0,
+          "threshold": 0.85
+        },
+        "feasible": false,
+        "sweep": [
+          {
+            "ambiguous_abstention": 0.0,
+            "feasible": false,
+            "identifiable_coverage": 1.0,
+            "identifiable_selective_risk": 0.4425,
+            "score": 0.5575,
+            "threshold": 0.5
+          },
+          {
+            "ambiguous_abstention": 0.31000000000000005,
+            "feasible": false,
+            "identifiable_coverage": 0.4125,
+            "identifiable_selective_risk": 0.4,
+            "score": 0.3225,
+            "threshold": 0.55
+          },
+          {
+            "ambiguous_abstention": 0.56,
+            "feasible": false,
+            "identifiable_coverage": 0.23,
+            "identifiable_selective_risk": 0.3913043478260869,
+            "score": 0.3986956521739131,
+            "threshold": 0.6
+          },
+          {
+            "ambiguous_abstention": 0.7075,
+            "feasible": false,
+            "identifiable_coverage": 0.1125,
+            "identifiable_selective_risk": 0.4666666666666667,
+            "score": 0.3533333333333334,
+            "threshold": 0.65
+          },
+          {
+            "ambiguous_abstention": 0.8175,
+            "feasible": false,
+            "identifiable_coverage": 0.025,
+            "identifiable_selective_risk": 0.6,
+            "score": 0.24250000000000005,
+            "threshold": 0.7
+          },
+          {
+            "ambiguous_abstention": 0.92,
+            "feasible": false,
+            "identifiable_coverage": 0.005,
+            "identifiable_selective_risk": 0.5,
+            "score": 0.42500000000000004,
+            "threshold": 0.75
+          },
+          {
+            "ambiguous_abstention": 0.9875,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 0.9875,
+            "threshold": 0.8
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.85
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.9
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.95
+          }
+        ]
+      }
+    },
+    {
+      "checkpoint": ".local_private\\v043_development\\checkpoints\\deepsets_seed_430045.npz",
+      "gate": {
+        "abstention_classes": {
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.95,
+            "false_acceptance": 0.05,
+            "pass": true
+          },
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 1.0,
+            "false_acceptance": 0.0,
+            "pass": true
+          }
+        },
+        "all_pass": false,
+        "identifiable_coverage": 0.0,
+        "identifiable_pass": false,
+        "identifiable_selective_risk": null
+      },
+      "metrics": {
+        "by_class": {
+          "CONTRADICTORY_SUPPORT": {
+            "abstention": 0.95,
+            "accepted": 20,
+            "accuracy": 0.5375,
+            "accuracy_ci95": [
+              0.4885129330720267,
+              0.5857736188829973
+            ],
+            "confusion_matrix": [
+              [
+                114,
+                86
+              ],
+              [
+                99,
+                101
+              ]
+            ],
+            "coverage": 0.05,
+            "coverage_ci95": [
+              0.0325971756266401,
+              0.07596420091307252
+            ],
+            "queries": 400,
+            "selective_risk": 0.35,
+            "selective_risk_ci95": [
+              0.18118954786794464,
+              0.5671494897805354
+            ]
+          },
+          "IN_SCOPE_AMBIGUOUS": {
+            "abstention": 1.0,
+            "accepted": 0,
+            "accuracy": 0.66,
+            "accuracy_ci95": [
+              0.6122507874202215,
+              0.7047051675878807
+            ],
+            "confusion_matrix": [
+              [
+                145,
+                55
+              ],
+              [
+                81,
+                119
+              ]
+            ],
+            "coverage": 0.0,
+            "coverage_ci95": [
+              0.0,
+              0.009512640599680667
+            ],
+            "queries": 400,
+            "selective_risk": null,
+            "selective_risk_ci95": null
+          },
+          "IN_SCOPE_IDENTIFIABLE": {
+            "abstention": 1.0,
+            "accepted": 0,
+            "accuracy": 0.5125,
+            "accuracy_ci95": [
+              0.463629805456242,
+              0.5611323785287659
+            ],
+            "confusion_matrix": [
+              [
+                99,
+                101
+              ],
+              [
+                94,
+                106
+              ]
+            ],
+            "coverage": 0.0,
+            "coverage_ci95": [
+              0.0,
+              0.009512640599680667
+            ],
+            "queries": 400,
+            "selective_risk": null,
+            "selective_risk_ci95": null
+          },
+          "OUT_OF_SCOPE": {
+            "abstention": 1.0,
+            "accepted": 0,
+            "accuracy": 0.515,
+            "accuracy_ci95": [
+              0.44610724474630287,
+              0.5833273750761476
+            ],
+            "confusion_matrix": [
+              [
+                57,
+                43
+              ],
+              [
+                54,
+                46
+              ]
+            ],
+            "coverage": 0.0,
+            "coverage_ci95": [
+              0.0,
+              0.018846005918320894
+            ],
+            "queries": 200,
+            "selective_risk": null,
+            "selective_risk_ci95": null
+          }
+        },
+        "overall": {
+          "abstention": 0.9857142857142858,
+          "accepted": 20,
+          "accuracy": 0.5621428571428572,
+          "accuracy_ci95": [
+            0.5360193053003579,
+            0.5879263022382704
+          ],
+          "confusion_matrix": [
+            [
+              415,
+              285
+            ],
+            [
+              328,
+              372
+            ]
+          ],
+          "coverage": 0.014285714285714285,
+          "coverage_ci95": [
+            0.009266567383932584,
+            0.021963166796903768
+          ],
+          "queries": 1400,
+          "selective_risk": 0.35,
+          "selective_risk_ci95": [
+            0.18118954786794464,
+            0.5671494897805354
+          ]
+        },
+        "tasks": 14
+      },
+      "seed": 430045,
+      "status": "PASS",
+      "threshold": 0.8,
+      "threshold_selection": {
+        "chosen": {
+          "ambiguous_abstention": 1.0,
+          "feasible": false,
+          "identifiable_coverage": 0.0,
+          "identifiable_selective_risk": null,
+          "score": 1.0,
+          "threshold": 0.8
+        },
+        "feasible": false,
+        "sweep": [
+          {
+            "ambiguous_abstention": 0.0,
+            "feasible": false,
+            "identifiable_coverage": 1.0,
+            "identifiable_selective_risk": 0.47750000000000004,
+            "score": 0.5225,
+            "threshold": 0.5
+          },
+          {
+            "ambiguous_abstention": 0.21750000000000003,
+            "feasible": false,
+            "identifiable_coverage": 0.5825,
+            "identifiable_selective_risk": 0.42060085836909866,
+            "score": 0.3793991416309014,
+            "threshold": 0.55
+          },
+          {
+            "ambiguous_abstention": 0.42500000000000004,
+            "feasible": false,
+            "identifiable_coverage": 0.2175,
+            "identifiable_selective_risk": 0.3563218390804598,
+            "score": 0.2861781609195403,
+            "threshold": 0.6
+          },
+          {
+            "ambiguous_abstention": 0.665,
+            "feasible": false,
+            "identifiable_coverage": 0.0525,
+            "identifiable_selective_risk": 0.33333333333333337,
+            "score": 0.38416666666666666,
+            "threshold": 0.65
+          },
+          {
+            "ambiguous_abstention": 0.8875,
+            "feasible": false,
+            "identifiable_coverage": 0.015,
+            "identifiable_selective_risk": 0.6666666666666667,
+            "score": 0.23583333333333323,
+            "threshold": 0.7
+          },
+          {
+            "ambiguous_abstention": 0.9725,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 0.9725,
+            "threshold": 0.75
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.8
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.85
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.9
+          },
+          {
+            "ambiguous_abstention": 1.0,
+            "feasible": false,
+            "identifiable_coverage": 0.0,
+            "identifiable_selective_risk": null,
+            "score": 1.0,
+            "threshold": 0.95
+          }
+        ]
+      }
+    }
+  ],
+  "development_split_audit": {
+    "ast_overlap": false,
+    "families_by_split": {
+      "dev": 25,
+      "test": 0,
+      "train": 0
+    },
+    "family_overlap": false,
+    "public_payload_private_fields": "absent",
+    "query_balance": "50/50 per task",
+    "semantic_function_overlap": false,
+    "support_query_overlap": false,
+    "task_count": 28,
+    "tasks_by_split": {
+      "dev": 28,
+      "test": 0,
+      "train": 0
+    },
+    "unique_task_ids": 28
+  },
+  "evaluation_task_count": 14,
+  "notes": [
+    "All thresholds are selected on development calibration tasks only.",
+    "Task-level symbolic abstention uses only support-consistency information available at runtime.",
+    "The official v0.43 test was not opened."
+  ],
+  "official_test_opened": false,
+  "runtime_seconds": 30.403,
+  "schema": "nucleus-pulse-v0.43-abstention-v1",
+  "symbolic_query_level": {
+    "gate": {
+      "abstention_classes": {
+        "CONTRADICTORY_SUPPORT": {
+          "abstention": 1.0,
+          "false_acceptance": 0.0,
+          "pass": true
+        },
+        "IN_SCOPE_AMBIGUOUS": {
+          "abstention": 0.6875,
+          "false_acceptance": 0.3125,
+          "pass": false
+        },
+        "OUT_OF_SCOPE": {
+          "abstention": 1.0,
+          "false_acceptance": 0.0,
+          "pass": true
+        }
+      },
+      "all_pass": false,
+      "identifiable_coverage": 1.0,
+      "identifiable_pass": true,
+      "identifiable_selective_risk": 0.0
+    },
+    "metrics": {
+      "by_class": {
+        "CONTRADICTORY_SUPPORT": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "accuracy": 0.5,
+          "accuracy_ci95": [
+            0.4512336165999552,
+            0.5487663834000448
+          ],
+          "confusion_matrix": [
+            [
+              200,
+              0
+            ],
+            [
+              200,
+              0
+            ]
+          ],
+          "coverage": 0.0,
+          "coverage_ci95": [
+            0.0,
+            0.009512640599680667
+          ],
+          "queries": 400,
+          "selective_risk": null,
+          "selective_risk_ci95": null
+        },
+        "IN_SCOPE_AMBIGUOUS": {
+          "abstention": 0.6875,
+          "accepted": 125,
+          "accuracy": 0.82,
+          "accuracy_ci95": [
+            0.7793616474280234,
+            0.8545502625881809
+          ],
+          "confusion_matrix": [
+            [
+              168,
+              32
+            ],
+            [
+              40,
+              160
+            ]
+          ],
+          "coverage": 0.3125,
+          "coverage_ci95": [
+            0.26904080101876354,
+            0.35952643920611665
+          ],
+          "queries": 400,
+          "selective_risk": 0.0,
+          "selective_risk_ci95": [
+            0.0,
+            0.0298164567965626
+          ]
+        },
+        "IN_SCOPE_IDENTIFIABLE": {
+          "abstention": 0.0,
+          "accepted": 400,
+          "accuracy": 1.0,
+          "accuracy_ci95": [
+            0.9904873594003194,
+            1.0
+          ],
+          "confusion_matrix": [
+            [
+              200,
+              0
+            ],
+            [
+              0,
+              200
+            ]
+          ],
+          "coverage": 1.0,
+          "coverage_ci95": [
+            0.9904873594003194,
+            1.0
+          ],
+          "queries": 400,
+          "selective_risk": 0.0,
+          "selective_risk_ci95": [
+            0.0,
+            0.009512640599680667
+          ]
+        },
+        "OUT_OF_SCOPE": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "accuracy": 0.5,
+          "accuracy_ci95": [
+            0.43135962209034523,
+            0.5686403779096547
+          ],
+          "confusion_matrix": [
+            [
+              100,
+              0
+            ],
+            [
+              100,
+              0
+            ]
+          ],
+          "coverage": 0.0,
+          "coverage_ci95": [
+            0.0,
+            0.018846005918320894
+          ],
+          "queries": 200,
+          "selective_risk": null,
+          "selective_risk_ci95": null
+        }
+      },
+      "overall": {
+        "abstention": 0.625,
+        "accepted": 525,
+        "accuracy": 0.7342857142857143,
+        "accuracy_ci95": [
+          0.7105290496884461,
+          0.7567601373537388
+        ],
+        "confusion_matrix": [
+          [
+            668,
+            32
+          ],
+          [
+            340,
+            360
+          ]
+        ],
+        "coverage": 0.375,
+        "coverage_ci95": [
+          0.3500145644647661,
+          0.40066955830236084
+        ],
+        "queries": 1400,
+        "selective_risk": 0.0,
+        "selective_risk_ci95": [
+          0.0,
+          0.007264178914820618
+        ]
+      },
+      "tasks": 14
+    }
+  },
+  "symbolic_task_level": {
+    "gate": {
+      "abstention_classes": {
+        "CONTRADICTORY_SUPPORT": {
+          "abstention": 1.0,
+          "false_acceptance": 0.0,
+          "pass": true
+        },
+        "IN_SCOPE_AMBIGUOUS": {
+          "abstention": 1.0,
+          "false_acceptance": 0.0,
+          "pass": true
+        },
+        "OUT_OF_SCOPE": {
+          "abstention": 1.0,
+          "false_acceptance": 0.0,
+          "pass": true
+        }
+      },
+      "all_pass": true,
+      "identifiable_coverage": 1.0,
+      "identifiable_pass": true,
+      "identifiable_selective_risk": 0.0
+    },
+    "metrics": {
+      "by_class": {
+        "CONTRADICTORY_SUPPORT": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "accuracy": 0.5,
+          "accuracy_ci95": [
+            0.4512336165999552,
+            0.5487663834000448
+          ],
+          "confusion_matrix": [
+            [
+              200,
+              0
+            ],
+            [
+              200,
+              0
+            ]
+          ],
+          "coverage": 0.0,
+          "coverage_ci95": [
+            0.0,
+            0.009512640599680667
+          ],
+          "queries": 400,
+          "selective_risk": null,
+          "selective_risk_ci95": null
+        },
+        "IN_SCOPE_AMBIGUOUS": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "accuracy": 0.5,
+          "accuracy_ci95": [
+            0.4512336165999552,
+            0.5487663834000448
+          ],
+          "confusion_matrix": [
+            [
+              200,
+              0
+            ],
+            [
+              200,
+              0
+            ]
+          ],
+          "coverage": 0.0,
+          "coverage_ci95": [
+            0.0,
+            0.009512640599680667
+          ],
+          "queries": 400,
+          "selective_risk": null,
+          "selective_risk_ci95": null
+        },
+        "IN_SCOPE_IDENTIFIABLE": {
+          "abstention": 0.0,
+          "accepted": 400,
+          "accuracy": 1.0,
+          "accuracy_ci95": [
+            0.9904873594003194,
+            1.0
+          ],
+          "confusion_matrix": [
+            [
+              200,
+              0
+            ],
+            [
+              0,
+              200
+            ]
+          ],
+          "coverage": 1.0,
+          "coverage_ci95": [
+            0.9904873594003194,
+            1.0
+          ],
+          "queries": 400,
+          "selective_risk": 0.0,
+          "selective_risk_ci95": [
+            0.0,
+            0.009512640599680667
+          ]
+        },
+        "OUT_OF_SCOPE": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "accuracy": 0.5,
+          "accuracy_ci95": [
+            0.43135962209034523,
+            0.5686403779096547
+          ],
+          "confusion_matrix": [
+            [
+              100,
+              0
+            ],
+            [
+              100,
+              0
+            ]
+          ],
+          "coverage": 0.0,
+          "coverage_ci95": [
+            0.0,
+            0.018846005918320894
+          ],
+          "queries": 200,
+          "selective_risk": null,
+          "selective_risk_ci95": null
+        }
+      },
+      "overall": {
+        "abstention": 0.7142857142857143,
+        "accepted": 400,
+        "accuracy": 0.6428571428571429,
+        "accuracy_ci95": [
+          0.6173977326642424,
+          0.6675346984590411
+        ],
+        "confusion_matrix": [
+          [
+            700,
+            0
+          ],
+          [
+            500,
+            200
+          ]
+        ],
+        "coverage": 0.2857142857142857,
+        "coverage_ci95": [
+          0.2626614842149017,
+          0.30993986910017307
+        ],
+        "queries": 1400,
+        "selective_risk": 0.0,
+        "selective_risk_ci95": [
+          0.0,
+          0.009512640599680667
+        ]
+      },
+      "tasks": 14
+    }
+  }
+}

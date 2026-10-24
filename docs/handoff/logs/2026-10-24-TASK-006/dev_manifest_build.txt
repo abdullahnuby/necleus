@@ -1,0 +1,32 @@
+﻿{
+  "elapsed_seconds": 44.441,
+  "task_count": 28,
+  "class_counts": {
+    "CONTRADICTORY_SUPPORT": 8,
+    "IN_SCOPE_AMBIGUOUS": 8,
+    "IN_SCOPE_IDENTIFIABLE": 8,
+    "OUT_OF_SCOPE": 4
+  },
+  "family_count": 25,
+  "split_audit": {
+    "task_count": 28,
+    "unique_task_ids": 28,
+    "tasks_by_split": {
+      "train": 0,
+      "dev": 28,
+      "test": 0
+    },
+    "families_by_split": {
+      "train": 0,
+      "dev": 25,
+      "test": 0
+    },
+    "ast_overlap": false,
+    "family_overlap": false,
+    "semantic_function_overlap": false,
+    "support_query_overlap": false,
+    "query_balance": "50/50 per task",
+    "public_payload_private_fields": "absent"
+  }
+}
+exit_code=0

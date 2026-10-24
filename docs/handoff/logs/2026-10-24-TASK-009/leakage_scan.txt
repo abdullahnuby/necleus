@@ -1,0 +1,7 @@
+﻿{
+  "status": "PASS",
+  "scanned_data_files": 131,
+  "findings": [],
+  "local_private_tree": ".local_private/ (ignored and not scanned)"
+}
+scan_exit=0
