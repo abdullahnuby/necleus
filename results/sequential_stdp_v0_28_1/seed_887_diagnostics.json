@@ -1,0 +1,3947 @@
+{
+  "summary": {
+    "seed": 887,
+    "data_integrity": {
+      "exact_train_test_overlap_sync": 0,
+      "exact_train_test_overlap_order": 0,
+      "exact_jitter_train_overlap_sync": 0,
+      "exact_jitter_train_overlap_order": 0,
+      "jitter_changed_fraction_sync": 0.96875,
+      "jitter_changed_fraction_order": 0.9625,
+      "jitter_label_preservation_sync": 1.0,
+      "jitter_label_preservation_order": 1.0
+    },
+    "pulse": {
+      "task1_sync_before_task2": {
+        "accuracy": 0.725,
+        "class_0_recall": 0.625,
+        "class_1_recall": 0.825
+      },
+      "task1_sync_after_task2": {
+        "accuracy": 0.55,
+        "class_0_recall": 0.375,
+        "class_1_recall": 0.725
+      },
+      "task2_order_after_training": {
+        "accuracy": 0.63125,
+        "class_0_recall": 0.4375,
+        "class_1_recall": 0.825
+      },
+      "task1_sync_jittered": {
+        "accuracy": 0.55,
+        "class_0_recall": 0.4,
+        "class_1_recall": 0.7
+      },
+      "task2_order_jittered": {
+        "accuracy": 0.6,
+        "class_0_recall": 0.4,
+        "class_1_recall": 0.8
+      },
+      "task1_sync_shifted_phase": {
+        "accuracy": 0.5625,
+        "class_0_recall": 0.4375,
+        "class_1_recall": 0.6875
+      },
+      "task2_order_shifted_phase": {
+        "accuracy": 0.44375,
+        "class_0_recall": 0.3,
+        "class_1_recall": 0.5875
+      },
+      "forgetting_task1_pp": 17.499999999999993,
+      "reward_accuracy_task1_training": 0.591875,
+      "reward_accuracy_task2_training": 0.586875,
+      "weight_min": -0.21260812878608704,
+      "weight_max": 0.23563824594020844,
+      "weight_mean": 0.0022254472132772207,
+      "virtual_decision_fraction_task1_test": 0.0,
+      "virtual_decision_fraction_task2_test": 0.0,
+      "hidden_spikes_mean_task1": 53.45625,
+      "hidden_spikes_mean_task2": 50.325
+    },
+    "mlp": {
+      "task1_sync_before_task2": {
+        "accuracy": 0.53125,
+        "class_0_recall": 0.6,
+        "class_1_recall": 0.4625
+      },
+      "task1_sync_after_task2": {
+        "accuracy": 0.525,
+        "class_0_recall": 0.55,
+        "class_1_recall": 0.5
+      },
+      "task2_order_after_training": {
+        "accuracy": 0.625,
+        "class_0_recall": 0.6,
+        "class_1_recall": 0.65
+      },
+      "task1_sync_jittered": {
+        "accuracy": 0.525,
+        "class_0_recall": 0.575,
+        "class_1_recall": 0.475
+      },
+      "task2_order_jittered": {
+        "accuracy": 0.63125,
+        "class_0_recall": 0.575,
+        "class_1_recall": 0.6875
+      },
+      "task1_sync_shifted_phase": {
+        "accuracy": 0.4625,
+        "class_0_recall": 0.5125,
+        "class_1_recall": 0.4125
+      },
+      "task2_order_shifted_phase": {
+        "accuracy": 0.475,
+        "class_0_recall": 0.6,
+        "class_1_recall": 0.35
+      },
+      "forgetting_task1_pp": 0.6249999999999978,
+      "task1_final_train_loss": 0.550072283744812,
+      "task2_final_train_loss": 0.4499807238578796
+    },
+    "elapsed_seconds": 1.0301804542541504
+  },
+  "pulse_task1_after": [
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.016682080924510956,
+        0.06712689250707626
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        0.015830548480153084,
+        -0.025706898421049118
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 52,
+      "scores": [
+        -0.024953901767730713,
+        0.08312191069126129
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 30,
+      "scores": [
+        0.04161800444126129,
+        0.05955500155687332
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 31,
+      "scores": [
+        0.0760067030787468,
+        0.0037607206031680107
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 78,
+      "scores": [
+        -0.010853482410311699,
+        0.036107078194618225
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.15197952091693878,
+        -0.07447081804275513
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 48,
+      "scores": [
+        0.09060396999120712,
+        0.026125460863113403
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.06820796430110931,
+        0.014687076210975647
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        0.05244961380958557,
+        0.07192287594079971
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 45,
+      "scores": [
+        0.05765175074338913,
+        0.055223241448402405
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 79,
+      "scores": [
+        0.07686276733875275,
+        0.01873088628053665
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        0.05987593159079552,
+        0.043251145631074905
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 78,
+      "scores": [
+        -0.08630970120429993,
+        0.1548703908920288
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        -0.03173099830746651,
+        0.033410653471946716
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 89,
+      "scores": [
+        -0.08870984613895416,
+        0.11977162957191467
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.09510959684848785,
+        0.16807234287261963
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        0.07636798918247223,
+        0.0745922178030014
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 68,
+      "scores": [
+        -0.09758272767066956,
+        0.1650463044643402
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 67,
+      "scores": [
+        -0.06315262615680695,
+        0.14729079604148865
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        0.027927590534090996,
+        0.10554869472980499
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        -0.03061496838927269,
+        0.10399149358272552
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 59,
+      "scores": [
+        -0.03103267215192318,
+        0.1134292259812355
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        0.05430682748556137,
+        0.03862040489912033
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 62,
+      "scores": [
+        0.11846821755170822,
+        -0.06779266893863678
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.09576264768838882,
+        0.12799270451068878
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.07041466236114502,
+        -0.004702204838395119
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        -0.05484854057431221,
+        0.09727790951728821
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 44,
+      "scores": [
+        0.1684924066066742,
+        -0.09241990745067596
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        -0.09071603417396545,
+        0.1391642838716507
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        -0.11840926110744476,
+        0.16227507591247559
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 38,
+      "scores": [
+        0.06739820539951324,
+        -0.049750763922929764
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        -0.03590002655982971,
+        0.027449585497379303
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 45,
+      "scores": [
+        0.056319501250982285,
+        0.08379586786031723
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.09825200587511063,
+        0.11165986955165863
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.02362027019262314,
+        0.08224055171012878
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 68,
+      "scores": [
+        -0.06149355322122574,
+        0.1391303688287735
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 63,
+      "scores": [
+        0.04068688675761223,
+        0.0067512840032577515
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 62,
+      "scores": [
+        0.047119833528995514,
+        -0.026264630258083344
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 65,
+      "scores": [
+        -0.0642274022102356,
+        0.1299455463886261
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 31,
+      "scores": [
+        -0.005142491310834885,
+        0.0672079399228096
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 26,
+      "scores": [
+        -0.05613488703966141,
+        0.13279864192008972
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.07610461115837097,
+        -0.06449442356824875
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 89,
+      "scores": [
+        -0.042848724871873856,
+        0.15508295595645905
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.03835485875606537,
+        0.10419457405805588
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 62,
+      "scores": [
+        -0.04916098713874817,
+        0.13842308521270752
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 52,
+      "scores": [
+        -0.04264325276017189,
+        0.09283331781625748
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        0.17900386452674866,
+        -0.08472587168216705
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 44,
+      "scores": [
+        0.04595695436000824,
+        0.054811570793390274
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        0.06713052093982697,
+        0.07735157012939453
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        0.08322661370038986,
+        0.04005596414208412
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        0.08155995607376099,
+        0.04083660989999771
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 84,
+      "scores": [
+        0.03238202631473541,
+        0.08394399285316467
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 66,
+      "scores": [
+        -0.07401905953884125,
+        0.11670652776956558
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        -0.06904490292072296,
+        0.09498969465494156
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 52,
+      "scores": [
+        -0.08750437200069427,
+        0.11739960312843323
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 38,
+      "scores": [
+        0.11275004595518112,
+        -0.003579401411116123
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.04039011150598526,
+        0.11877486109733582
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        0.06932860612869263,
+        0.045724187046289444
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 63,
+      "scores": [
+        0.11560952663421631,
+        0.005935456603765488
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 52,
+      "scores": [
+        0.0933404266834259,
+        0.013656418770551682
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 27,
+      "scores": [
+        0.024274323135614395,
+        0.029158255085349083
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.06292862445116043,
+        -0.034289874136447906
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        -0.028944198042154312,
+        0.061511315405368805
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        0.08003704249858856,
+        0.020727112889289856
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 71,
+      "scores": [
+        0.07172812521457672,
+        0.04527928680181503
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 59,
+      "scores": [
+        0.01911432296037674,
+        0.03409343957901001
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.04964124411344528,
+        0.1266225129365921
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 27,
+      "scores": [
+        -0.001336168497800827,
+        0.07480199635028839
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        -0.11412101238965988,
+        0.16280856728553772
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 82,
+      "scores": [
+        -0.004513098858296871,
+        0.12364581227302551
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 27,
+      "scores": [
+        -0.018463268876075745,
+        0.07875911891460419
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 31,
+      "scores": [
+        -0.05368710681796074,
+        0.09367602318525314
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.03382059559226036,
+        0.0968986302614212
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        -0.06470149755477905,
+        0.09914179891347885
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 44,
+      "scores": [
+        0.09205994009971619,
+        0.011876918375492096
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 57,
+      "scores": [
+        -0.09783487766981125,
+        0.17122244834899902
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        0.0008911862969398499,
+        0.09932900220155716
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        -0.0021621473133563995,
+        0.10554207861423492
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 31,
+      "scores": [
+        -0.0633377954363823,
+        0.12482160329818726
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 66,
+      "scores": [
+        0.075076624751091,
+        -0.06990602612495422
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        -0.01949479430913925,
+        0.04884855076670647
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 41,
+      "scores": [
+        0.09681374579668045,
+        -0.05897132679820061
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        0.03170325979590416,
+        0.08523406833410263
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 68,
+      "scores": [
+        0.14406965672969818,
+        -0.07763852179050446
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 74,
+      "scores": [
+        -0.018850762397050858,
+        0.06916603446006775
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 27,
+      "scores": [
+        -0.0273946113884449,
+        0.07868789881467819
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 31,
+      "scores": [
+        -0.09016776084899902,
+        0.1429852843284607
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        -0.06211476773023605,
+        0.11153078079223633
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        0.04277149215340614,
+        -0.009851474314928055
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.19157931208610535,
+        -0.12993943691253662
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 71,
+      "scores": [
+        -0.06831806153059006,
+        0.11495468020439148
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 32,
+      "scores": [
+        -0.003888174891471863,
+        0.1386500597000122
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 26,
+      "scores": [
+        -0.04305468872189522,
+        0.07369112968444824
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 54,
+      "scores": [
+        -0.07515327632427216,
+        0.14601938426494598
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 28,
+      "scores": [
+        0.004597953520715237,
+        0.11466100811958313
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 68,
+      "scores": [
+        -0.03836636617779732,
+        0.03816748782992363
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.1029735654592514,
+        0.15569978952407837
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 66,
+      "scores": [
+        -0.024123530834913254,
+        0.15253841876983643
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 54,
+      "scores": [
+        -0.09378653019666672,
+        0.17202293872833252
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        0.09469388425350189,
+        0.0068989768624305725
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        0.03024759143590927,
+        0.03477602079510689
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        0.06225055456161499,
+        -0.061912164092063904
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        0.015061941929161549,
+        0.020077494904398918
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.02310093492269516,
+        0.0681014358997345
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 51,
+      "scores": [
+        -0.0126519575715065,
+        0.10431297868490219
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.07319854199886322,
+        -0.005708962678909302
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 31,
+      "scores": [
+        -0.04184260219335556,
+        0.09714724123477936
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 63,
+      "scores": [
+        0.009817373007535934,
+        0.10411789268255234
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 41,
+      "scores": [
+        0.2211376577615738,
+        -0.16904619336128235
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 73,
+      "scores": [
+        -0.04244474321603775,
+        0.1187654435634613
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 29,
+      "scores": [
+        0.1678180992603302,
+        -0.06383848190307617
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.014665740542113781,
+        0.08785288780927658
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.11377803236246109,
+        0.12160660326480865
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 73,
+      "scores": [
+        0.10968396067619324,
+        -0.026056963950395584
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 78,
+      "scores": [
+        -0.004372569732367992,
+        0.04936525970697403
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 33,
+      "scores": [
+        0.05394618213176727,
+        0.11285261809825897
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 29,
+      "scores": [
+        0.03405611962080002,
+        0.04154602065682411
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        0.11862514913082123,
+        -0.050268013030290604
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 65,
+      "scores": [
+        0.07500473409891129,
+        0.05414582043886185
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 80,
+      "scores": [
+        -0.046106427907943726,
+        0.12677669525146484
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 72,
+      "scores": [
+        -0.03883202373981476,
+        0.13561251759529114
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.08252229541540146,
+        0.14786984026432037
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.059508293867111206,
+        0.1004045233130455
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        0.1103602796792984,
+        0.0312851183116436
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 93,
+      "scores": [
+        0.007376428693532944,
+        0.06520446389913559
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.04830627888441086,
+        0.07932405173778534
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 80,
+      "scores": [
+        -0.07444579899311066,
+        0.12491083145141602
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        -0.0568038746714592,
+        0.10737960040569305
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 50,
+      "scores": [
+        -0.0619727224111557,
+        0.11358664929866791
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 71,
+      "scores": [
+        0.050744958221912384,
+        0.0023927073925733566
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 51,
+      "scores": [
+        -0.033471837639808655,
+        0.090873584151268
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        0.028278149664402008,
+        0.08906672149896622
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 75,
+      "scores": [
+        0.09975263476371765,
+        -0.015134401619434357
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        0.10558158159255981,
+        -0.08861902356147766
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        -0.032831981778144836,
+        0.07589235156774521
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        0.11659753322601318,
+        -0.010761013254523277
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 74,
+      "scores": [
+        -0.05690982937812805,
+        0.12171460688114166
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        0.13375677168369293,
+        -0.04857376962900162
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        0.004806963726878166,
+        0.03228060156106949
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 26,
+      "scores": [
+        -0.05845186486840248,
+        0.1111232116818428
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 82,
+      "scores": [
+        0.038883596658706665,
+        0.07217533141374588
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        -0.008464992046356201,
+        0.1001562625169754
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 26,
+      "scores": [
+        0.015603840351104736,
+        0.061799876391887665
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        -0.003678740933537483,
+        0.05215921625494957
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 71,
+      "scores": [
+        -0.04392886161804199,
+        0.11573506146669388
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 70,
+      "scores": [
+        -0.10307848453521729,
+        0.1600772738456726
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        0.039356958121061325,
+        0.05860911309719086
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 76,
+      "scores": [
+        -0.007780333980917931,
+        0.14329728484153748
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 62,
+      "scores": [
+        0.013562076725065708,
+        0.04281529039144516
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        -0.07549532502889633,
+        0.1128484308719635
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        0.08686063438653946,
+        0.03989473730325699
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 29,
+      "scores": [
+        0.0007157903164625168,
+        0.042506489902734756
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 44,
+      "scores": [
+        0.06784023344516754,
+        -0.0500064343214035
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        0.1183319240808487,
+        -0.07027707993984222
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.01761304959654808,
+        0.08984678983688354
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 78,
+      "scores": [
+        0.010636713355779648,
+        0.11605913937091827
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 59,
+      "scores": [
+        0.051788900047540665,
+        0.052819184958934784
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 34,
+      "scores": [
+        0.13478323817253113,
+        -0.028243523091077805
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 74,
+      "scores": [
+        0.06477226316928864,
+        0.0031364820897579193
+      ]
+    }
+  ],
+  "pulse_task2_after": [
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 52,
+      "scores": [
+        -0.0012637767940759659,
+        0.0731428936123848
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.07360237836837769,
+        0.08551080524921417
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 27,
+      "scores": [
+        0.06657012552022934,
+        -0.024497652426362038
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 29,
+      "scores": [
+        -0.08979689329862595,
+        0.05914962291717529
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 77,
+      "scores": [
+        -0.07341401278972626,
+        0.09285218268632889
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 65,
+      "scores": [
+        -0.09199872612953186,
+        0.12407347559928894
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 48,
+      "scores": [
+        0.0785207748413086,
+        -0.041649527847766876
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.045847803354263306,
+        0.15740792453289032
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.025775209069252014,
+        0.10392516851425171
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        0.01131492480635643,
+        0.007341019809246063
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 57,
+      "scores": [
+        0.0005040569230914116,
+        0.059909626841545105
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 81,
+      "scores": [
+        -0.05147227644920349,
+        0.11999373137950897
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.026135414838790894,
+        -0.027301233261823654
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 36,
+      "scores": [
+        0.024131478741765022,
+        -0.02428637631237507
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 41,
+      "scores": [
+        0.07849091291427612,
+        0.009082365781068802
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.15720921754837036,
+        0.17955276370048523
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        -0.042965807020664215,
+        0.06523860991001129
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 78,
+      "scores": [
+        -0.12877851724624634,
+        0.19278931617736816
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 54,
+      "scores": [
+        -0.1468725949525833,
+        0.16769738495349884
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 34,
+      "scores": [
+        0.19761410355567932,
+        -0.15428629517555237
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        0.1099834144115448,
+        -0.05727376788854599
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        0.10768752545118332,
+        -0.017665989696979523
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 38,
+      "scores": [
+        -0.052447609603405,
+        0.01102764904499054
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        -0.075566366314888,
+        0.09830121695995331
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 66,
+      "scores": [
+        -0.012717682868242264,
+        0.07612748444080353
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 35,
+      "scores": [
+        -0.008564868941903114,
+        0.10419561713933945
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 39,
+      "scores": [
+        0.00021486356854438782,
+        0.022223221138119698
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        -0.0601440891623497,
+        0.046512994915246964
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.14303603768348694,
+        -0.03838835656642914
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        0.03249657154083252,
+        0.0034141093492507935
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 36,
+      "scores": [
+        0.024662381038069725,
+        0.02984043024480343
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.09486733376979828,
+        0.07367043942213058
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.09008342772722244,
+        0.13386474549770355
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        0.03419633209705353,
+        0.02572411671280861
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 50,
+      "scores": [
+        -0.043341394513845444,
+        0.10667920112609863
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 57,
+      "scores": [
+        -0.14538903534412384,
+        0.191777765750885
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 41,
+      "scores": [
+        -0.08886510133743286,
+        0.09499995410442352
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 57,
+      "scores": [
+        -0.052452873438596725,
+        0.11718515306711197
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 45,
+      "scores": [
+        -0.03985978662967682,
+        0.10073152929544449
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        -0.03200964629650116,
+        0.013022653758525848
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.12888357043266296,
+        0.15267346799373627
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 37,
+      "scores": [
+        0.12609723210334778,
+        0.023675821721553802
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 44,
+      "scores": [
+        -0.018375637009739876,
+        0.09730903804302216
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 37,
+      "scores": [
+        0.16475909948349,
+        -0.07273074984550476
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        -0.03198868781328201,
+        0.04618312418460846
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 48,
+      "scores": [
+        -0.04145631566643715,
+        0.08770932257175446
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        -0.0847889631986618,
+        0.1105838418006897
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 77,
+      "scores": [
+        0.0757145881652832,
+        0.022315647453069687
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 35,
+      "scores": [
+        0.16004842519760132,
+        -0.10697607696056366
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        0.07961679250001907,
+        0.0010199733078479767
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 38,
+      "scores": [
+        -0.13280923664569855,
+        0.14473414421081543
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.1500679850578308,
+        0.18469929695129395
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.10786350816488266,
+        0.1069902628660202
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 46,
+      "scores": [
+        -0.017152436077594757,
+        0.03376120328903198
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        0.133772611618042,
+        -0.10292563587427139
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 65,
+      "scores": [
+        -0.08801683038473129,
+        0.09760147333145142
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 60,
+      "scores": [
+        -0.01566747948527336,
+        0.07859433442354202
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 65,
+      "scores": [
+        -0.018788479268550873,
+        0.06875855475664139
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 26,
+      "scores": [
+        -0.07319467514753342,
+        0.07447680085897446
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        0.08989298343658447,
+        -0.04973200708627701
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 48,
+      "scores": [
+        0.05501385033130646,
+        -0.08968987315893173
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 37,
+      "scores": [
+        0.1281968057155609,
+        -0.0850677341222763
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 36,
+      "scores": [
+        0.04201715439558029,
+        -0.07327695190906525
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 50,
+      "scores": [
+        -0.10499666631221771,
+        0.09412537515163422
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 66,
+      "scores": [
+        -0.08930563926696777,
+        0.13549119234085083
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 48,
+      "scores": [
+        0.0709104835987091,
+        0.03002014569938183
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 39,
+      "scores": [
+        -0.02664867788553238,
+        0.06898089498281479
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.10487368702888489,
+        0.1468997746706009
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        0.08276906609535217,
+        0.01730165258049965
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 41,
+      "scores": [
+        0.014582669362425804,
+        -0.01648232713341713
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 70,
+      "scores": [
+        -0.04785358905792236,
+        0.08350886404514313
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        -0.050514839589595795,
+        0.10298215597867966
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 51,
+      "scores": [
+        0.004373926669359207,
+        0.069715216755867
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 79,
+      "scores": [
+        0.048328422009944916,
+        0.08301128447055817
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.11233758926391602,
+        0.16060741245746613
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 36,
+      "scores": [
+        0.11031787097454071,
+        -0.01630791649222374
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 55,
+      "scores": [
+        -0.03182391822338104,
+        0.07357581704854965
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 39,
+      "scores": [
+        0.03475364297628403,
+        -0.01576206460595131
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 71,
+      "scores": [
+        -0.10342814028263092,
+        0.12855422496795654
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 38,
+      "scores": [
+        -0.02843339927494526,
+        0.06863569468259811
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 60,
+      "scores": [
+        0.01373346522450447,
+        0.06643202900886536
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 51,
+      "scores": [
+        0.1053449809551239,
+        0.05080462619662285
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 83,
+      "scores": [
+        0.061101265251636505,
+        -0.01361745223402977
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        -0.07717001438140869,
+        0.13692378997802734
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 37,
+      "scores": [
+        0.03742756322026253,
+        -0.011579297482967377
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        -0.12693573534488678,
+        0.14415259659290314
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.14080868661403656,
+        0.15160878002643585
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        0.015534749254584312,
+        0.03179139643907547
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.0297250859439373,
+        0.07451700419187546
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 51,
+      "scores": [
+        -0.1414431780576706,
+        0.16337773203849792
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.026474665850400925,
+        0.05637223646044731
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 26,
+      "scores": [
+        -0.05822259187698364,
+        0.03740637004375458
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        -0.05662216991186142,
+        0.0709945410490036
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.0656384751200676,
+        0.17257803678512573
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 54,
+      "scores": [
+        -0.04816759377717972,
+        0.11052364856004715
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        0.02107803151011467,
+        0.10397704690694809
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        -0.021674763411283493,
+        0.05382024124264717
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        -0.04377393424510956,
+        0.003893014043569565
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.06854834407567978,
+        0.053264766931533813
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 30,
+      "scores": [
+        0.11174751818180084,
+        0.0005650036036968231
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        0.04778924584388733,
+        -0.050818197429180145
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        -0.0709184929728508,
+        0.11496701836585999
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        -0.026870127767324448,
+        0.0555582158267498
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 84,
+      "scores": [
+        0.00994623638689518,
+        0.04231146723031998
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 57,
+      "scores": [
+        -0.12392558157444,
+        0.14249664545059204
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 44,
+      "scores": [
+        -0.058963432908058167,
+        0.08996181935071945
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 54,
+      "scores": [
+        -0.11481450498104095,
+        0.1504117250442505
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 52,
+      "scores": [
+        -0.10665333271026611,
+        0.07779247313737869
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        0.054485466331243515,
+        0.027166588231921196
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        0.0013033580034971237,
+        0.04709331691265106
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 42,
+      "scores": [
+        -0.05774267017841339,
+        0.07864286005496979
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 39,
+      "scores": [
+        0.07667253911495209,
+        -0.04663030430674553
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        0.15799441933631897,
+        -0.015869731083512306
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 85,
+      "scores": [
+        -0.0011757444590330124,
+        0.08006972819566727
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 51,
+      "scores": [
+        -0.023185186088085175,
+        0.052403490990400314
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 69,
+      "scores": [
+        0.043234046548604965,
+        0.04682119935750961
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 34,
+      "scores": [
+        0.13344785571098328,
+        -0.07657499611377716
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 25,
+      "scores": [
+        -0.14855368435382843,
+        0.14724591374397278
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 26,
+      "scores": [
+        0.16914230585098267,
+        -0.04897037893533707
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 56,
+      "scores": [
+        -0.11706232279539108,
+        0.1214785948395729
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        0.06635606288909912,
+        0.05579056218266487
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 60,
+      "scores": [
+        0.08029789477586746,
+        -0.008198431693017483
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 58,
+      "scores": [
+        0.15730096399784088,
+        -0.09118679910898209
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 41,
+      "scores": [
+        -0.11166747659444809,
+        0.15759308636188507
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 47,
+      "scores": [
+        -0.03207920491695404,
+        0.07217995077371597
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 72,
+      "scores": [
+        0.012989936396479607,
+        -0.005762048065662384
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 45,
+      "scores": [
+        -0.02240857109427452,
+        0.04012617468833923
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 77,
+      "scores": [
+        -0.04173073545098305,
+        0.06614238768815994
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 48,
+      "scores": [
+        -0.07528751343488693,
+        0.11705285310745239
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 25,
+      "scores": [
+        -0.11191056668758392,
+        0.08891826868057251
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        -0.07367439568042755,
+        0.07387976348400116
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 57,
+      "scores": [
+        -0.1276789754629135,
+        0.16808107495307922
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 49,
+      "scores": [
+        -0.07597637176513672,
+        0.12676414847373962
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        0.12303993105888367,
+        -0.08555957674980164
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        0.14664892852306366,
+        -0.08139508217573166
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 68,
+      "scores": [
+        -0.05931231379508972,
+        0.059992872178554535
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 28,
+      "scores": [
+        -0.05740310251712799,
+        0.055168651044368744
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.09947719424962997,
+        0.150960773229599
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 24,
+      "scores": [
+        0.16124635934829712,
+        -0.0433838814496994
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        -0.11782314628362656,
+        0.13721352815628052
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 38,
+      "scores": [
+        0.20268069207668304,
+        -0.18068623542785645
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 60,
+      "scores": [
+        -0.045251037925481796,
+        0.05364558845758438
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 44,
+      "scores": [
+        -0.014401957392692566,
+        0.047722820192575455
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 43,
+      "scores": [
+        0.014742415398359299,
+        0.03813330829143524
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 61,
+      "scores": [
+        0.03449960798025131,
+        0.06823235750198364
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 53,
+      "scores": [
+        -0.11261799931526184,
+        0.14372682571411133
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 28,
+      "scores": [
+        0.02061331644654274,
+        0.05796603858470917
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 65,
+      "scores": [
+        0.058677516877651215,
+        -0.0233236625790596
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 48,
+      "scores": [
+        -0.105169877409935,
+        0.15288680791854858
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 59,
+      "scores": [
+        -0.10365676879882812,
+        0.09376677870750427
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 64,
+      "scores": [
+        0.01546868309378624,
+        -0.005493560805916786
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 39,
+      "scores": [
+        -0.12362663447856903,
+        0.14510026574134827
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 0,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 25,
+      "scores": [
+        0.17397448420524597,
+        -0.03111470490694046
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 45,
+      "scores": [
+        -0.06449416279792786,
+        0.0653754472732544
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 66,
+      "scores": [
+        -0.07961785793304443,
+        0.08086024224758148
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 38,
+      "scores": [
+        -0.10991200804710388,
+        0.1352374255657196
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 39,
+      "scores": [
+        -0.008300498127937317,
+        0.12555697560310364
+      ]
+    },
+    {
+      "prediction": 0,
+      "target": 1,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 40,
+      "scores": [
+        0.14374922215938568,
+        -0.03836243227124214
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 1,
+      "correct": 1,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 41,
+      "scores": [
+        -0.17775171995162964,
+        0.15553376078605652
+      ]
+    },
+    {
+      "prediction": 1,
+      "target": 0,
+      "correct": 0,
+      "post_time": 31,
+      "virtual_decision": 0,
+      "hidden_spike_count": 68,
+      "scores": [
+        -0.048429690301418304,
+        0.0821615532040596
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+task,tau_ticks,n_seeds,n_reached_85_validation,reached_fraction_percent,wilson_ci95_low_percent,wilson_ci95_high_percent,mean_test_accuracy_at_validation_selected_epoch_percent,interpretation
+sync,4.0,40,13,32.5,20.0845022317827,47.98225381012233,85.13846153846154,descriptive secondary analysis; primary tau comparison fixed at epoch 10
+sync,8.0,40,12,30.0,18.07484522974653,45.43001881814494,85.24166666666666,descriptive secondary analysis; primary tau comparison fixed at epoch 10
+order,4.0,40,0,0.0,0.0,8.762160119728664,,descriptive secondary analysis; primary tau comparison fixed at epoch 10
+order,8.0,40,0,0.0,0.0,8.762160119728664,,descriptive secondary analysis; primary tau comparison fixed at epoch 10

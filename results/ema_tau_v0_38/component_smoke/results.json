@@ -1,0 +1,229 @@
+{
+  "title": "Nucleus Pulse v0.38 EMA tau component smoke test",
+  "stage": "component-only diagnostic; not a tuning result and not an official benchmark",
+  "seed": 13990,
+  "taus": [
+    2.0,
+    4.0,
+    8.0
+  ],
+  "slope_fixed_from_v0_37": 2.0,
+  "target_rate": 0.13,
+  "gain_bounds": [
+    0.5,
+    2.0
+  ],
+  "rows": [
+    {
+      "seed": 13990,
+      "task": "sync",
+      "tau_ticks": 2.0,
+      "ema_decay_factor_rho": 0.6065306597126334,
+      "n_trials": 32,
+      "class_0": 16,
+      "class_1": 16,
+      "recurrent_spectral_radius": 0.7199999915587803,
+      "first_tick_gain_mean": 1.0,
+      "mean_gain": 1.1447810033957164,
+      "min_gain_seen": 0.7400000691413879,
+      "max_gain_seen": 1.9849183559417725,
+      "fraction_at_min": 0.0,
+      "fraction_at_max": 0.0,
+      "mean_within_trial_gain_std": 0.3593734269961715,
+      "mean_spikes_per_trial": 168.3125,
+      "mean_spike_rate_per_hidden_tick": 0.2191569060087204,
+      "feature_shape": [
+        32,
+        384
+      ],
+      "feature_std_mean": 0.1360963135957718,
+      "spike_disagreement_vs_tau4": 0.055501302083333336,
+      "feature_relative_l2_delta_vs_tau4": 0.26118066906929016
+    },
+    {
+      "seed": 13990,
+      "task": "sync",
+      "tau_ticks": 4.0,
+      "ema_decay_factor_rho": 0.7788007830714049,
+      "n_trials": 32,
+      "class_0": 16,
+      "class_1": 16,
+      "recurrent_spectral_radius": 0.7199999915587803,
+      "first_tick_gain_mean": 1.0,
+      "mean_gain": 1.1251834854483604,
+      "min_gain_seen": 0.7401120066642761,
+      "max_gain_seen": 1.863874912261963,
+      "fraction_at_min": 0.0,
+      "fraction_at_max": 0.0,
+      "mean_within_trial_gain_std": 0.2895919680595398,
+      "mean_spikes_per_trial": 169.5,
+      "mean_spike_rate_per_hidden_tick": 0.220703125,
+      "feature_shape": [
+        32,
+        384
+      ],
+      "feature_std_mean": 0.13588717579841614,
+      "spike_disagreement_vs_tau4": 0.0,
+      "feature_relative_l2_delta_vs_tau4": 0.0
+    },
+    {
+      "seed": 13990,
+      "task": "sync",
+      "tau_ticks": 8.0,
+      "ema_decay_factor_rho": 0.8824969025845953,
+      "n_trials": 32,
+      "class_0": 16,
+      "class_1": 16,
+      "recurrent_spectral_radius": 0.7199999915587803,
+      "first_tick_gain_mean": 1.0,
+      "mean_gain": 1.0956902379790943,
+      "min_gain_seen": 0.7453961372375488,
+      "max_gain_seen": 1.7835476398468018,
+      "fraction_at_min": 0.0,
+      "fraction_at_max": 0.0,
+      "mean_within_trial_gain_std": 0.225477087427862,
+      "mean_spikes_per_trial": 171.96875,
+      "mean_spike_rate_per_hidden_tick": 0.2239176481962204,
+      "feature_shape": [
+        32,
+        384
+      ],
+      "feature_std_mean": 0.1345108598470688,
+      "spike_disagreement_vs_tau4": 0.049031575520833336,
+      "feature_relative_l2_delta_vs_tau4": 0.23400136828422546
+    },
+    {
+      "seed": 13990,
+      "task": "order",
+      "tau_ticks": 2.0,
+      "ema_decay_factor_rho": 0.6065306597126334,
+      "n_trials": 32,
+      "class_0": 16,
+      "class_1": 16,
+      "recurrent_spectral_radius": 0.7199999915587803,
+      "first_tick_gain_mean": 1.0,
+      "mean_gain": 1.2118322079380353,
+      "min_gain_seen": 0.7400000691413879,
+      "max_gain_seen": 1.9849185943603516,
+      "fraction_at_min": 0.0,
+      "fraction_at_max": 0.0,
+      "mean_within_trial_gain_std": 0.4011772871017456,
+      "mean_spikes_per_trial": 195.34375,
+      "mean_spike_rate_per_hidden_tick": 0.2543538510799408,
+      "feature_shape": [
+        32,
+        384
+      ],
+      "feature_std_mean": 0.12342662364244461,
+      "spike_disagreement_vs_tau4": 0.0565185546875,
+      "feature_relative_l2_delta_vs_tau4": 0.25162121653556824
+    },
+    {
+      "seed": 13990,
+      "task": "order",
+      "tau_ticks": 4.0,
+      "ema_decay_factor_rho": 0.7788007830714049,
+      "n_trials": 32,
+      "class_0": 16,
+      "class_1": 16,
+      "recurrent_spectral_radius": 0.7199999915587803,
+      "first_tick_gain_mean": 1.0,
+      "mean_gain": 1.191919319331646,
+      "min_gain_seen": 0.7401120066642761,
+      "max_gain_seen": 1.8640879392623901,
+      "fraction_at_min": 0.0,
+      "fraction_at_max": 0.0,
+      "mean_within_trial_gain_std": 0.33000227622687817,
+      "mean_spikes_per_trial": 196.9375,
+      "mean_spike_rate_per_hidden_tick": 0.2564290463924408,
+      "feature_shape": [
+        32,
+        384
+      ],
+      "feature_std_mean": 0.12183848768472672,
+      "spike_disagreement_vs_tau4": 0.0,
+      "feature_relative_l2_delta_vs_tau4": 0.0
+    },
+    {
+      "seed": 13990,
+      "task": "order",
+      "tau_ticks": 8.0,
+      "ema_decay_factor_rho": 0.8824969025845953,
+      "n_trials": 32,
+      "class_0": 16,
+      "class_1": 16,
+      "recurrent_spectral_radius": 0.7199999915587803,
+      "first_tick_gain_mean": 1.0,
+      "mean_gain": 1.1549880430102348,
+      "min_gain_seen": 0.7453961372375488,
+      "max_gain_seen": 1.788355827331543,
+      "fraction_at_min": 0.0,
+      "fraction_at_max": 0.0,
+      "mean_within_trial_gain_std": 0.26127779204398394,
+      "mean_spikes_per_trial": 198.5625,
+      "mean_spike_rate_per_hidden_tick": 0.258544921875,
+      "feature_shape": [
+        32,
+        384
+      ],
+      "feature_std_mean": 0.12175919860601425,
+      "spike_disagreement_vs_tau4": 0.042154947916666664,
+      "feature_relative_l2_delta_vs_tau4": 0.22883251309394836
+    }
+  ],
+  "integrity": {
+    "seed": 13990,
+    "tasks": {
+      "sync": {
+        "n_trials": 32,
+        "class_balance": {
+          "0": 16,
+          "1": 16
+        },
+        "same_inputs_across_tau": true,
+        "tau4_spike_count": 5424,
+        "spike_counts_by_tau": {
+          "2.0": 5386,
+          "4.0": 5424,
+          "8.0": 5503
+        },
+        "spike_outputs_changed_vs_tau4": {
+          "2.0": true,
+          "4.0": false,
+          "8.0": true
+        }
+      },
+      "order": {
+        "n_trials": 32,
+        "class_balance": {
+          "0": 16,
+          "1": 16
+        },
+        "same_inputs_across_tau": true,
+        "tau4_spike_count": 6302,
+        "spike_counts_by_tau": {
+          "2.0": 6251,
+          "4.0": 6302,
+          "8.0": 6354
+        },
+        "spike_outputs_changed_vs_tau4": {
+          "2.0": true,
+          "4.0": false,
+          "8.0": true
+        }
+      }
+    },
+    "same_recurrent_matrix_for_all_taus": true,
+    "recurrent_spectral_radius": 0.7199999915587803,
+    "n_hidden": 24,
+    "tau_ticks": [
+      2.0,
+      4.0,
+      8.0
+    ],
+    "local_slope": 2.0,
+    "no_readout_training": true,
+    "official_test_used": false
+  },
+  "interpretation_limit": "One diagnostic seed and 32 balanced examples per task; no classifier training or accuracy claims."
+}

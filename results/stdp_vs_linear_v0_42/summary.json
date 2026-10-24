@@ -1,0 +1,42 @@
+{
+  "protocol_version": "v0.42",
+  "decision": "FAIL_TO_JUSTIFY_STDP_OVER_LINEAR",
+  "decision_ar": "لم يحقق STDP معيار التفوق المسجل مسبقًا عند 200 مثال؛ هذا لا يثبت استحالة كل قواعد STDP، لكنه لا يبرر مواصلة المسار الحالي بهذه النسخة.",
+  "primary_endpoint_at_200_examples": {
+    "n_independent_seed_clusters": 40,
+    "mean_paired_gain_pp": -18.808750000000003,
+    "ci95_low_pp": -19.707531250000002,
+    "ci95_high_pp": -17.91375,
+    "stdp_beats_linear_by_preregistered_gate": false
+  },
+  "paired_gains_by_train_size": {
+    "50": {
+      "n_independent_seed_clusters": 40,
+      "mean_paired_gain_pp": -12.204999999999998,
+      "ci95_low_pp": -13.042531249999998,
+      "ci95_high_pp": -11.3536875,
+      "stdp_beats_linear_by_preregistered_gate": false
+    },
+    "100": {
+      "n_independent_seed_clusters": 40,
+      "mean_paired_gain_pp": -15.363750000000001,
+      "ci95_low_pp": -16.2275,
+      "ci95_high_pp": -14.5086875,
+      "stdp_beats_linear_by_preregistered_gate": false
+    },
+    "200": {
+      "n_independent_seed_clusters": 40,
+      "mean_paired_gain_pp": -18.808750000000003,
+      "ci95_low_pp": -19.707531250000002,
+      "ci95_high_pp": -17.91375,
+      "stdp_beats_linear_by_preregistered_gate": false
+    }
+  },
+  "notes": [
+    "Only the fixed STDP readout learns; reservoir weights remain frozen.",
+    "Both methods use the same 16-window base features and the same training/test examples per seed/task.",
+    "STDP is a simplified reward-modulated timing-eligibility rule, not a full biological simulation.",
+    "Linear logistic regression is refit on each nested prefix using fixed C=1 and max_iter=250; no test result tunes either method.",
+    "If the gate fails, interpret this as no evidence that this fixed STDP implementation justifies the pulse path, not proof that all STDP designs fail."
+  ]
+}

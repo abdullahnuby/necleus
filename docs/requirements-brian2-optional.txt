@@ -1,0 +1,2 @@
+# Optional external simulator comparison only; not needed for the core model.
+brian2>=2.7

@@ -1,0 +1,22 @@
+{
+  "version": "0.28.1",
+  "preregistration_sha256": "d2bfc7d27e6acb2b2d31a878aa06cf8f8219fc29a293b1ad77c66622399893d6",
+  "seed_count": 5,
+  "seeds": [
+    104,
+    887,
+    2027,
+    90210,
+    731
+  ],
+  "all_seeds_no_exact_train_test_or_jitter_overlap": true,
+  "all_jitter_labels_preserved": true,
+  "max_exact_overlap_counts": {
+    "exact_train_test_overlap_sync": 0,
+    "exact_train_test_overlap_order": 0,
+    "exact_jitter_train_overlap_sync": 0,
+    "exact_jitter_train_overlap_order": 0
+  },
+  "runtime_seconds": 5.776367425918579,
+  "interpretation": "Results are preliminary and highly variable across five seeds; not evidence of general intelligence or robust task learning."
+}

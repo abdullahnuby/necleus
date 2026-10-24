@@ -1,0 +1,5 @@
+task,condition,nominal_mean_spikes_per_trial,scale_075_mean_spikes_per_trial,scale_125_mean_spikes_per_trial,max_absolute_relative_spike_count_change_vs_nominal,mean_gain_at_scale_075,mean_gain_at_scale_100,mean_gain_at_scale_125
+sync,fixed_inhibition,76.0625,67.25,87.8125,0.15447822514379617,1.0,1.0,1.0
+sync,local_adaptive_inhibition,75.5,66.84375,86.84375,0.15024834437086088,0.9058926676710447,0.9251473148663839,0.9545048276583353
+order,fixed_inhibition,97.34375,85.6875,104.21875,0.11974317817014446,1.0,1.0,1.0
+order,local_adaptive_inhibition,95.0625,83.84375,101.0,0.1180144641683103,0.9458260883887609,0.9718432401617368,0.9898162707686424

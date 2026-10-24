@@ -1,0 +1,7 @@
+task,feature_set,n_seeds,n_reached_85,reach_rate_percent,reach_rate_ci95_low_percent,reach_rate_ci95_high_percent,mean_first_epoch_among_reached,median_first_epoch_among_reached,independent_test_accuracy_at_selected_epoch_mean_percent,independent_test_accuracy_at_selected_epoch_ci95_low_percent,independent_test_accuracy_at_selected_epoch_ci95_high_percent,reach_rate_ci_method
+sync,phase4_96,40,0,0.0,0.0,8.762160119728664,,,,,,Wilson score interval
+sync,spike_bins8_rate_192,40,2,5.0,1.3820667386148344,16.503877369140962,10.0,10.0,86.20000000000002,85.9,86.5,Wilson score interval
+sync,spike_bins16_rate_384,40,6,15.0,7.061187717320358,29.07232436648971,8.0,10.0,85.0,83.41666666666666,86.66666666666667,Wilson score interval
+order,phase4_96,40,0,0.0,0.0,8.762160119728664,,,,,,Wilson score interval
+order,spike_bins8_rate_192,40,0,0.0,0.0,8.762160119728664,,,,,,Wilson score interval
+order,spike_bins16_rate_384,40,0,0.0,0.0,8.762160119728664,,,,,,Wilson score interval

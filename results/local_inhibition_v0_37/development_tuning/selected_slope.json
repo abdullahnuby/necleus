@@ -1,0 +1,28 @@
+{
+  "selected_slope": 2.0,
+  "selection_basis": "development validation only",
+  "development_seeds": [
+    9200,
+    9201,
+    9202,
+    9203,
+    9204,
+    9205,
+    9206,
+    9207
+  ],
+  "candidate_scores": [
+    {
+      "slope": 2.0,
+      "mean_validation_balanced_accuracy": 0.79625,
+      "mean_validation_accuracy": 0.79625,
+      "n_seed_task_pairs": 16
+    },
+    {
+      "slope": 4.0,
+      "mean_validation_balanced_accuracy": 0.7933125000000001,
+      "mean_validation_accuracy": 0.7933125000000001,
+      "n_seed_task_pairs": 16
+    }
+  ]
+}

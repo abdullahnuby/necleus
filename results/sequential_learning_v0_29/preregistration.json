@@ -1,0 +1,82 @@
+{
+  "version": "0.29",
+  "created_utc": "2026-10-24",
+  "seeds": [
+    104,
+    887,
+    2027,
+    90210,
+    731,
+    3000,
+    3001,
+    3002,
+    3003,
+    3004,
+    3005,
+    3006,
+    3007,
+    3008,
+    3009,
+    3010,
+    3011,
+    3012,
+    3013,
+    3014,
+    3015,
+    3016,
+    3017,
+    3018,
+    3019,
+    3020,
+    3021,
+    3022,
+    3023,
+    3024,
+    3025,
+    3026,
+    3027,
+    3028,
+    3029,
+    3030,
+    3031,
+    3032,
+    3033,
+    3034
+  ],
+  "config": {
+    "train_per_task": 200,
+    "validation_task1": 300,
+    "test_per_task": 500,
+    "shifted_per_task": 500,
+    "hidden_neurons": 24,
+    "passes_per_task": 8,
+    "eligibility_threshold": 0.85
+  },
+  "methods": {
+    "pulse": {
+      "learning_rate": 0.01,
+      "temperature": 0.7,
+      "architecture": "unchanged v0.28.1 RewardSTDPReadout"
+    },
+    "linear": {
+      "learning_rate": 0.01,
+      "weight_decay": 0.001,
+      "batch_size": 16,
+      "architecture": "linear softmax readout on exact same 4-phase features"
+    }
+  },
+  "analysis": {
+    "primary": "all-seed performance; show class recall and positive-prediction rate",
+    "eligibility": "validation accuracy for task 1 before task 2 >= 0.85",
+    "conditional_forgetting": "per-method eligible seeds and paired comparison on seeds eligible for both methods",
+    "test_exclusion": "none",
+    "confidence_intervals": "95% percentile bootstrap over seed-level means; 20,000 resamples; fixed bootstrap seed 20261024"
+  },
+  "sha256": {
+    "pulse_core/sequential_stdp.py": "8f2bbba78fc524ee01be9b37e13f5e6fd41216434d7d56af235fce6507566fd6",
+    "experiments/run_sequential_learning_v0_29.py": "c1247caef6c043aa9b19cf50b43709bdb1682a99411bc949ebdce7ffea2cd76c",
+    "tests/test_v029_sequential_learning.py": "16fe80c64a389b4fe4a065493f231b1c3408310fd4a5321498927fd06dba4fa3",
+    "docs/EXPERIMENT_DESIGN_V0_29_AR.md": "85321f018ea569770c7081bd07e2a74b44909e73f247ab40bb90ffebd7b43138",
+    "docs/benchmark_protocol_v0_29_AR.md": "d5d72f5d85ceaef85c28e8b375d29d762c053f898a7ef130eb6eb489adddcb76"
+  }
+}

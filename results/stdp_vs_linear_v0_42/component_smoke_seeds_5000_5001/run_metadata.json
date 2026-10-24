@@ -1,0 +1,11 @@
+{
+  "smoke_only": true,
+  "seeds_run": [
+    5000,
+    5001
+  ],
+  "test_per_task": 80,
+  "elapsed_seconds": 0.8362,
+  "runner_sha256": "5cb5368144636a2b369c4fc1723b4a4c0f66c4cdc7f9345cd51bdfe402d4f1b8",
+  "preregistration_verified": false
+}

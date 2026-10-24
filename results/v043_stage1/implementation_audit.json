@@ -1,0 +1,63 @@
+{
+  "version": "v0.43-stage1",
+  "status": "stage-1 implementation smoke-tested; not an official benchmark or model result",
+  "grammar": {
+    "domain": {
+      "x0": [
+        0,
+        99
+      ],
+      "x1": [
+        0,
+        99
+      ],
+      "total_inputs": 10000
+    },
+    "atoms_per_var": [
+      "LT thresholds 25/50/75",
+      "EVEN",
+      "DIV3",
+      "DIV5"
+    ],
+    "grammar_note": "bounded grammar; at most two binary operators and AST depth <=3; NOT only over atom",
+    "syntactic_programs": 9348,
+    "max_ast_depth": 3,
+    "unique_semantic_functions": 4570,
+    "family_count_by_split": {
+      "train": 649,
+      "dev": 140,
+      "test": 134
+    }
+  },
+  "generation": {
+    "support_examples_per_task": 8,
+    "support_label_balance": "4 positive / 4 negative for standard generated tasks",
+    "query_examples_per_task": 100,
+    "query_label_balance": "50 positive / 50 negative exactly",
+    "support_query_input_overlap": "forbidden and checked",
+    "support_modes": [
+      "random",
+      "contrastive"
+    ],
+    "special_classes": [
+      "OUT_OF_SCOPE",
+      "CONTRADICTORY_SUPPORT"
+    ]
+  },
+  "tests": {
+    "command": "pytest -q tests",
+    "passed": 131,
+    "failed": 0
+  },
+  "smoke_report": "results/v043_stage1_smoke/stage1_smoke_report.json",
+  "official_test_ready": false,
+  "not_yet_implemented": [
+    "meta-learning neural baseline",
+    "10000+ training episodes",
+    "all baseline runs",
+    "8/16/32 examples for new operation",
+    "feedback rounds",
+    "continual-retention evaluation",
+    "final preregistration and test freeze"
+  ]
+}

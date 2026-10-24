@@ -1,0 +1,30 @@
+Nucleus Pulse v0.41 Stage 2 — Validation Summary
+================================================
+Date: 2026-10-24
+Stage: Multi-seed development-only input-gain component diagnostic
+
+Automated test suite:
+- Command: pytest -q
+- Result: 118 passed in 8.62s
+
+Frozen protocol:
+- Preregistration config verified by experiment runner.
+- SHA-256 hashes for the run script, test file, and protocol matched.
+- Settings: 8 development seeds; tasks sync/order; input scales 0.75, 1.0, 1.25;
+  fixed versus local adaptive inhibition; 32 balanced examples per task/seed.
+- Local adaptation slope=2.0, EMA tau=4.0; spectral radius target=0.72.
+
+Data integrity:
+- 96 finite result rows (8 seeds x 2 tasks x 3 scales x 2 conditions).
+- 8 unique development seeds, 16 seed-task pairs.
+- Each selected set has 32 unique examples, balanced 16/16.
+- The input event raster is identical across input scales and inhibition conditions.
+- Recurrent matrix is shared between conditions within each seed; source input weights are not mutated.
+- No readout training was performed.
+- No validation/test sets were generated or used by this diagnostic.
+- All generated JSON/CSV files parse successfully; output plots exist and are non-empty.
+
+Interpretation limits:
+- This is a component/activity diagnostic, not a predictive-accuracy benchmark.
+- Do not infer learning performance, generalization robustness, or energy efficiency from these results.
+- Across eight development seeds, local adaptive inhibition modestly reduced the max absolute relative spike-count sensitivity on average, but paired bootstrap confidence intervals included zero for both tasks. Feature L2 variation was slightly larger on average under local adaptation.

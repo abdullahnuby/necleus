@@ -1,0 +1,40 @@
+[
+  {
+    "contrast": "tau_2 - tau_4",
+    "tau_ticks": 2.0,
+    "epoch": 10,
+    "n_paired_seeds": 8,
+    "mean_delta_balanced_accuracy_points": -0.056250000000000744,
+    "ci95_low_points": -0.28125000000000167,
+    "ci95_high_points": 0.17500000000000226,
+    "per_seed_delta_points": [
+      -0.1,
+      -0.1,
+      0.4,
+      -0.6,
+      0.5,
+      -0.15,
+      -0.3,
+      -0.1
+    ]
+  },
+  {
+    "contrast": "tau_8 - tau_4",
+    "tau_ticks": 8.0,
+    "epoch": 10,
+    "n_paired_seeds": 8,
+    "mean_delta_balanced_accuracy_points": 0.024999999999998634,
+    "ci95_low_points": -0.350000000000001,
+    "ci95_high_points": 0.48749999999999694,
+    "per_seed_delta_points": [
+      -0.5,
+      -0.35,
+      1.3,
+      0.2,
+      -0.45,
+      -0.35,
+      -0.3,
+      0.65
+    ]
+  }
+]

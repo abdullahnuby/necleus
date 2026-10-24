@@ -1,0 +1,38 @@
+[
+  {
+    "task": "sync",
+    "condition": "baseline_delay1",
+    "n_seeds": 40,
+    "mean_spikes_per_trial": 63.32869367599487,
+    "fraction_hidden_cells_with_at_least_one_spike_percent": 78.22916666666666,
+    "fraction_trials_with_zero_hidden_spikes_percent": 0.0,
+    "mean_spike_rate_per_hidden_tick_percent": 8.24592369608581
+  },
+  {
+    "task": "sync",
+    "condition": "heterogeneous_delay1_4",
+    "n_seeds": 40,
+    "mean_spikes_per_trial": 61.71990280151367,
+    "fraction_hidden_cells_with_at_least_one_spike_percent": 79.6875,
+    "fraction_trials_with_zero_hidden_spikes_percent": 0.0,
+    "mean_spike_rate_per_hidden_tick_percent": 8.03644577972591
+  },
+  {
+    "task": "order",
+    "condition": "baseline_delay1",
+    "n_seeds": 40,
+    "mean_spikes_per_trial": 63.409675168991086,
+    "fraction_hidden_cells_with_at_least_one_spike_percent": 78.64583333333333,
+    "fraction_trials_with_zero_hidden_spikes_percent": 0.0,
+    "mean_spike_rate_per_hidden_tick_percent": 8.256468074396253
+  },
+  {
+    "task": "order",
+    "condition": "heterogeneous_delay1_4",
+    "n_seeds": 40,
+    "mean_spikes_per_trial": 61.7925624370575,
+    "fraction_hidden_cells_with_at_least_one_spike_percent": 79.6875,
+    "fraction_trials_with_zero_hidden_spikes_percent": 0.0,
+    "mean_spike_rate_per_hidden_tick_percent": 8.045906601473689
+  }
+]

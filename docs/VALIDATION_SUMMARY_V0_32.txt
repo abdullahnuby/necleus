@@ -1,0 +1,24 @@
+Nucleus Pulse v0.32 — Validation Summary
+Date: 2026-10-24
+
+Engineering validation
+- `python experiments/run_multi_epoch_v0_32.py --smoke`: PASS
+- `python -m pytest -q`: 55 passed
+- Preregistration configuration and SHA-256 checks: PASS
+- Frozen official run: 40/40 seeds complete
+- Full experiment rows: 960 / 960 expected
+- Training examples: 6,000 unique per task and seed; class-balanced
+- Validation: 1,000 balanced examples per task and seed
+- Final test: 1,000 balanced examples per task and seed
+- Exact event-sequence overlap between train/validation/test: 0
+- Data/model/config altered during official run: No
+- Strict JSON serialization (`allow_nan=False`) after post-run correction: PASS
+- Post-run analysis correction: Wilson score CI for binary threshold hit rates; paired 10-vs-1 pass gains added; model and data unchanged
+- Output charts: 4 (validation/test for sync/order)
+- Preregistration preserves source hashes for the experiment script, tests, protocol, data/feature helper and reservoir core.
+
+Results headline
+- At 10 passes: test accuracy is 69.5% for 4-window sync, 78.5% for 8-window sync, 81.5% for 16-window sync; 67.9%, 73.2%, 75.2% respectively for order.
+- Validation reached 85%: sync 0/40 (4-window), 2/40 (8-window), 6/40 (16-window); order 0/40 for all three feature sets.
+- Binary reach-rate 95% intervals use Wilson after a documented post-run correction. Accuracy CI remains percentile bootstrap over seeds.
+- This test concerns a fixed reservoir and trainable logistic readout, not STDP or plastic recurrent weights.

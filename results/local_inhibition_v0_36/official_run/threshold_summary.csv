@@ -1,0 +1,7 @@
+task,condition,n_seeds,n_reached_85,reach_rate_percent,reach_rate_ci95_wilson_low_percent,reach_rate_ci95_wilson_high_percent,mean_first_epoch_among_reached,median_first_epoch_among_reached,independent_test_accuracy_at_selected_epoch_mean_percent,independent_test_accuracy_at_selected_epoch_ci95_low_percent,independent_test_accuracy_at_selected_epoch_ci95_high_percent
+sync,dale_fixed_25,40,8,20.0,10.499989725437704,34.7573063463995,6.625,5.0,84.725,83.38749999999999,86.1375
+sync,dale_global_adaptive_25,40,11,27.5,16.108016247667337,42.83495580621057,8.454545454545455,10.0,85.7090909090909,84.7909090909091,86.71818181818182
+sync,dale_local_adaptive_25,40,9,22.5,12.316091323540743,37.50309674231003,8.11111111111111,10.0,85.42222222222222,84.44444444444444,86.49999999999999
+order,dale_fixed_25,40,0,0.0,0.0,8.762160119728664,,,,,
+order,dale_global_adaptive_25,40,0,0.0,0.0,8.762160119728664,,,,,
+order,dale_local_adaptive_25,40,0,0.0,0.0,8.762160119728664,,,,,

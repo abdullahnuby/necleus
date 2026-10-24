@@ -1,0 +1,2 @@
+# Preserve exact bytes across clones (LF everywhere, binary untouched).
+* text=auto eol=lf

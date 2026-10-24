@@ -1,0 +1,23 @@
+Nucleus Pulse v0.40 Stage 1 run log
+==================================
+Command: python experiments/diagnose_input_gain_v0_40.py
+Status: passed
+Diagnostic seed: 14040
+Tasks: sync, order
+Conditions: fixed_inhibition, local_adaptive_inhibition
+Input scales: 0.75, 1.0, 1.25
+Rows written: 12
+Readout training: no
+Official test evaluation: no
+
+Validation command: pytest -q
+Result: 111 passed
+
+Summary:
+- sync fixed: 67.25, 76.0625, 87.8125 spikes/trial at input scales .75, 1.0, 1.25
+- sync local: 66.84375, 75.5, 86.84375
+- order fixed: 85.6875, 97.34375, 104.21875
+- order local: 83.84375, 95.0625, 101.0
+- max relative spike-count change vs nominal: sync fixed 15.45%, local 15.02%; order fixed 11.97%, local 11.80%.
+
+These are deterministic smoke-test measurements for one seed, not an inferential result.

@@ -1,0 +1,47 @@
+Nucleus Pulse v0.29 — Validation summary
+Date: 2026-10-24
+
+Automated tests
+- Command: pytest -q
+- Result: 38 passed
+- Dedicated v0.29 tests: 6 passed
+- Preregistration/source hashes: verified before the final run
+
+Registered run
+- Seeds: 40 (official five plus 35 fixed additional seeds)
+- Runtime: about 62.2 seconds
+- Training examples: 200 per task and seed
+- Training passes: 8 per task
+- Independent task-1 validation: 300 examples per seed
+- IID test: 500 examples per task and seed
+- Phase-shifted test: 500 examples per task and seed
+- Exact-sequence overlap checks: zero for all recorded train/validation/test/shifted pairs across all seeds
+- All 40 seeds retained in primary test summaries; no test-based exclusions
+
+Key aggregate results (%; 95% bootstrap CI over seeds)
+- Pulse task 1 before task 2: 62.86 [60.75, 64.87]
+- Linear/logistic task 1 before task 2: 66.85 [65.63, 68.07]
+- Pulse task 1 after task 2: 59.19 [57.73, 60.60]
+- Linear/logistic task 1 after task 2: 59.52 [58.10, 61.01]
+- Pulse task 2: 61.50 [59.67, 63.27]
+- Linear/logistic task 2: 66.81 [65.91, 67.72]
+- Pulse task 2 phase-shifted test: 47.47 [46.06, 48.81]
+- Linear/logistic task 2 phase-shifted test: 48.15 [46.69, 49.55]
+
+Eligibility
+- Criterion: task-1 validation accuracy >= 85% before task 2
+- Pulse eligible seeds: 0/40
+- Linear/logistic eligible seeds: 0/40
+- Matched eligible seeds: 0/40
+- Therefore no conditional forgetting estimate is available. All-seed forgetting figures are retained as descriptive only and must not be interpreted as evidence of less forgetting because task-1 learning was not sufficiently strong under the pre-registered criterion.
+
+Paired descriptive deltas across all seeds (linear minus pulse; percentage points; 95% bootstrap CI)
+- Task 1 before task 2: +3.99 [2.44, 5.63]
+- Task 2: +5.31 [3.67, 7.12]
+- Forgetting difference: +3.66 [2.02, 5.32]
+These are descriptive comparisons only. The forgetting delta is not a valid claim that pulse learning retains a well-learned skill, because neither model met the pre-registered 85% validation threshold on any seed.
+
+Interpretation limits
+- Fixed random reservoir; only the readout changes.
+- Logistic baseline uses the same temporal reservoir features but receives direct supervised labels, while the pulse rule uses reward-based online updates; the information/training setup is not identical.
+- Phase-shift results indicate poor temporal generalization.

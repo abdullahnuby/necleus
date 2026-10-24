@@ -1,0 +1,14 @@
+Nucleus Pulse v0.28.1 validation summary
+======================================
+Final benchmark: completed on seeds 104, 887, 2027, 90210, 731
+Runtime in benchmark: 5.78 s
+Train/test and jitter/train exact event-sequence overlap: none in all 5 seeds
+Jitter label preservation: 100% in all seeds
+Preregistration hash checked by final runner: yes (local, not externally timestamped)
+Files created: report_ar.md, per_seed_summary.csv, sequential_accuracy_comparison.png, run_integrity.json
+
+Scientific interpretation:
+- Pulse task2 accuracy: 64.25% +/- 5.79 percentage points across five seeds.
+- MLP task2 accuracy: 62.25% +/- 2.88 pp.
+- Mean forgetting: pulse 1.62 pp, MLP 6.50 pp.
+- Results vary strongly by seed and do not show robust competence; reservoir is fixed and only readout synapses learn.

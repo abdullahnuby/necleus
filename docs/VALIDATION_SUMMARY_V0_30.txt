@@ -1,0 +1,28 @@
+Nucleus Pulse v0.30 validation summary
+Date: 2026-10-24
+
+Engineering checks:
+- Full repository test suite: 44 passed.
+- Engineering smoke run: passed for both tasks, two training sizes, all preregistered feature/readout pipelines.
+- Vectorized reservoir simulation matched per-trial DynamicPulseReservoir.simulate exactly on the tested examples.
+- Feature dimensions and finite values verified for phase4, counts, 8-bin, 16-bin, raster, and raw-input representations.
+- Frozen protocol hashes verified for the runner, tests, protocol, unchanged sequential STDP/reservoir source, and benchmark requirements.
+
+Full registered run completed:
+- 40/40 seeds; 3200 unique measurement rows; 80 summary groups, each with n=40 seeds.
+- 2 tasks, 5 training sizes (200, 500, 1000, 2000, 6000), 8 reader/feature pipelines per task/size/seed.
+- Test size: 1000 examples per task per seed, shared across all pipelines within the same task/seed.
+- All training subsets nested and class-balanced; full training pool is 6000 examples per task/seed.
+- Train/test exact sequence overlap across all seeds/tasks: 0.
+- Test data used for tuning: no.
+- Source/protocol hashes still verify after final results are saved.
+
+Execution note:
+- 13 seeds completed with sequential scheduling; remaining 27 were run concurrently in up to 3 processes. Only orchestration changed; per-seed generation/model/feature/metric code and preregistered configuration remained fixed.
+- First segment's per-seed elapsed sum: 220.686 s. Parallel continuation wall time: 272.728 s. Approximate accounting across segments: 493.414 s (not one uninterrupted stopwatch).
+
+Scientific interpretation:
+- Richer temporal representations generally improve with more examples; the v0.29 four-window representation plateaus earlier than full spike rasters and 8/16-bin features.
+- A supervised GBM trained on raw input approaches 99% at 6000 examples, but is near chance at 200; this is evidence of sample/capacity effects on this synthetic distribution, not evidence of STDP efficiency.
+- The v0.30 scikit-learn logistic baseline (standardized LBFGS) differs from v0.29's custom minibatch logistic baseline, so absolute differences between versions must not be attributed to feature representation alone.
+- This is a decodability/sample-efficiency study, not a continual-learning/forgetting comparison and not an STDP-rule comparison.

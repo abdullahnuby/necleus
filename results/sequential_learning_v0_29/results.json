@@ -1,0 +1,5747 @@
+{
+  "version": "0.29",
+  "seeds": [
+    104,
+    887,
+    2027,
+    90210,
+    731,
+    3000,
+    3001,
+    3002,
+    3003,
+    3004,
+    3005,
+    3006,
+    3007,
+    3008,
+    3009,
+    3010,
+    3011,
+    3012,
+    3013,
+    3014,
+    3015,
+    3016,
+    3017,
+    3018,
+    3019,
+    3020,
+    3021,
+    3022,
+    3023,
+    3024,
+    3025,
+    3026,
+    3027,
+    3028,
+    3029,
+    3030,
+    3031,
+    3032,
+    3033,
+    3034
+  ],
+  "per_seed": [
+    {
+      "seed": 104,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "forgetting_task1_pp": 0.0,
+        "weight_min": -0.15966463088989258,
+        "weight_max": 0.16155850887298584
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5966666666666667,
+          "balanced_accuracy": 0.5966666666666667,
+          "class_0_recall": 0.78,
+          "class_1_recall": 0.41333333333333333,
+          "predicted_positive_rate": 0.31666666666666665
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.628,
+          "balanced_accuracy": 0.628,
+          "class_0_recall": 0.82,
+          "class_1_recall": 0.436,
+          "predicted_positive_rate": 0.308
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.604,
+          "balanced_accuracy": 0.604,
+          "class_0_recall": 0.316,
+          "class_1_recall": 0.892,
+          "predicted_positive_rate": 0.788
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.532,
+          "balanced_accuracy": 0.532,
+          "class_0_recall": 0.092,
+          "class_1_recall": 0.972,
+          "predicted_positive_rate": 0.94
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.68,
+          "balanced_accuracy": 0.6799999999999999,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.72,
+          "predicted_positive_rate": 0.54
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.502,
+          "balanced_accuracy": 0.502,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.544,
+          "predicted_positive_rate": 0.542
+        },
+        "forgetting_task1_pp": 2.400000000000002,
+        "weight_min": -1.026373351954796,
+        "weight_max": 1.026373351954796
+      },
+      "elapsed_seconds": 1.5861761569976807
+    },
+    {
+      "seed": 887,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7466666666666667,
+          "balanced_accuracy": 0.7466666666666667,
+          "class_0_recall": 0.6266666666666667,
+          "class_1_recall": 0.8666666666666667,
+          "predicted_positive_rate": 0.62
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.544,
+          "class_1_recall": 0.832,
+          "predicted_positive_rate": 0.644
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.608,
+          "balanced_accuracy": 0.608,
+          "class_0_recall": 0.352,
+          "class_1_recall": 0.864,
+          "predicted_positive_rate": 0.756
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.598,
+          "balanced_accuracy": 0.5980000000000001,
+          "class_0_recall": 0.396,
+          "class_1_recall": 0.8,
+          "predicted_positive_rate": 0.702
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.61,
+          "balanced_accuracy": 0.61,
+          "class_0_recall": 0.276,
+          "class_1_recall": 0.944,
+          "predicted_positive_rate": 0.834
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.444,
+          "balanced_accuracy": 0.444,
+          "class_0_recall": 0.236,
+          "class_1_recall": 0.652,
+          "predicted_positive_rate": 0.708
+        },
+        "forgetting_task1_pp": 7.9999999999999964,
+        "weight_min": -0.19316603243350983,
+        "weight_max": 0.21619614958763123
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7233333333333334,
+          "balanced_accuracy": 0.7233333333333334,
+          "class_0_recall": 0.7933333333333333,
+          "class_1_recall": 0.6533333333333333,
+          "predicted_positive_rate": 0.43
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.692,
+          "balanced_accuracy": 0.692,
+          "class_0_recall": 0.708,
+          "class_1_recall": 0.676,
+          "predicted_positive_rate": 0.484
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.584,
+          "balanced_accuracy": 0.5840000000000001,
+          "class_0_recall": 0.62,
+          "class_1_recall": 0.548,
+          "predicted_positive_rate": 0.464
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.626,
+          "balanced_accuracy": 0.626,
+          "class_0_recall": 0.764,
+          "class_1_recall": 0.488,
+          "predicted_positive_rate": 0.362
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.646,
+          "balanced_accuracy": 0.646,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.732,
+          "predicted_positive_rate": 0.586
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.47,
+          "balanced_accuracy": 0.47000000000000003,
+          "class_0_recall": 0.536,
+          "class_1_recall": 0.404,
+          "predicted_positive_rate": 0.434
+        },
+        "forgetting_task1_pp": 10.799999999999999,
+        "weight_min": -0.8715485267170718,
+        "weight_max": 0.8715485267170718
+      },
+      "elapsed_seconds": 1.5969715118408203
+    },
+    {
+      "seed": 2027,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 0.0,
+          "class_1_recall": 1.0,
+          "predicted_positive_rate": 1.0
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 0.0,
+          "class_1_recall": 1.0,
+          "predicted_positive_rate": 1.0
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.518,
+          "balanced_accuracy": 0.518,
+          "class_0_recall": 0.236,
+          "class_1_recall": 0.8,
+          "predicted_positive_rate": 0.782
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.508,
+          "balanced_accuracy": 0.508,
+          "class_0_recall": 0.064,
+          "class_1_recall": 0.952,
+          "predicted_positive_rate": 0.944
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.548,
+          "balanced_accuracy": 0.548,
+          "class_0_recall": 0.612,
+          "class_1_recall": 0.484,
+          "predicted_positive_rate": 0.436
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.482,
+          "balanced_accuracy": 0.482,
+          "class_0_recall": 0.256,
+          "class_1_recall": 0.708,
+          "predicted_positive_rate": 0.726
+        },
+        "forgetting_task1_pp": -1.8000000000000016,
+        "weight_min": -0.1325501650571823,
+        "weight_max": 0.17564593255519867
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6566666666666666,
+          "balanced_accuracy": 0.6566666666666666,
+          "class_0_recall": 0.6133333333333333,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.5433333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.634,
+          "balanced_accuracy": 0.6339999999999999,
+          "class_0_recall": 0.568,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.566
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.53,
+          "balanced_accuracy": 0.53,
+          "class_0_recall": 0.296,
+          "class_1_recall": 0.764,
+          "predicted_positive_rate": 0.734
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.514,
+          "balanced_accuracy": 0.514,
+          "class_0_recall": 0.088,
+          "class_1_recall": 0.94,
+          "predicted_positive_rate": 0.926
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.588,
+          "balanced_accuracy": 0.5880000000000001,
+          "class_0_recall": 0.552,
+          "class_1_recall": 0.624,
+          "predicted_positive_rate": 0.536
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.46,
+          "balanced_accuracy": 0.45999999999999996,
+          "class_0_recall": 0.2,
+          "class_1_recall": 0.72,
+          "predicted_positive_rate": 0.76
+        },
+        "forgetting_task1_pp": 10.399999999999999,
+        "weight_min": -0.9659715376732213,
+        "weight_max": 0.9659715376732213
+      },
+      "elapsed_seconds": 1.548306941986084
+    },
+    {
+      "seed": 90210,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "forgetting_task1_pp": 0.0,
+        "weight_min": -0.157241553068161,
+        "weight_max": 0.11878694593906403
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.62,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.51
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.622,
+          "balanced_accuracy": 0.622,
+          "class_0_recall": 0.628,
+          "class_1_recall": 0.616,
+          "predicted_positive_rate": 0.494
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.596,
+          "balanced_accuracy": 0.5960000000000001,
+          "class_0_recall": 0.672,
+          "class_1_recall": 0.52,
+          "predicted_positive_rate": 0.424
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.538,
+          "balanced_accuracy": 0.538,
+          "class_0_recall": 0.496,
+          "class_1_recall": 0.58,
+          "predicted_positive_rate": 0.542
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.668,
+          "balanced_accuracy": 0.6679999999999999,
+          "class_0_recall": 0.704,
+          "class_1_recall": 0.632,
+          "predicted_positive_rate": 0.464
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.498,
+          "balanced_accuracy": 0.498,
+          "class_0_recall": 0.42,
+          "class_1_recall": 0.576,
+          "predicted_positive_rate": 0.578
+        },
+        "forgetting_task1_pp": 2.6000000000000023,
+        "weight_min": -1.0766885939084585,
+        "weight_max": 1.0766885939084585
+      },
+      "elapsed_seconds": 1.5354115962982178
+    },
+    {
+      "seed": 731,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 0.0,
+          "class_1_recall": 1.0,
+          "predicted_positive_rate": 1.0
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 0.0,
+          "class_1_recall": 1.0,
+          "predicted_positive_rate": 1.0
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.51,
+          "balanced_accuracy": 0.51,
+          "class_0_recall": 0.028,
+          "class_1_recall": 0.992,
+          "predicted_positive_rate": 0.982
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.502,
+          "balanced_accuracy": 0.502,
+          "class_0_recall": 0.008,
+          "class_1_recall": 0.996,
+          "predicted_positive_rate": 0.994
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.512,
+          "balanced_accuracy": 0.512,
+          "class_0_recall": 0.024,
+          "class_1_recall": 1.0,
+          "predicted_positive_rate": 0.988
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.492,
+          "balanced_accuracy": 0.492,
+          "class_0_recall": 0.008,
+          "class_1_recall": 0.976,
+          "predicted_positive_rate": 0.984
+        },
+        "forgetting_task1_pp": -1.0000000000000009,
+        "weight_min": -0.17907877266407013,
+        "weight_max": 0.24373175203800201
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6266666666666667,
+          "balanced_accuracy": 0.6266666666666667,
+          "class_0_recall": 0.6866666666666666,
+          "class_1_recall": 0.5666666666666667,
+          "predicted_positive_rate": 0.44
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.632,
+          "balanced_accuracy": 0.6319999999999999,
+          "class_0_recall": 0.692,
+          "class_1_recall": 0.572,
+          "predicted_positive_rate": 0.44
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.592,
+          "balanced_accuracy": 0.5920000000000001,
+          "class_0_recall": 0.536,
+          "class_1_recall": 0.648,
+          "predicted_positive_rate": 0.556
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.52,
+          "balanced_accuracy": 0.52,
+          "class_0_recall": 0.28,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.74
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.652,
+          "balanced_accuracy": 0.652,
+          "class_0_recall": 0.648,
+          "class_1_recall": 0.656,
+          "predicted_positive_rate": 0.504
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.51,
+          "balanced_accuracy": 0.51,
+          "class_0_recall": 0.312,
+          "class_1_recall": 0.708,
+          "predicted_positive_rate": 0.698
+        },
+        "forgetting_task1_pp": 4.0000000000000036,
+        "weight_min": -0.8364069658372421,
+        "weight_max": 0.8364069658372421
+      },
+      "elapsed_seconds": 1.5322470664978027
+    },
+    {
+      "seed": 3000,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6533333333333333,
+          "balanced_accuracy": 0.6533333333333333,
+          "class_0_recall": 0.6333333333333333,
+          "class_1_recall": 0.6733333333333333,
+          "predicted_positive_rate": 0.52
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.644,
+          "balanced_accuracy": 0.6439999999999999,
+          "class_0_recall": 0.58,
+          "class_1_recall": 0.708,
+          "predicted_positive_rate": 0.564
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.576,
+          "balanced_accuracy": 0.576,
+          "class_0_recall": 0.948,
+          "class_1_recall": 0.204,
+          "predicted_positive_rate": 0.128
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.498,
+          "balanced_accuracy": 0.498,
+          "class_0_recall": 0.992,
+          "class_1_recall": 0.004,
+          "predicted_positive_rate": 0.006
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.584,
+          "balanced_accuracy": 0.5840000000000001,
+          "class_0_recall": 0.8,
+          "class_1_recall": 0.368,
+          "predicted_positive_rate": 0.284
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.488,
+          "balanced_accuracy": 0.488,
+          "class_0_recall": 0.948,
+          "class_1_recall": 0.028,
+          "predicted_positive_rate": 0.04
+        },
+        "forgetting_task1_pp": 6.800000000000006,
+        "weight_min": -0.18392111361026764,
+        "weight_max": 0.16600970923900604
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6966666666666667,
+          "balanced_accuracy": 0.6966666666666667,
+          "class_0_recall": 0.7866666666666666,
+          "class_1_recall": 0.6066666666666667,
+          "predicted_positive_rate": 0.41
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.718,
+          "balanced_accuracy": 0.718,
+          "class_0_recall": 0.796,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.422
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.614,
+          "balanced_accuracy": 0.614,
+          "class_0_recall": 0.828,
+          "class_1_recall": 0.4,
+          "predicted_positive_rate": 0.286
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.518,
+          "balanced_accuracy": 0.518,
+          "class_0_recall": 0.776,
+          "class_1_recall": 0.26,
+          "predicted_positive_rate": 0.242
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.684,
+          "balanced_accuracy": 0.6839999999999999,
+          "class_0_recall": 0.592,
+          "class_1_recall": 0.776,
+          "predicted_positive_rate": 0.592
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.436,
+          "balanced_accuracy": 0.436,
+          "class_0_recall": 0.504,
+          "class_1_recall": 0.368,
+          "predicted_positive_rate": 0.432
+        },
+        "forgetting_task1_pp": 10.399999999999999,
+        "weight_min": -0.8204596685950397,
+        "weight_max": 0.8204596685950397
+      },
+      "elapsed_seconds": 1.6194393634796143
+    },
+    {
+      "seed": 3001,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7133333333333334,
+          "balanced_accuracy": 0.7133333333333334,
+          "class_0_recall": 0.6733333333333333,
+          "class_1_recall": 0.7533333333333333,
+          "predicted_positive_rate": 0.54
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.708,
+          "balanced_accuracy": 0.708,
+          "class_0_recall": 0.632,
+          "class_1_recall": 0.784,
+          "predicted_positive_rate": 0.576
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.614,
+          "balanced_accuracy": 0.614,
+          "class_0_recall": 0.78,
+          "class_1_recall": 0.448,
+          "predicted_positive_rate": 0.334
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.472,
+          "balanced_accuracy": 0.47200000000000003,
+          "class_0_recall": 0.888,
+          "class_1_recall": 0.056,
+          "predicted_positive_rate": 0.084
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.702,
+          "balanced_accuracy": 0.702,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.642
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.494,
+          "balanced_accuracy": 0.494,
+          "class_0_recall": 0.268,
+          "class_1_recall": 0.72,
+          "predicted_positive_rate": 0.726
+        },
+        "forgetting_task1_pp": 9.399999999999997,
+        "weight_min": -0.3035762906074524,
+        "weight_max": 0.3070947825908661
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7233333333333334,
+          "balanced_accuracy": 0.7233333333333334,
+          "class_0_recall": 0.68,
+          "class_1_recall": 0.7666666666666667,
+          "predicted_positive_rate": 0.5433333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.704,
+          "balanced_accuracy": 0.704,
+          "class_0_recall": 0.628,
+          "class_1_recall": 0.78,
+          "predicted_positive_rate": 0.576
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.654,
+          "balanced_accuracy": 0.654,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.668,
+          "predicted_positive_rate": 0.514
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.482,
+          "balanced_accuracy": 0.48200000000000004,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.404,
+          "predicted_positive_rate": 0.422
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.704,
+          "balanced_accuracy": 0.704,
+          "class_0_recall": 0.584,
+          "class_1_recall": 0.824,
+          "predicted_positive_rate": 0.62
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.512,
+          "balanced_accuracy": 0.512,
+          "class_0_recall": 0.336,
+          "class_1_recall": 0.688,
+          "predicted_positive_rate": 0.676
+        },
+        "forgetting_task1_pp": 4.999999999999993,
+        "weight_min": -1.0441021557811545,
+        "weight_max": 1.0441021557811547
+      },
+      "elapsed_seconds": 1.5328962802886963
+    },
+    {
+      "seed": 3002,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.44666666666666666,
+          "class_1_recall": 0.8133333333333334,
+          "predicted_positive_rate": 0.6833333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.476,
+          "class_1_recall": 0.784,
+          "predicted_positive_rate": 0.654
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.566,
+          "balanced_accuracy": 0.5660000000000001,
+          "class_0_recall": 0.224,
+          "class_1_recall": 0.908,
+          "predicted_positive_rate": 0.842
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.52,
+          "balanced_accuracy": 0.52,
+          "class_0_recall": 0.144,
+          "class_1_recall": 0.896,
+          "predicted_positive_rate": 0.876
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.62,
+          "balanced_accuracy": 0.62,
+          "class_0_recall": 0.672,
+          "class_1_recall": 0.568,
+          "predicted_positive_rate": 0.448
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.404,
+          "balanced_accuracy": 0.404,
+          "class_0_recall": 0.624,
+          "class_1_recall": 0.184,
+          "predicted_positive_rate": 0.28
+        },
+        "forgetting_task1_pp": 6.400000000000006,
+        "weight_min": -0.24023666977882385,
+        "weight_max": 0.19452321529388428
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6166666666666667,
+          "balanced_accuracy": 0.6166666666666667,
+          "class_0_recall": 0.4866666666666667,
+          "class_1_recall": 0.7466666666666667,
+          "predicted_positive_rate": 0.63
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.634,
+          "balanced_accuracy": 0.634,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.708,
+          "predicted_positive_rate": 0.574
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.544,
+          "balanced_accuracy": 0.544,
+          "class_0_recall": 0.168,
+          "class_1_recall": 0.92,
+          "predicted_positive_rate": 0.876
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.52,
+          "balanced_accuracy": 0.52,
+          "class_0_recall": 0.14,
+          "class_1_recall": 0.9,
+          "predicted_positive_rate": 0.88
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.646,
+          "balanced_accuracy": 0.646,
+          "class_0_recall": 0.532,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.614
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.43,
+          "balanced_accuracy": 0.42999999999999994,
+          "class_0_recall": 0.576,
+          "class_1_recall": 0.284,
+          "predicted_positive_rate": 0.354
+        },
+        "forgetting_task1_pp": 8.999999999999996,
+        "weight_min": -0.8578109708785641,
+        "weight_max": 0.857810970878564
+      },
+      "elapsed_seconds": 1.5735626220703125
+    },
+    {
+      "seed": 3003,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5233333333333333,
+          "balanced_accuracy": 0.5233333333333333,
+          "class_0_recall": 0.9533333333333334,
+          "class_1_recall": 0.09333333333333334,
+          "predicted_positive_rate": 0.07
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.516,
+          "balanced_accuracy": 0.516,
+          "class_0_recall": 0.928,
+          "class_1_recall": 0.104,
+          "predicted_positive_rate": 0.088
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.6,
+          "balanced_accuracy": 0.6000000000000001,
+          "class_0_recall": 0.532,
+          "class_1_recall": 0.668,
+          "predicted_positive_rate": 0.568
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.532,
+          "balanced_accuracy": 0.532,
+          "class_0_recall": 0.292,
+          "class_1_recall": 0.772,
+          "predicted_positive_rate": 0.74
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.692,
+          "balanced_accuracy": 0.692,
+          "class_0_recall": 0.668,
+          "class_1_recall": 0.716,
+          "predicted_positive_rate": 0.524
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.522,
+          "balanced_accuracy": 0.522,
+          "class_0_recall": 0.384,
+          "class_1_recall": 0.66,
+          "predicted_positive_rate": 0.638
+        },
+        "forgetting_task1_pp": -8.399999999999997,
+        "weight_min": -0.1800180971622467,
+        "weight_max": 0.19991740584373474
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6366666666666667,
+          "balanced_accuracy": 0.6366666666666667,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.8133333333333334,
+          "predicted_positive_rate": 0.6766666666666666
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.658,
+          "balanced_accuracy": 0.6579999999999999,
+          "class_0_recall": 0.492,
+          "class_1_recall": 0.824,
+          "predicted_positive_rate": 0.666
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.606,
+          "balanced_accuracy": 0.6060000000000001,
+          "class_0_recall": 0.548,
+          "class_1_recall": 0.664,
+          "predicted_positive_rate": 0.558
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.518,
+          "balanced_accuracy": 0.518,
+          "class_0_recall": 0.364,
+          "class_1_recall": 0.672,
+          "predicted_positive_rate": 0.654
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.706,
+          "balanced_accuracy": 0.706,
+          "class_0_recall": 0.696,
+          "class_1_recall": 0.716,
+          "predicted_positive_rate": 0.51
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.538,
+          "balanced_accuracy": 0.538,
+          "class_0_recall": 0.516,
+          "class_1_recall": 0.56,
+          "predicted_positive_rate": 0.522
+        },
+        "forgetting_task1_pp": 5.200000000000005,
+        "weight_min": -1.1227001837713688,
+        "weight_max": 1.1227001837713688
+      },
+      "elapsed_seconds": 1.5219230651855469
+    },
+    {
+      "seed": 3004,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.66,
+          "balanced_accuracy": 0.6599999999999999,
+          "class_0_recall": 0.6866666666666666,
+          "class_1_recall": 0.6333333333333333,
+          "predicted_positive_rate": 0.47333333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.682,
+          "balanced_accuracy": 0.6819999999999999,
+          "class_0_recall": 0.784,
+          "class_1_recall": 0.58,
+          "predicted_positive_rate": 0.398
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.626,
+          "balanced_accuracy": 0.626,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.666
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.52,
+          "balanced_accuracy": 0.52,
+          "class_0_recall": 0.26,
+          "class_1_recall": 0.78,
+          "predicted_positive_rate": 0.76
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.65,
+          "balanced_accuracy": 0.65,
+          "class_0_recall": 0.456,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.694
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.434,
+          "balanced_accuracy": 0.43399999999999994,
+          "class_0_recall": 0.3,
+          "class_1_recall": 0.568,
+          "predicted_positive_rate": 0.634
+        },
+        "forgetting_task1_pp": 5.600000000000005,
+        "weight_min": -0.17558172345161438,
+        "weight_max": 0.1620676964521408
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6766666666666666,
+          "balanced_accuracy": 0.6766666666666667,
+          "class_0_recall": 0.66,
+          "class_1_recall": 0.6933333333333334,
+          "predicted_positive_rate": 0.5166666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.736,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.452
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.604,
+          "balanced_accuracy": 0.604,
+          "class_0_recall": 0.512,
+          "class_1_recall": 0.696,
+          "predicted_positive_rate": 0.592
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.552,
+          "balanced_accuracy": 0.552,
+          "class_0_recall": 0.292,
+          "class_1_recall": 0.812,
+          "predicted_positive_rate": 0.76
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.638,
+          "balanced_accuracy": 0.638,
+          "class_0_recall": 0.624,
+          "class_1_recall": 0.652,
+          "predicted_positive_rate": 0.514
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.42,
+          "balanced_accuracy": 0.42,
+          "class_0_recall": 0.352,
+          "class_1_recall": 0.488,
+          "predicted_positive_rate": 0.568
+        },
+        "forgetting_task1_pp": 8.399999999999997,
+        "weight_min": -1.0585385494775255,
+        "weight_max": 1.0585385494775255
+      },
+      "elapsed_seconds": 1.5609815120697021
+    },
+    {
+      "seed": 3005,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7,
+          "balanced_accuracy": 0.7,
+          "class_0_recall": 0.66,
+          "class_1_recall": 0.74,
+          "predicted_positive_rate": 0.54
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.71,
+          "balanced_accuracy": 0.71,
+          "class_0_recall": 0.628,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.582
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.604,
+          "balanced_accuracy": 0.604,
+          "class_0_recall": 0.348,
+          "class_1_recall": 0.86,
+          "predicted_positive_rate": 0.756
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.504,
+          "balanced_accuracy": 0.504,
+          "class_0_recall": 0.404,
+          "class_1_recall": 0.604,
+          "predicted_positive_rate": 0.6
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.666,
+          "balanced_accuracy": 0.6659999999999999,
+          "class_0_recall": 0.376,
+          "class_1_recall": 0.956,
+          "predicted_positive_rate": 0.79
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.416,
+          "balanced_accuracy": 0.41600000000000004,
+          "class_0_recall": 0.308,
+          "class_1_recall": 0.524,
+          "predicted_positive_rate": 0.608
+        },
+        "forgetting_task1_pp": 10.599999999999998,
+        "weight_min": -0.24395866692066193,
+        "weight_max": 0.1956353783607483
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.69,
+          "balanced_accuracy": 0.69,
+          "class_0_recall": 0.6866666666666666,
+          "class_1_recall": 0.6933333333333334,
+          "predicted_positive_rate": 0.5033333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.708,
+          "balanced_accuracy": 0.708,
+          "class_0_recall": 0.656,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.552
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.594,
+          "balanced_accuracy": 0.594,
+          "class_0_recall": 0.308,
+          "class_1_recall": 0.88,
+          "predicted_positive_rate": 0.786
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.602,
+          "balanced_accuracy": 0.602,
+          "class_0_recall": 0.364,
+          "class_1_recall": 0.84,
+          "predicted_positive_rate": 0.738
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.712,
+          "balanced_accuracy": 0.712,
+          "class_0_recall": 0.644,
+          "class_1_recall": 0.78,
+          "predicted_positive_rate": 0.568
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.466,
+          "balanced_accuracy": 0.46599999999999997,
+          "class_0_recall": 0.58,
+          "class_1_recall": 0.352,
+          "predicted_positive_rate": 0.386
+        },
+        "forgetting_task1_pp": 11.399999999999999,
+        "weight_min": -1.106454992686687,
+        "weight_max": 1.106454992686687
+      },
+      "elapsed_seconds": 1.5625615119934082
+    },
+    {
+      "seed": 3006,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6466666666666666,
+          "balanced_accuracy": 0.6466666666666667,
+          "class_0_recall": 0.7333333333333333,
+          "class_1_recall": 0.56,
+          "predicted_positive_rate": 0.41333333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.644,
+          "balanced_accuracy": 0.644,
+          "class_0_recall": 0.752,
+          "class_1_recall": 0.536,
+          "predicted_positive_rate": 0.392
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.654,
+          "balanced_accuracy": 0.6539999999999999,
+          "class_0_recall": 0.58,
+          "class_1_recall": 0.728,
+          "predicted_positive_rate": 0.574
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.494,
+          "balanced_accuracy": 0.494,
+          "class_0_recall": 0.764,
+          "class_1_recall": 0.224,
+          "predicted_positive_rate": 0.23
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.58,
+          "balanced_accuracy": 0.5800000000000001,
+          "class_0_recall": 0.244,
+          "class_1_recall": 0.916,
+          "predicted_positive_rate": 0.836
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.45,
+          "balanced_accuracy": 0.44999999999999996,
+          "class_0_recall": 0.592,
+          "class_1_recall": 0.308,
+          "predicted_positive_rate": 0.358
+        },
+        "forgetting_task1_pp": -1.0000000000000009,
+        "weight_min": -0.2083200067281723,
+        "weight_max": 0.17202571034431458
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.65,
+          "balanced_accuracy": 0.6499999999999999,
+          "class_0_recall": 0.5666666666666667,
+          "class_1_recall": 0.7333333333333333,
+          "predicted_positive_rate": 0.5833333333333334
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.69,
+          "balanced_accuracy": 0.69,
+          "class_0_recall": 0.664,
+          "class_1_recall": 0.716,
+          "predicted_positive_rate": 0.526
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.522,
+          "balanced_accuracy": 0.522,
+          "class_0_recall": 0.944,
+          "class_1_recall": 0.1,
+          "predicted_positive_rate": 0.078
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.498,
+          "balanced_accuracy": 0.498,
+          "class_0_recall": 0.988,
+          "class_1_recall": 0.008,
+          "predicted_positive_rate": 0.01
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.646,
+          "balanced_accuracy": 0.6459999999999999,
+          "class_0_recall": 0.72,
+          "class_1_recall": 0.572,
+          "predicted_positive_rate": 0.426
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.456,
+          "balanced_accuracy": 0.456,
+          "class_0_recall": 0.784,
+          "class_1_recall": 0.128,
+          "predicted_positive_rate": 0.172
+        },
+        "forgetting_task1_pp": 16.799999999999994,
+        "weight_min": -1.0173954971449481,
+        "weight_max": 1.0173954971449481
+      },
+      "elapsed_seconds": 1.5386734008789062
+    },
+    {
+      "seed": 3007,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.64,
+          "balanced_accuracy": 0.64,
+          "class_0_recall": 0.32666666666666666,
+          "class_1_recall": 0.9533333333333334,
+          "predicted_positive_rate": 0.8133333333333334
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.622,
+          "balanced_accuracy": 0.622,
+          "class_0_recall": 0.296,
+          "class_1_recall": 0.948,
+          "predicted_positive_rate": 0.826
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.612,
+          "balanced_accuracy": 0.612,
+          "class_0_recall": 0.412,
+          "class_1_recall": 0.812,
+          "predicted_positive_rate": 0.7
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.488,
+          "balanced_accuracy": 0.488,
+          "class_0_recall": 0.176,
+          "class_1_recall": 0.8,
+          "predicted_positive_rate": 0.812
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.656,
+          "balanced_accuracy": 0.656,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.852,
+          "predicted_positive_rate": 0.696
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.512,
+          "balanced_accuracy": 0.512,
+          "class_0_recall": 0.26,
+          "class_1_recall": 0.764,
+          "predicted_positive_rate": 0.752
+        },
+        "forgetting_task1_pp": 1.0000000000000009,
+        "weight_min": -0.19214653968811035,
+        "weight_max": 0.17274272441864014
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6866666666666666,
+          "balanced_accuracy": 0.6866666666666666,
+          "class_0_recall": 0.6666666666666666,
+          "class_1_recall": 0.7066666666666667,
+          "predicted_positive_rate": 0.52
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.638,
+          "balanced_accuracy": 0.638,
+          "class_0_recall": 0.608,
+          "class_1_recall": 0.668,
+          "predicted_positive_rate": 0.53
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.548,
+          "balanced_accuracy": 0.548,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.536,
+          "predicted_positive_rate": 0.488
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.494,
+          "balanced_accuracy": 0.494,
+          "class_0_recall": 0.268,
+          "class_1_recall": 0.72,
+          "predicted_positive_rate": 0.726
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.776,
+          "predicted_positive_rate": 0.588
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.532,
+          "balanced_accuracy": 0.532,
+          "class_0_recall": 0.288,
+          "class_1_recall": 0.776,
+          "predicted_positive_rate": 0.744
+        },
+        "forgetting_task1_pp": 8.999999999999996,
+        "weight_min": -0.9457509019321046,
+        "weight_max": 0.9457509019321046
+      },
+      "elapsed_seconds": 1.537297248840332
+    },
+    {
+      "seed": 3008,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7,
+          "balanced_accuracy": 0.7,
+          "class_0_recall": 0.5866666666666667,
+          "class_1_recall": 0.8133333333333334,
+          "predicted_positive_rate": 0.6133333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.656,
+          "balanced_accuracy": 0.656,
+          "class_0_recall": 0.544,
+          "class_1_recall": 0.768,
+          "predicted_positive_rate": 0.612
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.6,
+          "balanced_accuracy": 0.6,
+          "class_0_recall": 0.364,
+          "class_1_recall": 0.836,
+          "predicted_positive_rate": 0.736
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.542,
+          "balanced_accuracy": 0.542,
+          "class_0_recall": 0.228,
+          "class_1_recall": 0.856,
+          "predicted_positive_rate": 0.814
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.642,
+          "balanced_accuracy": 0.642,
+          "class_0_recall": 0.408,
+          "class_1_recall": 0.876,
+          "predicted_positive_rate": 0.734
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.488,
+          "balanced_accuracy": 0.488,
+          "class_0_recall": 0.216,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.772
+        },
+        "forgetting_task1_pp": 5.600000000000005,
+        "weight_min": -0.18651556968688965,
+        "weight_max": 0.1630377471446991
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7066666666666667,
+          "balanced_accuracy": 0.7066666666666667,
+          "class_0_recall": 0.6866666666666666,
+          "class_1_recall": 0.7266666666666667,
+          "predicted_positive_rate": 0.52
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.68,
+          "balanced_accuracy": 0.6799999999999999,
+          "class_0_recall": 0.636,
+          "class_1_recall": 0.724,
+          "predicted_positive_rate": 0.544
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.604,
+          "balanced_accuracy": 0.604,
+          "class_0_recall": 0.744,
+          "class_1_recall": 0.464,
+          "predicted_positive_rate": 0.36
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.566,
+          "balanced_accuracy": 0.5660000000000001,
+          "class_0_recall": 0.588,
+          "class_1_recall": 0.544,
+          "predicted_positive_rate": 0.478
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.686,
+          "balanced_accuracy": 0.6859999999999999,
+          "class_0_recall": 0.656,
+          "class_1_recall": 0.716,
+          "predicted_positive_rate": 0.53
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.552,
+          "balanced_accuracy": 0.552,
+          "class_0_recall": 0.516,
+          "class_1_recall": 0.588,
+          "predicted_positive_rate": 0.536
+        },
+        "forgetting_task1_pp": 7.600000000000007,
+        "weight_min": -1.0263288733255356,
+        "weight_max": 1.0263288733255356
+      },
+      "elapsed_seconds": 1.4914002418518066
+    },
+    {
+      "seed": 3009,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7,
+          "balanced_accuracy": 0.7,
+          "class_0_recall": 0.6133333333333333,
+          "class_1_recall": 0.7866666666666666,
+          "predicted_positive_rate": 0.5866666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.744,
+          "balanced_accuracy": 0.744,
+          "class_0_recall": 0.676,
+          "class_1_recall": 0.812,
+          "predicted_positive_rate": 0.568
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.672,
+          "balanced_accuracy": 0.672,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.884,
+          "predicted_positive_rate": 0.712
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.546,
+          "balanced_accuracy": 0.546,
+          "class_0_recall": 0.316,
+          "class_1_recall": 0.776,
+          "predicted_positive_rate": 0.73
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.668,
+          "balanced_accuracy": 0.668,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.776,
+          "predicted_positive_rate": 0.608
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.538,
+          "balanced_accuracy": 0.538,
+          "class_0_recall": 0.436,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.602
+        },
+        "forgetting_task1_pp": 7.199999999999996,
+        "weight_min": -0.23187966644763947,
+        "weight_max": 0.19992244243621826
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7266666666666667,
+          "balanced_accuracy": 0.7266666666666666,
+          "class_0_recall": 0.6466666666666666,
+          "class_1_recall": 0.8066666666666666,
+          "predicted_positive_rate": 0.58
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.73,
+          "balanced_accuracy": 0.73,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.82,
+          "predicted_positive_rate": 0.59
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.676,
+          "balanced_accuracy": 0.6759999999999999,
+          "class_0_recall": 0.496,
+          "class_1_recall": 0.856,
+          "predicted_positive_rate": 0.68
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.582,
+          "balanced_accuracy": 0.5820000000000001,
+          "class_0_recall": 0.396,
+          "class_1_recall": 0.768,
+          "predicted_positive_rate": 0.686
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.674,
+          "balanced_accuracy": 0.6739999999999999,
+          "class_0_recall": 0.66,
+          "class_1_recall": 0.688,
+          "predicted_positive_rate": 0.514
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.542,
+          "balanced_accuracy": 0.542,
+          "class_0_recall": 0.456,
+          "class_1_recall": 0.628,
+          "predicted_positive_rate": 0.586
+        },
+        "forgetting_task1_pp": 5.399999999999993,
+        "weight_min": -0.9521099630356323,
+        "weight_max": 0.9521099630356322
+      },
+      "elapsed_seconds": 1.510361909866333
+    },
+    {
+      "seed": 3010,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.62,
+          "balanced_accuracy": 0.62,
+          "class_0_recall": 0.5866666666666667,
+          "class_1_recall": 0.6533333333333333,
+          "predicted_positive_rate": 0.5333333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.62,
+          "balanced_accuracy": 0.62,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.52
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.644,
+          "balanced_accuracy": 0.644,
+          "class_0_recall": 0.732,
+          "class_1_recall": 0.556,
+          "predicted_positive_rate": 0.412
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.526,
+          "balanced_accuracy": 0.526,
+          "class_0_recall": 0.632,
+          "class_1_recall": 0.42,
+          "predicted_positive_rate": 0.394
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.592,
+          "balanced_accuracy": 0.592,
+          "class_0_recall": 0.444,
+          "class_1_recall": 0.74,
+          "predicted_positive_rate": 0.648
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.532,
+          "balanced_accuracy": 0.532,
+          "class_0_recall": 0.672,
+          "class_1_recall": 0.392,
+          "predicted_positive_rate": 0.36
+        },
+        "forgetting_task1_pp": -2.400000000000002,
+        "weight_min": -0.2153143435716629,
+        "weight_max": 0.18804004788398743
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6733333333333333,
+          "balanced_accuracy": 0.6733333333333333,
+          "class_0_recall": 0.6933333333333334,
+          "class_1_recall": 0.6533333333333333,
+          "predicted_positive_rate": 0.48
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.744,
+          "class_1_recall": 0.632,
+          "predicted_positive_rate": 0.444
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.654,
+          "balanced_accuracy": 0.6539999999999999,
+          "class_0_recall": 0.82,
+          "class_1_recall": 0.488,
+          "predicted_positive_rate": 0.334
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.554,
+          "balanced_accuracy": 0.554,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.468,
+          "predicted_positive_rate": 0.414
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.636,
+          "balanced_accuracy": 0.636,
+          "class_0_recall": 0.512,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.624
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.548,
+          "balanced_accuracy": 0.548,
+          "class_0_recall": 0.544,
+          "class_1_recall": 0.552,
+          "predicted_positive_rate": 0.504
+        },
+        "forgetting_task1_pp": 3.399999999999992,
+        "weight_min": -0.9208807174999869,
+        "weight_max": 0.920880717499987
+      },
+      "elapsed_seconds": 1.4962549209594727
+    },
+    {
+      "seed": 3011,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.536,
+          "balanced_accuracy": 0.536,
+          "class_0_recall": 0.496,
+          "class_1_recall": 0.576,
+          "predicted_positive_rate": 0.54
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.59,
+          "balanced_accuracy": 0.59,
+          "class_0_recall": 0.364,
+          "class_1_recall": 0.816,
+          "predicted_positive_rate": 0.726
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.64,
+          "balanced_accuracy": 0.64,
+          "class_0_recall": 0.484,
+          "class_1_recall": 0.796,
+          "predicted_positive_rate": 0.656
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.56,
+          "balanced_accuracy": 0.56,
+          "class_0_recall": 0.276,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.784
+        },
+        "forgetting_task1_pp": -3.600000000000003,
+        "weight_min": -0.20626802742481232,
+        "weight_max": 0.15570701658725739
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6666666666666666,
+          "balanced_accuracy": 0.6666666666666667,
+          "class_0_recall": 0.5866666666666667,
+          "class_1_recall": 0.7466666666666667,
+          "predicted_positive_rate": 0.58
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.682,
+          "balanced_accuracy": 0.6819999999999999,
+          "class_0_recall": 0.652,
+          "class_1_recall": 0.712,
+          "predicted_positive_rate": 0.53
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.572,
+          "balanced_accuracy": 0.5720000000000001,
+          "class_0_recall": 0.556,
+          "class_1_recall": 0.588,
+          "predicted_positive_rate": 0.516
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.618,
+          "balanced_accuracy": 0.618,
+          "class_0_recall": 0.492,
+          "class_1_recall": 0.744,
+          "predicted_positive_rate": 0.626
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.646,
+          "balanced_accuracy": 0.646,
+          "class_0_recall": 0.608,
+          "class_1_recall": 0.684,
+          "predicted_positive_rate": 0.538
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.498,
+          "balanced_accuracy": 0.498,
+          "class_0_recall": 0.368,
+          "class_1_recall": 0.628,
+          "predicted_positive_rate": 0.63
+        },
+        "forgetting_task1_pp": 11.00000000000001,
+        "weight_min": -1.1331466134397434,
+        "weight_max": 1.1331466134397432
+      },
+      "elapsed_seconds": 1.4793503284454346
+    },
+    {
+      "seed": 3012,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5933333333333334,
+          "balanced_accuracy": 0.5933333333333333,
+          "class_0_recall": 0.3933333333333333,
+          "class_1_recall": 0.7933333333333333,
+          "predicted_positive_rate": 0.7
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.648,
+          "balanced_accuracy": 0.648,
+          "class_0_recall": 0.452,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.696
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.652,
+          "balanced_accuracy": 0.6519999999999999,
+          "class_0_recall": 0.472,
+          "class_1_recall": 0.832,
+          "predicted_positive_rate": 0.68
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.532,
+          "balanced_accuracy": 0.532,
+          "class_0_recall": 0.28,
+          "class_1_recall": 0.784,
+          "predicted_positive_rate": 0.752
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.686,
+          "balanced_accuracy": 0.686,
+          "class_0_recall": 0.468,
+          "class_1_recall": 0.904,
+          "predicted_positive_rate": 0.718
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.518,
+          "balanced_accuracy": 0.518,
+          "class_0_recall": 0.256,
+          "class_1_recall": 0.78,
+          "predicted_positive_rate": 0.762
+        },
+        "forgetting_task1_pp": -0.40000000000000036,
+        "weight_min": -0.19258135557174683,
+        "weight_max": 0.17735153436660767
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6466666666666666,
+          "balanced_accuracy": 0.6466666666666667,
+          "class_0_recall": 0.5866666666666667,
+          "class_1_recall": 0.7066666666666667,
+          "predicted_positive_rate": 0.56
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.696,
+          "balanced_accuracy": 0.696,
+          "class_0_recall": 0.668,
+          "class_1_recall": 0.724,
+          "predicted_positive_rate": 0.528
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.662,
+          "balanced_accuracy": 0.6619999999999999,
+          "class_0_recall": 0.728,
+          "class_1_recall": 0.596,
+          "predicted_positive_rate": 0.434
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.606,
+          "balanced_accuracy": 0.606,
+          "class_0_recall": 0.588,
+          "class_1_recall": 0.624,
+          "predicted_positive_rate": 0.518
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.724,
+          "balanced_accuracy": 0.724,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.808,
+          "predicted_positive_rate": 0.584
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.522,
+          "balanced_accuracy": 0.522,
+          "class_0_recall": 0.388,
+          "class_1_recall": 0.656,
+          "predicted_positive_rate": 0.634
+        },
+        "forgetting_task1_pp": 3.399999999999992,
+        "weight_min": -1.1655573685321525,
+        "weight_max": 1.1655573685321525
+      },
+      "elapsed_seconds": 1.5167334079742432
+    },
+    {
+      "seed": 3013,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6866666666666666,
+          "balanced_accuracy": 0.6866666666666666,
+          "class_0_recall": 0.6533333333333333,
+          "class_1_recall": 0.72,
+          "predicted_positive_rate": 0.5333333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.674,
+          "balanced_accuracy": 0.6739999999999999,
+          "class_0_recall": 0.656,
+          "class_1_recall": 0.692,
+          "predicted_positive_rate": 0.518
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.576,
+          "balanced_accuracy": 0.5760000000000001,
+          "class_0_recall": 0.272,
+          "class_1_recall": 0.88,
+          "predicted_positive_rate": 0.804
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.514,
+          "balanced_accuracy": 0.514,
+          "class_0_recall": 0.08,
+          "class_1_recall": 0.948,
+          "predicted_positive_rate": 0.934
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.662,
+          "balanced_accuracy": 0.662,
+          "class_0_recall": 0.416,
+          "class_1_recall": 0.908,
+          "predicted_positive_rate": 0.746
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.508,
+          "balanced_accuracy": 0.508,
+          "class_0_recall": 0.124,
+          "class_1_recall": 0.892,
+          "predicted_positive_rate": 0.884
+        },
+        "forgetting_task1_pp": 9.800000000000008,
+        "weight_min": -0.2836526334285736,
+        "weight_max": 0.1826717108488083
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6866666666666666,
+          "balanced_accuracy": 0.6866666666666668,
+          "class_0_recall": 0.66,
+          "class_1_recall": 0.7133333333333334,
+          "predicted_positive_rate": 0.5266666666666666
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.702,
+          "balanced_accuracy": 0.702,
+          "class_0_recall": 0.704,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.498
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.592,
+          "balanced_accuracy": 0.592,
+          "class_0_recall": 0.42,
+          "class_1_recall": 0.764,
+          "predicted_positive_rate": 0.672
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.566,
+          "balanced_accuracy": 0.5660000000000001,
+          "class_0_recall": 0.352,
+          "class_1_recall": 0.78,
+          "predicted_positive_rate": 0.714
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.728,
+          "balanced_accuracy": 0.728,
+          "class_0_recall": 0.668,
+          "class_1_recall": 0.788,
+          "predicted_positive_rate": 0.56
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.536,
+          "balanced_accuracy": 0.536,
+          "class_0_recall": 0.508,
+          "class_1_recall": 0.564,
+          "predicted_positive_rate": 0.528
+        },
+        "forgetting_task1_pp": 10.999999999999998,
+        "weight_min": -1.1263367078043114,
+        "weight_max": 1.1263367078043114
+      },
+      "elapsed_seconds": 1.5047953128814697
+    },
+    {
+      "seed": 3014,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6366666666666667,
+          "balanced_accuracy": 0.6366666666666667,
+          "class_0_recall": 0.76,
+          "class_1_recall": 0.5133333333333333,
+          "predicted_positive_rate": 0.37666666666666665
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.642,
+          "balanced_accuracy": 0.642,
+          "class_0_recall": 0.736,
+          "class_1_recall": 0.548,
+          "predicted_positive_rate": 0.406
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.598,
+          "balanced_accuracy": 0.598,
+          "class_0_recall": 0.352,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.746
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.516,
+          "balanced_accuracy": 0.516,
+          "class_0_recall": 0.128,
+          "class_1_recall": 0.904,
+          "predicted_positive_rate": 0.888
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.626,
+          "balanced_accuracy": 0.626,
+          "class_0_recall": 0.344,
+          "class_1_recall": 0.908,
+          "predicted_positive_rate": 0.782
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.464,
+          "balanced_accuracy": 0.464,
+          "class_0_recall": 0.056,
+          "class_1_recall": 0.872,
+          "predicted_positive_rate": 0.908
+        },
+        "forgetting_task1_pp": 4.400000000000004,
+        "weight_min": -0.24793782830238342,
+        "weight_max": 0.19998279213905334
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.67,
+          "balanced_accuracy": 0.6699999999999999,
+          "class_0_recall": 0.6466666666666666,
+          "class_1_recall": 0.6933333333333334,
+          "predicted_positive_rate": 0.5233333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.616,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.572
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.59,
+          "balanced_accuracy": 0.59,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.58,
+          "predicted_positive_rate": 0.49
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.558,
+          "balanced_accuracy": 0.558,
+          "class_0_recall": 0.344,
+          "class_1_recall": 0.772,
+          "predicted_positive_rate": 0.714
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.676,
+          "balanced_accuracy": 0.6759999999999999,
+          "class_0_recall": 0.532,
+          "class_1_recall": 0.82,
+          "predicted_positive_rate": 0.644
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.488,
+          "balanced_accuracy": 0.488,
+          "class_0_recall": 0.196,
+          "class_1_recall": 0.78,
+          "predicted_positive_rate": 0.792
+        },
+        "forgetting_task1_pp": 9.799999999999997,
+        "weight_min": -1.068376946067514,
+        "weight_max": 1.068376946067514
+      },
+      "elapsed_seconds": 1.5729522705078125
+    },
+    {
+      "seed": 3015,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6066666666666667,
+          "balanced_accuracy": 0.6066666666666667,
+          "class_0_recall": 0.3933333333333333,
+          "class_1_recall": 0.82,
+          "predicted_positive_rate": 0.7133333333333334
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.652,
+          "balanced_accuracy": 0.652,
+          "class_0_recall": 0.424,
+          "class_1_recall": 0.88,
+          "predicted_positive_rate": 0.728
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.592,
+          "balanced_accuracy": 0.592,
+          "class_0_recall": 0.412,
+          "class_1_recall": 0.772,
+          "predicted_positive_rate": 0.68
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.526,
+          "balanced_accuracy": 0.526,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.592,
+          "predicted_positive_rate": 0.566
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.646,
+          "balanced_accuracy": 0.646,
+          "class_0_recall": 0.484,
+          "class_1_recall": 0.808,
+          "predicted_positive_rate": 0.662
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.426,
+          "balanced_accuracy": 0.426,
+          "class_0_recall": 0.444,
+          "class_1_recall": 0.408,
+          "predicted_positive_rate": 0.482
+        },
+        "forgetting_task1_pp": 6.000000000000005,
+        "weight_min": -0.2912931740283966,
+        "weight_max": 0.21562007069587708
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6433333333333333,
+          "balanced_accuracy": 0.6433333333333333,
+          "class_0_recall": 0.6466666666666666,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.49666666666666665
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.614,
+          "balanced_accuracy": 0.614,
+          "class_0_recall": 0.612,
+          "class_1_recall": 0.616,
+          "predicted_positive_rate": 0.502
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.566,
+          "balanced_accuracy": 0.5660000000000001,
+          "class_0_recall": 0.492,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.574
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.59,
+          "balanced_accuracy": 0.59,
+          "class_0_recall": 0.476,
+          "class_1_recall": 0.704,
+          "predicted_positive_rate": 0.614
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.674,
+          "balanced_accuracy": 0.6739999999999999,
+          "class_0_recall": 0.608,
+          "class_1_recall": 0.74,
+          "predicted_positive_rate": 0.566
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.496,
+          "balanced_accuracy": 0.496,
+          "class_0_recall": 0.54,
+          "class_1_recall": 0.452,
+          "predicted_positive_rate": 0.456
+        },
+        "forgetting_task1_pp": 4.800000000000004,
+        "weight_min": -0.9008664088618724,
+        "weight_max": 0.9008664088618723
+      },
+      "elapsed_seconds": 1.5190856456756592
+    },
+    {
+      "seed": 3016,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6066666666666667,
+          "balanced_accuracy": 0.6066666666666667,
+          "class_0_recall": 0.7466666666666667,
+          "class_1_recall": 0.4666666666666667,
+          "predicted_positive_rate": 0.36
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.612,
+          "balanced_accuracy": 0.612,
+          "class_0_recall": 0.732,
+          "class_1_recall": 0.492,
+          "predicted_positive_rate": 0.38
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.576,
+          "balanced_accuracy": 0.576,
+          "class_0_recall": 0.844,
+          "class_1_recall": 0.308,
+          "predicted_positive_rate": 0.232
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.488,
+          "balanced_accuracy": 0.488,
+          "class_0_recall": 0.944,
+          "class_1_recall": 0.032,
+          "predicted_positive_rate": 0.044
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.578,
+          "balanced_accuracy": 0.5780000000000001,
+          "class_0_recall": 0.612,
+          "class_1_recall": 0.544,
+          "predicted_positive_rate": 0.466
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.466,
+          "balanced_accuracy": 0.466,
+          "class_0_recall": 0.876,
+          "class_1_recall": 0.056,
+          "predicted_positive_rate": 0.09
+        },
+        "forgetting_task1_pp": 3.600000000000003,
+        "weight_min": -0.20554529130458832,
+        "weight_max": 0.1933857649564743
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.65,
+          "balanced_accuracy": 0.65,
+          "class_0_recall": 0.68,
+          "class_1_recall": 0.62,
+          "predicted_positive_rate": 0.47
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.636,
+          "balanced_accuracy": 0.636,
+          "class_0_recall": 0.648,
+          "class_1_recall": 0.624,
+          "predicted_positive_rate": 0.488
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.542,
+          "balanced_accuracy": 0.542,
+          "class_0_recall": 0.736,
+          "class_1_recall": 0.348,
+          "predicted_positive_rate": 0.306
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.492,
+          "balanced_accuracy": 0.492,
+          "class_0_recall": 0.884,
+          "class_1_recall": 0.1,
+          "predicted_positive_rate": 0.108
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.698,
+          "balanced_accuracy": 0.698,
+          "class_0_recall": 0.636,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.562
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.466,
+          "balanced_accuracy": 0.46599999999999997,
+          "class_0_recall": 0.456,
+          "class_1_recall": 0.476,
+          "predicted_positive_rate": 0.51
+        },
+        "forgetting_task1_pp": 9.399999999999997,
+        "weight_min": -0.955106364947595,
+        "weight_max": 0.9551063649475948
+      },
+      "elapsed_seconds": 1.561730146408081
+    },
+    {
+      "seed": 3017,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.71,
+          "balanced_accuracy": 0.71,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.86,
+          "predicted_positive_rate": 0.65
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.662,
+          "balanced_accuracy": 0.6619999999999999,
+          "class_0_recall": 0.48,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.682
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.648,
+          "balanced_accuracy": 0.6479999999999999,
+          "class_0_recall": 0.584,
+          "class_1_recall": 0.712,
+          "predicted_positive_rate": 0.564
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.562,
+          "balanced_accuracy": 0.562,
+          "class_0_recall": 0.452,
+          "class_1_recall": 0.672,
+          "predicted_positive_rate": 0.61
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.682,
+          "balanced_accuracy": 0.6819999999999999,
+          "class_0_recall": 0.572,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.61
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.39,
+          "balanced_accuracy": 0.39,
+          "class_0_recall": 0.356,
+          "class_1_recall": 0.424,
+          "predicted_positive_rate": 0.534
+        },
+        "forgetting_task1_pp": 1.4000000000000012,
+        "weight_min": -0.16857799887657166,
+        "weight_max": 0.21193553507328033
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "class_0_recall": 0.7666666666666667,
+          "class_1_recall": 0.7333333333333333,
+          "predicted_positive_rate": 0.48333333333333334
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.74,
+          "class_1_recall": 0.636,
+          "predicted_positive_rate": 0.448
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.638,
+          "balanced_accuracy": 0.638,
+          "class_0_recall": 0.676,
+          "class_1_recall": 0.6,
+          "predicted_positive_rate": 0.462
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.498,
+          "balanced_accuracy": 0.498,
+          "class_0_recall": 0.576,
+          "class_1_recall": 0.42,
+          "predicted_positive_rate": 0.422
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.67,
+          "balanced_accuracy": 0.6699999999999999,
+          "class_0_recall": 0.624,
+          "class_1_recall": 0.716,
+          "predicted_positive_rate": 0.546
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.388,
+          "balanced_accuracy": 0.388,
+          "class_0_recall": 0.464,
+          "class_1_recall": 0.312,
+          "predicted_positive_rate": 0.424
+        },
+        "forgetting_task1_pp": 4.999999999999993,
+        "weight_min": -1.0370716455248012,
+        "weight_max": 1.0370716455248012
+      },
+      "elapsed_seconds": 1.5832087993621826
+    },
+    {
+      "seed": 3018,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.64,
+          "balanced_accuracy": 0.64,
+          "class_0_recall": 0.47333333333333333,
+          "class_1_recall": 0.8066666666666666,
+          "predicted_positive_rate": 0.6666666666666666
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.504,
+          "class_1_recall": 0.756,
+          "predicted_positive_rate": 0.626
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.572,
+          "balanced_accuracy": 0.5720000000000001,
+          "class_0_recall": 0.404,
+          "class_1_recall": 0.74,
+          "predicted_positive_rate": 0.668
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.488,
+          "balanced_accuracy": 0.488,
+          "class_0_recall": 0.224,
+          "class_1_recall": 0.752,
+          "predicted_positive_rate": 0.764
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.634,
+          "balanced_accuracy": 0.634,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.808,
+          "predicted_positive_rate": 0.674
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.472,
+          "balanced_accuracy": 0.472,
+          "class_0_recall": 0.192,
+          "class_1_recall": 0.752,
+          "predicted_positive_rate": 0.78
+        },
+        "forgetting_task1_pp": 5.800000000000005,
+        "weight_min": -0.23900994658470154,
+        "weight_max": 0.17545555531978607
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6533333333333333,
+          "balanced_accuracy": 0.6533333333333333,
+          "class_0_recall": 0.72,
+          "class_1_recall": 0.5866666666666667,
+          "predicted_positive_rate": 0.43333333333333335
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.604,
+          "balanced_accuracy": 0.6040000000000001,
+          "class_0_recall": 0.668,
+          "class_1_recall": 0.54,
+          "predicted_positive_rate": 0.436
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.51,
+          "balanced_accuracy": 0.51,
+          "class_0_recall": 0.564,
+          "class_1_recall": 0.456,
+          "predicted_positive_rate": 0.446
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.61,
+          "balanced_accuracy": 0.61,
+          "class_0_recall": 0.52,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.59
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.602,
+          "balanced_accuracy": 0.602,
+          "class_0_recall": 0.62,
+          "class_1_recall": 0.584,
+          "predicted_positive_rate": 0.482
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.49,
+          "balanced_accuracy": 0.49,
+          "class_0_recall": 0.44,
+          "class_1_recall": 0.54,
+          "predicted_positive_rate": 0.55
+        },
+        "forgetting_task1_pp": 9.399999999999997,
+        "weight_min": -0.9557430065018616,
+        "weight_max": 0.9557430065018615
+      },
+      "elapsed_seconds": 1.5232222080230713
+    },
+    {
+      "seed": 3019,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.65,
+          "balanced_accuracy": 0.65,
+          "class_0_recall": 0.5866666666666667,
+          "class_1_recall": 0.7133333333333334,
+          "predicted_positive_rate": 0.5633333333333334
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.7,
+          "balanced_accuracy": 0.7,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.8,
+          "predicted_positive_rate": 0.6
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.582,
+          "balanced_accuracy": 0.5820000000000001,
+          "class_0_recall": 0.256,
+          "class_1_recall": 0.908,
+          "predicted_positive_rate": 0.826
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.572,
+          "balanced_accuracy": 0.5720000000000001,
+          "class_0_recall": 0.352,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.72
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.592,
+          "balanced_accuracy": 0.5920000000000001,
+          "class_0_recall": 0.392,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.7
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.474,
+          "balanced_accuracy": 0.474,
+          "class_0_recall": 0.248,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.726
+        },
+        "forgetting_task1_pp": 11.799999999999999,
+        "weight_min": -0.1985967606306076,
+        "weight_max": 0.17308409512043
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.68,
+          "balanced_accuracy": 0.6799999999999999,
+          "class_0_recall": 0.72,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.46
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.664,
+          "class_1_recall": 0.712,
+          "predicted_positive_rate": 0.524
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.66,
+          "balanced_accuracy": 0.6599999999999999,
+          "class_0_recall": 0.716,
+          "class_1_recall": 0.604,
+          "predicted_positive_rate": 0.444
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.614,
+          "balanced_accuracy": 0.614,
+          "class_0_recall": 0.792,
+          "class_1_recall": 0.436,
+          "predicted_positive_rate": 0.322
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.638,
+          "balanced_accuracy": 0.638,
+          "class_0_recall": 0.62,
+          "class_1_recall": 0.656,
+          "predicted_positive_rate": 0.518
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.512,
+          "balanced_accuracy": 0.512,
+          "class_0_recall": 0.5,
+          "class_1_recall": 0.524,
+          "predicted_positive_rate": 0.512
+        },
+        "forgetting_task1_pp": 2.7999999999999914,
+        "weight_min": -1.4103202540505744,
+        "weight_max": 1.4103202540505744
+      },
+      "elapsed_seconds": 1.6291930675506592
+    },
+    {
+      "seed": 3020,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6266666666666667,
+          "balanced_accuracy": 0.6266666666666667,
+          "class_0_recall": 0.7933333333333333,
+          "class_1_recall": 0.46,
+          "predicted_positive_rate": 0.3333333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.628,
+          "balanced_accuracy": 0.628,
+          "class_0_recall": 0.756,
+          "class_1_recall": 0.5,
+          "predicted_positive_rate": 0.372
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.604,
+          "balanced_accuracy": 0.604,
+          "class_0_recall": 0.592,
+          "class_1_recall": 0.616,
+          "predicted_positive_rate": 0.512
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.502,
+          "balanced_accuracy": 0.502,
+          "class_0_recall": 0.768,
+          "class_1_recall": 0.236,
+          "predicted_positive_rate": 0.234
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.64,
+          "balanced_accuracy": 0.6399999999999999,
+          "class_0_recall": 0.7,
+          "class_1_recall": 0.58,
+          "predicted_positive_rate": 0.44
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.528,
+          "balanced_accuracy": 0.528,
+          "class_0_recall": 0.86,
+          "class_1_recall": 0.196,
+          "predicted_positive_rate": 0.168
+        },
+        "forgetting_task1_pp": 2.400000000000002,
+        "weight_min": -0.1716560423374176,
+        "weight_max": 0.182367742061615
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6766666666666666,
+          "balanced_accuracy": 0.6766666666666667,
+          "class_0_recall": 0.6733333333333333,
+          "class_1_recall": 0.68,
+          "predicted_positive_rate": 0.5033333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.682,
+          "balanced_accuracy": 0.6819999999999999,
+          "class_0_recall": 0.624,
+          "class_1_recall": 0.74,
+          "predicted_positive_rate": 0.558
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.654,
+          "balanced_accuracy": 0.654,
+          "class_0_recall": 0.436,
+          "class_1_recall": 0.872,
+          "predicted_positive_rate": 0.718
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.542,
+          "balanced_accuracy": 0.542,
+          "class_0_recall": 0.644,
+          "class_1_recall": 0.44,
+          "predicted_positive_rate": 0.398
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.644,
+          "balanced_accuracy": 0.6439999999999999,
+          "class_0_recall": 0.576,
+          "class_1_recall": 0.712,
+          "predicted_positive_rate": 0.568
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.52,
+          "balanced_accuracy": 0.52,
+          "class_0_recall": 0.828,
+          "class_1_recall": 0.212,
+          "predicted_positive_rate": 0.192
+        },
+        "forgetting_task1_pp": 2.8000000000000025,
+        "weight_min": -1.1955446773767917,
+        "weight_max": 1.1955446773767917
+      },
+      "elapsed_seconds": 1.5527169704437256
+    },
+    {
+      "seed": 3021,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "class_0_recall": 0.7866666666666666,
+          "class_1_recall": 0.7133333333333334,
+          "predicted_positive_rate": 0.4633333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.718,
+          "balanced_accuracy": 0.718,
+          "class_0_recall": 0.832,
+          "class_1_recall": 0.604,
+          "predicted_positive_rate": 0.386
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.626,
+          "balanced_accuracy": 0.626,
+          "class_0_recall": 0.804,
+          "class_1_recall": 0.448,
+          "predicted_positive_rate": 0.322
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.556,
+          "balanced_accuracy": 0.556,
+          "class_0_recall": 0.656,
+          "class_1_recall": 0.456,
+          "predicted_positive_rate": 0.4
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.646,
+          "balanced_accuracy": 0.646,
+          "class_0_recall": 0.416,
+          "class_1_recall": 0.876,
+          "predicted_positive_rate": 0.73
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.448,
+          "balanced_accuracy": 0.448,
+          "class_0_recall": 0.164,
+          "class_1_recall": 0.732,
+          "predicted_positive_rate": 0.784
+        },
+        "forgetting_task1_pp": 9.199999999999998,
+        "weight_min": -0.1815515160560608,
+        "weight_max": 0.21573978662490845
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.77,
+          "balanced_accuracy": 0.77,
+          "class_0_recall": 0.84,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.43
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.738,
+          "balanced_accuracy": 0.738,
+          "class_0_recall": 0.836,
+          "class_1_recall": 0.64,
+          "predicted_positive_rate": 0.402
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.564,
+          "balanced_accuracy": 0.564,
+          "class_0_recall": 0.972,
+          "class_1_recall": 0.156,
+          "predicted_positive_rate": 0.092
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.562,
+          "balanced_accuracy": 0.5619999999999999,
+          "class_0_recall": 0.972,
+          "class_1_recall": 0.152,
+          "predicted_positive_rate": 0.09
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.66,
+          "balanced_accuracy": 0.6599999999999999,
+          "class_0_recall": 0.612,
+          "class_1_recall": 0.708,
+          "predicted_positive_rate": 0.548
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.446,
+          "balanced_accuracy": 0.446,
+          "class_0_recall": 0.524,
+          "class_1_recall": 0.368,
+          "predicted_positive_rate": 0.422
+        },
+        "forgetting_task1_pp": 17.400000000000006,
+        "weight_min": -0.9244504623925046,
+        "weight_max": 0.9244504623925046
+      },
+      "elapsed_seconds": 1.5412983894348145
+    },
+    {
+      "seed": 3022,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6166666666666667,
+          "balanced_accuracy": 0.6166666666666667,
+          "class_0_recall": 0.66,
+          "class_1_recall": 0.5733333333333334,
+          "predicted_positive_rate": 0.45666666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.616,
+          "balanced_accuracy": 0.616,
+          "class_0_recall": 0.668,
+          "class_1_recall": 0.564,
+          "predicted_positive_rate": 0.448
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.594,
+          "balanced_accuracy": 0.594,
+          "class_0_recall": 0.72,
+          "class_1_recall": 0.468,
+          "predicted_positive_rate": 0.374
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.508,
+          "balanced_accuracy": 0.508,
+          "class_0_recall": 0.96,
+          "class_1_recall": 0.056,
+          "predicted_positive_rate": 0.048
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.632,
+          "balanced_accuracy": 0.632,
+          "class_0_recall": 0.588,
+          "class_1_recall": 0.676,
+          "predicted_positive_rate": 0.544
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.516,
+          "balanced_accuracy": 0.516,
+          "class_0_recall": 0.72,
+          "class_1_recall": 0.312,
+          "predicted_positive_rate": 0.296
+        },
+        "forgetting_task1_pp": 2.200000000000002,
+        "weight_min": -0.21018177270889282,
+        "weight_max": 0.16141989827156067
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.62,
+          "predicted_positive_rate": 0.49
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.636,
+          "balanced_accuracy": 0.636,
+          "class_0_recall": 0.664,
+          "class_1_recall": 0.608,
+          "predicted_positive_rate": 0.472
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.614,
+          "balanced_accuracy": 0.6140000000000001,
+          "class_0_recall": 0.676,
+          "class_1_recall": 0.552,
+          "predicted_positive_rate": 0.438
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.518,
+          "balanced_accuracy": 0.518,
+          "class_0_recall": 0.948,
+          "class_1_recall": 0.088,
+          "predicted_positive_rate": 0.07
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.658,
+          "balanced_accuracy": 0.658,
+          "class_0_recall": 0.668,
+          "class_1_recall": 0.648,
+          "predicted_positive_rate": 0.49
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.51,
+          "balanced_accuracy": 0.51,
+          "class_0_recall": 0.808,
+          "class_1_recall": 0.212,
+          "predicted_positive_rate": 0.202
+        },
+        "forgetting_task1_pp": 2.200000000000002,
+        "weight_min": -0.9215433188550547,
+        "weight_max": 0.9215433188550544
+      },
+      "elapsed_seconds": 1.5038540363311768
+    },
+    {
+      "seed": 3023,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7166666666666667,
+          "balanced_accuracy": 0.7166666666666667,
+          "class_0_recall": 0.74,
+          "class_1_recall": 0.6933333333333334,
+          "predicted_positive_rate": 0.4766666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.718,
+          "balanced_accuracy": 0.718,
+          "class_0_recall": 0.728,
+          "class_1_recall": 0.708,
+          "predicted_positive_rate": 0.49
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.704,
+          "balanced_accuracy": 0.704,
+          "class_0_recall": 0.544,
+          "class_1_recall": 0.864,
+          "predicted_positive_rate": 0.66
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.564,
+          "balanced_accuracy": 0.5640000000000001,
+          "class_0_recall": 0.368,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.696
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.64,
+          "balanced_accuracy": 0.6399999999999999,
+          "class_0_recall": 0.568,
+          "class_1_recall": 0.712,
+          "predicted_positive_rate": 0.572
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.41,
+          "balanced_accuracy": 0.41000000000000003,
+          "class_0_recall": 0.308,
+          "class_1_recall": 0.512,
+          "predicted_positive_rate": 0.602
+        },
+        "forgetting_task1_pp": 1.4000000000000012,
+        "weight_min": -0.1973346620798111,
+        "weight_max": 0.22801576554775238
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.75,
+          "balanced_accuracy": 0.75,
+          "class_0_recall": 0.6933333333333334,
+          "class_1_recall": 0.8066666666666666,
+          "predicted_positive_rate": 0.5566666666666666
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.748,
+          "balanced_accuracy": 0.748,
+          "class_0_recall": 0.688,
+          "class_1_recall": 0.808,
+          "predicted_positive_rate": 0.56
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.716,
+          "balanced_accuracy": 0.716,
+          "class_0_recall": 0.552,
+          "class_1_recall": 0.88,
+          "predicted_positive_rate": 0.664
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.584,
+          "balanced_accuracy": 0.5840000000000001,
+          "class_0_recall": 0.68,
+          "class_1_recall": 0.488,
+          "predicted_positive_rate": 0.404
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.632,
+          "class_1_recall": 0.744,
+          "predicted_positive_rate": 0.556
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.438,
+          "balanced_accuracy": 0.438,
+          "class_0_recall": 0.644,
+          "class_1_recall": 0.232,
+          "predicted_positive_rate": 0.294
+        },
+        "forgetting_task1_pp": 3.200000000000003,
+        "weight_min": -1.3331129203826002,
+        "weight_max": 1.3331129203826002
+      },
+      "elapsed_seconds": 1.5135672092437744
+    },
+    {
+      "seed": 3024,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6833333333333333,
+          "balanced_accuracy": 0.6833333333333333,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.7266666666666667,
+          "predicted_positive_rate": 0.5433333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.7,
+          "balanced_accuracy": 0.7,
+          "class_0_recall": 0.636,
+          "class_1_recall": 0.764,
+          "predicted_positive_rate": 0.564
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.612,
+          "balanced_accuracy": 0.612,
+          "class_0_recall": 0.696,
+          "class_1_recall": 0.528,
+          "predicted_positive_rate": 0.416
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.532,
+          "balanced_accuracy": 0.532,
+          "class_0_recall": 0.516,
+          "class_1_recall": 0.548,
+          "predicted_positive_rate": 0.516
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.626,
+          "balanced_accuracy": 0.626,
+          "class_0_recall": 0.46,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.666
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 0.252,
+          "class_1_recall": 0.748,
+          "predicted_positive_rate": 0.748
+        },
+        "forgetting_task1_pp": 8.799999999999997,
+        "weight_min": -0.15969926118850708,
+        "weight_max": 0.1799919754266739
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.7133333333333334,
+          "balanced_accuracy": 0.7133333333333334,
+          "class_0_recall": 0.7266666666666667,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.4866666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.722,
+          "balanced_accuracy": 0.722,
+          "class_0_recall": 0.696,
+          "class_1_recall": 0.748,
+          "predicted_positive_rate": 0.526
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.608,
+          "balanced_accuracy": 0.608,
+          "class_0_recall": 0.856,
+          "class_1_recall": 0.36,
+          "predicted_positive_rate": 0.252
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.57,
+          "balanced_accuracy": 0.5700000000000001,
+          "class_0_recall": 0.76,
+          "class_1_recall": 0.38,
+          "predicted_positive_rate": 0.31
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.68,
+          "balanced_accuracy": 0.68,
+          "class_0_recall": 0.676,
+          "class_1_recall": 0.684,
+          "predicted_positive_rate": 0.504
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.514,
+          "balanced_accuracy": 0.514,
+          "class_0_recall": 0.472,
+          "class_1_recall": 0.556,
+          "predicted_positive_rate": 0.542
+        },
+        "forgetting_task1_pp": 11.399999999999999,
+        "weight_min": -1.0089067168467718,
+        "weight_max": 1.0089067168467718
+      },
+      "elapsed_seconds": 1.5233983993530273
+    },
+    {
+      "seed": 3025,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5866666666666667,
+          "balanced_accuracy": 0.5866666666666667,
+          "class_0_recall": 0.31333333333333335,
+          "class_1_recall": 0.86,
+          "predicted_positive_rate": 0.7733333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.58,
+          "balanced_accuracy": 0.5800000000000001,
+          "class_0_recall": 0.348,
+          "class_1_recall": 0.812,
+          "predicted_positive_rate": 0.732
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.578,
+          "balanced_accuracy": 0.5780000000000001,
+          "class_0_recall": 0.344,
+          "class_1_recall": 0.812,
+          "predicted_positive_rate": 0.734
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.536,
+          "balanced_accuracy": 0.536,
+          "class_0_recall": 0.22,
+          "class_1_recall": 0.852,
+          "predicted_positive_rate": 0.816
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.612,
+          "balanced_accuracy": 0.612,
+          "class_0_recall": 0.652,
+          "class_1_recall": 0.572,
+          "predicted_positive_rate": 0.46
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.474,
+          "balanced_accuracy": 0.474,
+          "class_0_recall": 0.38,
+          "class_1_recall": 0.568,
+          "predicted_positive_rate": 0.594
+        },
+        "forgetting_task1_pp": 0.20000000000000018,
+        "weight_min": -0.16718845069408417,
+        "weight_max": 0.20025324821472168
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.69,
+          "balanced_accuracy": 0.69,
+          "class_0_recall": 0.6333333333333333,
+          "class_1_recall": 0.7466666666666667,
+          "predicted_positive_rate": 0.5566666666666666
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.672,
+          "class_1_recall": 0.704,
+          "predicted_positive_rate": 0.516
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.594,
+          "balanced_accuracy": 0.594,
+          "class_0_recall": 0.604,
+          "class_1_recall": 0.584,
+          "predicted_positive_rate": 0.49
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.576,
+          "balanced_accuracy": 0.5760000000000001,
+          "class_0_recall": 0.38,
+          "class_1_recall": 0.772,
+          "predicted_positive_rate": 0.696
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.644,
+          "balanced_accuracy": 0.644,
+          "class_0_recall": 0.668,
+          "class_1_recall": 0.62,
+          "predicted_positive_rate": 0.476
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.504,
+          "balanced_accuracy": 0.504,
+          "class_0_recall": 0.388,
+          "class_1_recall": 0.62,
+          "predicted_positive_rate": 0.616
+        },
+        "forgetting_task1_pp": 9.399999999999997,
+        "weight_min": -1.2398500066725993,
+        "weight_max": 1.2398500066725993
+      },
+      "elapsed_seconds": 1.5348620414733887
+    },
+    {
+      "seed": 3026,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5933333333333334,
+          "balanced_accuracy": 0.5933333333333333,
+          "class_0_recall": 0.72,
+          "class_1_recall": 0.4666666666666667,
+          "predicted_positive_rate": 0.37333333333333335
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.626,
+          "balanced_accuracy": 0.626,
+          "class_0_recall": 0.748,
+          "class_1_recall": 0.504,
+          "predicted_positive_rate": 0.378
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.624,
+          "balanced_accuracy": 0.624,
+          "class_0_recall": 0.476,
+          "class_1_recall": 0.772,
+          "predicted_positive_rate": 0.648
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.592,
+          "balanced_accuracy": 0.592,
+          "class_0_recall": 0.364,
+          "class_1_recall": 0.82,
+          "predicted_positive_rate": 0.728
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.622,
+          "balanced_accuracy": 0.622,
+          "class_0_recall": 0.26,
+          "class_1_recall": 0.984,
+          "predicted_positive_rate": 0.862
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.442,
+          "balanced_accuracy": 0.442,
+          "class_0_recall": 0.04,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.902
+        },
+        "forgetting_task1_pp": 0.20000000000000018,
+        "weight_min": -0.15712882578372955,
+        "weight_max": 0.18486624956130981
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.64,
+          "balanced_accuracy": 0.64,
+          "class_0_recall": 0.4866666666666667,
+          "class_1_recall": 0.7933333333333333,
+          "predicted_positive_rate": 0.6533333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.642,
+          "balanced_accuracy": 0.642,
+          "class_0_recall": 0.512,
+          "class_1_recall": 0.772,
+          "predicted_positive_rate": 0.63
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.59,
+          "balanced_accuracy": 0.5900000000000001,
+          "class_0_recall": 0.652,
+          "class_1_recall": 0.528,
+          "predicted_positive_rate": 0.438
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.598,
+          "balanced_accuracy": 0.5980000000000001,
+          "class_0_recall": 0.544,
+          "class_1_recall": 0.652,
+          "predicted_positive_rate": 0.554
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.654,
+          "balanced_accuracy": 0.654,
+          "class_0_recall": 0.556,
+          "class_1_recall": 0.752,
+          "predicted_positive_rate": 0.598
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.44,
+          "balanced_accuracy": 0.44,
+          "class_0_recall": 0.272,
+          "class_1_recall": 0.608,
+          "predicted_positive_rate": 0.668
+        },
+        "forgetting_task1_pp": 5.200000000000005,
+        "weight_min": -0.6747250464338499,
+        "weight_max": 0.6747250464338499
+      },
+      "elapsed_seconds": 1.5265467166900635
+    },
+    {
+      "seed": 3027,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.48,
+          "balanced_accuracy": 0.48,
+          "class_0_recall": 0.47333333333333333,
+          "class_1_recall": 0.4866666666666667,
+          "predicted_positive_rate": 0.5066666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.572,
+          "balanced_accuracy": 0.5720000000000001,
+          "class_0_recall": 0.628,
+          "class_1_recall": 0.516,
+          "predicted_positive_rate": 0.444
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0,
+          "predicted_positive_rate": 0.0
+        },
+        "forgetting_task1_pp": 7.199999999999996,
+        "weight_min": -0.16632844507694244,
+        "weight_max": 0.14572300016880035
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.57,
+          "balanced_accuracy": 0.5700000000000001,
+          "class_0_recall": 0.48,
+          "class_1_recall": 0.66,
+          "predicted_positive_rate": 0.59
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.608,
+          "class_1_recall": 0.652,
+          "predicted_positive_rate": 0.522
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.532,
+          "balanced_accuracy": 0.532,
+          "class_0_recall": 0.74,
+          "class_1_recall": 0.324,
+          "predicted_positive_rate": 0.292
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.566,
+          "balanced_accuracy": 0.5660000000000001,
+          "class_0_recall": 0.864,
+          "class_1_recall": 0.268,
+          "predicted_positive_rate": 0.202
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.584,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.604
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.428,
+          "balanced_accuracy": 0.42800000000000005,
+          "class_0_recall": 0.32,
+          "class_1_recall": 0.536,
+          "predicted_positive_rate": 0.608
+        },
+        "forgetting_task1_pp": 9.799999999999997,
+        "weight_min": -1.029942818827838,
+        "weight_max": 1.0299428188278377
+      },
+      "elapsed_seconds": 1.7202632427215576
+    },
+    {
+      "seed": 3028,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.5333333333333333,
+          "class_1_recall": 0.7266666666666667,
+          "predicted_positive_rate": 0.5966666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.654,
+          "balanced_accuracy": 0.6539999999999999,
+          "class_0_recall": 0.572,
+          "class_1_recall": 0.736,
+          "predicted_positive_rate": 0.582
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.622,
+          "balanced_accuracy": 0.622,
+          "class_0_recall": 0.344,
+          "class_1_recall": 0.9,
+          "predicted_positive_rate": 0.778
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "class_0_recall": 0.156,
+          "class_1_recall": 0.844,
+          "predicted_positive_rate": 0.844
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.666,
+          "balanced_accuracy": 0.666,
+          "class_0_recall": 0.536,
+          "class_1_recall": 0.796,
+          "predicted_positive_rate": 0.63
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.484,
+          "balanced_accuracy": 0.484,
+          "class_0_recall": 0.472,
+          "class_1_recall": 0.496,
+          "predicted_positive_rate": 0.512
+        },
+        "forgetting_task1_pp": 3.200000000000003,
+        "weight_min": -0.18667808175086975,
+        "weight_max": 0.17618052661418915
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6866666666666666,
+          "balanced_accuracy": 0.6866666666666666,
+          "class_0_recall": 0.6733333333333333,
+          "class_1_recall": 0.7,
+          "predicted_positive_rate": 0.5133333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.686,
+          "balanced_accuracy": 0.6859999999999999,
+          "class_0_recall": 0.712,
+          "class_1_recall": 0.66,
+          "predicted_positive_rate": 0.474
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.626,
+          "balanced_accuracy": 0.626,
+          "class_0_recall": 0.352,
+          "class_1_recall": 0.9,
+          "predicted_positive_rate": 0.774
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.516,
+          "balanced_accuracy": 0.516,
+          "class_0_recall": 0.184,
+          "class_1_recall": 0.848,
+          "predicted_positive_rate": 0.832
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.528,
+          "class_1_recall": 0.848,
+          "predicted_positive_rate": 0.66
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.544,
+          "balanced_accuracy": 0.544,
+          "class_0_recall": 0.324,
+          "class_1_recall": 0.764,
+          "predicted_positive_rate": 0.72
+        },
+        "forgetting_task1_pp": 6.000000000000005,
+        "weight_min": -1.0484638944039453,
+        "weight_max": 1.0484638944039453
+      },
+      "elapsed_seconds": 1.600353479385376
+    },
+    {
+      "seed": 3029,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6433333333333333,
+          "balanced_accuracy": 0.6433333333333333,
+          "class_0_recall": 0.7,
+          "class_1_recall": 0.5866666666666667,
+          "predicted_positive_rate": 0.44333333333333336
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.632,
+          "balanced_accuracy": 0.632,
+          "class_0_recall": 0.62,
+          "class_1_recall": 0.644,
+          "predicted_positive_rate": 0.512
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.598,
+          "balanced_accuracy": 0.598,
+          "class_0_recall": 0.888,
+          "class_1_recall": 0.308,
+          "predicted_positive_rate": 0.21
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.512,
+          "balanced_accuracy": 0.512,
+          "class_0_recall": 0.8,
+          "class_1_recall": 0.224,
+          "predicted_positive_rate": 0.212
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.658,
+          "balanced_accuracy": 0.6579999999999999,
+          "class_0_recall": 0.692,
+          "class_1_recall": 0.624,
+          "predicted_positive_rate": 0.466
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.354,
+          "balanced_accuracy": 0.354,
+          "class_0_recall": 0.5,
+          "class_1_recall": 0.208,
+          "predicted_positive_rate": 0.354
+        },
+        "forgetting_task1_pp": 3.400000000000003,
+        "weight_min": -0.1789083480834961,
+        "weight_max": 0.15984027087688446
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6466666666666666,
+          "balanced_accuracy": 0.6466666666666666,
+          "class_0_recall": 0.6466666666666666,
+          "class_1_recall": 0.6466666666666666,
+          "predicted_positive_rate": 0.5
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.642,
+          "balanced_accuracy": 0.642,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.684,
+          "predicted_positive_rate": 0.542
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.554,
+          "balanced_accuracy": 0.554,
+          "class_0_recall": 0.74,
+          "class_1_recall": 0.368,
+          "predicted_positive_rate": 0.314
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.546,
+          "balanced_accuracy": 0.546,
+          "class_0_recall": 0.752,
+          "class_1_recall": 0.34,
+          "predicted_positive_rate": 0.294
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.674,
+          "balanced_accuracy": 0.674,
+          "class_0_recall": 0.54,
+          "class_1_recall": 0.808,
+          "predicted_positive_rate": 0.634
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.388,
+          "balanced_accuracy": 0.388,
+          "class_0_recall": 0.392,
+          "class_1_recall": 0.384,
+          "predicted_positive_rate": 0.496
+        },
+        "forgetting_task1_pp": 8.799999999999997,
+        "weight_min": -1.1017590903396774,
+        "weight_max": 1.1017590903396777
+      },
+      "elapsed_seconds": 1.5262744426727295
+    },
+    {
+      "seed": 3030,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5666666666666667,
+          "balanced_accuracy": 0.5666666666666667,
+          "class_0_recall": 0.5266666666666666,
+          "class_1_recall": 0.6066666666666667,
+          "predicted_positive_rate": 0.54
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.538,
+          "balanced_accuracy": 0.538,
+          "class_0_recall": 0.548,
+          "class_1_recall": 0.528,
+          "predicted_positive_rate": 0.49
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.568,
+          "balanced_accuracy": 0.5680000000000001,
+          "class_0_recall": 0.676,
+          "class_1_recall": 0.46,
+          "predicted_positive_rate": 0.392
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.504,
+          "balanced_accuracy": 0.504,
+          "class_0_recall": 0.996,
+          "class_1_recall": 0.012,
+          "predicted_positive_rate": 0.008
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.544,
+          "balanced_accuracy": 0.544,
+          "class_0_recall": 0.596,
+          "class_1_recall": 0.492,
+          "predicted_positive_rate": 0.448
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.504,
+          "balanced_accuracy": 0.504,
+          "class_0_recall": 0.98,
+          "class_1_recall": 0.028,
+          "predicted_positive_rate": 0.024
+        },
+        "forgetting_task1_pp": -2.9999999999999916,
+        "weight_min": -0.1685871183872223,
+        "weight_max": 0.2312806248664856
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.55,
+          "balanced_accuracy": 0.55,
+          "class_0_recall": 0.48,
+          "class_1_recall": 0.62,
+          "predicted_positive_rate": 0.57
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.578,
+          "balanced_accuracy": 0.578,
+          "class_0_recall": 0.572,
+          "class_1_recall": 0.584,
+          "predicted_positive_rate": 0.506
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.566,
+          "balanced_accuracy": 0.5660000000000001,
+          "class_0_recall": 0.64,
+          "class_1_recall": 0.492,
+          "predicted_positive_rate": 0.426
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.574,
+          "balanced_accuracy": 0.5740000000000001,
+          "class_0_recall": 0.808,
+          "class_1_recall": 0.34,
+          "predicted_positive_rate": 0.266
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.674,
+          "balanced_accuracy": 0.6739999999999999,
+          "class_0_recall": 0.608,
+          "class_1_recall": 0.74,
+          "predicted_positive_rate": 0.566
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.446,
+          "balanced_accuracy": 0.44599999999999995,
+          "class_0_recall": 0.604,
+          "class_1_recall": 0.288,
+          "predicted_positive_rate": 0.342
+        },
+        "forgetting_task1_pp": 1.200000000000001,
+        "weight_min": -1.0448046779239386,
+        "weight_max": 1.0448046779239386
+      },
+      "elapsed_seconds": 1.5139079093933105
+    },
+    {
+      "seed": 3031,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.5833333333333334,
+          "balanced_accuracy": 0.5833333333333334,
+          "class_0_recall": 0.4066666666666667,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.6766666666666666
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.618,
+          "balanced_accuracy": 0.618,
+          "class_0_recall": 0.444,
+          "class_1_recall": 0.792,
+          "predicted_positive_rate": 0.674
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.54,
+          "balanced_accuracy": 0.54,
+          "class_0_recall": 0.956,
+          "class_1_recall": 0.124,
+          "predicted_positive_rate": 0.084
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.538,
+          "balanced_accuracy": 0.538,
+          "class_0_recall": 0.556,
+          "class_1_recall": 0.52,
+          "predicted_positive_rate": 0.482
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.526,
+          "balanced_accuracy": 0.526,
+          "class_0_recall": 0.972,
+          "class_1_recall": 0.08,
+          "predicted_positive_rate": 0.054
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.496,
+          "balanced_accuracy": 0.496,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.392,
+          "predicted_positive_rate": 0.396
+        },
+        "forgetting_task1_pp": 7.799999999999995,
+        "weight_min": -0.2060633897781372,
+        "weight_max": 0.16870036721229553
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6333333333333333,
+          "balanced_accuracy": 0.6333333333333333,
+          "class_0_recall": 0.58,
+          "class_1_recall": 0.6866666666666666,
+          "predicted_positive_rate": 0.5533333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.656,
+          "balanced_accuracy": 0.6559999999999999,
+          "class_0_recall": 0.588,
+          "class_1_recall": 0.724,
+          "predicted_positive_rate": 0.568
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.646,
+          "balanced_accuracy": 0.646,
+          "class_0_recall": 0.444,
+          "class_1_recall": 0.848,
+          "predicted_positive_rate": 0.702
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.536,
+          "balanced_accuracy": 0.536,
+          "class_0_recall": 0.168,
+          "class_1_recall": 0.904,
+          "predicted_positive_rate": 0.868
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.448,
+          "class_1_recall": 0.812,
+          "predicted_positive_rate": 0.682
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.512,
+          "balanced_accuracy": 0.512,
+          "class_0_recall": 0.24,
+          "class_1_recall": 0.784,
+          "predicted_positive_rate": 0.772
+        },
+        "forgetting_task1_pp": 1.0000000000000009,
+        "weight_min": -0.9790971220639494,
+        "weight_max": 0.9790971220639494
+      },
+      "elapsed_seconds": 1.5300235748291016
+    },
+    {
+      "seed": 3032,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6133333333333333,
+          "balanced_accuracy": 0.6133333333333333,
+          "class_0_recall": 0.3466666666666667,
+          "class_1_recall": 0.88,
+          "predicted_positive_rate": 0.7666666666666667
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.644,
+          "balanced_accuracy": 0.644,
+          "class_0_recall": 0.396,
+          "class_1_recall": 0.892,
+          "predicted_positive_rate": 0.748
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.562,
+          "balanced_accuracy": 0.562,
+          "class_0_recall": 0.62,
+          "class_1_recall": 0.504,
+          "predicted_positive_rate": 0.442
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.552,
+          "balanced_accuracy": 0.552,
+          "class_0_recall": 0.332,
+          "class_1_recall": 0.772,
+          "predicted_positive_rate": 0.72
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.632,
+          "balanced_accuracy": 0.632,
+          "class_0_recall": 0.32,
+          "class_1_recall": 0.944,
+          "predicted_positive_rate": 0.812
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.504,
+          "balanced_accuracy": 0.504,
+          "class_0_recall": 0.072,
+          "class_1_recall": 0.936,
+          "predicted_positive_rate": 0.932
+        },
+        "forgetting_task1_pp": 8.199999999999996,
+        "weight_min": -0.18461398780345917,
+        "weight_max": 0.1863182634115219
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.73,
+          "balanced_accuracy": 0.73,
+          "class_0_recall": 0.7466666666666667,
+          "class_1_recall": 0.7133333333333334,
+          "predicted_positive_rate": 0.48333333333333334
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.696,
+          "balanced_accuracy": 0.696,
+          "class_0_recall": 0.74,
+          "class_1_recall": 0.652,
+          "predicted_positive_rate": 0.456
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.526,
+          "balanced_accuracy": 0.526,
+          "class_0_recall": 0.86,
+          "class_1_recall": 0.192,
+          "predicted_positive_rate": 0.166
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.622,
+          "balanced_accuracy": 0.622,
+          "class_0_recall": 0.824,
+          "class_1_recall": 0.42,
+          "predicted_positive_rate": 0.298
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.666,
+          "balanced_accuracy": 0.6659999999999999,
+          "class_0_recall": 0.596,
+          "class_1_recall": 0.736,
+          "predicted_positive_rate": 0.57
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.476,
+          "balanced_accuracy": 0.476,
+          "class_0_recall": 0.364,
+          "class_1_recall": 0.588,
+          "predicted_positive_rate": 0.612
+        },
+        "forgetting_task1_pp": 16.999999999999993,
+        "weight_min": -1.112991174052072,
+        "weight_max": 1.112991174052072
+      },
+      "elapsed_seconds": 1.509561538696289
+    },
+    {
+      "seed": 3033,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6,
+          "balanced_accuracy": 0.6,
+          "class_0_recall": 0.44666666666666666,
+          "class_1_recall": 0.7533333333333333,
+          "predicted_positive_rate": 0.6533333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.64,
+          "balanced_accuracy": 0.64,
+          "class_0_recall": 0.512,
+          "class_1_recall": 0.768,
+          "predicted_positive_rate": 0.628
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.592,
+          "balanced_accuracy": 0.5920000000000001,
+          "class_0_recall": 0.272,
+          "class_1_recall": 0.912,
+          "predicted_positive_rate": 0.82
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.368,
+          "balanced_accuracy": 0.368,
+          "class_0_recall": 0.392,
+          "class_1_recall": 0.344,
+          "predicted_positive_rate": 0.476
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.504,
+          "balanced_accuracy": 0.504,
+          "class_0_recall": 0.032,
+          "class_1_recall": 0.976,
+          "predicted_positive_rate": 0.972
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.446,
+          "balanced_accuracy": 0.44600000000000006,
+          "class_0_recall": 0.34,
+          "class_1_recall": 0.552,
+          "predicted_positive_rate": 0.606
+        },
+        "forgetting_task1_pp": 4.800000000000004,
+        "weight_min": -0.19316259026527405,
+        "weight_max": 0.20170044898986816
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.6333333333333333,
+          "balanced_accuracy": 0.6333333333333333,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.6666666666666666,
+          "predicted_positive_rate": 0.5333333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.636,
+          "balanced_accuracy": 0.636,
+          "class_0_recall": 0.636,
+          "class_1_recall": 0.636,
+          "predicted_positive_rate": 0.5
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.552,
+          "balanced_accuracy": 0.552,
+          "class_0_recall": 0.472,
+          "class_1_recall": 0.632,
+          "predicted_positive_rate": 0.58
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.466,
+          "balanced_accuracy": 0.466,
+          "class_0_recall": 0.376,
+          "class_1_recall": 0.556,
+          "predicted_positive_rate": 0.59
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.678,
+          "balanced_accuracy": 0.6779999999999999,
+          "class_0_recall": 0.62,
+          "class_1_recall": 0.736,
+          "predicted_positive_rate": 0.558
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.458,
+          "balanced_accuracy": 0.458,
+          "class_0_recall": 0.52,
+          "class_1_recall": 0.396,
+          "predicted_positive_rate": 0.438
+        },
+        "forgetting_task1_pp": 8.399999999999997,
+        "weight_min": -1.1186156207823932,
+        "weight_max": 1.1186156207823932
+      },
+      "elapsed_seconds": 1.5091626644134521
+    },
+    {
+      "seed": 3034,
+      "eligibility": {
+        "threshold": 0.85,
+        "pulse": false,
+        "linear": false,
+        "matched": false,
+        "basis": "task-1 validation accuracy before task 2; never test accuracy"
+      },
+      "data_integrity": {
+        "train_val_overlap_task1": 0,
+        "train_test_overlap_task1": 0,
+        "val_test_overlap_task1": 0,
+        "train_shifted_overlap_task1": 0,
+        "test_shifted_overlap_task1": 0,
+        "val_shifted_overlap_task1": 0,
+        "train_val_overlap_task2": 0,
+        "train_test_overlap_task2": 0,
+        "val_test_overlap_task2": 0,
+        "train_shifted_overlap_task2": 0,
+        "test_shifted_overlap_task2": 0,
+        "val_shifted_overlap_task2": 0
+      },
+      "pulse": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.63,
+          "balanced_accuracy": 0.63,
+          "class_0_recall": 0.5,
+          "class_1_recall": 0.76,
+          "predicted_positive_rate": 0.63
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.678,
+          "balanced_accuracy": 0.678,
+          "class_0_recall": 0.56,
+          "class_1_recall": 0.796,
+          "predicted_positive_rate": 0.618
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.618,
+          "balanced_accuracy": 0.6180000000000001,
+          "class_0_recall": 0.676,
+          "class_1_recall": 0.56,
+          "predicted_positive_rate": 0.442
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.514,
+          "balanced_accuracy": 0.514,
+          "class_0_recall": 0.452,
+          "class_1_recall": 0.576,
+          "predicted_positive_rate": 0.562
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.684,
+          "balanced_accuracy": 0.6839999999999999,
+          "class_0_recall": 0.624,
+          "class_1_recall": 0.744,
+          "predicted_positive_rate": 0.56
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.406,
+          "balanced_accuracy": 0.406,
+          "class_0_recall": 0.252,
+          "class_1_recall": 0.56,
+          "predicted_positive_rate": 0.654
+        },
+        "forgetting_task1_pp": 6.000000000000005,
+        "weight_min": -0.21902011334896088,
+        "weight_max": 0.2181423306465149
+      },
+      "linear": {
+        "task1_validation_before_task2": {
+          "n": 300,
+          "accuracy": 0.62,
+          "balanced_accuracy": 0.62,
+          "class_0_recall": 0.7266666666666667,
+          "class_1_recall": 0.5133333333333333,
+          "predicted_positive_rate": 0.3933333333333333
+        },
+        "task1_test_before_task2": {
+          "n": 500,
+          "accuracy": 0.62,
+          "balanced_accuracy": 0.62,
+          "class_0_recall": 0.8,
+          "class_1_recall": 0.44,
+          "predicted_positive_rate": 0.32
+        },
+        "task1_test_after_task2": {
+          "n": 500,
+          "accuracy": 0.61,
+          "balanced_accuracy": 0.61,
+          "class_0_recall": 0.812,
+          "class_1_recall": 0.408,
+          "predicted_positive_rate": 0.298
+        },
+        "task1_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.516,
+          "balanced_accuracy": 0.516,
+          "class_0_recall": 0.648,
+          "class_1_recall": 0.384,
+          "predicted_positive_rate": 0.368
+        },
+        "task2_test_after_training": {
+          "n": 500,
+          "accuracy": 0.688,
+          "balanced_accuracy": 0.688,
+          "class_0_recall": 0.76,
+          "class_1_recall": 0.616,
+          "predicted_positive_rate": 0.428
+        },
+        "task2_shifted_phase_test": {
+          "n": 500,
+          "accuracy": 0.368,
+          "balanced_accuracy": 0.368,
+          "class_0_recall": 0.44,
+          "class_1_recall": 0.296,
+          "predicted_positive_rate": 0.428
+        },
+        "forgetting_task1_pp": 1.0000000000000009,
+        "weight_min": -1.0923392621423968,
+        "weight_max": 1.0923392621423968
+      },
+      "elapsed_seconds": 1.5622539520263672
+    }
+  ],
+  "summary": {
+    "pulse": {
+      "task1_validation_before_task2_percent": {
+        "n_seeds": 40,
+        "mean": 62.20833333333333,
+        "ci95_low": 60.008333333333326,
+        "ci95_high": 64.39166666666667
+      },
+      "task1_validation_before_task2_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 62.20833333333333,
+        "ci95_low": 59.95833333333333,
+        "ci95_high": 64.375
+      },
+      "task1_validation_before_task2_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 59.2,
+        "ci95_low": 52.133333333333326,
+        "ci95_high": 65.98333333333332
+      },
+      "task1_validation_before_task2_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 65.21666666666667,
+        "ci95_low": 57.15,
+        "ci95_high": 72.5
+      },
+      "task1_validation_before_task2_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 53.008333333333326,
+        "ci95_low": 45.775,
+        "ci95_high": 59.866666666666674
+      },
+      "task1_test_before_task2_percent": {
+        "n_seeds": 40,
+        "mean": 62.864999999999995,
+        "ci95_low": 60.75,
+        "ci95_high": 64.87
+      },
+      "task1_test_before_task2_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 62.864999999999995,
+        "ci95_low": 60.779999999999994,
+        "ci95_high": 64.89
+      },
+      "task1_test_before_task2_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 60.05,
+        "ci95_low": 53.239999999999995,
+        "ci95_high": 66.53
+      },
+      "task1_test_before_task2_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 65.67999999999999,
+        "ci95_low": 57.56,
+        "ci95_high": 73.0
+      },
+      "task1_test_before_task2_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 52.815,
+        "ci95_low": 45.614625,
+        "ci95_high": 59.529999999999994
+      },
+      "task1_test_after_task2_percent": {
+        "n_seeds": 40,
+        "mean": 59.19499999999999,
+        "ci95_low": 57.73499999999999,
+        "ci95_high": 60.60012499999999
+      },
+      "task1_test_after_task2_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 59.19499999999999,
+        "ci95_low": 57.75,
+        "ci95_high": 60.60999999999999
+      },
+      "task1_test_after_task2_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 55.39,
+        "ci95_low": 47.92,
+        "ci95_high": 63.120000000000005
+      },
+      "task1_test_after_task2_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 63.0,
+        "ci95_low": 54.09000000000001,
+        "ci95_high": 71.17
+      },
+      "task1_test_after_task2_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 53.80499999999999,
+        "ci95_low": 45.56974999999999,
+        "ci95_high": 61.605
+      },
+      "task1_shifted_phase_test_percent": {
+        "n_seeds": 40,
+        "mean": 52.039999999999985,
+        "ci95_low": 50.8,
+        "ci95_high": 53.19499999999999
+      },
+      "task1_shifted_phase_test_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 52.039999999999985,
+        "ci95_low": 50.79,
+        "ci95_high": 53.19500000000001
+      },
+      "task1_shifted_phase_test_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 48.46,
+        "ci95_low": 39.239999999999995,
+        "ci95_high": 58.05
+      },
+      "task1_shifted_phase_test_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 55.620000000000005,
+        "ci95_low": 45.21,
+        "ci95_high": 65.5
+      },
+      "task1_shifted_phase_test_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 53.58,
+        "ci95_low": 43.579875,
+        "ci95_high": 63.19
+      },
+      "task2_test_after_training_percent": {
+        "n_seeds": 40,
+        "mean": 61.5,
+        "ci95_low": 59.665000000000006,
+        "ci95_high": 63.27
+      },
+      "task2_test_after_training_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 61.5,
+        "ci95_low": 59.654999999999994,
+        "ci95_high": 63.27
+      },
+      "task2_test_after_training_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 53.02,
+        "ci95_low": 46.12,
+        "ci95_high": 59.959999999999994
+      },
+      "task2_test_after_training_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 69.97999999999999,
+        "ci95_low": 61.07000000000001,
+        "ci95_high": 77.79024999999997
+      },
+      "task2_test_after_training_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 58.48,
+        "ci95_low": 50.824749999999995,
+        "ci95_high": 65.55512499999999
+      },
+      "task2_shifted_phase_test_percent": {
+        "n_seeds": 40,
+        "mean": 47.465,
+        "ci95_low": 46.06,
+        "ci95_high": 48.81
+      },
+      "task2_shifted_phase_test_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 47.465,
+        "ci95_low": 46.055,
+        "ci95_high": 48.81012499999999
+      },
+      "task2_shifted_phase_test_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 43.19,
+        "ci95_low": 34.46,
+        "ci95_high": 52.470000000000006
+      },
+      "task2_shifted_phase_test_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 51.739999999999995,
+        "ci95_low": 42.61,
+        "ci95_high": 60.58
+      },
+      "task2_shifted_phase_test_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 54.275,
+        "ci95_low": 45.154875,
+        "ci95_high": 62.95037499999997
+      },
+      "forgetting_task1_pp_all_seeds": {
+        "n_seeds": 40,
+        "mean": 3.670000000000001,
+        "ci95_low": 2.270000000000001,
+        "ci95_high": 5.0600000000000005
+      },
+      "eligible_seed_count": 0,
+      "forgetting_task1_pp_eligible_only": {
+        "n_seeds": 0,
+        "mean": null,
+        "ci95_low": null,
+        "ci95_high": null
+      }
+    },
+    "linear": {
+      "task1_validation_before_task2_percent": {
+        "n_seeds": 40,
+        "mean": 66.75833333333334,
+        "ci95_low": 65.30833333333332,
+        "ci95_high": 68.24166666666666
+      },
+      "task1_validation_before_task2_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 66.75833333333334,
+        "ci95_low": 65.29166666666667,
+        "ci95_high": 68.19166666666668
+      },
+      "task1_validation_before_task2_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 65.38333333333333,
+        "ci95_low": 62.56666666666668,
+        "ci95_high": 68.11666666666666
+      },
+      "task1_validation_before_task2_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 68.13333333333334,
+        "ci95_low": 65.63333333333334,
+        "ci95_high": 70.51666666666667
+      },
+      "task1_validation_before_task2_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 51.375,
+        "ci95_low": 49.21666666666666,
+        "ci95_high": 53.483333333333334
+      },
+      "task1_test_before_task2_percent": {
+        "n_seeds": 40,
+        "mean": 66.85499999999999,
+        "ci95_low": 65.63,
+        "ci95_high": 68.07000000000001
+      },
+      "task1_test_before_task2_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 66.85499999999999,
+        "ci95_low": 65.64,
+        "ci95_high": 68.06
+      },
+      "task1_test_before_task2_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 66.24,
+        "ci95_low": 63.910000000000004,
+        "ci95_high": 68.62
+      },
+      "task1_test_before_task2_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 67.47,
+        "ci95_low": 64.77000000000001,
+        "ci95_high": 70.08
+      },
+      "task1_test_before_task2_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 50.614999999999995,
+        "ci95_low": 48.4,
+        "ci95_high": 52.714999999999996
+      },
+      "task1_test_after_task2_percent": {
+        "n_seeds": 40,
+        "mean": 59.525,
+        "ci95_low": 58.099875000000004,
+        "ci95_high": 61.010000000000005
+      },
+      "task1_test_after_task2_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 59.525,
+        "ci95_low": 58.09000000000001,
+        "ci95_high": 60.970124999999996
+      },
+      "task1_test_after_task2_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 60.75999999999999,
+        "ci95_low": 55.089999999999996,
+        "ci95_high": 66.35
+      },
+      "task1_test_after_task2_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 58.29,
+        "ci95_low": 51.85,
+        "ci95_high": 64.7
+      },
+      "task1_test_after_task2_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 48.765,
+        "ci95_low": 42.98,
+        "ci95_high": 54.675
+      },
+      "task1_shifted_phase_test_percent": {
+        "n_seeds": 40,
+        "mean": 55.15,
+        "ci95_low": 53.874875,
+        "ci95_high": 56.46499999999999
+      },
+      "task1_shifted_phase_test_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 55.15,
+        "ci95_low": 53.855,
+        "ci95_high": 56.44500000000001
+      },
+      "task1_shifted_phase_test_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 54.18000000000001,
+        "ci95_low": 46.33,
+        "ci95_high": 61.94000000000001
+      },
+      "task1_shifted_phase_test_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 56.120000000000005,
+        "ci95_low": 48.34975,
+        "ci95_high": 63.76024999999999
+      },
+      "task1_shifted_phase_test_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 50.97,
+        "ci95_low": 43.379875,
+        "ci95_high": 58.585249999999995
+      },
+      "task2_test_after_training_percent": {
+        "n_seeds": 40,
+        "mean": 66.81000000000002,
+        "ci95_low": 65.905,
+        "ci95_high": 67.72
+      },
+      "task2_test_after_training_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 66.80999999999999,
+        "ci95_low": 65.885,
+        "ci95_high": 67.705
+      },
+      "task2_test_after_training_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 61.379999999999995,
+        "ci95_low": 59.48,
+        "ci95_high": 63.25999999999999
+      },
+      "task2_test_after_training_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 72.24,
+        "ci95_low": 70.1,
+        "ci95_high": 74.38
+      },
+      "task2_test_after_training_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 55.42999999999999,
+        "ci95_low": 53.629999999999995,
+        "ci95_high": 57.2
+      },
+      "task2_shifted_phase_test_percent": {
+        "n_seeds": 40,
+        "mean": 48.15,
+        "ci95_low": 46.685,
+        "ci95_high": 49.55
+      },
+      "task2_shifted_phase_test_balanced_accuracy_percent": {
+        "n_seeds": 40,
+        "mean": 48.15,
+        "ci95_low": 46.71,
+        "ci95_high": 49.57000000000001
+      },
+      "task2_shifted_phase_test_class_0_recall_percent": {
+        "n_seeds": 40,
+        "mean": 45.95,
+        "ci95_low": 41.54,
+        "ci95_high": 50.589999999999996
+      },
+      "task2_shifted_phase_test_class_1_recall_percent": {
+        "n_seeds": 40,
+        "mean": 50.35,
+        "ci95_low": 44.9495,
+        "ci95_high": 55.620249999999984
+      },
+      "task2_shifted_phase_test_predicted_positive_rate_percent": {
+        "n_seeds": 40,
+        "mean": 52.2,
+        "ci95_low": 47.469875,
+        "ci95_high": 56.855374999999974
+      },
+      "forgetting_task1_pp_all_seeds": {
+        "n_seeds": 40,
+        "mean": 7.329999999999998,
+        "ci95_low": 6.034874999999999,
+        "ci95_high": 8.709999999999999
+      },
+      "eligible_seed_count": 0,
+      "forgetting_task1_pp_eligible_only": {
+        "n_seeds": 0,
+        "mean": null,
+        "ci95_low": null,
+        "ci95_high": null
+      }
+    },
+    "matched_eligible_seed_count": 0,
+    "paired_forgetting_delta_linear_minus_pulse_pp": {
+      "n_seeds": 0,
+      "mean": null,
+      "ci95_low": null,
+      "ci95_high": null
+    },
+    "paired_task2_delta_pulse_minus_linear_pp": {
+      "n_seeds": 0,
+      "mean": null,
+      "ci95_low": null,
+      "ci95_high": null
+    },
+    "paired_all_seed_differences": {
+      "task1_before_linear_minus_pulse_pp": {
+        "n_seeds": 40,
+        "mean": 3.9899999999999993,
+        "ci95_low": 2.444999999999999,
+        "ci95_high": 5.63
+      },
+      "task1_after_linear_minus_pulse_pp": {
+        "n_seeds": 40,
+        "mean": 0.33000000000000085,
+        "ci95_low": -1.1349999999999993,
+        "ci95_high": 1.8049999999999997
+      },
+      "task2_linear_minus_pulse_pp": {
+        "n_seeds": 40,
+        "mean": 5.31,
+        "ci95_low": 3.670000000000001,
+        "ci95_high": 7.120124999999991
+      },
+      "task2_shifted_linear_minus_pulse_pp": {
+        "n_seeds": 40,
+        "mean": 0.6850000000000007,
+        "ci95_low": -0.32500000000000007,
+        "ci95_high": 1.650000000000001
+      },
+      "forgetting_linear_minus_pulse_pp": {
+        "n_seeds": 40,
+        "mean": 3.659999999999998,
+        "ci95_low": 2.0199999999999987,
+        "ci95_high": 5.3249999999999975
+      }
+    }
+  },
+  "runtime_seconds": 62.17004919052124,
+  "protocol": {
+    "train_per_task": 200,
+    "validation_task1": 300,
+    "test_per_task": 500,
+    "shifted_per_task": 500,
+    "passes_per_task": 8,
+    "hidden_neurons": 24,
+    "pulse_lr": 0.01,
+    "pulse_temperature": 0.7,
+    "linear_lr": 0.01,
+    "linear_weight_decay": 0.001,
+    "eligibility_threshold": 0.85,
+    "preregistration_sha256": "41ea98bf07b2cc13f966ee59e3ffea7128ac40cf3c5e899274db9e803c583940",
+    "source_hashes": {
+      "pulse_core/sequential_stdp.py": "8f2bbba78fc524ee01be9b37e13f5e6fd41216434d7d56af235fce6507566fd6",
+      "experiments/run_sequential_learning_v0_29.py": "c1247caef6c043aa9b19cf50b43709bdb1682a99411bc949ebdce7ffea2cd76c",
+      "tests/test_v029_sequential_learning.py": "16fe80c64a389b4fe4a065493f231b1c3408310fd4a5321498927fd06dba4fa3",
+      "docs/EXPERIMENT_DESIGN_V0_29_AR.md": "85321f018ea569770c7081bd07e2a74b44909e73f247ab40bb90ffebd7b43138",
+      "docs/benchmark_protocol_v0_29_AR.md": "d5d72f5d85ceaef85c28e8b375d29d762c053f898a7ef130eb6eb489adddcb76"
+    },
+    "test_based_seed_exclusions": 0
+  }
+}

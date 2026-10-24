@@ -1,0 +1,811 @@
+{
+  "version": "0.28.1",
+  "seeds": [
+    104,
+    887,
+    2027,
+    90210,
+    731
+  ],
+  "per_seed": [
+    {
+      "seed": 104,
+      "data_integrity": {
+        "exact_train_test_overlap_sync": 0,
+        "exact_train_test_overlap_order": 0,
+        "exact_jitter_train_overlap_sync": 0,
+        "exact_jitter_train_overlap_order": 0,
+        "jitter_changed_fraction_sync": 0.975,
+        "jitter_changed_fraction_order": 0.95,
+        "jitter_label_preservation_sync": 1.0,
+        "jitter_label_preservation_order": 1.0
+      },
+      "pulse": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.5375,
+          "class_0_recall": 0.25,
+          "class_1_recall": 0.825
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.58125,
+          "class_0_recall": 0.1875,
+          "class_1_recall": 0.975
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.6875,
+          "class_0_recall": 0.725,
+          "class_1_recall": 0.65
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.56875,
+          "class_0_recall": 0.1875,
+          "class_1_recall": 0.95
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.70625,
+          "class_0_recall": 0.7625,
+          "class_1_recall": 0.65
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.5875,
+          "class_0_recall": 0.325,
+          "class_1_recall": 0.85
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.51875,
+          "class_0_recall": 0.95,
+          "class_1_recall": 0.0875
+        },
+        "forgetting_task1_pp": -4.375000000000007,
+        "reward_accuracy_task1_training": 0.545,
+        "reward_accuracy_task2_training": 0.599375,
+        "weight_min": -0.22498899698257446,
+        "weight_max": 0.17313924431800842,
+        "weight_mean": -0.004957250785082579,
+        "virtual_decision_fraction_task1_test": 0.0,
+        "virtual_decision_fraction_task2_test": 0.0,
+        "hidden_spikes_mean_task1": 83.6375,
+        "hidden_spikes_mean_task2": 76.71875
+      },
+      "mlp": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.5,
+          "class_0_recall": 0.525,
+          "class_1_recall": 0.475
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.5375,
+          "class_1_recall": 0.5625
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.65625,
+          "class_0_recall": 0.65,
+          "class_1_recall": 0.6625
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.56875,
+          "class_0_recall": 0.5375,
+          "class_1_recall": 0.6
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.7,
+          "class_0_recall": 0.6625,
+          "class_1_recall": 0.7375
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.55625,
+          "class_0_recall": 0.525,
+          "class_1_recall": 0.5875
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.3875,
+          "class_0_recall": 0.5,
+          "class_1_recall": 0.275
+        },
+        "forgetting_task1_pp": -5.000000000000004,
+        "task1_final_train_loss": 0.5393318700790405,
+        "task2_final_train_loss": 0.48207428097724914
+      },
+      "elapsed_seconds": 1.7467687129974365
+    },
+    {
+      "seed": 887,
+      "data_integrity": {
+        "exact_train_test_overlap_sync": 0,
+        "exact_train_test_overlap_order": 0,
+        "exact_jitter_train_overlap_sync": 0,
+        "exact_jitter_train_overlap_order": 0,
+        "jitter_changed_fraction_sync": 0.96875,
+        "jitter_changed_fraction_order": 0.9625,
+        "jitter_label_preservation_sync": 1.0,
+        "jitter_label_preservation_order": 1.0
+      },
+      "pulse": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.725,
+          "class_0_recall": 0.625,
+          "class_1_recall": 0.825
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.375,
+          "class_1_recall": 0.725
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.63125,
+          "class_0_recall": 0.4375,
+          "class_1_recall": 0.825
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.4,
+          "class_1_recall": 0.7
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.6,
+          "class_0_recall": 0.4,
+          "class_1_recall": 0.8
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.5625,
+          "class_0_recall": 0.4375,
+          "class_1_recall": 0.6875
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.44375,
+          "class_0_recall": 0.3,
+          "class_1_recall": 0.5875
+        },
+        "forgetting_task1_pp": 17.499999999999993,
+        "reward_accuracy_task1_training": 0.591875,
+        "reward_accuracy_task2_training": 0.586875,
+        "weight_min": -0.21260812878608704,
+        "weight_max": 0.23563824594020844,
+        "weight_mean": 0.0022254472132772207,
+        "virtual_decision_fraction_task1_test": 0.0,
+        "virtual_decision_fraction_task2_test": 0.0,
+        "hidden_spikes_mean_task1": 53.45625,
+        "hidden_spikes_mean_task2": 50.325
+      },
+      "mlp": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.53125,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.4625
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.525,
+          "class_0_recall": 0.55,
+          "class_1_recall": 0.5
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.625,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.65
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.525,
+          "class_0_recall": 0.575,
+          "class_1_recall": 0.475
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.63125,
+          "class_0_recall": 0.575,
+          "class_1_recall": 0.6875
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.4625,
+          "class_0_recall": 0.5125,
+          "class_1_recall": 0.4125
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.475,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.35
+        },
+        "forgetting_task1_pp": 0.6249999999999978,
+        "task1_final_train_loss": 0.550072283744812,
+        "task2_final_train_loss": 0.4499807238578796
+      },
+      "elapsed_seconds": 1.0301804542541504
+    },
+    {
+      "seed": 2027,
+      "data_integrity": {
+        "exact_train_test_overlap_sync": 0,
+        "exact_train_test_overlap_order": 0,
+        "exact_jitter_train_overlap_sync": 0,
+        "exact_jitter_train_overlap_order": 0,
+        "jitter_changed_fraction_sync": 0.9375,
+        "jitter_changed_fraction_order": 0.9375,
+        "jitter_label_preservation_sync": 1.0,
+        "jitter_label_preservation_order": 1.0
+      },
+      "pulse": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.59375,
+          "class_0_recall": 0.575,
+          "class_1_recall": 0.6125
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.55625,
+          "class_0_recall": 0.2,
+          "class_1_recall": 0.9125
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.7125,
+          "class_0_recall": 0.5875,
+          "class_1_recall": 0.8375
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.53125,
+          "class_0_recall": 0.2,
+          "class_1_recall": 0.8625
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.70625,
+          "class_0_recall": 0.6125,
+          "class_1_recall": 0.8
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.5125,
+          "class_0_recall": 0.0375,
+          "class_1_recall": 0.9875
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.48125,
+          "class_0_recall": 0.125,
+          "class_1_recall": 0.8375
+        },
+        "forgetting_task1_pp": 3.749999999999998,
+        "reward_accuracy_task1_training": 0.501875,
+        "reward_accuracy_task2_training": 0.556875,
+        "weight_min": -0.1289343684911728,
+        "weight_max": 0.180970698595047,
+        "weight_mean": 0.0024957747664302588,
+        "virtual_decision_fraction_task1_test": 0.0,
+        "virtual_decision_fraction_task2_test": 0.0,
+        "hidden_spikes_mean_task1": 68.31875,
+        "hidden_spikes_mean_task2": 63.76875
+      },
+      "mlp": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.6,
+          "class_0_recall": 0.55,
+          "class_1_recall": 0.65
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.4875,
+          "class_0_recall": 0.4875,
+          "class_1_recall": 0.4875
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.64375,
+          "class_0_recall": 0.6125,
+          "class_1_recall": 0.675
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.51875,
+          "class_0_recall": 0.525,
+          "class_1_recall": 0.5125
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.625,
+          "class_0_recall": 0.5625,
+          "class_1_recall": 0.6875
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.3625,
+          "class_1_recall": 0.7375
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.40625,
+          "class_0_recall": 0.25,
+          "class_1_recall": 0.5625
+        },
+        "forgetting_task1_pp": 11.249999999999998,
+        "task1_final_train_loss": 0.43381818175315856,
+        "task2_final_train_loss": 0.467638795375824
+      },
+      "elapsed_seconds": 0.9915921688079834
+    },
+    {
+      "seed": 90210,
+      "data_integrity": {
+        "exact_train_test_overlap_sync": 0,
+        "exact_train_test_overlap_order": 0,
+        "exact_jitter_train_overlap_sync": 0,
+        "exact_jitter_train_overlap_order": 0,
+        "jitter_changed_fraction_sync": 0.94375,
+        "jitter_changed_fraction_order": 0.925,
+        "jitter_label_preservation_sync": 1.0,
+        "jitter_label_preservation_order": 1.0
+      },
+      "pulse": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.5,
+          "class_0_recall": 1.0,
+          "class_1_recall": 0.0
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.60625,
+          "class_0_recall": 0.2875,
+          "class_1_recall": 0.925
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.6125,
+          "class_0_recall": 0.5,
+          "class_1_recall": 0.725
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.58125,
+          "class_0_recall": 0.2875,
+          "class_1_recall": 0.875
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.6,
+          "class_0_recall": 0.475,
+          "class_1_recall": 0.725
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.15,
+          "class_1_recall": 0.95
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.4875,
+          "class_0_recall": 0.15,
+          "class_1_recall": 0.825
+        },
+        "forgetting_task1_pp": -10.624999999999996,
+        "reward_accuracy_task1_training": 0.496875,
+        "reward_accuracy_task2_training": 0.53125,
+        "weight_min": -0.13589692115783691,
+        "weight_max": 0.1157279908657074,
+        "weight_mean": -0.004962707404047251,
+        "virtual_decision_fraction_task1_test": 0.0,
+        "virtual_decision_fraction_task2_test": 0.0,
+        "hidden_spikes_mean_task1": 91.075,
+        "hidden_spikes_mean_task2": 100.28125
+      },
+      "mlp": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.63125,
+          "class_0_recall": 0.5,
+          "class_1_recall": 0.7625
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.4875,
+          "class_0_recall": 0.45,
+          "class_1_recall": 0.525
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.5875,
+          "class_0_recall": 0.5375,
+          "class_1_recall": 0.6375
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.5625,
+          "class_1_recall": 0.5375
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.625,
+          "class_0_recall": 0.6125,
+          "class_1_recall": 0.6375
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.40625,
+          "class_0_recall": 0.575,
+          "class_1_recall": 0.2375
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.35625,
+          "class_0_recall": 0.525,
+          "class_1_recall": 0.1875
+        },
+        "forgetting_task1_pp": 14.374999999999998,
+        "task1_final_train_loss": 0.5071804714202881,
+        "task2_final_train_loss": 0.45535561203956604
+      },
+      "elapsed_seconds": 0.9819822311401367
+    },
+    {
+      "seed": 731,
+      "data_integrity": {
+        "exact_train_test_overlap_sync": 0,
+        "exact_train_test_overlap_order": 0,
+        "exact_jitter_train_overlap_sync": 0,
+        "exact_jitter_train_overlap_order": 0,
+        "jitter_changed_fraction_sync": 0.9625,
+        "jitter_changed_fraction_order": 0.95625,
+        "jitter_label_preservation_sync": 1.0,
+        "jitter_label_preservation_order": 1.0
+      },
+      "pulse": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.63125,
+          "class_0_recall": 0.5375,
+          "class_1_recall": 0.725
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.6125,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.625
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.56875,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.5375
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.63125,
+          "class_0_recall": 0.575,
+          "class_1_recall": 0.6875
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.5875,
+          "class_1_recall": 0.5125
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.55625,
+          "class_0_recall": 0.4,
+          "class_1_recall": 0.7125
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.575,
+          "class_0_recall": 0.4,
+          "class_1_recall": 0.75
+        },
+        "forgetting_task1_pp": 1.8749999999999933,
+        "reward_accuracy_task1_training": 0.6125,
+        "reward_accuracy_task2_training": 0.604375,
+        "weight_min": -0.22699403762817383,
+        "weight_max": 0.21180661022663116,
+        "weight_mean": -0.003261541947722435,
+        "virtual_decision_fraction_task1_test": 0.0,
+        "virtual_decision_fraction_task2_test": 0.0,
+        "hidden_spikes_mean_task1": 64.94375,
+        "hidden_spikes_mean_task2": 63.6375
+      },
+      "mlp": {
+        "task1_sync_before_task2": {
+          "accuracy": 0.63125,
+          "class_0_recall": 0.5625,
+          "class_1_recall": 0.7
+        },
+        "task1_sync_after_task2": {
+          "accuracy": 0.51875,
+          "class_0_recall": 0.525,
+          "class_1_recall": 0.5125
+        },
+        "task2_order_after_training": {
+          "accuracy": 0.6,
+          "class_0_recall": 0.625,
+          "class_1_recall": 0.575
+        },
+        "task1_sync_jittered": {
+          "accuracy": 0.55,
+          "class_0_recall": 0.6,
+          "class_1_recall": 0.5
+        },
+        "task2_order_jittered": {
+          "accuracy": 0.56875,
+          "class_0_recall": 0.55,
+          "class_1_recall": 0.5875
+        },
+        "task1_sync_shifted_phase": {
+          "accuracy": 0.48125,
+          "class_0_recall": 0.5,
+          "class_1_recall": 0.4625
+        },
+        "task2_order_shifted_phase": {
+          "accuracy": 0.41875,
+          "class_0_recall": 0.45,
+          "class_1_recall": 0.3875
+        },
+        "forgetting_task1_pp": 11.249999999999993,
+        "task1_final_train_loss": 0.5240209949016571,
+        "task2_final_train_loss": 0.4555479854345322
+      },
+      "elapsed_seconds": 1.0053210258483887
+    }
+  ],
+  "aggregate": {
+    "pulse": {
+      "task1_sync_before_task2": {
+        "mean": 0.5975,
+        "std": 0.08734361024139087,
+        "min": 0.5,
+        "max": 0.725,
+        "per_seed": [
+          0.5375,
+          0.725,
+          0.59375,
+          0.5,
+          0.63125
+        ]
+      },
+      "task1_sync_after_task2": {
+        "mean": 0.58125,
+        "std": 0.02829807855667941,
+        "min": 0.55,
+        "max": 0.6125,
+        "per_seed": [
+          0.58125,
+          0.55,
+          0.55625,
+          0.60625,
+          0.6125
+        ]
+      },
+      "task2_order_after_training": {
+        "mean": 0.6425,
+        "std": 0.057858934055165595,
+        "min": 0.56875,
+        "max": 0.7125,
+        "per_seed": [
+          0.6875,
+          0.63125,
+          0.7125,
+          0.6125,
+          0.56875
+        ]
+      },
+      "task1_sync_jittered": {
+        "mean": 0.5725,
+        "std": 0.03791437722025774,
+        "min": 0.53125,
+        "max": 0.63125,
+        "per_seed": [
+          0.56875,
+          0.55,
+          0.53125,
+          0.58125,
+          0.63125
+        ]
+      },
+      "task2_order_jittered": {
+        "mean": 0.6325000000000001,
+        "std": 0.07035068407627607,
+        "min": 0.55,
+        "max": 0.70625,
+        "per_seed": [
+          0.70625,
+          0.6,
+          0.70625,
+          0.6,
+          0.55
+        ]
+      },
+      "task1_sync_shifted_phase": {
+        "mean": 0.55375,
+        "std": 0.027099354235848524,
+        "min": 0.5125,
+        "max": 0.5875,
+        "per_seed": [
+          0.5875,
+          0.5625,
+          0.5125,
+          0.55,
+          0.55625
+        ]
+      },
+      "task2_order_shifted_phase": {
+        "mean": 0.50125,
+        "std": 0.0490933422166387,
+        "min": 0.44375,
+        "max": 0.575,
+        "per_seed": [
+          0.51875,
+          0.44375,
+          0.48125,
+          0.4875,
+          0.575
+        ]
+      },
+      "forgetting_task1_pp": {
+        "mean": 1.6249999999999958,
+        "std": 10.519698783710488,
+        "min": -10.624999999999996,
+        "max": 17.499999999999993,
+        "per_seed": [
+          -4.375000000000007,
+          17.499999999999993,
+          3.749999999999998,
+          -10.624999999999996,
+          1.8749999999999933
+        ]
+      },
+      "reward_accuracy_task1_training": {
+        "mean": 0.549625,
+        "std": 0.05201524716369233,
+        "per_seed": [
+          0.545,
+          0.591875,
+          0.501875,
+          0.496875,
+          0.6125
+        ]
+      },
+      "reward_accuracy_task2_training": {
+        "mean": 0.57575,
+        "std": 0.03097504035509881,
+        "per_seed": [
+          0.599375,
+          0.586875,
+          0.556875,
+          0.53125,
+          0.604375
+        ]
+      },
+      "virtual_decision_fraction_task1_test": {
+        "mean": 0.0,
+        "std": 0.0,
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "virtual_decision_fraction_task2_test": {
+        "mean": 0.0,
+        "std": 0.0,
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "hidden_spikes_mean_task1": {
+        "mean": 72.28625,
+        "std": 15.050666643250395,
+        "per_seed": [
+          83.6375,
+          53.45625,
+          68.31875,
+          91.075,
+          64.94375
+        ]
+      },
+      "hidden_spikes_mean_task2": {
+        "mean": 70.94624999999999,
+        "std": 18.8681892720592,
+        "per_seed": [
+          76.71875,
+          50.325,
+          63.76875,
+          100.28125,
+          63.6375
+        ]
+      }
+    },
+    "mlp": {
+      "task1_sync_before_task2": {
+        "mean": 0.5787500000000001,
+        "std": 0.06004555562237724,
+        "min": 0.5,
+        "max": 0.63125,
+        "per_seed": [
+          0.5,
+          0.53125,
+          0.6,
+          0.63125,
+          0.63125
+        ]
+      },
+      "task1_sync_after_task2": {
+        "mean": 0.5137500000000002,
+        "std": 0.02666341125962695,
+        "min": 0.4875,
+        "max": 0.55,
+        "per_seed": [
+          0.55,
+          0.525,
+          0.4875,
+          0.4875,
+          0.51875
+        ]
+      },
+      "task2_order_after_training": {
+        "mean": 0.6225,
+        "std": 0.02884495189803582,
+        "min": 0.5875,
+        "max": 0.65625,
+        "per_seed": [
+          0.65625,
+          0.625,
+          0.64375,
+          0.5875,
+          0.6
+        ]
+      },
+      "task1_sync_jittered": {
+        "mean": 0.5425000000000001,
+        "std": 0.02044428404224514,
+        "min": 0.51875,
+        "max": 0.56875,
+        "per_seed": [
+          0.56875,
+          0.525,
+          0.51875,
+          0.55,
+          0.55
+        ]
+      },
+      "task2_order_jittered": {
+        "mean": 0.63,
+        "std": 0.046645270392613215,
+        "min": 0.56875,
+        "max": 0.7,
+        "per_seed": [
+          0.7,
+          0.63125,
+          0.625,
+          0.625,
+          0.56875
+        ]
+      },
+      "task1_sync_shifted_phase": {
+        "mean": 0.4912500000000001,
+        "std": 0.06290493820043067,
+        "min": 0.40625,
+        "max": 0.55625,
+        "per_seed": [
+          0.55625,
+          0.4625,
+          0.55,
+          0.40625,
+          0.48125
+        ]
+      },
+      "task2_order_shifted_phase": {
+        "mean": 0.40875000000000006,
+        "std": 0.04388372420385488,
+        "min": 0.35625,
+        "max": 0.475,
+        "per_seed": [
+          0.3875,
+          0.475,
+          0.40625,
+          0.35625,
+          0.41875
+        ]
+      },
+      "forgetting_task1_pp": {
+        "mean": 6.499999999999997,
+        "std": 8.275056646331794,
+        "min": -5.000000000000004,
+        "max": 14.374999999999998,
+        "per_seed": [
+          -5.000000000000004,
+          0.6249999999999978,
+          11.249999999999998,
+          14.374999999999998,
+          11.249999999999993
+        ]
+      }
+    }
+  },
+  "runtime_seconds": 5.776367425918579,
+  "protocol": {
+    "train_per_task": 200,
+    "test_per_task": 160,
+    "epochs_per_task": 8,
+    "duration": 32,
+    "n_hidden": 24,
+    "mlp_batch_size": 16,
+    "mlp_learning_rate": 0.006,
+    "pulse_lr": 0.01,
+    "pulse_temperature": 0.7,
+    "output_classes": 2,
+    "preregistration_sha256": "d2bfc7d27e6acb2b2d31a878aa06cf8f8219fc29a293b1ad77c66622399893d6"
+  }
+}

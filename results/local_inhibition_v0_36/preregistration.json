@@ -1,0 +1,138 @@
+{
+  "title": "Nucleus Pulse v0.36 local per-cell inhibitory gain \u2014 preregistration",
+  "config": {
+    "version": "0.36",
+    "official_seeds": [
+      10000,
+      10001,
+      10002,
+      10003,
+      10004,
+      10005,
+      10006,
+      10007,
+      10008,
+      10009,
+      10010,
+      10011,
+      10012,
+      10013,
+      10014,
+      10015,
+      10016,
+      10017,
+      10018,
+      10019,
+      10020,
+      10021,
+      10022,
+      10023,
+      10024,
+      10025,
+      10026,
+      10027,
+      10028,
+      10029,
+      10030,
+      10031,
+      10032,
+      10033,
+      10034,
+      10035,
+      10036,
+      10037,
+      10038,
+      10039
+    ],
+    "development_seeds": [
+      9100,
+      9101,
+      9102,
+      9103,
+      9104,
+      9105
+    ],
+    "development_candidate_slopes": [
+      1.0,
+      2.0,
+      4.0,
+      6.0
+    ],
+    "selected_local_slope": 6.0,
+    "slope_selection": "maximize mean validation balanced accuracy at epoch 10 across 6 development seeds \u00d7 2 tasks; ties choose smaller slope",
+    "selection_result_slope": 6.0,
+    "conditions": [
+      "dale_fixed_25",
+      "dale_global_adaptive_25",
+      "dale_local_adaptive_25"
+    ],
+    "tasks": [
+      "sync",
+      "order"
+    ],
+    "unique_training_examples_per_task_seed": 6000,
+    "validation_examples_per_task_seed": 1000,
+    "final_test_examples_per_task_seed": 1000,
+    "epochs": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "primary_epoch": 10,
+    "n_hidden": 24,
+    "feature_set": "spike_bins16_rate_384",
+    "same_matrix_and_topology_across_conditions": true,
+    "base_spectral_radius_target": 0.72,
+    "inhibitory_sources": "25% fixed Dale-style inhibitory presynaptic source neurons; same exact signed matrix across all conditions",
+    "fixed_condition": "gain 1.0 for all postsynaptic cells and ticks",
+    "global_condition": {
+      "rule": "gain=clip(1+4*(EMA_population_rate-0.13), 0.5, 2.0)",
+      "ema_tau_ticks": 4.0
+    },
+    "local_condition": {
+      "rule": "gain_i=clip(1+selected_slope*(EMA_rate_i-0.13),0.5,2.0); only inhibitory current into postsynaptic cell i is scaled",
+      "selected_slope": 6.0,
+      "ema_tau_ticks": 4.0,
+      "target_rate_per_cell_per_tick": 0.13,
+      "initial_trace": "target rate, so initial gain is exactly 1.0",
+      "bounds": [
+        0.5,
+        2.0
+      ]
+    },
+    "reader": {
+      "class": "sklearn.linear_model.SGDClassifier",
+      "loss": "log_loss",
+      "penalty": "l2",
+      "alpha": 0.0001,
+      "learning_rate": "constant",
+      "eta0": 0.01,
+      "average": true,
+      "shuffle": true,
+      "fit_method": "partial_fit",
+      "same_model_seed_paired_across_conditions": true
+    },
+    "same_input_weights_thresholds_leaks_refractory_mask_training_order_and_features": true,
+    "validation_for_threshold_analysis_only": true,
+    "final_test_used_for_tuning_or_selection": false,
+    "paired_bootstrap_unit": "seed",
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20361024
+  },
+  "sha256": {
+    "experiments/run_local_inhibition_v0_36.py": "f793794440e1b0ebba8643c6f9d151646583d2f6f42a8e192e88d22e6a2276ae",
+    "experiments/tune_local_inhibition_v0_36.py": "dced52a567e7d82ceb3a6dfb4b79c2eb3d787cce35663d7b231ab5cd62eb3a12",
+    "experiments/run_activity_adaptive_inhibition_v0_35.py": "6de16d718bcef45f55a7facd00f9b41060150178c00235ed1bf0461697a6046d",
+    "experiments/run_inhibition_structure_v0_34.py": "e0602e79e5deeaa5d4fabe263568c26a986d83163cb734e0fd5d1836a990ab01",
+    "experiments/run_learning_curve_v0_30.py": "f3ad5c417547c8ea395c44ed082bcc02378453d06f49251aca9a2fbba58f957b",
+    "pulse_core/sequential_stdp.py": "8f2bbba78fc524ee01be9b37e13f5e6fd41216434d7d56af235fce6507566fd6",
+    "results/local_inhibition_v0_36/development_tuning/selected_slope.json": "124e626cbf5c2ad5b1376154934976f34721a80b64e3c42d6e6cad65999ef777",
+    "results/local_inhibition_v0_36/development_tuning/dev_tuning_results.json": "9bfc6dce3857f6d07cba99ee410449f4309f15da1802581fd8ad06ea3bd2c3eb",
+    "results/local_inhibition_v0_36/development_tuning/dev_tuning_results.csv": "0066aa471962b2a140eda164efac88a2cb4ad76fbe37e806deb82d2f0c12663f",
+    "docs/benchmark_protocol_v0_36_AR.md": "88a46dfedfff42ef9765ceb46216db80187772a2633491a8b58f47be73f7ed15",
+    "tests/test_local_inhibition_v0_36.py": "1251f6d4385d1d1d90f29d563561550f0fa0994e5263f38b9dc72e7f32c39e72",
+    "experiments/run_incremental_windows_v0_31.py": "54ea4378f60870feb2ca6861648e918fb1282fbd31bc41672981a7311bb3ec98",
+    "pulse_core/tasks.py": "81bdd9aeb7203702282324af7139a607574889e530f2403faa723eb0701e85df"
+  }
+}

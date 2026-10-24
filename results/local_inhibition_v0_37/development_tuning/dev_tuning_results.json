@@ -1,0 +1,1319 @@
+{
+  "stage": "development_only",
+  "development_seeds": [
+    9200,
+    9201,
+    9202,
+    9203,
+    9204,
+    9205,
+    9206,
+    9207
+  ],
+  "candidate_local_gain_slopes": [
+    2.0,
+    4.0
+  ],
+  "selection_rule": "maximize mean validation balanced accuracy at epoch 10 across development seeds and tasks; ties choose smaller slope",
+  "final_test_used_for_tuning_or_selection": false,
+  "selected_slope": 2.0,
+  "candidate_scores": [
+    {
+      "slope": 2.0,
+      "mean_validation_balanced_accuracy": 0.79625,
+      "mean_validation_accuracy": 0.79625,
+      "n_seed_task_pairs": 16
+    },
+    {
+      "slope": 4.0,
+      "mean_validation_balanced_accuracy": 0.7933125000000001,
+      "mean_validation_accuracy": 0.7933125000000001,
+      "n_seed_task_pairs": 16
+    }
+  ],
+  "rows": [
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.85,
+      "validation_balanced_accuracy": 0.85,
+      "validation_class_0_recall": 0.85,
+      "validation_class_1_recall": 0.85,
+      "validation_predicted_positive_rate": 0.5
+    },
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.846,
+      "validation_balanced_accuracy": 0.846,
+      "validation_class_0_recall": 0.85,
+      "validation_class_1_recall": 0.842,
+      "validation_predicted_positive_rate": 0.496
+    },
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.843,
+      "validation_balanced_accuracy": 0.843,
+      "validation_class_0_recall": 0.844,
+      "validation_class_1_recall": 0.842,
+      "validation_predicted_positive_rate": 0.499
+    },
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.851,
+      "validation_balanced_accuracy": 0.851,
+      "validation_class_0_recall": 0.85,
+      "validation_class_1_recall": 0.852,
+      "validation_predicted_positive_rate": 0.501
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.779,
+      "validation_balanced_accuracy": 0.779,
+      "validation_class_0_recall": 0.78,
+      "validation_class_1_recall": 0.778,
+      "validation_predicted_positive_rate": 0.499
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.788,
+      "validation_balanced_accuracy": 0.788,
+      "validation_class_0_recall": 0.788,
+      "validation_class_1_recall": 0.788,
+      "validation_predicted_positive_rate": 0.5
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.79,
+      "validation_balanced_accuracy": 0.79,
+      "validation_class_0_recall": 0.788,
+      "validation_class_1_recall": 0.792,
+      "validation_predicted_positive_rate": 0.502
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.793,
+      "validation_balanced_accuracy": 0.793,
+      "validation_class_0_recall": 0.79,
+      "validation_class_1_recall": 0.796,
+      "validation_predicted_positive_rate": 0.503
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.85,
+      "validation_balanced_accuracy": 0.85,
+      "validation_class_0_recall": 0.85,
+      "validation_class_1_recall": 0.85,
+      "validation_predicted_positive_rate": 0.5
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.845,
+      "validation_balanced_accuracy": 0.845,
+      "validation_class_0_recall": 0.844,
+      "validation_class_1_recall": 0.846,
+      "validation_predicted_positive_rate": 0.501
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.839,
+      "validation_balanced_accuracy": 0.839,
+      "validation_class_0_recall": 0.838,
+      "validation_class_1_recall": 0.84,
+      "validation_predicted_positive_rate": 0.501
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.828,
+      "validation_balanced_accuracy": 0.828,
+      "validation_class_0_recall": 0.826,
+      "validation_class_1_recall": 0.83,
+      "validation_predicted_positive_rate": 0.502
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.77,
+      "validation_balanced_accuracy": 0.77,
+      "validation_class_0_recall": 0.75,
+      "validation_class_1_recall": 0.79,
+      "validation_predicted_positive_rate": 0.52
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.765,
+      "validation_balanced_accuracy": 0.765,
+      "validation_class_0_recall": 0.744,
+      "validation_class_1_recall": 0.786,
+      "validation_predicted_positive_rate": 0.521
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.773,
+      "validation_balanced_accuracy": 0.773,
+      "validation_class_0_recall": 0.752,
+      "validation_class_1_recall": 0.794,
+      "validation_predicted_positive_rate": 0.521
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.769,
+      "validation_balanced_accuracy": 0.769,
+      "validation_class_0_recall": 0.748,
+      "validation_class_1_recall": 0.79,
+      "validation_predicted_positive_rate": 0.521
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.79,
+      "validation_balanced_accuracy": 0.79,
+      "validation_class_0_recall": 0.786,
+      "validation_class_1_recall": 0.794,
+      "validation_predicted_positive_rate": 0.504
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.797,
+      "validation_balanced_accuracy": 0.797,
+      "validation_class_0_recall": 0.8,
+      "validation_class_1_recall": 0.794,
+      "validation_predicted_positive_rate": 0.497
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.802,
+      "validation_balanced_accuracy": 0.802,
+      "validation_class_0_recall": 0.788,
+      "validation_class_1_recall": 0.816,
+      "validation_predicted_positive_rate": 0.514
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.801,
+      "validation_balanced_accuracy": 0.8009999999999999,
+      "validation_class_0_recall": 0.786,
+      "validation_class_1_recall": 0.816,
+      "validation_predicted_positive_rate": 0.515
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.712,
+      "validation_balanced_accuracy": 0.712,
+      "validation_class_0_recall": 0.662,
+      "validation_class_1_recall": 0.762,
+      "validation_predicted_positive_rate": 0.55
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.715,
+      "validation_balanced_accuracy": 0.7150000000000001,
+      "validation_class_0_recall": 0.666,
+      "validation_class_1_recall": 0.764,
+      "validation_predicted_positive_rate": 0.549
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.717,
+      "validation_balanced_accuracy": 0.7170000000000001,
+      "validation_class_0_recall": 0.672,
+      "validation_class_1_recall": 0.762,
+      "validation_predicted_positive_rate": 0.545
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.707,
+      "validation_balanced_accuracy": 0.7070000000000001,
+      "validation_class_0_recall": 0.674,
+      "validation_class_1_recall": 0.74,
+      "validation_predicted_positive_rate": 0.533
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.801,
+      "validation_balanced_accuracy": 0.8009999999999999,
+      "validation_class_0_recall": 0.762,
+      "validation_class_1_recall": 0.84,
+      "validation_predicted_positive_rate": 0.539
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.769,
+      "validation_balanced_accuracy": 0.7689999999999999,
+      "validation_class_0_recall": 0.72,
+      "validation_class_1_recall": 0.818,
+      "validation_predicted_positive_rate": 0.549
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.814,
+      "validation_balanced_accuracy": 0.8140000000000001,
+      "validation_class_0_recall": 0.792,
+      "validation_class_1_recall": 0.836,
+      "validation_predicted_positive_rate": 0.522
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.787,
+      "validation_balanced_accuracy": 0.787,
+      "validation_class_0_recall": 0.768,
+      "validation_class_1_recall": 0.806,
+      "validation_predicted_positive_rate": 0.519
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.716,
+      "validation_balanced_accuracy": 0.716,
+      "validation_class_0_recall": 0.688,
+      "validation_class_1_recall": 0.744,
+      "validation_predicted_positive_rate": 0.528
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.732,
+      "validation_balanced_accuracy": 0.732,
+      "validation_class_0_recall": 0.722,
+      "validation_class_1_recall": 0.742,
+      "validation_predicted_positive_rate": 0.51
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.714,
+      "validation_balanced_accuracy": 0.714,
+      "validation_class_0_recall": 0.684,
+      "validation_class_1_recall": 0.744,
+      "validation_predicted_positive_rate": 0.53
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.735,
+      "validation_balanced_accuracy": 0.735,
+      "validation_class_0_recall": 0.722,
+      "validation_class_1_recall": 0.748,
+      "validation_predicted_positive_rate": 0.513
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.856,
+      "validation_balanced_accuracy": 0.856,
+      "validation_class_0_recall": 0.842,
+      "validation_class_1_recall": 0.87,
+      "validation_predicted_positive_rate": 0.514
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.856,
+      "validation_balanced_accuracy": 0.856,
+      "validation_class_0_recall": 0.848,
+      "validation_class_1_recall": 0.864,
+      "validation_predicted_positive_rate": 0.508
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.857,
+      "validation_balanced_accuracy": 0.857,
+      "validation_class_0_recall": 0.848,
+      "validation_class_1_recall": 0.866,
+      "validation_predicted_positive_rate": 0.509
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.881,
+      "validation_balanced_accuracy": 0.881,
+      "validation_class_0_recall": 0.87,
+      "validation_class_1_recall": 0.892,
+      "validation_predicted_positive_rate": 0.511
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.771,
+      "validation_balanced_accuracy": 0.7709999999999999,
+      "validation_class_0_recall": 0.708,
+      "validation_class_1_recall": 0.834,
+      "validation_predicted_positive_rate": 0.563
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.769,
+      "validation_balanced_accuracy": 0.7689999999999999,
+      "validation_class_0_recall": 0.71,
+      "validation_class_1_recall": 0.828,
+      "validation_predicted_positive_rate": 0.559
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.77,
+      "validation_balanced_accuracy": 0.77,
+      "validation_class_0_recall": 0.704,
+      "validation_class_1_recall": 0.836,
+      "validation_predicted_positive_rate": 0.566
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.758,
+      "validation_balanced_accuracy": 0.758,
+      "validation_class_0_recall": 0.69,
+      "validation_class_1_recall": 0.826,
+      "validation_predicted_positive_rate": 0.568
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.795,
+      "validation_balanced_accuracy": 0.795,
+      "validation_class_0_recall": 0.798,
+      "validation_class_1_recall": 0.792,
+      "validation_predicted_positive_rate": 0.497
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.798,
+      "validation_balanced_accuracy": 0.798,
+      "validation_class_0_recall": 0.802,
+      "validation_class_1_recall": 0.794,
+      "validation_predicted_positive_rate": 0.496
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.815,
+      "validation_balanced_accuracy": 0.815,
+      "validation_class_0_recall": 0.83,
+      "validation_class_1_recall": 0.8,
+      "validation_predicted_positive_rate": 0.485
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.803,
+      "validation_balanced_accuracy": 0.8029999999999999,
+      "validation_class_0_recall": 0.822,
+      "validation_class_1_recall": 0.784,
+      "validation_predicted_positive_rate": 0.481
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.758,
+      "validation_balanced_accuracy": 0.758,
+      "validation_class_0_recall": 0.732,
+      "validation_class_1_recall": 0.784,
+      "validation_predicted_positive_rate": 0.526
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.755,
+      "validation_balanced_accuracy": 0.755,
+      "validation_class_0_recall": 0.732,
+      "validation_class_1_recall": 0.778,
+      "validation_predicted_positive_rate": 0.523
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.743,
+      "validation_balanced_accuracy": 0.743,
+      "validation_class_0_recall": 0.724,
+      "validation_class_1_recall": 0.762,
+      "validation_predicted_positive_rate": 0.519
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.751,
+      "validation_balanced_accuracy": 0.751,
+      "validation_class_0_recall": 0.728,
+      "validation_class_1_recall": 0.774,
+      "validation_predicted_positive_rate": 0.523
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.854,
+      "validation_balanced_accuracy": 0.854,
+      "validation_class_0_recall": 0.84,
+      "validation_class_1_recall": 0.868,
+      "validation_predicted_positive_rate": 0.514
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.845,
+      "validation_balanced_accuracy": 0.845,
+      "validation_class_0_recall": 0.838,
+      "validation_class_1_recall": 0.852,
+      "validation_predicted_positive_rate": 0.507
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.842,
+      "validation_balanced_accuracy": 0.842,
+      "validation_class_0_recall": 0.832,
+      "validation_class_1_recall": 0.852,
+      "validation_predicted_positive_rate": 0.51
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.86,
+      "validation_balanced_accuracy": 0.86,
+      "validation_class_0_recall": 0.85,
+      "validation_class_1_recall": 0.87,
+      "validation_predicted_positive_rate": 0.51
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.766,
+      "validation_balanced_accuracy": 0.766,
+      "validation_class_0_recall": 0.702,
+      "validation_class_1_recall": 0.83,
+      "validation_predicted_positive_rate": 0.564
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.788,
+      "validation_balanced_accuracy": 0.788,
+      "validation_class_0_recall": 0.742,
+      "validation_class_1_recall": 0.834,
+      "validation_predicted_positive_rate": 0.546
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.769,
+      "validation_balanced_accuracy": 0.769,
+      "validation_class_0_recall": 0.728,
+      "validation_class_1_recall": 0.81,
+      "validation_predicted_positive_rate": 0.541
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.755,
+      "validation_balanced_accuracy": 0.755,
+      "validation_class_0_recall": 0.702,
+      "validation_class_1_recall": 0.808,
+      "validation_predicted_positive_rate": 0.553
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.867,
+      "validation_balanced_accuracy": 0.867,
+      "validation_class_0_recall": 0.858,
+      "validation_class_1_recall": 0.876,
+      "validation_predicted_positive_rate": 0.509
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.865,
+      "validation_balanced_accuracy": 0.865,
+      "validation_class_0_recall": 0.862,
+      "validation_class_1_recall": 0.868,
+      "validation_predicted_positive_rate": 0.503
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.863,
+      "validation_balanced_accuracy": 0.863,
+      "validation_class_0_recall": 0.866,
+      "validation_class_1_recall": 0.86,
+      "validation_predicted_positive_rate": 0.497
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.851,
+      "validation_balanced_accuracy": 0.851,
+      "validation_class_0_recall": 0.868,
+      "validation_class_1_recall": 0.834,
+      "validation_predicted_positive_rate": 0.483
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.789,
+      "validation_balanced_accuracy": 0.7889999999999999,
+      "validation_class_0_recall": 0.734,
+      "validation_class_1_recall": 0.844,
+      "validation_predicted_positive_rate": 0.555
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.772,
+      "validation_balanced_accuracy": 0.772,
+      "validation_class_0_recall": 0.73,
+      "validation_class_1_recall": 0.814,
+      "validation_predicted_positive_rate": 0.542
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.789,
+      "validation_balanced_accuracy": 0.7889999999999999,
+      "validation_class_0_recall": 0.728,
+      "validation_class_1_recall": 0.85,
+      "validation_predicted_positive_rate": 0.561
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "epochs": 10,
+      "validation_n_eval": 1000.0,
+      "validation_accuracy": 0.763,
+      "validation_balanced_accuracy": 0.7629999999999999,
+      "validation_class_0_recall": 0.692,
+      "validation_class_1_recall": 0.834,
+      "validation_predicted_positive_rate": 0.571
+    }
+  ],
+  "activity_diagnostics": [
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 52.507713317871094,
+      "mean_spike_rate_per_hidden_tick": 0.06836941838264465,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 52.62471389770508,
+      "mean_spike_rate_per_hidden_tick": 0.06852176040410995,
+      "mean_gain": 0.7998389173235212
+    },
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 51.961570739746094,
+      "mean_spike_rate_per_hidden_tick": 0.06765829771757126,
+      "mean_gain": 0.8984933384486607
+    },
+    {
+      "seed": 9200,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 51.74800109863281,
+      "mean_spike_rate_per_hidden_tick": 0.06738020479679108,
+      "mean_gain": 0.7931902872721354
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 65.7758560180664,
+      "mean_spike_rate_per_hidden_tick": 0.0856456458568573,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 66.33200073242188,
+      "mean_spike_rate_per_hidden_tick": 0.08636979013681412,
+      "mean_gain": 0.8731084376743862
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 65.6517105102539,
+      "mean_spike_rate_per_hidden_tick": 0.08548400551080704,
+      "mean_gain": 0.9348802054268973
+    },
+    {
+      "seed": 9200,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 66.1778564453125,
+      "mean_spike_rate_per_hidden_tick": 0.08616908639669418,
+      "mean_gain": 0.8571810142880394
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 95.82614135742188,
+      "mean_spike_rate_per_hidden_tick": 0.12477362155914307,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 93.46171569824219,
+      "mean_spike_rate_per_hidden_tick": 0.12169493734836578,
+      "mean_gain": 0.9888272356305804
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 90.81885528564453,
+      "mean_spike_rate_per_hidden_tick": 0.11825372278690338,
+      "mean_gain": 0.9894880865187872
+    },
+    {
+      "seed": 9201,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 88.2174301147461,
+      "mean_spike_rate_per_hidden_tick": 0.11486644297838211,
+      "mean_gain": 0.9406624407087053
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 56.80314254760742,
+      "mean_spike_rate_per_hidden_tick": 0.07396242767572403,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 57.099571228027344,
+      "mean_spike_rate_per_hidden_tick": 0.07434839755296707,
+      "mean_gain": 0.8274703543526786
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 56.516571044921875,
+      "mean_spike_rate_per_hidden_tick": 0.07358928769826889,
+      "mean_gain": 0.9124649687267485
+    },
+    {
+      "seed": 9201,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 56.47314453125,
+      "mean_spike_rate_per_hidden_tick": 0.07353273779153824,
+      "mean_gain": 0.8151154421851748
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 56.408573150634766,
+      "mean_spike_rate_per_hidden_tick": 0.07344865798950195,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 57.30485534667969,
+      "mean_spike_rate_per_hidden_tick": 0.07461570203304291,
+      "mean_gain": 0.8199532993861607
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 56.773284912109375,
+      "mean_spike_rate_per_hidden_tick": 0.07392355054616928,
+      "mean_gain": 0.9087495611281622
+    },
+    {
+      "seed": 9202,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 57.628570556640625,
+      "mean_spike_rate_per_hidden_tick": 0.07503720372915268,
+      "mean_gain": 0.8054722290039062
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 52.683570861816406,
+      "mean_spike_rate_per_hidden_tick": 0.06859839707612991,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 53.89914321899414,
+      "mean_spike_rate_per_hidden_tick": 0.07018117606639862,
+      "mean_gain": 0.8026349966866629
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 53.494712829589844,
+      "mean_spike_rate_per_hidden_tick": 0.06965457648038864,
+      "mean_gain": 0.9004147338867188
+    },
+    {
+      "seed": 9202,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 54.66885757446289,
+      "mean_spike_rate_per_hidden_tick": 0.07118340581655502,
+      "mean_gain": 0.7908615097772508
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 43.75657272338867,
+      "mean_spike_rate_per_hidden_tick": 0.05697470158338547,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 45.453712463378906,
+      "mean_spike_rate_per_hidden_tick": 0.05918452516198158,
+      "mean_gain": 0.7430693926130022
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 44.152427673339844,
+      "mean_spike_rate_per_hidden_tick": 0.057490140199661255,
+      "mean_gain": 0.8679391595749628
+    },
+    {
+      "seed": 9203,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 44.59114456176758,
+      "mean_spike_rate_per_hidden_tick": 0.058061383664608,
+      "mean_gain": 0.7333816775367373
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 57.266143798828125,
+      "mean_spike_rate_per_hidden_tick": 0.07456529140472412,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 57.44571304321289,
+      "mean_spike_rate_per_hidden_tick": 0.07479910552501678,
+      "mean_gain": 0.7957236153738839
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 54.665428161621094,
+      "mean_spike_rate_per_hidden_tick": 0.07117894291877747,
+      "mean_gain": 0.8913505219959077
+    },
+    {
+      "seed": 9203,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 52.47157287597656,
+      "mean_spike_rate_per_hidden_tick": 0.06832236051559448,
+      "mean_gain": 0.7669203476678758
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 105.55571746826172,
+      "mean_spike_rate_per_hidden_tick": 0.13744233548641205,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 101.66500091552734,
+      "mean_spike_rate_per_hidden_tick": 0.1323762983083725,
+      "mean_gain": 1.0057010607038226
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 103.21485900878906,
+      "mean_spike_rate_per_hidden_tick": 0.1343943476676941,
+      "mean_gain": 1.0049895688011532
+    },
+    {
+      "seed": 9204,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 104.30542755126953,
+      "mean_spike_rate_per_hidden_tick": 0.1358143538236618,
+      "mean_gain": 0.9794273739769346
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 77.31828308105469,
+      "mean_spike_rate_per_hidden_tick": 0.10067485272884369,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 78.11856842041016,
+      "mean_spike_rate_per_hidden_tick": 0.10171689093112946,
+      "mean_gain": 0.8917665427071707
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 75.28271484375,
+      "mean_spike_rate_per_hidden_tick": 0.09802436828613281,
+      "mean_gain": 0.9402695748465402
+    },
+    {
+      "seed": 9204,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 75.67928314208984,
+      "mean_spike_rate_per_hidden_tick": 0.09854073822498322,
+      "mean_gain": 0.8630598565964471
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 112.611572265625,
+      "mean_spike_rate_per_hidden_tick": 0.14662964642047882,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 108.9932861328125,
+      "mean_spike_rate_per_hidden_tick": 0.14191834628582,
+      "mean_gain": 1.0069036058698382
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 110.6444320678711,
+      "mean_spike_rate_per_hidden_tick": 0.14406827092170715,
+      "mean_gain": 1.005655540829613
+    },
+    {
+      "seed": 9205,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 109.75714111328125,
+      "mean_spike_rate_per_hidden_tick": 0.14291293919086456,
+      "mean_gain": 0.9644091273716517
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 134.4412841796875,
+      "mean_spike_rate_per_hidden_tick": 0.17505376040935516,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 129.9709930419922,
+      "mean_spike_rate_per_hidden_tick": 0.1692330688238144,
+      "mean_gain": 1.115936255318778
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 134.6965789794922,
+      "mean_spike_rate_per_hidden_tick": 0.17538616061210632,
+      "mean_gain": 1.0662083623976935
+    },
+    {
+      "seed": 9205,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 135.1269989013672,
+      "mean_spike_rate_per_hidden_tick": 0.17594660818576813,
+      "mean_gain": 1.0732229614257813
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 140.56100463867188,
+      "mean_spike_rate_per_hidden_tick": 0.183022141456604,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 135.11500549316406,
+      "mean_spike_rate_per_hidden_tick": 0.17593099176883698,
+      "mean_gain": 1.1264937308175222
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 140.70314025878906,
+      "mean_spike_rate_per_hidden_tick": 0.1832072138786316,
+      "mean_gain": 1.072658200218564
+    },
+    {
+      "seed": 9206,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 141.0872802734375,
+      "mean_spike_rate_per_hidden_tick": 0.18370740115642548,
+      "mean_gain": 1.0830801275344122
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 217.8184356689453,
+      "mean_spike_rate_per_hidden_tick": 0.2836177349090576,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 202.63099670410156,
+      "mean_spike_rate_per_hidden_tick": 0.2638424336910248,
+      "mean_gain": 1.4688274405343191
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 212.30642700195312,
+      "mean_spike_rate_per_hidden_tick": 0.27644065022468567,
+      "mean_gain": 1.253377188546317
+    },
+    {
+      "seed": 9206,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 210.0959930419922,
+      "mean_spike_rate_per_hidden_tick": 0.273562490940094,
+      "mean_gain": 1.358230968656994
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 152.05271911621094,
+      "mean_spike_rate_per_hidden_tick": 0.19798530638217926,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 142.4144287109375,
+      "mean_spike_rate_per_hidden_tick": 0.1854354590177536,
+      "mean_gain": 1.1797367510114398
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 146.0164337158203,
+      "mean_spike_rate_per_hidden_tick": 0.19012555480003357,
+      "mean_gain": 1.0962580711728052
+    },
+    {
+      "seed": 9207,
+      "task": "sync",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 141.26742553710938,
+      "mean_spike_rate_per_hidden_tick": 0.18394196033477783,
+      "mean_gain": 1.1098555821010045
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_fixed_25",
+      "mean_spikes_per_trial": 194.08114624023438,
+      "mean_spike_rate_per_hidden_tick": 0.25270983576774597,
+      "mean_gain": 1.0
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_global_adaptive_25",
+      "mean_spikes_per_trial": 178.9334259033203,
+      "mean_spike_rate_per_hidden_tick": 0.2329862415790558,
+      "mean_gain": 1.3697310442243305
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_2",
+      "mean_spikes_per_trial": 183.30128479003906,
+      "mean_spike_rate_per_hidden_tick": 0.23867355287075043,
+      "mean_gain": 1.1932840692429316
+    },
+    {
+      "seed": 9207,
+      "task": "order",
+      "condition": "dale_local_adaptive_slope_4",
+      "mean_spikes_per_trial": 176.41128540039062,
+      "mean_spike_rate_per_hidden_tick": 0.2297021895647049,
+      "mean_gain": 1.2552708885556176
+    }
+  ],
+  "elapsed_seconds": 17.986
+}

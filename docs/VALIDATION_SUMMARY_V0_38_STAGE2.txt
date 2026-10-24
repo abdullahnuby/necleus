@@ -1,0 +1,30 @@
+Nucleus Pulse v0.38 — Stage 2 Development Tuning Validation
+Date: 2026-10-24
+
+Automated tests
+- Full project test suite: 95 passed.
+- Stage-2 EMA tau targeted tests included in full suite.
+- Candidate execution smoke test: seed 9300, task sync, tau=4 completed; 6000 train and 1000 validation examples; validation checkpoints at epochs 1, 3, 5, 10.
+
+Frozen protocol and results
+- Stage-2 preregistration source hashes verified: 10/10 matches.
+- Development seeds: 9300–9307 (8 seeds); official range reserved: 12000–12039.
+- Candidate EMA tau values: 2, 4, 8 ticks; fixed local slope = 2.0.
+- Completed seed/task/tau combinations: 48/48.
+- Validation metric rows: 192/192 (48 combinations × four checkpoints).
+- Activity diagnostic rows: 48/48.
+- Every train split: 6000 unique balanced examples; every validation split: 1000 unique balanced examples.
+- Maximum exact train/validation sequence overlap: 0.
+- Within every seed/task, recurrent matrix SHA-256, input-raster SHA-256, train-key hash, and validation-key hash are identical across tau candidates.
+- First-tick inhibitory gain is 1.0; model outputs and reported metrics are finite.
+- Final-test dataset generated or accessed by the tuning script: NO.
+
+Selection on development only
+- tau=2: 79.956% mean validation balanced accuracy at epoch 10.
+- tau=4: 80.013%.
+- tau=8: 80.038% (selected by frozen rule: maximize mean validation balanced accuracy at epoch 10, ties go to smaller tau).
+- tau=8 vs tau=4 pooled paired difference across tasks: +0.025 percentage points; bootstrap 95% CI [-0.350, +0.487]. This interval includes zero; selection is a development candidate, not evidence of superiority.
+
+Important interpretation limit
+- No official evaluation has been run. tau=8 is not frozen for official testing and must not be described as a proven winner.
+- The full suite and provenance checks passed; ZIP integrity and its SHA-256 are generated with the distribution package.

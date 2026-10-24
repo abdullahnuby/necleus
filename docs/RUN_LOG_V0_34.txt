@@ -1,0 +1,15 @@
+Nucleus Pulse v0.34 official run log
+Date: 2026-10-24
+Frozen run command: python experiments/run_inhibition_structure_v0_34.py --workers 3
+Resumption command: python experiments/run_inhibition_structure_v0_34.py --resume --workers 3
+
+The run completed in three execution segments due to execution time limits; the script saved per-seed outputs after each completed seed and later resumed from the saved partial result file.
+- Segment 1: 17/40 seeds completed before the execution session ended.
+- Segment 2: resumed and reached 33/40 seeds before the execution session ended.
+- Segment 3: resumed and completed seeds 7033-7039; final output reported 40/40 seeds and 640 records.
+
+All runs used the same preregistered source hashes, config and seeds. No model, data split, readout hyperparameter or decision threshold was changed between segments. Total wall-clock runtime across all segments was not measured; results.json notes that its runtime_seconds value is the last resumed segment only.
+
+Final primary paired differences (Dale condition minus all-excitatory control, 10 passes):
+- sync: -0.635 pp; seed-bootstrap 95% CI [-1.4775, +0.1600]; positive/negative/zero seeds = 18/20/2.
+- order: -0.120 pp; seed-bootstrap 95% CI [-0.9000, +0.6750]; positive/negative/zero seeds = 17/22/1.

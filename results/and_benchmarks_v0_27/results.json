@@ -1,0 +1,3837 @@
+{
+  "version": "v0.27",
+  "purpose": "Saturation/inhibition AND validation with varied pulse trains and fair reference baselines",
+  "parameters": {
+    "duration": 32,
+    "threshold": 1.02,
+    "tau_mem": 1.0,
+    "tau_syn": 0.8,
+    "weight_A": 1.0,
+    "weight_B": 1.0,
+    "per_synapse_current_cap": 1.0,
+    "coincidence_window_ticks": 1,
+    "test_seeds": [
+      27001,
+      27011,
+      27023,
+      27031,
+      27041,
+      27053,
+      27061,
+      27071,
+      27083,
+      27091
+    ],
+    "test_examples_per_seed": 300,
+    "mlp_train_examples": 5000,
+    "mlp_epochs": 60,
+    "mlp_hidden": [
+      32,
+      16
+    ],
+    "mlp_seeds": [
+      311,
+      317,
+      331
+    ]
+  },
+  "dataset": {
+    "examples": 3000,
+    "pattern_kinds": [
+      "a_only_burst",
+      "b_only_burst",
+      "coincident_single",
+      "interleaved_gap2",
+      "near_single",
+      "noisy_positive",
+      "random_negative",
+      "random_positive",
+      "separated_single",
+      "synchronous_trains"
+    ],
+    "positive_rate": 0.5
+  },
+  "overall": {
+    "pulse_saturated_and": {
+      "n": 3000,
+      "accuracy": 1.0,
+      "tp": 1500,
+      "tn": 1500,
+      "fp": 0,
+      "fn": 0,
+      "positive_recall": 1.0,
+      "negative_recall": 1.0
+    },
+    "count_only_baseline": {
+      "n": 3000,
+      "accuracy": 0.7,
+      "tp": 1500,
+      "tn": 600,
+      "fp": 900,
+      "fn": 0,
+      "positive_recall": 1.0,
+      "negative_recall": 0.4
+    },
+    "single_layer_analytic_rule_ceiling": {
+      "n": 3000,
+      "accuracy": 1.0,
+      "tp": 1500,
+      "tn": 1500,
+      "fp": 0,
+      "fn": 0,
+      "positive_recall": 1.0,
+      "negative_recall": 1.0
+    },
+    "nonspiking_temporal_mlp_3_model_majority": {
+      "n": 3000,
+      "accuracy": 0.946,
+      "tp": 1437,
+      "tn": 1401,
+      "fp": 99,
+      "fn": 63,
+      "positive_recall": 0.958,
+      "negative_recall": 0.934
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 27001,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.95,
+        "tp": 143,
+        "tn": 142,
+        "fp": 8,
+        "fn": 7,
+        "positive_recall": 0.9533333333333334,
+        "negative_recall": 0.9466666666666667
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9333333333333333,
+            "tp": 28,
+            "tn": 0,
+            "fp": 0,
+            "fn": 2,
+            "positive_recall": 0.9333333333333333,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.7333333333333333,
+            "tp": 0,
+            "tn": 22,
+            "fp": 8,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.7333333333333333
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8333333333333334,
+            "tp": 25,
+            "tn": 0,
+            "fp": 0,
+            "fn": 5,
+            "positive_recall": 0.8333333333333334,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27011,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.94,
+        "tp": 143,
+        "tn": 139,
+        "fp": 11,
+        "fn": 7,
+        "positive_recall": 0.9533333333333334,
+        "negative_recall": 0.9266666666666666
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8333333333333334,
+            "tp": 25,
+            "tn": 0,
+            "fp": 0,
+            "fn": 5,
+            "positive_recall": 0.8333333333333334,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.6333333333333333,
+            "tp": 0,
+            "tn": 19,
+            "fp": 11,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.6333333333333333
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9333333333333333,
+            "tp": 28,
+            "tn": 0,
+            "fp": 0,
+            "fn": 2,
+            "positive_recall": 0.9333333333333333,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27023,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.93,
+        "tp": 141,
+        "tn": 138,
+        "fp": 12,
+        "fn": 9,
+        "positive_recall": 0.94,
+        "negative_recall": 0.92
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8666666666666667,
+            "tp": 26,
+            "tn": 0,
+            "fp": 0,
+            "fn": 4,
+            "positive_recall": 0.8666666666666667,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.6,
+            "tp": 0,
+            "tn": 18,
+            "fp": 12,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.6
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8333333333333334,
+            "tp": 25,
+            "tn": 0,
+            "fp": 0,
+            "fn": 5,
+            "positive_recall": 0.8333333333333334,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27031,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.9466666666666667,
+        "tp": 144,
+        "tn": 140,
+        "fp": 10,
+        "fn": 6,
+        "positive_recall": 0.96,
+        "negative_recall": 0.9333333333333333
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8666666666666667,
+            "tp": 26,
+            "tn": 0,
+            "fp": 0,
+            "fn": 4,
+            "positive_recall": 0.8666666666666667,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.6666666666666666,
+            "tp": 0,
+            "tn": 20,
+            "fp": 10,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.6666666666666666
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9333333333333333,
+            "tp": 28,
+            "tn": 0,
+            "fp": 0,
+            "fn": 2,
+            "positive_recall": 0.9333333333333333,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27041,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.97,
+        "tp": 147,
+        "tn": 144,
+        "fp": 6,
+        "fn": 3,
+        "positive_recall": 0.98,
+        "negative_recall": 0.96
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9666666666666667,
+            "tp": 29,
+            "tn": 0,
+            "fp": 0,
+            "fn": 1,
+            "positive_recall": 0.9666666666666667,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8,
+            "tp": 0,
+            "tn": 24,
+            "fp": 6,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.8
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9333333333333333,
+            "tp": 28,
+            "tn": 0,
+            "fp": 0,
+            "fn": 2,
+            "positive_recall": 0.9333333333333333,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27053,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.9533333333333334,
+        "tp": 145,
+        "tn": 141,
+        "fp": 9,
+        "fn": 5,
+        "positive_recall": 0.9666666666666667,
+        "negative_recall": 0.94
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9,
+            "tp": 27,
+            "tn": 0,
+            "fp": 0,
+            "fn": 3,
+            "positive_recall": 0.9,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.7,
+            "tp": 0,
+            "tn": 21,
+            "fp": 9,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.7
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9333333333333333,
+            "tp": 28,
+            "tn": 0,
+            "fp": 0,
+            "fn": 2,
+            "positive_recall": 0.9333333333333333,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27061,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.9333333333333333,
+        "tp": 143,
+        "tn": 137,
+        "fp": 13,
+        "fn": 7,
+        "positive_recall": 0.9533333333333334,
+        "negative_recall": 0.9133333333333333
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9333333333333333,
+            "tp": 28,
+            "tn": 0,
+            "fp": 0,
+            "fn": 2,
+            "positive_recall": 0.9333333333333333,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.5666666666666667,
+            "tp": 0,
+            "tn": 17,
+            "fp": 13,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.5666666666666667
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8333333333333334,
+            "tp": 25,
+            "tn": 0,
+            "fp": 0,
+            "fn": 5,
+            "positive_recall": 0.8333333333333334,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27071,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.9666666666666667,
+        "tp": 146,
+        "tn": 144,
+        "fp": 6,
+        "fn": 4,
+        "positive_recall": 0.9733333333333334,
+        "negative_recall": 0.96
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9666666666666667,
+            "tp": 29,
+            "tn": 0,
+            "fp": 0,
+            "fn": 1,
+            "positive_recall": 0.9666666666666667,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8,
+            "tp": 0,
+            "tn": 24,
+            "fp": 6,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.8
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9,
+            "tp": 27,
+            "tn": 0,
+            "fp": 0,
+            "fn": 3,
+            "positive_recall": 0.9,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27083,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.95,
+        "tp": 148,
+        "tn": 137,
+        "fp": 13,
+        "fn": 2,
+        "positive_recall": 0.9866666666666667,
+        "negative_recall": 0.9133333333333333
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9666666666666667,
+            "tp": 29,
+            "tn": 0,
+            "fp": 0,
+            "fn": 1,
+            "positive_recall": 0.9666666666666667,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.5666666666666667,
+            "tp": 0,
+            "tn": 17,
+            "fp": 13,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.5666666666666667
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.9666666666666667,
+            "tp": 29,
+            "tn": 0,
+            "fp": 0,
+            "fn": 1,
+            "positive_recall": 0.9666666666666667,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "seed": 27091,
+      "pulse_network": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "count_only": {
+        "n": 300,
+        "accuracy": 0.7,
+        "tp": 150,
+        "tn": 60,
+        "fp": 90,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 0.4
+      },
+      "analytic_coincidence_rule": {
+        "n": 300,
+        "accuracy": 1.0,
+        "tp": 150,
+        "tn": 150,
+        "fp": 0,
+        "fn": 0,
+        "positive_recall": 1.0,
+        "negative_recall": 1.0
+      },
+      "temporal_mlp_majority_3_seeds": {
+        "n": 300,
+        "accuracy": 0.92,
+        "tp": 137,
+        "tn": 139,
+        "fp": 11,
+        "fn": 13,
+        "positive_recall": 0.9133333333333333,
+        "negative_recall": 0.9266666666666666
+      },
+      "by_kind": {
+        "a_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "b_only_burst": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "coincident_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "interleaved_gap2": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "near_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        },
+        "noisy_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.7666666666666667,
+            "tp": 23,
+            "tn": 0,
+            "fp": 0,
+            "fn": 7,
+            "positive_recall": 0.7666666666666667,
+            "negative_recall": 0.0
+          }
+        },
+        "random_negative": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.6333333333333333,
+            "tp": 0,
+            "tn": 19,
+            "fp": 11,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.6333333333333333
+          }
+        },
+        "random_positive": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 0.8,
+            "tp": 24,
+            "tn": 0,
+            "fp": 0,
+            "fn": 6,
+            "positive_recall": 0.8,
+            "negative_recall": 0.0
+          }
+        },
+        "separated_single": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 0.0,
+            "tp": 0,
+            "tn": 0,
+            "fp": 30,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 0,
+            "tn": 30,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 0.0,
+            "negative_recall": 1.0
+          }
+        },
+        "synchronous_trains": {
+          "pulse_network": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "count_only": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          },
+          "temporal_mlp": {
+            "n": 30,
+            "accuracy": 1.0,
+            "tp": 30,
+            "tn": 0,
+            "fp": 0,
+            "fn": 0,
+            "positive_recall": 1.0,
+            "negative_recall": 0.0
+          }
+        }
+      }
+    }
+  ],
+  "fixed_stress_cases": [
+    {
+      "name": "simultaneous",
+      "target": 1,
+      "prediction": 1,
+      "correct": true
+    },
+    {
+      "name": "A_before_B_by_1",
+      "target": 1,
+      "prediction": 1,
+      "correct": true
+    },
+    {
+      "name": "B_before_A_by_1",
+      "target": 1,
+      "prediction": 1,
+      "correct": true
+    },
+    {
+      "name": "gap_2",
+      "target": 0,
+      "prediction": 0,
+      "correct": true
+    },
+    {
+      "name": "gap_4",
+      "target": 0,
+      "prediction": 0,
+      "correct": true
+    },
+    {
+      "name": "A_high_rate_burst_only",
+      "target": 0,
+      "prediction": 0,
+      "correct": true
+    },
+    {
+      "name": "B_high_rate_burst_only",
+      "target": 0,
+      "prediction": 0,
+      "correct": true
+    },
+    {
+      "name": "interleaved_gap_2_trains",
+      "target": 0,
+      "prediction": 0,
+      "correct": true
+    },
+    {
+      "name": "synchronous_trains",
+      "target": 1,
+      "prediction": 1,
+      "correct": true
+    }
+  ],
+  "inhibitory_polarity_check": {
+    "exc_only_spikes": [
+      2
+    ],
+    "exc_plus_inhib_spikes": [],
+    "exc_only_max_voltage": 0.9481808382428365,
+    "exc_plus_inhib_max_voltage": 0.5689085029457019
+  },
+  "inference_timing_500_examples_seconds": {
+    "pulse_event_python": 0.02755200399997193,
+    "temporal_mlp_one_model_single_sample_loop": 0.010556504000078348,
+    "temporal_mlp_one_model_batched_500": 0.00023960500004704954,
+    "analytic_rule": 0.0002791240000306061,
+    "warning": "Not a hardware speedup claim: Python event loops and Torch kernels differ in batching/vectorization and overhead."
+  },
+  "reference_validation": {
+    "current_max_abs_error": 0.0,
+    "voltage_max_abs_error": 0.0,
+    "note": "The independent recurrence is used for numerical cross-check. Brian2 was unavailable in this offline runtime and was not executed."
+  },
+  "external_simulator": {
+    "name": "Brian2",
+    "available": false,
+    "executed": false,
+    "reason": "Brian2 is not installed and package installation was blocked by unavailable network access in this runtime.",
+    "fallback": "Independent exact-discrete recurrence cross-check is provided; Brian2 parity remains an open validation item."
+  },
+  "limits": [
+    "The pulse AND cell has manually specified parameters; this experiment validates the mechanism and dynamics, not learned weights.",
+    "The temporal MLP is trained on 5000 examples; the pulse circuit is configured analytically, so this is not an equal-training-budget learning comparison.",
+    "The analytic coincidence rule is an oracle for the task definition, not a learned model.",
+    "A later experiment will train a network sequentially on synchrony then A-before-B and compare reward-modulated STDP with a same-order MLP baseline."
+  ]
+}

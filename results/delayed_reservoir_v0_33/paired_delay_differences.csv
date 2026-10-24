@@ -1,0 +1,9 @@
+task,epochs,contrast,n_paired_seeds,mean_delta_percentage_points,ci95_low_percentage_points,ci95_high_percentage_points,positive_seed_deltas,negative_seed_deltas,zero_seed_deltas
+sync,1,heterogeneous_delay1_4 - baseline_delay1,40,0.3125000000000011,-0.3774999999999998,1.045062500000001,20,19,1
+sync,3,heterogeneous_delay1_4 - baseline_delay1,40,0.5524999999999991,-0.11499999999999927,1.2524999999999984,24,15,1
+sync,5,heterogeneous_delay1_4 - baseline_delay1,40,0.31500000000000056,-0.29749999999999777,0.9475624999999996,23,16,1
+sync,10,heterogeneous_delay1_4 - baseline_delay1,40,0.4000000000000001,-0.1650625000000003,1.0075624999999995,21,19,0
+order,1,heterogeneous_delay1_4 - baseline_delay1,40,0.06749999999999978,-0.3375000000000003,0.49499999999999933,20,19,1
+order,3,heterogeneous_delay1_4 - baseline_delay1,40,0.03749999999999948,-0.3925000000000007,0.47749999999999926,20,19,1
+order,5,heterogeneous_delay1_4 - baseline_delay1,40,0.16000000000000014,-0.29000000000000026,0.6225000000000006,21,17,2
+order,10,heterogeneous_delay1_4 - baseline_delay1,40,0.10250000000000009,-0.43250000000000044,0.6350624999999996,20,18,2

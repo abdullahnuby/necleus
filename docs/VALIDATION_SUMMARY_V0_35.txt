@@ -1,0 +1,35 @@
+Nucleus Pulse v0.35 — Validation Summary
+========================================
+
+Official experiment
+- 40/40 preregistered seeds (8000–8039) completed.
+- 640/640 expected records (40 seeds x 2 tasks x 2 conditions x 4 pass checkpoints).
+- 6,000 unique balanced training examples, 1,000 validation examples and 1,000 independent test examples per task/seed.
+- Total train/validation/test sequence overlap recorded: 0.
+- Exact base recurrent matrix equality between paired conditions: true for all 40 seeds.
+- Same input rasters between conditions: checked during each seed; all passed.
+- Final partial-run file removed after full completion.
+
+Protocol and software validation
+- Preregistration source hashes verified before official runs.
+- v0.35-specific tests: 6 passed.
+- Full project test suite: 73 passed.
+- Smoke test: passed (same matrix, bounded gain, fixed-gain equivalence, finite simulations/features).
+- JSON results parsed successfully; all official 40 seeds and 640 records present.
+- Final run used 3 workers and resumable per-seed saving. The recorded run_full elapsed time was 5.12 seconds; orchestration included several resumed tool sessions due to execution-session time limits.
+
+Primary results at 10 passes (paired seed bootstrap 95% intervals)
+- sync: fixed Dale 82.19%; adaptive inhibition 82.45%; delta +0.26 percentage points, CI [-0.02, +0.54].
+- order: fixed Dale 76.01%; adaptive inhibition 76.03%; delta +0.02 percentage points, CI [-0.25, +0.32].
+- Both paired intervals include zero; no clear accuracy gain is established.
+- Mean spikes/trial: 97.978 fixed vs 97.143 adaptive (about 0.85% fewer with adaptive gain).
+- Mean adaptive inhibitory gain: 0.97856; gain minimum bound active in 0.487% of samples; maximum bound not reached.
+
+Implementation audit
+- An initial full run was not accepted for final reporting because EMA was updated before computing the first-tick gain, contrary to the intended initial-gain=1.0 protocol.
+- The order was corrected, source/test/protocol hashes were regenerated, and all 40 seeds were rerun from scratch. The first run was not combined with the corrected run.
+
+Interpretation
+- The intervention changes recurrent inhibitory current dynamically but does not modify base weights, connectivity, input weights, thresholds, leak, refractory dynamics, temporal features, readout or training examples.
+- The measured accuracy differences are small, and both paired confidence intervals cross zero. Do not claim general superiority.
+- This is a fixed reservoir with a trained readout on two synthetic tasks; it does not establish STDP, recurrent-weight learning, biological fidelity, or general engineering reasoning.

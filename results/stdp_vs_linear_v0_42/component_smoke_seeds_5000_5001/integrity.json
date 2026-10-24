@@ -1,0 +1,116 @@
+[
+  {
+    "seed": 5000,
+    "reservoir_seed": 5000,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 80,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 80,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 40,
+          "1": 40
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          80,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 80,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 80,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 40,
+          "1": 40
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          80,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.0634
+  },
+  {
+    "seed": 5001,
+    "reservoir_seed": 5001,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 80,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 80,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 40,
+          "1": 40
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          80,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 80,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 80,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 40,
+          "1": 40
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          80,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1047
+  }
+]

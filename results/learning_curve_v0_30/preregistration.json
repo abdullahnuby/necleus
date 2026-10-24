@@ -1,0 +1,108 @@
+{
+  "version": "0.30",
+  "frozen_at": "2026-10-24",
+  "purpose": "Learning-curve diagnostic; decodability/sample efficiency only, no STDP rule comparison. Scheduling amendment only; model and data generation unchanged.",
+  "config": {
+    "seeds": [
+      104,
+      887,
+      2027,
+      90210,
+      731,
+      3000,
+      3001,
+      3002,
+      3003,
+      3004,
+      3005,
+      3006,
+      3007,
+      3008,
+      3009,
+      3010,
+      3011,
+      3012,
+      3013,
+      3014,
+      3015,
+      3016,
+      3017,
+      3018,
+      3019,
+      3020,
+      3021,
+      3022,
+      3023,
+      3024,
+      3025,
+      3026,
+      3027,
+      3028,
+      3029,
+      3030,
+      3031,
+      3032,
+      3033,
+      3034
+    ],
+    "train_sizes": [
+      200,
+      500,
+      1000,
+      2000,
+      6000
+    ],
+    "train_pool_per_task": 6000,
+    "test_per_task_per_seed": 1000,
+    "hidden_neurons": 24,
+    "pipelines": [
+      {
+        "reader": "linear",
+        "feature_set": "phase4_96"
+      },
+      {
+        "reader": "linear",
+        "feature_set": "spike_counts_24"
+      },
+      {
+        "reader": "linear",
+        "feature_set": "spike_bins8_192"
+      },
+      {
+        "reader": "linear",
+        "feature_set": "spike_bins16_384"
+      },
+      {
+        "reader": "linear",
+        "feature_set": "spike_raster_768"
+      },
+      {
+        "reader": "gbm",
+        "feature_set": "spike_raster_768"
+      },
+      {
+        "reader": "linear",
+        "feature_set": "raw_input_128"
+      },
+      {
+        "reader": "gbm",
+        "feature_set": "raw_input_128"
+      }
+    ],
+    "logistic_C": 1.0,
+    "logistic_max_iter": 250,
+    "gbm_max_iter": 80,
+    "gbm_max_leaf_nodes": 15,
+    "gbm_min_samples_leaf": 20,
+    "gbm_l2": 1.0,
+    "test_used_for_tuning": false,
+    "nested_class_balanced_training_subsets": true
+  },
+  "sha256": {
+    "experiments/run_learning_curve_v0_30.py": "f3ad5c417547c8ea395c44ed082bcc02378453d06f49251aca9a2fbba58f957b",
+    "tests/test_learning_curve_v0_30.py": "4f58fae6d287cdd23e3fbef1f2c8aec7c463b5a3f6292ca707e9b3e39592d773",
+    "docs/LEARNING_CURVE_PROTOCOL_V0_30_AR.md": "06c57b60130eb4a276fcbb4247f78689f9b614646be5ed2fb8cf75b94ae0932b",
+    "pulse_core/sequential_stdp.py": "8f2bbba78fc524ee01be9b37e13f5e6fd41216434d7d56af235fce6507566fd6",
+    "requirements-benchmark.txt": "e76c4cf92a8876b75b495f591fb546b88dbf5b97c96094799ab3fd96f78736ca"
+  }
+}

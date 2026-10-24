@@ -1,0 +1,66 @@
+{
+  "version": "0.28.1",
+  "title": "Sequential task learning with reward-modulated temporal eligibility; jitter data-overlap correction",
+  "status": "Local preregistration before the corrected final seed run. Pilot seeds 998-1001 are excluded.",
+  "correction_note": "Compared with v0.28, this run only changes jitter test-generation acceptance to reject exact overlap with training inputs. Model, learning hyperparameters, primary train/test examples, and seed list are unchanged.",
+  "protocol": {
+    "final_seeds": [
+      104,
+      887,
+      2027,
+      90210,
+      731
+    ],
+    "train_examples_per_task": 200,
+    "test_examples_per_task": 160,
+    "epochs_per_task": 8,
+    "task_order": [
+      "sync_coincidence",
+      "A_before_B_order"
+    ],
+    "replay_old_task_during_task2": false,
+    "same_shared_reservoir_and_two_output_cells": true,
+    "hidden_neurons": 24,
+    "duration_ticks": 32,
+    "pulse_lr": 0.01,
+    "pulse_softmax_temperature": 0.7,
+    "mlp_width": 48,
+    "mlp_batch_size": 16,
+    "mlp_learning_rate": 0.006,
+    "mlp_epochs_per_task": 8,
+    "timing_jitter_ticks": [
+      -1,
+      0,
+      1
+    ],
+    "jitter_label_policy": "accept only perturbations that preserve the original label; reject jitter inputs that exactly overlap any training sequence",
+    "test_overlap_policy": "exact event-sequence overlap between train and IID/shifted/jitter test is forbidden; final runner aborts on train/jitter overlap",
+    "primary_metrics": [
+      "task1_before_task2_accuracy",
+      "task1_after_task2_accuracy",
+      "task2_accuracy",
+      "forgetting_pp",
+      "jitter_accuracy",
+      "shifted_phase_accuracy"
+    ],
+    "aggregation": [
+      "per_seed",
+      "mean",
+      "sample_std",
+      "min",
+      "max"
+    ]
+  },
+  "sha256": {
+    "pulse_core/sequential_stdp.py": "8f2bbba78fc524ee01be9b37e13f5e6fd41216434d7d56af235fce6507566fd6",
+    "experiments/run_sequential_stdp_v0_28_1.py": "e3d6c8419accdd4c226878cd92bf1a10a26c2a5da4b33a94d58bf467bcdb6576",
+    "tests/test_v028_sequential_stdp.py": "025730c5cc287ff1a1adff60eede8a30af96dbb3ccccf83b555110ff50bb2ddf",
+    "docs/benchmark_protocol_v0_28_1_AR.md": "6d98b9a188cabcca3e82a58c4b44ca316a3be889d943dc6e44bd71cf2ae55ad3",
+    "docs/EXPERIMENT_DESIGN_V0_28_1_AR.md": "be784b5839b66e178142050fd172aebff1d8e7e9c05a387b876f8c42ed951e6f"
+  },
+  "limitations": [
+    "Local hash freeze, not an independent external timestamp.",
+    "Reservoir fixed in this phase; only readout synapses learn.",
+    "Reward-modulated timing eligibility is a simplified computational abstraction, not full biological STDP."
+  ]
+}

@@ -1,0 +1,22 @@
+Nucleus Pulse v0.39 — Final Validation Summary
+================================================
+Official confirmation: development-selected EMA tau=8 vs tau=4
+Official seed range: 12000–12039 (40 unique seeds)
+Tasks: sync, order
+Conditions: local inhibition slope=2.0; tau=4 and tau=8 only
+Training / validation / independent test: 6000 / 1000 / 1000 per seed-task
+Reader checkpoints: 1, 3, 5, 10 passes over the same training examples
+Official metric rows: 640 / 640 (40 seeds × 2 tasks × 2 tau × 4 checkpoints)
+Integrity combinations: 160 / 160
+Exact sequence overlaps across train/validation/test: 0
+Class balance: checked for every split
+Across-tau hashes match within each seed/task: recurrent matrix, input weights, input raster, train keys, validation keys, test keys
+Initial EMA gain equals 1.0 in every condition: verified
+Preregistration source hashes verified: 14 / 14
+Official test used for tuning: no
+Primary paired 95% CI: [-0.301, +0.043] percentage points; includes zero
+Interpretation: official result does not confirm tau=8 is better than tau=4
+Full project tests: 100 passed
+Plots: learning_curve_sync_test.png, learning_curve_order_test.png
+Threshold diagnostics: per_seed_threshold.csv, threshold_summary.csv
+The run did not change any model parameters after official results were inspected.

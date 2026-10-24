@@ -1,0 +1,26 @@
+Nucleus Pulse v0.40 — Stage 1 Validation Summary
+================================================
+
+Scope:
+- One reserved component diagnostic seed: 14040.
+- Tasks: sync and order.
+- 32 class-balanced examples per task (16 examples/class).
+- Input-weight scales: 0.75x, 1.0x, 1.25x.
+- Conditions: fixed inhibitory gain vs local activity-adaptive inhibition.
+- Local adaptive parameters: slope 2.0, EMA tau 4.0 ticks, gain bounds [0.5, 2.0].
+- No readout training; no official test used; no parameter tuning in this stage.
+
+Validation performed:
+- Diagnostic script completed and wrote 12 condition/task/scale rows.
+- Full automated test suite: 111 passed.
+- Original input weights remained unchanged.
+- Recurrent matrix hash remained fixed across all conditions/scales.
+- Input event raster hashes are recorded per task; all scales use the same events/timing.
+- Initial local inhibitory gain equals 1.0 at all conditions/scales.
+- All spike/feature metrics finite.
+- Training/validation/test dataset overlap counters are 0 (diagnostic runner uses no test features or labels for evaluation; generated test splits only appear in integrity metadata).
+- Two diagnostic plots generated: sync_input_gain_response.png and order_input_gain_response.png.
+- ZIP integrity and SHA-256 are checked separately in the delivery process.
+
+Interpretation limit:
+This is a one-seed, 32-example-per-task component smoke test. It measures spike-count and feature response to input-weight scaling only. It is not evidence of robust learning, generalization, or energy savings.

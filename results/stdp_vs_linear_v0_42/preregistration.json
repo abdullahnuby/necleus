@@ -1,0 +1,102 @@
+{
+  "protocol_version": "v0.42",
+  "status": "frozen_before_official_run",
+  "config": {
+    "seeds": [
+      5200,
+      5201,
+      5202,
+      5203,
+      5204,
+      5205,
+      5206,
+      5207,
+      5208,
+      5209,
+      5210,
+      5211,
+      5212,
+      5213,
+      5214,
+      5215,
+      5216,
+      5217,
+      5218,
+      5219,
+      5220,
+      5221,
+      5222,
+      5223,
+      5224,
+      5225,
+      5226,
+      5227,
+      5228,
+      5229,
+      5230,
+      5231,
+      5232,
+      5233,
+      5234,
+      5235,
+      5236,
+      5237,
+      5238,
+      5239
+    ],
+    "tasks": [
+      "sync",
+      "order"
+    ],
+    "train_sizes": [
+      50,
+      100,
+      200
+    ],
+    "train_pool_per_task_per_seed": 200,
+    "test_examples_per_task_per_seed": 1000,
+    "test_is_iid_same_onset_range": true,
+    "hidden_neurons": 24,
+    "duration_ticks": 32,
+    "feature_representation": "16-window hidden spike rates; each window is 2 ticks; 16*24=384 dimensions",
+    "class_balance": "exactly balanced at every nested training checkpoint and in each test set",
+    "train_subsets": "nested prefixes; each unique example exposed once to STDP",
+    "stdp": {
+      "type": "reward-modulated pair-timing eligibility / three-factor readout abstraction",
+      "lr": 0.08,
+      "softmax_temperature": 0.7,
+      "trace_tau_windows": 4.0,
+      "initial_weight_std": 0.05,
+      "reward_baseline_momentum": 0.97,
+      "weight_clip": 1.5,
+      "epochs_per_example": 1,
+      "test_prediction": "deterministic argmax"
+    },
+    "linear": {
+      "model": "StandardScaler + LogisticRegression(lbfgs, L2)",
+      "C": 1.0,
+      "max_iter": 250,
+      "fit_each_budget_from_scratch": true
+    },
+    "primary_endpoint": "seed-cluster paired difference (STDP - linear) in mean test accuracy across sync/order at n=200",
+    "pass_gate": "mean paired gain >= 2.0 percentage points AND seed-cluster bootstrap 95% CI lower bound > 0",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20421024,
+    "test_used_for_tuning": false,
+    "test_used_for_checkpoint_selection": false,
+    "validation_split": "none; fixed parameters carried over / specified before this run"
+  },
+  "sha256": {
+    "experiments/run_stdp_vs_linear_v0_42.py": "f69d0f707a9f430a9038ed1f67c3fbc79927da142fb50587d1c63075d475a46e",
+    "experiments/run_learning_curve_v0_30.py": "f3ad5c417547c8ea395c44ed082bcc02378453d06f49251aca9a2fbba58f957b",
+    "pulse_core/sequential_stdp.py": "8f2bbba78fc524ee01be9b37e13f5e6fd41216434d7d56af235fce6507566fd6",
+    "tests/test_stdp_vs_linear_v0_42.py": "8abb1b510a0513b26cd3c21bdfbe043491675e27f1e4ff67e3b7430dbb6d78b1",
+    "docs/STDP_VS_LINEAR_PROTOCOL_V0_42_AR.md": "0b86b3ba2a8806ae462c8617a984e237fca7cad6692a8a901d2f0d722c521a16",
+    "CHANGELOG.md": "4fc9b39a39f1b20a2e8d1690b198a63d55b1ed825b18e784afa5675a7bdbb2b1"
+  },
+  "notes": [
+    "Official seeds 5200..5239 are disjoint from component smoke seeds 5000..5001 and 5100..5101.",
+    "Smoke runs are not used to select hyperparameters and are not official evidence.",
+    "No official test metrics were reviewed before freezing this configuration."
+  ]
+}

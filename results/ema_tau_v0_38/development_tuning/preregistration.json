@@ -1,0 +1,75 @@
+{
+  "config": {
+    "version": "0.38-stage2-development",
+    "stage": "development-only; no final test set generated or accessed",
+    "development_seeds": [
+      9300,
+      9301,
+      9302,
+      9303,
+      9304,
+      9305,
+      9306,
+      9307
+    ],
+    "tau_candidates_ticks": [
+      2.0,
+      4.0,
+      8.0
+    ],
+    "tasks": [
+      "sync",
+      "order"
+    ],
+    "train_examples_per_task_seed": 6000,
+    "validation_examples_per_task_seed": 1000,
+    "training_epochs": 10,
+    "checkpoints": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "primary_selection_metric": "mean validation balanced_accuracy at epoch 10 across all development seed-task pairs",
+    "tie_break": "smaller tau",
+    "fixed_local_slope": 2.0,
+    "target_activity_rate": 0.13,
+    "gain_bounds": [
+      0.5,
+      2.0
+    ],
+    "recurrent_matrix": "same Dale 25% matrix within a seed across tau candidates; target spectral radius 0.72",
+    "reader": {
+      "class": "SGDClassifier",
+      "loss": "log_loss",
+      "penalty": "l2",
+      "alpha": 0.0001,
+      "learning_rate": "constant",
+      "eta0": 0.01,
+      "average": true,
+      "shuffle": true,
+      "same random seed across tau candidates": true
+    },
+    "validation_only": true,
+    "final_test_created_or_accessed": false,
+    "official_seed_range_reserved": [
+      12000,
+      12039
+    ],
+    "paired_bootstrap_unit": "development seed, grouped across both tasks where applicable",
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20381024
+  },
+  "sha256": {
+    "experiments/tune_ema_tau_v0_38.py": "bbd29f83afdccb687aae680068f31dacd7c0f40893dc226f2844471c2a18ad7d",
+    "experiments/diagnose_ema_tau_v0_38.py": "7b209dd85f90b6744e624499076ff60e008de4bfe2d5c6d7700ea9eca9e99bee",
+    "experiments/tune_local_inhibition_v0_37.py": "71b3a6c32ae284c2f29236d50876b6c41a5e1192f3c8599a5b57a6ecd6c94f0a",
+    "experiments/run_activity_adaptive_inhibition_v0_35.py": "6de16d718bcef45f55a7facd00f9b41060150178c00235ed1bf0461697a6046d",
+    "experiments/run_inhibition_structure_v0_34.py": "e0602e79e5deeaa5d4fabe263568c26a986d83163cb734e0fd5d1836a990ab01",
+    "experiments/run_learning_curve_v0_30.py": "f3ad5c417547c8ea395c44ed082bcc02378453d06f49251aca9a2fbba58f957b",
+    "experiments/run_incremental_windows_v0_31.py": "54ea4378f60870feb2ca6861648e918fb1282fbd31bc41672981a7311bb3ec98",
+    "pulse_core/sequential_stdp.py": "8f2bbba78fc524ee01be9b37e13f5e6fd41216434d7d56af235fce6507566fd6",
+    "docs/benchmark_protocol_v0_38_STAGE2_AR.md": "cee3aa48d85ddcf96358417ae73657d28508221c33d5042ba941fdebfa400424",
+    "tests/test_ema_tau_v0_38_stage2.py": "e42999cd9cb9d34998592ed7e06841d76018fca25a3c48d83aae23d85733b689"
+  }
+}

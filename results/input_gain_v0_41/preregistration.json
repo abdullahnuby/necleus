@@ -1,0 +1,23 @@
+{
+  "version": "0.41-stage2-input-gain-development",
+  "config": {
+    "development_seeds": [14111, 14129, 14147, 14165, 14183, 14201, 14219, 14237],
+    "tasks": ["sync", "order"],
+    "input_scales": [0.75, 1.0, 1.25],
+    "conditions": ["fixed_inhibition", "local_adaptive_inhibition"],
+    "n_per_class": 16,
+    "local_slope": 2.0,
+    "local_tau": 4.0,
+    "target_rate": 0.13,
+    "gain_bounds": [0.5, 2.0],
+    "target_spectral_radius": 0.72,
+    "n_hidden": 24,
+    "reader_training": false,
+    "validation_or_test_sets_used": false
+  },
+  "sha256": {
+    "experiments/run_input_gain_development_v0_41.py": "2b8fbb312a41d7cfa24fb1ba14463b30babea2e8cad8de3dcb19981c6f3d6280",
+    "tests/test_input_gain_development_v0_41.py": "f980172c36bc5d5ff118515c882215b3e6475609e55a10b0fa3db555f50f8477",
+    "docs/benchmark_protocol_v0_41_STAGE2_AR.md": "0b6b21f53e468916b3fc5ce207ee911b34985bdac3a89e3450872d7db2187e06"
+  }
+}

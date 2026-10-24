@@ -1,0 +1,38 @@
+{
+  "selected_slope": 6.0,
+  "selection_basis": "development validation only",
+  "development_seeds": [
+    9100,
+    9101,
+    9102,
+    9103,
+    9104,
+    9105
+  ],
+  "candidate_scores": [
+    {
+      "slope": 1.0,
+      "mean_validation_balanced_accuracy": 0.7821666666666668,
+      "mean_validation_accuracy": 0.7821666666666668,
+      "n_seed_task_pairs": 12
+    },
+    {
+      "slope": 2.0,
+      "mean_validation_balanced_accuracy": 0.78625,
+      "mean_validation_accuracy": 0.78625,
+      "n_seed_task_pairs": 12
+    },
+    {
+      "slope": 4.0,
+      "mean_validation_balanced_accuracy": 0.7876666666666668,
+      "mean_validation_accuracy": 0.7876666666666666,
+      "n_seed_task_pairs": 12
+    },
+    {
+      "slope": 6.0,
+      "mean_validation_balanced_accuracy": 0.7879166666666667,
+      "mean_validation_accuracy": 0.7879166666666667,
+      "n_seed_task_pairs": 12
+    }
+  ]
+}

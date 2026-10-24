@@ -1,0 +1,31 @@
+Nucleus Pulse v0.33 — validation summary
+Date: 2026-10-24
+
+Protocol and execution
+- Registered protocol verified before official run, including SHA-256 hashes for the runner, test file, protocol document, and reused simulator/data helpers.
+- Official seeds completed: 40/40 (6000–6039).
+- Final record count: 640/640 (40 seeds × 2 tasks × 2 reservoir conditions × 4 checkpoints).
+- Unique examples per task/seed: 6,000 training + 1,000 validation + 1,000 independent final test.
+- Total exact sequence overlap across train/validation/test: 0.
+- Input raster stayed identical between reservoir conditions; recurrent weights and other reservoir parameters stayed identical within each seed.
+- Delay=1 implementation matched the legacy vectorized simulator to absolute tolerance 1e-7.
+- Strict JSON parse succeeded; all validation/test metrics were finite.
+
+Tests
+- Smoke check: PASS.
+- Full pytest suite: 61 passed.
+- Official runtime: 27.33 seconds (3 workers).
+
+Primary paired result at 10 passes
+- sync: heterogeneous delays (1–4) minus fixed delay=1 = +0.400 percentage points; paired bootstrap 95% CI [-0.165, +1.008].
+- order: heterogeneous delays (1–4) minus fixed delay=1 = +0.103 percentage points; paired bootstrap 95% CI [-0.433, +0.635].
+- Both confidence intervals include zero; do not claim clear evidence of a benefit.
+
+Interpretation boundary
+- Reservoir weights remain fixed; this is not an STDP or recurrent-weight learning test.
+- Only recurrent synaptic delays changed. No inhibition or neuron-count change was introduced.
+- Results apply to these synthetic timing tasks and this fixed SGD readout configuration only.
+
+Main report: results/delayed_reservoir_v0_33/report_ar.md
+Raw results: results/delayed_reservoir_v0_33/results.json
+Full run log: results/delayed_reservoir_v0_33/run.log

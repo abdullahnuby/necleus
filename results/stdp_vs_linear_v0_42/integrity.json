@@ -1,0 +1,2282 @@
+[
+  {
+    "seed": 5200,
+    "reservoir_seed": 5200,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1575
+  },
+  {
+    "seed": 5201,
+    "reservoir_seed": 5201,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1935
+  },
+  {
+    "seed": 5202,
+    "reservoir_seed": 5202,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1929
+  },
+  {
+    "seed": 5203,
+    "reservoir_seed": 5203,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1928
+  },
+  {
+    "seed": 5204,
+    "reservoir_seed": 5204,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1911
+  },
+  {
+    "seed": 5205,
+    "reservoir_seed": 5205,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1877
+  },
+  {
+    "seed": 5206,
+    "reservoir_seed": 5206,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1965
+  },
+  {
+    "seed": 5207,
+    "reservoir_seed": 5207,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2075
+  },
+  {
+    "seed": 5208,
+    "reservoir_seed": 5208,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1958
+  },
+  {
+    "seed": 5209,
+    "reservoir_seed": 5209,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1989
+  },
+  {
+    "seed": 5210,
+    "reservoir_seed": 5210,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.3176
+  },
+  {
+    "seed": 5211,
+    "reservoir_seed": 5211,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2799
+  },
+  {
+    "seed": 5212,
+    "reservoir_seed": 5212,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2205
+  },
+  {
+    "seed": 5213,
+    "reservoir_seed": 5213,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.3098
+  },
+  {
+    "seed": 5214,
+    "reservoir_seed": 5214,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2025
+  },
+  {
+    "seed": 5215,
+    "reservoir_seed": 5215,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2519
+  },
+  {
+    "seed": 5216,
+    "reservoir_seed": 5216,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1957
+  },
+  {
+    "seed": 5217,
+    "reservoir_seed": 5217,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2022
+  },
+  {
+    "seed": 5218,
+    "reservoir_seed": 5218,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2136
+  },
+  {
+    "seed": 5219,
+    "reservoir_seed": 5219,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2055
+  },
+  {
+    "seed": 5220,
+    "reservoir_seed": 5220,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1982
+  },
+  {
+    "seed": 5221,
+    "reservoir_seed": 5221,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2081
+  },
+  {
+    "seed": 5222,
+    "reservoir_seed": 5222,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1999
+  },
+  {
+    "seed": 5223,
+    "reservoir_seed": 5223,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2084
+  },
+  {
+    "seed": 5224,
+    "reservoir_seed": 5224,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.247
+  },
+  {
+    "seed": 5225,
+    "reservoir_seed": 5225,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1932
+  },
+  {
+    "seed": 5226,
+    "reservoir_seed": 5226,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2012
+  },
+  {
+    "seed": 5227,
+    "reservoir_seed": 5227,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1966
+  },
+  {
+    "seed": 5228,
+    "reservoir_seed": 5228,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1983
+  },
+  {
+    "seed": 5229,
+    "reservoir_seed": 5229,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2105
+  },
+  {
+    "seed": 5230,
+    "reservoir_seed": 5230,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1956
+  },
+  {
+    "seed": 5231,
+    "reservoir_seed": 5231,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1988
+  },
+  {
+    "seed": 5232,
+    "reservoir_seed": 5232,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2085
+  },
+  {
+    "seed": 5233,
+    "reservoir_seed": 5233,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2018
+  },
+  {
+    "seed": 5234,
+    "reservoir_seed": 5234,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.1926
+  },
+  {
+    "seed": 5235,
+    "reservoir_seed": 5235,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2014
+  },
+  {
+    "seed": 5236,
+    "reservoir_seed": 5236,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2056
+  },
+  {
+    "seed": 5237,
+    "reservoir_seed": 5237,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2149
+  },
+  {
+    "seed": 5238,
+    "reservoir_seed": 5238,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2369
+  },
+  {
+    "seed": 5239,
+    "reservoir_seed": 5239,
+    "tasks": {
+      "sync": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      },
+      "order": {
+        "n_train": 200,
+        "n_test": 1000,
+        "unique_train_sequences": 200,
+        "unique_test_sequences": 1000,
+        "train_test_exact_overlap": 0,
+        "train_class_counts": {
+          "0": 100,
+          "1": 100
+        },
+        "test_class_counts": {
+          "0": 500,
+          "1": 500
+        },
+        "train_feature_shape": [
+          200,
+          384
+        ],
+        "test_feature_shape": [
+          1000,
+          384
+        ],
+        "feature_min": 0.0,
+        "feature_max": 0.5
+      }
+    },
+    "elapsed_seconds": 0.2116
+  }
+]

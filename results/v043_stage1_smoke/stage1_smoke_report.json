@@ -1,0 +1,95 @@
+{
+  "stage": "v0.43-stage1",
+  "grammar": "v0.43-core: 12 atoms (LT/EVEN/DIV3/DIV5), atom negation, one binary node, or nested two-binary-node shape; max AST depth 3",
+  "input_domain": {
+    "x0": [
+      0,
+      99
+    ],
+    "x1": [
+      0,
+      99
+    ],
+    "size": 10000
+  },
+  "syntactic_programs": 9348,
+  "unique_semantic_functions": 4570,
+  "family_count_by_split": {
+    "train": 649,
+    "dev": 140,
+    "test": 134
+  },
+  "canonical_targets_by_split": {
+    "train": 3286,
+    "dev": 665,
+    "test": 619
+  },
+  "family_minimums_met": true,
+  "official_test_ready": false,
+  "blocked_until": [
+    "10,000 meta-learning episodes",
+    "100 train/20 dev/30 test families",
+    "all baselines",
+    "feedback loop",
+    "retention tests",
+    "preregistration and hashes"
+  ],
+  "smoke": {
+    "task_count": 3,
+    "classes": {
+      "train": "IN_SCOPE_AMBIGUOUS",
+      "dev": "IN_SCOPE_AMBIGUOUS",
+      "test": "IN_SCOPE_AMBIGUOUS"
+    },
+    "identifiability": {
+      "train": {
+        "classification": "IN_SCOPE_AMBIGUOUS",
+        "consistent_program_count": 9,
+        "consistent_semantic_classes": 4,
+        "candidate_disagreement": 0.49,
+        "support_identifiability": false,
+        "ambiguous_stratum_admissible": true,
+        "reason": "exact enumeration over the preregistered bounded grammar"
+      },
+      "dev": {
+        "classification": "IN_SCOPE_AMBIGUOUS",
+        "consistent_program_count": 172,
+        "consistent_semantic_classes": 69,
+        "candidate_disagreement": 0.86,
+        "support_identifiability": false,
+        "ambiguous_stratum_admissible": true,
+        "reason": "exact enumeration over the preregistered bounded grammar"
+      },
+      "test": {
+        "classification": "IN_SCOPE_AMBIGUOUS",
+        "consistent_program_count": 184,
+        "consistent_semantic_classes": 86,
+        "candidate_disagreement": 0.95,
+        "support_identifiability": false,
+        "ambiguous_stratum_admissible": true,
+        "reason": "exact enumeration over the preregistered bounded grammar"
+      }
+    },
+    "split_audit": {
+      "task_count": 3,
+      "unique_task_ids": 3,
+      "tasks_by_split": {
+        "train": 1,
+        "dev": 1,
+        "test": 1
+      },
+      "families_by_split": {
+        "train": 1,
+        "dev": 1,
+        "test": 1
+      },
+      "ast_overlap": false,
+      "family_overlap": false,
+      "semantic_function_overlap": false,
+      "support_query_overlap": false,
+      "query_balance": "50/50 per task",
+      "public_payload_private_fields": "absent"
+    },
+    "note": "plumbing smoke test only; not an official benchmark result"
+  }
+}

@@ -1,0 +1,5 @@
+task,condition,n_seeds,n_reached_85,reach_rate_percent,reach_rate_ci95_wilson_low_percent,reach_rate_ci95_wilson_high_percent,mean_first_epoch_among_reached,median_first_epoch_among_reached,independent_test_accuracy_at_selected_epoch_mean_percent,independent_test_accuracy_at_selected_epoch_ci95_low_percent,independent_test_accuracy_at_selected_epoch_ci95_high_percent
+sync,baseline_delay1,40,4,10.0,3.9579528682606377,23.0517752275223,10.0,10.0,84.5,83.6,85.525
+sync,heterogeneous_delay1_4,40,6,15.0,7.061187717320358,29.07232436648971,8.333333333333334,10.0,85.11666666666667,83.86666666666667,86.41666666666664
+order,baseline_delay1,40,0,0.0,0.0,8.762160119728664,,,,,
+order,heterogeneous_delay1_4,40,0,0.0,0.0,8.762160119728664,,,,,

@@ -1,0 +1,39 @@
+Nucleus Pulse v0.37 validation summary
+======================================
+
+Development tuning:
+- 8 independent development seeds: 9200-9207.
+- Slopes compared: 2.0 and 4.0.
+- Selected slope: 2.0 using validation balanced accuracy only.
+- Validation balanced accuracy: 79.625% (slope 2.0), 79.331% (slope 4.0).
+- Official seeds are disjoint from development seeds.
+
+Official evaluation:
+- Official seeds: 11000-11039 (40 unique seeds).
+- Conditions: fixed inhibitory gain, global adaptive inhibitory gain, local adaptive inhibitory gain (slope 2.0).
+- Tasks: sync and order.
+- Per task/seed: 6000 training, 1000 validation, 1000 final test examples.
+- Learning checkpoints: 1, 3, 5, 10 passes.
+- Expected and observed records: 960 / 960.
+- Unique official seeds in integrity records: 40 / 40.
+- Same exact recurrent matrix within each seed across all conditions: verified.
+- Train/validation, train/test, and validation/test overlap total: 0.
+- Frozen source hashes in preregistration: 13; verified by tests and final verification.
+
+Tests:
+- Full project test suite: 85 passed.
+- v0.37 smoke test: passed.
+- v0.37-specific tests: passed as part of full suite.
+- Final JSON/data audit: passed.
+- ZIP archive integrity and SHA-256 checked at packaging.
+
+Primary results at 10 passes (mean independent test accuracy):
+- sync: fixed 82.34%, global 82.27%, local slope 2.0 82.61%.
+- order: fixed 76.86%, global 76.75%, local slope 2.0 77.01%.
+- Local minus global paired difference: sync +0.35 percentage points (95% bootstrap CI approximately -0.00 to +0.70); order +0.27 pp (95% CI -0.04 to +0.59).
+- Confidence intervals include zero; superiority over global adaptive inhibition is not established.
+- Local slope 2.0 had zero observed gain saturation at the min/max bounds in this official run.
+
+Scientific limitations:
+- This is a fixed spiking reservoir with a linear readout on two synthetic tasks.
+- It does not establish recurrent-weight learning, general reasoning, engineering skill, or actual energy savings.

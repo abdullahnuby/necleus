@@ -1,0 +1,5 @@
+task,condition,n_seeds,n_reached_85,reach_rate_percent,reach_rate_ci95_wilson_low_percent,reach_rate_ci95_wilson_high_percent,mean_first_epoch_among_reached,median_first_epoch_among_reached,independent_test_accuracy_at_selected_epoch_mean_percent,independent_test_accuracy_at_selected_epoch_ci95_low_percent,independent_test_accuracy_at_selected_epoch_ci95_high_percent
+sync,dale_fixed_25,40,7,17.5,8.74541374603592,31.949990331787713,10.0,10.0,85.44285714285714,84.09964285714285,86.74285714285715
+sync,dale_activity_adaptive_25,40,7,17.5,8.74541374603592,31.949990331787713,8.571428571428571,10.0,85.44285714285714,84.77142857142859,86.02857142857144
+order,dale_fixed_25,40,0,0.0,0.0,8.762160119728664,,,,,
+order,dale_activity_adaptive_25,40,0,0.0,0.0,8.762160119728664,,,,,

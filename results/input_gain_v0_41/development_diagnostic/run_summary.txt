@@ -1,0 +1,8 @@
+version=0.41-stage2-input-gain-development
+rows=96
+seeds=8
+tasks=2
+input_scales=0.75,1.0,1.25
+conditions=fixed_inhibition,local_adaptive_inhibition
+reader_training=False
+validation_or_test_sets_generated_or_used=False

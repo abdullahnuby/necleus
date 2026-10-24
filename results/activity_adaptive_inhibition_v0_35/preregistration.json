@@ -1,0 +1,119 @@
+{
+  "title": "Nucleus Pulse v0.35 preregistration",
+  "frozen_before_official_run": true,
+  "config": {
+    "seeds": [
+      8000,
+      8001,
+      8002,
+      8003,
+      8004,
+      8005,
+      8006,
+      8007,
+      8008,
+      8009,
+      8010,
+      8011,
+      8012,
+      8013,
+      8014,
+      8015,
+      8016,
+      8017,
+      8018,
+      8019,
+      8020,
+      8021,
+      8022,
+      8023,
+      8024,
+      8025,
+      8026,
+      8027,
+      8028,
+      8029,
+      8030,
+      8031,
+      8032,
+      8033,
+      8034,
+      8035,
+      8036,
+      8037,
+      8038,
+      8039
+    ],
+    "conditions": [
+      "dale_fixed_25",
+      "dale_activity_adaptive_25"
+    ],
+    "tasks": [
+      "sync",
+      "order"
+    ],
+    "unique_training_examples_per_task_seed": 6000,
+    "validation_per_task_seed": 1000,
+    "final_test_per_task_seed": 1000,
+    "training_pass_checkpoints": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "primary_epoch": 10,
+    "hidden_neurons": 24,
+    "feature_set": "spike_bins16_rate_384",
+    "feature_definition": "16 equal temporal bins, 2 ticks per bin, hidden spike counts divided by 2",
+    "shared_base_recurrent_matrix": {
+      "source": "v0.34 Dale-style 25% inhibitory matrix, generated once per reservoir seed",
+      "same_matrix_for_both_conditions": true,
+      "same_topology_and_signed_edge_weights": true,
+      "base_spectral_radius_target": 0.72
+    },
+    "baseline": "Dale-style 25% inhibitory sources with fixed inhibitory gain = 1.0",
+    "treatment": {
+      "name": "global activity-dependent inhibitory gain",
+      "rule": "gain_t = clip(1 + slope * (ema_population_rate_t - target_rate), min_gain, max_gain)",
+      "ema_tau_ticks": 4.0,
+      "target_spikes_per_neuron_per_tick": 0.13,
+      "slope": 4.0,
+      "gain_bounds": [
+        0.5,
+        2.0
+      ],
+      "only_negative_recurrent_current_is_scaled": true,
+      "activity_trace_initialization": "target_rate, producing initial gain 1.0 before observed activity",
+      "parameter_source": "predefined from v0.34 activity diagnostic; no v0.35 validation/test tuning"
+    },
+    "same_input_weights_thresholds_leaks_refractory_mask_features_reader_and_training_order": true,
+    "readout": {
+      "class": "sklearn.linear_model.SGDClassifier",
+      "loss": "log_loss",
+      "penalty": "l2",
+      "alpha": 0.0001,
+      "learning_rate": "constant",
+      "eta0": 0.01,
+      "average": true,
+      "shuffle": true,
+      "fit_method": "partial_fit",
+      "same_model_random_seed_paired_between_conditions": true
+    },
+    "validation_used_for_threshold_analysis_only": true,
+    "final_test_used_for_tuning_or_selection": false,
+    "bootstrap_unit": "paired seed",
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20351024
+  },
+  "sha256": {
+    "experiments/run_activity_adaptive_inhibition_v0_35.py": "6de16d718bcef45f55a7facd00f9b41060150178c00235ed1bf0461697a6046d",
+    "tests/test_activity_adaptive_inhibition_v0_35.py": "bb64b3d56fe0597c0b98b52574ec4c65e8ed042f67ea70d6ab968b982b00bad8",
+    "docs/ACTIVITY_ADAPTIVE_INHIBITION_PROTOCOL_V0_35_AR.md": "dc749b15905caaba2968c62f1d9004ebb851a48f685bc1fe3e3b0fa82035397d"
+  },
+  "notes": [
+    "Final-test data are never used for tuning or selection.",
+    "All conditions use the same underlying Dale recurrent matrix within each seed.",
+    "Activity-dependent gain parameters were fixed before this version official run.",
+    "The implementation audit clarified that the initial gain is computed from the initialized EMA before the first observed spike; the corrected official run starts gain at exactly 1.0."
+  ]
+}

@@ -1,0 +1,7 @@
+task,feature_set,n_seeds,n_reached_85,reach_rate_percent,reach_rate_ci95_low_percent,reach_rate_ci95_high_percent,mean_train_size_at_first_crossing_among_reached,median_train_size_at_first_crossing_among_reached,independent_test_accuracy_at_validation_crossing_mean_percent,independent_test_accuracy_at_validation_crossing_ci95_low_percent,independent_test_accuracy_at_validation_crossing_ci95_high_percent
+sync,phase4_96,40,0,0.0,0.0,0.0,nan,nan,nan,nan,nan
+sync,spike_bins8_rate_192,40,0,0.0,0.0,0.0,nan,nan,nan,nan,nan
+sync,spike_bins16_rate_384,40,0,0.0,0.0,0.0,nan,nan,nan,nan,nan
+order,phase4_96,40,0,0.0,0.0,0.0,nan,nan,nan,nan,nan
+order,spike_bins8_rate_192,40,0,0.0,0.0,0.0,nan,nan,nan,nan,nan
+order,spike_bins16_rate_384,40,0,0.0,0.0,0.0,nan,nan,nan,nan,nan

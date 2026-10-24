@@ -1,0 +1,13 @@
+task,condition,metric,mean,ci95_low,ci95_high,n_seed_pairs
+sync,fixed_inhibition,max_absolute_spike_sensitivity,0.21344575356207268,0.09497075504749865,0.33192075207664673,8
+sync,fixed_inhibition,high_minus_low_spike_delta,0.31741530633460097,0.1384013794925214,0.49642923317668053,8
+sync,fixed_inhibition,max_absolute_feature_l2_delta,0.5782703682780266,0.46561581895417337,0.6909249176018798,8
+sync,local_adaptive_inhibition,max_absolute_spike_sensitivity,0.20995100905325648,0.0978677732249329,0.32203424488158006,8
+sync,local_adaptive_inhibition,high_minus_low_spike_delta,0.31383658089573474,0.1382347335257827,0.4894384282656868,8
+sync,local_adaptive_inhibition,max_absolute_feature_l2_delta,0.5940945073962212,0.4905609709916397,0.6976280438008026,8
+order,fixed_inhibition,max_absolute_spike_sensitivity,0.25501007673081466,0.1196257164895494,0.39039443697207993,8
+order,fixed_inhibition,high_minus_low_spike_delta,0.4249775851546195,0.16174388338216167,0.6882112869270773,8
+order,fixed_inhibition,max_absolute_feature_l2_delta,0.6055796965956688,0.4799891222855095,0.7311702709058281,8
+order,local_adaptive_inhibition,max_absolute_spike_sensitivity,0.2401917299415847,0.12669277909130083,0.35369068079186855,8
+order,local_adaptive_inhibition,high_minus_low_spike_delta,0.4084655440840166,0.17452780644133128,0.6424032817267019,8
+order,local_adaptive_inhibition,max_absolute_feature_l2_delta,0.6176391169428825,0.5050152246176516,0.7302630092681135,8

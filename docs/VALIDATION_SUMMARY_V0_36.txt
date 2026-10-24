@@ -1,0 +1,15 @@
+Nucleus Pulse v0.36 — Release Validation Summary
+
+Software tests: 79 passed (pytest -q).
+Official run: completed 40/40 seeds; 960/960 expected records.
+Official seed range: 10000–10039; development seeds 9100–9105 are disjoint.
+Conditions: fixed Dale inhibition, global adaptive inhibition, local per-cell adaptive inhibition.
+Tasks: sync and order; checkpoints: 1, 3, 5, 10 passes.
+Training/validation/test sizes per seed and task: 6000 / 1000 / 1000 unique sequences.
+Train-validation overlaps: 0; train-test overlaps: 0; validation-test overlaps: 0.
+All 40 seeds passed the same-matrix condition check and the recurrent spectral-radius tolerance (target 0.72).
+All 13 SHA-256 entries in the frozen preregistration match the current files.
+Input-raster identity, bounded local inhibitory gains, and the zero-slope identity smoke test passed.
+ZIP integrity and SHA-256 are verified separately after packaging.
+
+Scientific caveat: the local-vs-global paired confidence interval includes zero for both tasks at the primary 10-pass checkpoint. One narrow local-vs-fixed contrast in sync should be treated as exploratory, especially given multiple paired contrasts. This experiment does not establish general reasoning or engineering competence.

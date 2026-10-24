@@ -1,0 +1,22 @@
+Nucleus Pulse v0.38 — Stage 1 validation
+=======================================
+
+Baseline verification:
+- v0.37 full test suite before adding stage 1: 85 passed.
+- v0.37 frozen preregistration hashes remained unchanged in the copy.
+
+Stage 1 result:
+- Component diagnostic script: passed, 6 result rows (2 tasks x 3 tau values).
+- Reserved diagnostic seed: 13990.
+- 32 balanced examples/task: 16 examples/class.
+- tau values: 2, 4, 8 ticks. Local inhibition slope fixed at 2.0.
+- Same recurrent matrix and exact same input raster across tau values: verified.
+- Initial mean gain: 1.0 for every tau/task.
+- Spikes/features/metrics: finite.
+- No readout training, no accuracy estimate, no official test, no tau selection.
+- Full project test suite after adding stage 1: 91 passed.
+
+Interpretation:
+- Smaller tau yields faster EMA response; larger tau yields a smoother/slower response.
+- The smoke-test activity differences are diagnostic only and are not evidence of better learning.
+- Next allowed step: multi-seed development sweep with validation metrics only, followed by separate review before preregistering any official evaluation.

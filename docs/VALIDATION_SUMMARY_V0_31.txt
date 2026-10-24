@@ -1,0 +1,36 @@
+Nucleus Pulse v0.31 — Validation summary
+Date: 2026-10-24
+
+Engineering checks:
+- Full repository test suite: 50 passed.
+- v0.31 smoke test passed: persistent SGD partial_fit updates, all three feature widths, and train/validation/test disjointness.
+- Protocol/source hashes verified at run start; the subsequent JSON serialization fix was frozen and verified before the final complete run.
+- results.json parses as standards-compliant JSON; unavailable threshold fields are encoded as null, not NaN.
+
+Registered experiment:
+- 40/40 seeds completed: seeds 4000–4039.
+- 1,200 rows: 40 seeds × 2 tasks × 5 training checkpoints × 3 feature representations.
+- 30 summary groups, each with 40 seeds.
+- Per task/seed: 6,000 nested class-balanced train examples, 1,000 disjoint validation examples, and 1,000 disjoint final-test examples.
+- All train/validation/test exact-sequence overlap counts sum to zero.
+- Every unique training example is presented once to a persistent online SGD classifier; only the new chunk is passed at each training checkpoint.
+- Validation threshold is fixed at 85%; final test is not used to choose the checkpoint or tune hyperparameters.
+- 0/40 seeds reached the 85% validation threshold for every representation and task (six groups total).
+
+Final test accuracy at 6,000 unique examples (mean across 40 seeds; 95% bootstrap CI across seeds):
+- sync / phase4_96: 66.23% [65.24, 67.26]
+- sync / spike_bins8_rate_192: 70.62% [69.60, 71.70]
+- sync / spike_bins16_rate_384: 74.03% [72.95, 75.10]
+- order / phase4_96: 65.23% [64.41, 66.03]
+- order / spike_bins8_rate_192: 68.21% [67.44, 68.97]
+- order / spike_bins16_rate_384: 70.32% [69.60, 71.06]
+
+Execution provenance:
+- 38 seeds were saved in the first run segment; the execution wrapper interrupted that segment, and the last 2 seeds were resumed from the atomic checkpoint.
+- Combined wall-clock time was not reliably measured across both stages. The recorded sum of per-seed elapsed measures is 105.561 seconds; the final resume segment took approximately 3.8 seconds.
+- No data, model, learning-rate, feature, threshold, or metric setting changed during resume.
+
+Scientific scope:
+- This is a sample-efficiency diagnostic for a fixed 24-cell software LIF reservoir and an online logistic SGD readout; it is not a comparison of STDP rules and does not test forgetting.
+- The 16-window representation was consistently stronger than the 8-window and 4-window representations at the same training budgets, but none reached the registered 85% validation threshold.
+- This supports preserving temporal detail, while showing that a single-pass online SGD readout with these frozen settings is insufficient for the threshold.

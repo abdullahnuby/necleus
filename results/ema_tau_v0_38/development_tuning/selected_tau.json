@@ -1,0 +1,27 @@
+{
+  "stage": "development_only",
+  "selected_tau_ticks": 8.0,
+  "selection_scores": [
+    {
+      "tau_ticks": 2.0,
+      "mean_validation_balanced_accuracy_percent": 79.95625000000001,
+      "mean_validation_accuracy_percent": 79.95625000000001,
+      "n_seed_task_pairs": 16
+    },
+    {
+      "tau_ticks": 4.0,
+      "mean_validation_balanced_accuracy_percent": 80.0125,
+      "mean_validation_accuracy_percent": 80.0125,
+      "n_seed_task_pairs": 16
+    },
+    {
+      "tau_ticks": 8.0,
+      "mean_validation_balanced_accuracy_percent": 80.0375,
+      "mean_validation_accuracy_percent": 80.0375,
+      "n_seed_task_pairs": 16
+    }
+  ],
+  "selection_rule": "mean validation balanced_accuracy at epoch 10 across all development seed-task pairs; ties go to smaller tau",
+  "official_test_used": false,
+  "official_tau_still_not_frozen": true
+}

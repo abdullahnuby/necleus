@@ -1,0 +1,18 @@
+Nucleus Pulse v0.41 Stage 2 — Run Log
+====================================
+Runner: experiments/run_input_gain_development_v0_41.py
+Command: python -u experiments/run_input_gain_development_v0_41.py
+
+Observed seed completion messages:
+- development seed 14111 complete (1/8)
+- development seed 14129 complete (2/8)
+- development seed 14147 complete (3/8)
+- development seed 14165 complete (4/8)
+- development seed 14183 complete (5/8)
+- development seed 14201 complete (6/8)
+- development seed 14219 complete (7/8)
+- development seed 14237 complete (8/8)
+
+Output: 96 records written to results/input_gain_v0_41/development_diagnostic/.
+Tests after run: 118 passed.
+No validation/test split or readout training was performed.

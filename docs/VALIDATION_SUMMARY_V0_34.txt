@@ -1,0 +1,31 @@
+Nucleus Pulse v0.34 validation summary
+Date: 2026-10-24
+
+Engineering checks:
+- Smoke test: PASS
+- Full pytest suite: 67 passed
+- Frozen preregistration / source hashes: PASS
+- Official run: 40/40 seeds, seed IDs 7000-7039
+- Expected data records: 640; observed: 640
+- Per task and seed: 6000 training, 1000 validation, 1000 final test examples
+- Class balance verified for each split
+- Train/validation/test overlap count: 0
+- Recurrent graph topology identical between paired conditions
+- Pre-normalization edge magnitudes identical between paired conditions
+- All-excitatory condition: all extant recurrent weights positive
+- Dale condition: 6 inhibitory source neurons per 24-neuron reservoir; all their nonzero outgoing recurrent edges negative; remaining nonzero outgoing edges positive
+- Both conditions' post-normalization spectral radii checked to be within 5e-4 of 0.72
+- Recurrent diagnostics and per-seed condition scaling recorded in results.json
+- JSON results parsed successfully
+
+Primary results at 10 passes (treatment minus all-excitatory control):
+- sync: -0.635 percentage points; paired seed-bootstrap 95% CI [-1.4775, +0.1600]
+- order: -0.120 percentage points; paired seed-bootstrap 95% CI [-0.9000, +0.6750]
+- Mean spikes/trial: all-excitatory 139.50; Dale 25% 99.29 (about 28.8% fewer spikes)
+- 85% validation hits: sync 7/40 for each condition; order 0/40 for each condition
+
+Interpretation:
+- No clear accuracy improvement from the structured inhibitory condition in these tasks.
+- Activity changed materially, while average test accuracy did not improve; this is not an energy-use measurement.
+- This experiment compares an explicit all-excitatory control with a Dale-style E/I reservoir, both normalized to common spectral radius. The historical v0.33 network had mixed-sign weights and should not be described as having no inhibition.
+- Result is limited to the frozen synthetic tasks/configuration; recurrent weights are not trained and this does not test STDP or general engineering reasoning.

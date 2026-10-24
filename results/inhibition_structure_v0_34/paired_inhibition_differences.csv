@@ -1,0 +1,9 @@
+task,epochs,contrast,n_paired_seeds,mean_delta_percentage_points,ci95_low_percentage_points,ci95_high_percentage_points,positive_seed_deltas,negative_seed_deltas,zero_seed_deltas
+sync,1,dale_inhibition_25 - all_excitatory,40,-0.6900000000000001,-1.8250000000000008,0.4275624999999989,16,24,0
+sync,3,dale_inhibition_25 - all_excitatory,40,-0.5724999999999991,-1.5524999999999998,0.3874999999999995,19,21,0
+sync,5,dale_inhibition_25 - all_excitatory,40,-0.515000000000001,-1.4750625000000013,0.412562499999998,19,21,0
+sync,10,dale_inhibition_25 - all_excitatory,40,-0.635,-1.4774999999999994,0.15999999999999903,18,20,2
+order,1,dale_inhibition_25 - all_excitatory,40,0.017500000000000016,-0.5349999999999999,0.585,20,20,0
+order,3,dale_inhibition_25 - all_excitatory,40,0.04250000000000004,-0.6250000000000006,0.7375000000000007,20,19,1
+order,5,dale_inhibition_25 - all_excitatory,40,-0.15750000000000014,-0.9000000000000008,0.5950000000000005,17,23,0
+order,10,dale_inhibition_25 - all_excitatory,40,-0.11999999999999984,-0.9000000000000005,0.6750000000000006,17,22,1
