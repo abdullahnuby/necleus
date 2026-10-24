@@ -1,0 +1,16 @@
+﻿cli_stdout.json	sha256=c802d0a13a78c0f9c74be861b36d8a9b1022eb415f102476953b929c8d43451b	bytes=2641
+dev_evaluator_private.jsonl	sha256=210fd10dac069bb47cf56edd7b6adb544892a390b3a8efaceb31bb6ebd91b307	bytes=2178
+dev_public.jsonl	sha256=4a850cafe8e65206f6d91cabf39f964b3981a3adbaded70885849b50aff93f2f	bytes=2750
+stage1_smoke_report.json	sha256=ef238dfc810d1c69e57c654957f6e55e95bb93277995f663cd67605cba0fbe31	bytes=2640
+test_evaluator_private.jsonl	sha256=86444abd0e05107e825b63ba9d5b028716ca2b8d8777f3762c2e3bed08d62c4a	bytes=2185
+test_public.jsonl	sha256=62bbcb5b26b4e8793417068a7ff8d9dec0238495fe1767edd51a3f7e43641f02	bytes=1944
+train_evaluator_private.jsonl	sha256=26a8b05fb206b21cd5565062105a42f65cc82feeec29e04bd6aec9d3a62051ce	bytes=2183
+train_public.jsonl	sha256=bb0a74658245939f83dfe6b8196979ef22d00d45c051c2df49bc808032ecb434	bytes=2743
+[train] public_keys=['queries', 'support', 'task_id'] private_keys=['ast_sha256', 'audit', 'classification', 'family_id', 'query_x', 'query_y', 'semantic_sha256', 'split', 'support', 'target_program', 'task_id'] public_query_has_y=True private_has_target=True private_has_query_y=True
+[dev] public_keys=['queries', 'support', 'task_id'] private_keys=['ast_sha256', 'audit', 'classification', 'family_id', 'query_x', 'query_y', 'semantic_sha256', 'split', 'support', 'target_program', 'task_id'] public_query_has_y=True private_has_target=True private_has_query_y=True
+[test] public_keys=['queries', 'support', 'task_id'] private_keys=['ast_sha256', 'audit', 'classification', 'family_id', 'query_x', 'query_y', 'semantic_sha256', 'split', 'support', 'target_program', 'task_id'] public_query_has_y=False private_has_target=True private_has_query_y=True
+official_test_ready=False
+smoke_task_count=3
+smoke_note=plumbing smoke test only; not an official benchmark result
+risk=The evaluator-private JSONL files are tracked in a public repository and contain target_program, family_id, query_y, and audit metadata. Any official test that reuses these task IDs, support rows, or query rows is compromised and must be regenerated.
+exit_code=0

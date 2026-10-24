@@ -1,0 +1,145 @@
+time=2026-10-24 18:45:51 +03:00
+command=.venv\Scripts\python.exe -m pytest -q tests --no-header -p no:cacheprovider
+...............................F..............................F......... [ 54%]
+
+...........................................................              [100%]
+
+================================== FAILURES ===================================
+
+_____ test_threshold_is_preregistered_and_test_is_not_used_for_selection ______
+
+
+
+    def test_threshold_is_preregistered_and_test_is_not_used_for_selection():
+
+>       prereg = verify_preregistration()
+
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+tests\test_incremental_windows_v0_31.py:76: 
+
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+experiments\run_incremental_windows_v0_31.py:100: in verify_preregistration
+
+    actual = sha256_file(ROOT / relative)
+
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+experiments\run_incremental_windows_v0_31.py:62: in sha256_file
+
+    with path.open("rb") as stream:
+
+         ^^^^^^^^^^^^^^^
+
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+
+
+self = WindowsPath('D:/PROGRAMING/BAND/engineer_nucleus/necleus/requirements-benchmark.txt')
+
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+
+             errors=None, newline=None):
+
+        """
+
+        Open the file pointed to by this path and return a file object, as
+
+        the built-in open() function does.
+
+        """
+
+        if "b" not in mode:
+
+            encoding = io.text_encoding(encoding)
+
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\PROGRAMING\\BAND\\engineer_nucleus\\necleus\\requirements-benchmark.txt'
+
+
+
+C:\Users\Abdullah\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:771: FileNotFoundError
+
+______________ test_frozen_learning_curve_protocol_hashes_match _______________
+
+
+
+    def test_frozen_learning_curve_protocol_hashes_match():
+
+>       prereg = verify_preregistration()
+
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+tests\test_learning_curve_v0_30.py:78: 
+
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+experiments\run_learning_curve_v0_30.py:98: in verify_preregistration
+
+    actual = sha256_file(ROOT / relative)
+
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+experiments\run_learning_curve_v0_30.py:65: in sha256_file
+
+    with path.open("rb") as stream:
+
+         ^^^^^^^^^^^^^^^
+
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+
+
+self = WindowsPath('D:/PROGRAMING/BAND/engineer_nucleus/necleus/requirements-benchmark.txt')
+
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+
+             errors=None, newline=None):
+
+        """
+
+        Open the file pointed to by this path and return a file object, as
+
+        the built-in open() function does.
+
+        """
+
+        if "b" not in mode:
+
+            encoding = io.text_encoding(encoding)
+
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\PROGRAMING\\BAND\\engineer_nucleus\\necleus\\requirements-benchmark.txt'
+
+
+
+C:\Users\Abdullah\AppData\Local\Programs\Python\Python314\Lib\pathlib\__init__.py:771: FileNotFoundError
+
+=========================== short test summary info ===========================
+
+FAILED tests/test_incremental_windows_v0_31.py::test_threshold_is_preregistered_and_test_is_not_used_for_selection
+
+FAILED tests/test_learning_curve_v0_30.py::test_frozen_learning_curve_protocol_hashes_match
+
+2 failed, 129 passed in 32.60s
+
+exit_code=1

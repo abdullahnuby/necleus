@@ -1,0 +1,7 @@
+time=2026-10-24 18:45:35 +03:00
+command=.venv\Scripts\python.exe -m pytest -q tests/v043 --no-header -p no:cacheprovider
+.........                                                                [100%]
+
+9 passed in 6.21s
+
+exit_code=0

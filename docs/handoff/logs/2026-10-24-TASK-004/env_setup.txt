@@ -1,0 +1,9 @@
+time=2026-10-24 18:41:29 +03:00
+command=py -3.14 -m venv .venv
+venv_exit=0
+Python 3.14.6
+time=2026-10-24 18:41:49 +03:00
+command=.venv\Scripts\python.exe -m pip install -r docs/requirements-dev.txt -r docs/requirements-benchmark.txt
+pip_exit=0
+pytest_v043_exit=0
+pytest_full_exit=1
