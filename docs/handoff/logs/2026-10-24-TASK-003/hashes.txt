@@ -1,0 +1,15 @@
+90b9b1c1edda9cad61a34162ca584564c9885fcf85e0ad71c39f83d43b90b2bb  README.md
+0ef68eb2da71ae30ab2070be36a6086a3b35ece9197b79280671fb5f945d1efd  docs/README.md
+e3b350ca1845c07b908de1a96b448e892f11c2f603c02bed80d5cd8254d8e38f  docs/README_AR.md
+0e27d839f30a08d48f8202bfeab73c0c6f43ed6f64f0f8d7070943117a554bec  docs/CHANGELOG.md
+d5044ac5f9a36df1d37629380bd365cc0f4018af0b93c63149b31e9ff4397516  docs/handoff/LATEST_REPORT.md
+d5044ac5f9a36df1d37629380bd365cc0f4018af0b93c63149b31e9ff4397516  docs/handoff/history/2026-10-24-TASK-003.md
+88be09055b2cfd3a3cf6791bba5c9f04eba8e8bd8576d14ad944e3cac3f39d46  docs/handoff/logs/2026-10-24-TASK-003/cli_inspect.json
+510d023b3f21f9b1795140bdd03593e35798020198c52fd6d44765cd291c76dd  docs/handoff/logs/2026-10-24-TASK-003/env.txt
+3943558a0cea719a6594ee844440d9e9ea289c774ba8d8f46e3f7171a7420372  docs/handoff/logs/2026-10-24-TASK-003/language_check.txt
+140077dcf5538c0b9574cb16ed7fdbd5a58eec90b536f7446e4df4d5ce91bf54  docs/handoff/logs/2026-10-24-TASK-003/link_check.txt
+e214fcf916aa181711dd2a260fbdb1be9e9213a0f09ff898d7bd892e7a33b68c  docs/handoff/logs/2026-10-24-TASK-003/preservation_check.txt
+9efcffd21bd56d6373e1c3b7e4dcd4d84fcc6fa6558676d2a5b6fa0feabcf553  docs/handoff/logs/2026-10-24-TASK-003/pytest_full.txt
+d19c9b20419663cc2deed8c21dae825ddb8885038f4a5e8a83c16656ddfaba7c  docs/handoff/logs/2026-10-24-TASK-003/pytest_v043.txt
+efeede31185789f198fb770d24939f9252e6045f79ace2805bf416058d0c6f96  docs/handoff/logs/2026-10-24-TASK-003/verify_handoff_after.txt
+cff976ad73a293f21393e3dd0b9bf8c851922e4e71c8a2138593afaa4ccbaf43  docs/handoff/logs/2026-10-24-TASK-003/verify_handoff_before.txt
