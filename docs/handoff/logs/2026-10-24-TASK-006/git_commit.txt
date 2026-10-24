@@ -1,0 +1,13 @@
+COMMIT EVIDENCE
+===============
+Commit: f3425b19bd2cc22395007fd56e0fb5b8cf54e556
+Message: TASK-006..009: v0.43 development pipeline and readiness freeze
+Files changed: 87
+Insertions: 17207
+Deletions: 155
+Exit code: 0
+Parent: f7bd8fd888d41654c62e983d27f76c077c00d5a8
+
+This commit contains the substantive v0.43 development changes, the four
+handoff reports, the integrity guard, the readiness checklist, and the
+development result artifacts. A later log-only commit records push evidence.
