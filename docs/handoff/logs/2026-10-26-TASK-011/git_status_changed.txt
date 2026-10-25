@@ -1,0 +1,23 @@
+﻿TASK-011 GIT STATUS (captured before handoff commit)
+code_commit: ed35a477e938f936e67b1ab5d65cb70ea036a550
+
+git status --short:
+ M docs/handoff/LATEST_REPORT.md
+?? docs/handoff/history/2026-10-26-TASK-011.md
+?? docs/handoff/logs/2026-10-26-TASK-011/
+
+code commit stat:
+ed35a47 TASK-011: add reward-free local exploration lab with persistent spiking agent
+ .gitattributes                |   5 +
+ README.md                     |  16 ++
+ docs/CHANGELOG.md             |   9 +
+ docs/EXPLORATION_LAB.md       | 388 ++++++++++++++++++++++++++++++++++++
+ exploration_lab/__init__.py   |  21 ++
+ exploration_lab/__main__.py   |   4 +
+ exploration_lab/agent.py      | 426 +++++++++++++++++++++++++++++++++++++++
+ exploration_lab/cli.py        | 151 ++++++++++++++
+ exploration_lab/encoding.py   |  36 ++++
+ exploration_lab/games.py      | 453 ++++++++++++++++++++++++++++++++++++++++++
+ exploration_lab/runtime.py    | 389 ++++++++++++++++++++++++++++++++++++
+ tests/test_exploration_lab.py | 345 ++++++++++++++++++++++++++++++++
+ 12 files changed, 2243 insertions(+)

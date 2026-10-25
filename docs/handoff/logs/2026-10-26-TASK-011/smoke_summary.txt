@@ -1,0 +1,18 @@
+TASK-011 SHORT SMOKE SESSION (aggregate only)
+Command: py -3.14 -m exploration_lab --no-render --delay 0 --max-steps 650 --checkpoint-every 100 --seed 11011
+session_id: 20261025T221504Z-9f0f8b
+steps: 650
+episodes: 14
+fallback_actions: 1
+checkpoints_saved: 7
+elapsed_seconds: 0.986
+game_step_counts: {'gridworld': 168, 'snake': 11, 'pong': 471}
+action_counts: {'gridworld:up': 60, 'gridworld:right': 29, 'gridworld:down': 43, 'gridworld:left': 36, 'snake:up': 4, 'snake:down': 4, 'pong:down': 148, 'pong:stay': 175, 'pong:up': 148, 'snake:left': 2, 'snake:right': 1}
+episode_end_counts: {('gridworld', 'goal_reached'): 5, ('snake', 'self_collision'): 5, ('pong', 'missed_paddle'): 4}
+game_switch_counts: {('gridworld', 'snake'): 5, ('snake', 'pong'): 5, ('pong', 'gridworld'): 4}
+weight_stats: {"hidden_action": {"max": 0.1433350341417264, "mean": 0.06540548656439649, "min": 0.011970877926475115, "std": 0.03298230748073037}, "hidden_hidden_abs_mean": 0.014257538066658464, "input_hidden": {"max": 0.15915639990583086, "mean": 0.060202832027187375, "min": 0.0, "std": 0.035677136286114026}, "total_weight_updates": 1315.0}
+private_log_sha256: 946c9d3ea218f547395791a3963c4d02dcae3d705603a4c15a1d9874e5624c3e
+private_checkpoint_sha256: 588c4a7fc3bb501b0bc3d0768b93e5537993e48b4c6353f234d9f74e7e6df6e0
+private_summary_sha256: fd08fddb0c191529706e95719e9644785f5192a81587bac89f956fd995ed5f7d
+Raw gameplay rows remain under .local_private/ and are not committed.
+This is an operational smoke record, not evidence of learning, skill, or game performance.

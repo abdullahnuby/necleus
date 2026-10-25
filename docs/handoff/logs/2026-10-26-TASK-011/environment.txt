@@ -1,0 +1,9 @@
+﻿TASK-011 ENVIRONMENT
+date_local: 2026-10-26T01:07:07.9298753+03:00
+python: Python 3.14.6
+numpy: 2.5.3
+pytest: pytest 8.4.2
+platform: Microsoft Windows NT 10.0.19044.0
+git_branch: main
+git_head: 9841664f6eea00ce9c49dac21c276c85f27d679c
+origin_main: 9841664f6eea00ce9c49dac21c276c85f27d679c	refs/heads/main

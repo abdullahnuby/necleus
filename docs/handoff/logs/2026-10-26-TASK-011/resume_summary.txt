@@ -1,0 +1,14 @@
+TASK-011 RESUME SMOKE (aggregate only)
+Command: py -3.14 -m exploration_lab --resume .local_private/exploration/smoke_checkpoint.json --no-render --delay 0 --max-steps 700 --checkpoint-every 0
+resumed_from: .local_private\exploration\smoke_checkpoint.json
+steps_after_resume: 700
+episodes_after_resume: 14
+fallback_actions: 1
+agent_steps: 700
+agent_ticks: 2800
+agent_weight_updates: 1365
+weight_stats: {"hidden_action": {"max": 0.1432633841803885, "mean": 0.06537279183200476, "min": 0.01196489395370985, "std": 0.03296582036667636}, "hidden_hidden_abs_mean": 0.014257538066658464, "input_hidden": {"max": 0.15907683992494437, "mean": 0.060172737984224456, "min": 0.0, "std": 0.035659302086841316}, "total_weight_updates": 1365.0}
+private_resume_log_sha256: 6381d620bb8c56c04cc63c69e6b50b9fc962acc9070dad69cd59cf6169deca09
+private_resume_checkpoint_sha256: 12447fe85bc6f764fbfc1ae14b6f1b6ed5fc35bc6a90cde8fa76e583193b3c31
+Raw gameplay rows remain under .local_private/ and are not committed.
+This verifies restoration mechanics only, not learning or game performance.
