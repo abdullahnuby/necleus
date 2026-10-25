@@ -1,2 +1,8 @@
 # Preserve exact bytes across clones (LF everywhere, binary untouched).
 * text=auto eol=lf
+
+# TASK-010 frozen evidence: preserve exact bytes so recorded SHA-256 values
+# match the Git blobs for the manifest, diagnostics, remediation, and retention
+# artifacts. These files were generated on Windows with CRLF newlines.
+results/v043_task010/** -text
+docs/handoff/logs/2026-10-25-TASK-010/** -text

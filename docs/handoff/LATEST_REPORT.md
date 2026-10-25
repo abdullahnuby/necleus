@@ -47,6 +47,7 @@
 | `docs/V0_43_AUTONOMOUS_EXECUTION_ROADMAP_EN.md` | تعديل | حالة TASK-010 والأدلة الجديدة. |
 | `docs/V0_43_READINESS_CHECKLIST.md` | تعديل | إعادة تقييم واعية بالعائلات مع إبقاء القرار BLOCKED. |
 | `docs/CHANGELOG.md` | تعديل | مدخل TASK-010. |
+| `.gitattributes` | تعديل | الحفاظ على بايتات ملفات `results/v043_task010/**` وسجلات TASK-010 كما هي، حتى تطابق بصمات SHA-256 المسجلة محتوى Git الفعلي. |
 | `results/v043_task010/*` | إضافة | بيان مجمّد، نتائج تطوير، تشخيص، إصلاح، احتفاظ، وعملية جديدة. |
 
 - **لم يُعدّل:** `results/v043_development/*`، ولا checkpoints التحكم القديمة، ولا بوابات النجاح، ولا الاختبار الرسمي.
@@ -143,9 +144,10 @@
 
 ## 8. الأدلة والبصمات
 
-- **Commit العمل:** يُسجل في commit توثيق الأدلة بعد إنشاء commit العمل.
-- **الرفع:** يُسجل في `docs/handoff/logs/2026-10-25-TASK-010/git_push.txt` بعد نجاح `git push`.
+- **Commit العمل:** `b1bcb81d99152df65e70e452133ce927e3880401`.
+- **الرفع:** نُفّذ بعد commit توثيق الأدلة؛ التفاصيل الكاملة وremote HEAD في `docs/handoff/logs/2026-10-25-TASK-010/git_push.txt`.
 - **بصمات الملفات:** `docs/handoff/logs/2026-10-25-TASK-010/hashes.txt`.
+- **مطابقة Git:** أُضيف `results/v043_task010/** -text` و`docs/handoff/logs/2026-10-25-TASK-010/** -text` إلى `.gitattributes`، وتحقّقنا أن بصمة كل ملف نتائج في الفهرس تطابق بصمة ملف العمل. هذا يمنع تحويل CRLF/LF من إبطال بصمة البيان المجمّد.
 - **التقارير:** `docs/V0_43_DEEPSETS_DIAGNOSTIC_REPORT.md`، `docs/V0_43_DEEPSETS_REMEDIATION_PLAN.md`، `docs/V0_43_DEEPSETS_REMEDIATION_REPORT.md`، `docs/V0_43_RETENTION_COMPARISON_REPORT.md`، `docs/V0_43_READINESS_CHECKLIST.md`.
 - **النتائج:** `results/v043_task010/dev_manifest.json`، `development_results.json`، `deepsets_diagnostics_v2_control.json`، `remediation_results.json`، `retention_comparison.json`، `new_operation_results.json`.
 - **السجلات:** `docs/handoff/logs/2026-10-25-TASK-010/`.
