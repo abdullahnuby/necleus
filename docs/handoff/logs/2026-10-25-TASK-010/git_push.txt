@@ -1,0 +1,33 @@
+TASK-010 PUSH EVIDENCE
+======================
+
+Substantive commits pushed
+--------------------------
+Command: git push origin main
+Range: d888772b3f4a4b4e8e8142e9073aaa90b8f056c6..01208792ef9ef3a27ebe19db8df385c5e5073951
+Result: d888772..0120879  main -> main
+Exit code: 0
+
+Commits:
+- b1bcb81d99152df65e70e452133ce927e3880401  TASK-010: family-aware development protocol, DeepSets diagnosis, bounded remediation, retention audit
+- 01208792ef9ef3a27ebe19db8df385c5e5073951  TASK-010: record final handoff, hashes, and validation evidence
+
+Remote verification immediately after push
+------------------------------------------
+Command: git ls-remote origin refs/heads/main
+Output: 01208792ef9ef3a27ebe19db8df385c5e5073951	refs/heads/main
+
+Log-only commit
+---------------
+This push-evidence file and the regenerated hashes are added in a log-only
+commit after the substantive push. That log-only commit is pushed separately.
+The substantive commits above were accepted by origin/main before the evidence
+commit was created. No history rewrite and no force-push were used.
+
+Reproducibility note
+--------------------
+`results/v043_task010/**` and `docs/handoff/logs/2026-10-25-TASK-010/**` are
+marked `-text` in `.gitattributes`, so their Git blobs preserve the exact bytes
+used for the recorded SHA-256 values, including CRLF newlines. The frozen
+manifest hash is
+2b73a94d95513c3316f331f05352689c9557dc90eac2fe6ee8b9de77191a1706.

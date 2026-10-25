@@ -43,6 +43,8 @@ a75804955a6d1ce7d29cb56950560d87f1cb7b0ce6b9966e8653ab7989bcdc84  docs/handoff/l
 4e017bff8495b4cab8e16a5722bf6e83b264f21c3f974af35c29a6e67724c08c  docs/handoff/logs/2026-10-25-TASK-010/deepsets_diagnostics_v2_control.txt
 b838a7be9d5d41ddd2e3ec71e3d59c1d20de8cbabaeaf9dff20a85df8e08ac91  docs/handoff/logs/2026-10-25-TASK-010/execution_plan.md
 18c8ba5842f5c937f7945cbcf19f21b1f8c1405645be4a96fab32114cdeb1119  docs/handoff/logs/2026-10-25-TASK-010/family_v2_development.txt
+c764e23ef70203f8bb688416b851a9627751b599d96677c561bd1ca5342dc495  docs/handoff/logs/2026-10-25-TASK-010/git_push.txt
+b2d6f48eff45b64307fe3f3bd227d0efdabaaa61c231b4b8cc1b736b8b7db2aa  docs/handoff/logs/2026-10-25-TASK-010/git_push_raw.txt
 eb4c446096c9eb54f3375d74f8110af1ccfa23e34f8620dfeb27662d09479857  docs/handoff/logs/2026-10-25-TASK-010/handoff_verify.txt
 881f8df8b8846e0f9d364b63827ef5598751aa999df72b0f44d893e41d1fdf04  docs/handoff/logs/2026-10-25-TASK-010/leakage_scan.txt
 522f30608fa62f55880ef7b6ea420bf5f7a204a6ab3e92c3dca4b65d7963f3ea  docs/handoff/logs/2026-10-25-TASK-010/manifest_freeze.txt
