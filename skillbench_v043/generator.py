@@ -5,7 +5,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 import random
-from typing import Any, Iterable, Literal
+from typing import Any, Callable, Iterable, Literal
 
 from .dsl import (
     DOMAIN_SIZE, DOMAIN_MAX, Expr, ast_depth, ast_hash, canonical_semantic_programs,
@@ -17,6 +17,95 @@ from .integrity import assert_not_disqualified
 TaskClass = Literal[
     "IN_SCOPE_IDENTIFIABLE", "IN_SCOPE_AMBIGUOUS", "OUT_OF_SCOPE", "CONTRADICTORY_SUPPORT"
 ]
+
+
+@dataclass(frozen=True)
+class OODOperation:
+    """A hidden operation family reserved for development-only OOD tasks."""
+
+    operation_id: str
+    family_id: str
+    descriptor: str
+    mask: int
+
+
+def _ood_mask(rule: Callable[[int, int], bool]) -> int:
+    mask = 0
+    for x0 in range(DOMAIN_SIZE):
+        for x1 in range(DOMAIN_SIZE):
+            if rule(x0, x1):
+                mask |= 1 << (x0 * DOMAIN_SIZE + x1)
+    return mask
+
+
+def _ood_family_id(operation_id: str) -> str:
+    return "ood-hidden-" + hashlib.sha256(
+        ("nucleus-pulse-v0.43-ood-family-v2:" + operation_id).encode("utf-8")
+    ).hexdigest()[:16]
+
+
+OOD_OPERATIONS: tuple[OODOperation, ...] = (
+    OODOperation(
+        "mod7_xor_div5", "ood-hidden-mod7-family-v1",
+        "x0 mod 7 in {0,1,2} XOR x1 mod 5 == 0",
+        _ood_mask(lambda x0, x1: (x0 % 7 in (0, 1, 2)) != (x1 % 5 == 0)),
+    ),
+    OODOperation(
+        "mod9_or_mod4", _ood_family_id("mod9_or_mod4"),
+        "x0 mod 9 in {1,4,7} OR x1 mod 4 == 0",
+        _ood_mask(lambda x0, x1: (x0 % 9 in (1, 4, 7)) or (x1 % 4 == 0)),
+    ),
+    OODOperation(
+        "mod11_xor_mod3", _ood_family_id("mod11_xor_mod3"),
+        "x0 mod 11 in {0,5,10} XOR x1 mod 3 == 0",
+        _ood_mask(lambda x0, x1: (x0 % 11 in (0, 5, 10)) != (x1 % 3 == 0)),
+    ),
+    OODOperation(
+        "mod7_or_mod7b", _ood_family_id("mod7_or_mod7b"),
+        "x0 mod 7 == 0 OR x1 mod 7 in {2,3}",
+        _ood_mask(lambda x0, x1: (x0 % 7 == 0) or (x1 % 7 in (2, 3))),
+    ),
+    OODOperation(
+        "mod13_and_notdiv5", _ood_family_id("mod13_and_notdiv5"),
+        "x0 mod 13 in {0,1,2,3} AND x1 mod 5 != 0",
+        _ood_mask(lambda x0, x1: (x0 % 13 in (0, 1, 2, 3)) and (x1 % 5 != 0)),
+    ),
+    OODOperation(
+        "mod8_xor_mod9", _ood_family_id("mod8_xor_mod9"),
+        "x0 mod 8 in {1,3,5,7} XOR x1 mod 9 in {0,4,8}",
+        _ood_mask(lambda x0, x1: (x0 % 8 in (1, 3, 5, 7)) != (x1 % 9 in (0, 4, 8))),
+    ),
+    OODOperation(
+        "sum_mod7", _ood_family_id("sum_mod7"),
+        "(x0 + x1) mod 7 in {0,1,2}",
+        _ood_mask(lambda x0, x1: ((x0 + x1) % 7 in (0, 1, 2))),
+    ),
+    OODOperation(
+        "product_mod5", _ood_family_id("product_mod5"),
+        "(x0 * x1) mod 5 == 0",
+        _ood_mask(lambda x0, x1: ((x0 * x1) % 5 == 0)),
+    ),
+    OODOperation(
+        "mod6_or_mod8", _ood_family_id("mod6_or_mod8"),
+        "x0 mod 6 in {0,1} OR x1 mod 8 in {3,4,5}",
+        _ood_mask(lambda x0, x1: (x0 % 6 in (0, 1)) or (x1 % 8 in (3, 4, 5))),
+    ),
+    OODOperation(
+        "mod10_xor_mod7", _ood_family_id("mod10_xor_mod7"),
+        "x0 mod 10 in {0,5} XOR x1 mod 7 == 0",
+        _ood_mask(lambda x0, x1: (x0 % 10 in (0, 5)) != (x1 % 7 == 0)),
+    ),
+    OODOperation(
+        "mod9_and_mod4", _ood_family_id("mod9_and_mod4"),
+        "x0 mod 9 in {0,1,2,3} AND x1 mod 4 in {0,1}",
+        _ood_mask(lambda x0, x1: (x0 % 9 in (0, 1, 2, 3)) and (x1 % 4 in (0, 1))),
+    ),
+    OODOperation(
+        "mod7_swapped", _ood_family_id("mod7_swapped"),
+        "x1 mod 7 in {0,1,2} XOR x0 mod 5 == 0",
+        _ood_mask(lambda x0, x1: (x1 % 7 in (0, 1, 2)) != (x0 % 5 == 0)),
+    ),
+)
 
 
 @dataclass(frozen=True)
@@ -410,28 +499,25 @@ def write_jsonl(path: str, rows: Iterable[dict[str, Any]]) -> None:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
 
 
-def generate_ood_task(*, seed: int, task_index: int = 0, split: str = "test") -> TaskRecord:
+def generate_ood_task(*, seed: int, task_index: int = 0, split: str = "test",
+                      operation: OODOperation | None = None) -> TaskRecord:
     """Create a hidden-operation task for the pre-teaching OUT_OF_SCOPE stratum.
 
-    The evaluator uses x0 mod 7, a predicate absent from v0.43-core. The public
-    payload contains only labelled support examples and unlabelled queries; the
-    hidden-operation recipe and labels remain evaluator-private.
+    The default operation is the historical mod-7 XOR div-5 function. The
+    family-aware development protocol passes distinct ``OOD_OPERATIONS`` so OOD
+    tasks do not all share one family. Public payloads contain only labelled
+    support examples and unlabelled queries; the hidden operation and labels
+    remain evaluator-private.
     """
     if split not in ("train", "dev", "test"):
         raise ValueError("split must be train/dev/test")
+    selected = operation or OOD_OPERATIONS[0]
     rng = random.Random(seed)
-    mask = 0
-    for x0 in range(DOMAIN_SIZE):
-        for x1 in range(DOMAIN_SIZE):
-            hidden_atom = x0 % 7 in (0, 1, 2)
-            known_atom = x1 % 5 == 0
-            y = int(hidden_atom != known_atom)
-            if y:
-                mask |= 1 << (x0 * DOMAIN_SIZE + x1)
+    mask = selected.mask
     # Reject support sets that a known v0.43-core program can fit. Otherwise a
     # closed-world auditor would answer an out-of-scope task by coincidence.
     support = query_x = query_y = None
-    for attempt in range(200):
+    for attempt in range(500):
         candidate_support, candidate_query_x, candidate_query_y = _balanced_support_and_queries(
             mask, rng, support_mode="random"
         )
@@ -444,18 +530,22 @@ def generate_ood_task(*, seed: int, task_index: int = 0, split: str = "test") ->
             support, query_x, query_y = candidate_support, candidate_query_x, candidate_query_y
             break
     if support is None or query_x is None or query_y is None:
-        raise RuntimeError("unable to generate an out-of-scope support set outside the known grammar")
+        raise RuntimeError(
+            f"unable to generate an out-of-scope support set outside the known grammar "
+            f"for {selected.operation_id}"
+        )
     audit = audit_support(support, query_x, out_of_scope=True)
     audit["known_grammar_consistent"] = False
     audit["ood_rejection_attempts"] = attempt + 1
-    hidden_descriptor = ("HIDDEN_MOD7_IN_0_1_2_XOR_DIV5", "x0", "x1")
+    audit["ood_operation_id"] = selected.operation_id
+    hidden_descriptor = (selected.descriptor, "x0", "x1")
     task_id = "task-" + hashlib.sha256(
-        f"nucleus-pulse-v0.43-ood-task-id-v1:{seed}:{task_index}".encode("utf-8")
+        f"nucleus-pulse-v0.43-ood-task-id-v2:{selected.operation_id}:{seed}:{task_index}".encode("utf-8")
     ).hexdigest()[:16]
     record = TaskRecord(
         task_id=task_id,
         split=split,
-        family_id="ood-hidden-mod7-family-v1",
+        family_id=selected.family_id,
         ast_sha256=hashlib.sha256(repr(hidden_descriptor).encode("utf-8")).hexdigest(),
         semantic_sha256=_semantic_hash(mask),
         support=support,

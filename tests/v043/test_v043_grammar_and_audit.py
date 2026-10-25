@@ -99,15 +99,16 @@ def test_ood_and_contradictory_support_are_separate_from_coverage_gate():
 
 def test_public_payload_has_no_target_or_audit_leakage():
     task = generate_ood_task(seed=911)
+    hidden_descriptor = task.target_program_private[0]
     public = task.public_payload(include_query_labels=False)
     assert set(public) == {"task_id", "support", "queries"}
     assert "y" not in public["queries"][0]
     serialized = str(public)
-    assert "HIDDEN_MOD7" not in serialized
+    assert hidden_descriptor not in serialized
     assert "target_program" not in serialized
     assert "family_id" not in serialized
     evaluator = task.evaluator_payload()
-    assert "HIDDEN_MOD7" in str(evaluator["target_program"])
+    assert hidden_descriptor in str(evaluator["target_program"])
 
 
 def test_split_audit_rejects_cross_split_semantic_or_family_leakage():

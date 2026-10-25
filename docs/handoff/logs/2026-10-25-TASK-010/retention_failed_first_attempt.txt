@@ -1,0 +1,34 @@
+Captured console output from the first retention-comparison attempt of TASK-010
+(2026-10-25), before the sampling fix described in LATEST_REPORT.md section 9.
+
+Command:
+  py -3.14 -m skillbench_v043.cli retention-compare --skills 20 \
+    --seeds 430043,430044,430045 \
+    --strategies control,balanced_replay,balanced_support_replay \
+    --output results/v043_task010
+
+Exit code:
+  1
+
+Traceback (tail):
+  File "skillbench_v043\continual.py", line 465, in build_retention_sequences
+    sequences[int(seed)] = build_retention_skills(
+  File "skillbench_v043\continual.py", line 215, in build_retention_skills
+    eval_x, eval_y = _sample_queries(mask, rng, excluded, 100)
+  File "skillbench_v043\continual.py", line 166, in _sample_queries
+    points = rng.sample(positives, half) + rng.sample(negatives, half)
+  File "C:\Users\Abdullah\AppData\Local\Programs\Python\Python314\Lib\random.py", line 436, in sample
+    raise ValueError("Sample larger than population or is negative")
+ValueError: Sample larger than population or is negative
+
+Cause:
+Some development semantic functions are highly imbalanced, so after excluding
+support and earlier interaction points they do not have 50 unused positives and
+50 unused negatives.
+
+Resolution:
+_sample_queries now draws up to half from each side and fills any shortfall from
+the other side, while still requiring enough unused points to reach the requested
+count. The actual label counts are recorded in the generated tasks. The full
+comparison was rerun successfully; see retention_compare.log and
+results/v043_task010/retention_comparison.json.

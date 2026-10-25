@@ -1,3 +1,11 @@
+## 2026-10-25 — بروتوكول تطوير واعٍ بالعائلات وتشخيص DeepSets وإصلاح محدود ومقارنة احتفاظ (2026-10-25-TASK-010)
+- أُصلح اختيار العتبة: `risk=None` لا يُعامل صفرًا أبدًا، وعند غياب عتبة ممكنة يصبح `chosen_threshold=null` مع تقرير `diagnostic_fallback` منفصل لا يُحتسب نجاحًا؛ وأُضيف مسح كامل للعتبات وbootstrap عنقودي حسب العائلة.
+- أُجمد بروتوكول `v0.43-family-aware-dev-v1`: 54 مهمة و54 عائلة منفصلة، 18 لكل من `fit` و`calibration` و`evaluation`، وبصمة البيان `2b73a94d95513c3316f331f05352689c9557dc90eac2fe6ee8b9de77191a1706`.
+- تشخيص DeepSets: لا عتبة ممكنة لأي بذرة؛ AUC لثقة القابل للتحديد مقابل الملتبس 0.32، والخسارة تصل هضبة 0.63–0.66. التقرير: `docs/V0_43_DEEPSETS_DIAGNOSTIC_REPORT.md`.
+- دورة إصلاح محدودة مسبقة التسجيل: E0/E1/E2 بثلاث بذور، كلها 0/3 بوابات و0/3 عتبات ممكنة؛ القرار FAIL وإيقاف التحسين. التقرير: `docs/V0_43_DEEPSETS_REMEDIATION_REPORT.md`.
+- مقارنة احتفاظ بثلاثة تسلسلات مستقلة: control +2.57 نقطة ونسيان 20.92%؛ balanced replay +7.02 ونسيان 22.48%؛ balanced support replay +5.87 ونسيان 20.38%. لا استراتيجية مشتركة اجتازت البوابة. التقرير: `docs/V0_43_RETENTION_COMPARISON_REPORT.md`.
+- أُضيفت أوامر CLI: `dev-family` و`validate-splits` و`train-family` و`diagnostics` و`remediation` و`retention-compare` و`summary`. الاختبار الكامل يُسجّل في تقرير المهمة. `official_test_ready=false` و`official_test_opened=false`.
+
 ## 2026-10-24 — واجهة CLI ومراجعة جاهزية v0.43 (2026-10-24-TASK-009)
 - أُضيفت واجهة `skillbench_v043/cli.py` بأوامر `inspect` و`smoke` و`corpus` و`dev` و`train` و`abstention` و`new-operation` و`correction-retention`؛ أمر smoke يكتب payload المقيم فقط تحت `.local_private/`.
 - أُضيفت `docs/V0_43_READINESS_CHECKLIST.md` و`docs/V0_43_OFFICIAL_TEST_COMMITMENT_PLAN.md`؛ `official_test_ready=false` و`official_test_opened=false`.

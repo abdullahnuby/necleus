@@ -1,0 +1,37 @@
+Captured console output from the first full-suite run of TASK-010
+(2026-10-25, before the test adaptation described in LATEST_REPORT.md section 9).
+
+Command:
+  py -3.14 -m pytest -q
+
+Result:
+  1 failed, 171 passed in 369.84s (0:06:09)
+
+Failure:
+_____________ test_public_payload_has_no_target_or_audit_leakage ______________
+
+    def test_public_payload_has_no_target_or_audit_leakage():
+        task = generate_ood_task(seed=911)
+        public = task.public_payload(include_query_labels=False)
+        assert set(public) == {"task_id", "support", "queries"}
+        assert "y" not in public["queries"][0]
+        serialized = str(public)
+        assert "HIDDEN_MOD7" not in serialized
+        assert "target_program" not in serialized
+        assert "family_id" not in serialized
+        evaluator = task.evaluator_payload()
+>       assert "HIDDEN_MOD7" in str(evaluator["target_program"])
+E       assert 'HIDDEN_MOD7' in "('x0 mod 7 in {0,1,2} XOR x1 mod 5 == 0', 'x0', 'x1')"
+E        +  where "('x0 mod 7 in {0,1,2} XOR x1 mod 5 == 0', 'x0', 'x1')" = str(('x0 mod 7 in {0,1,2} XOR x1 mod 5 == 0', 'x0', 'x1'))
+
+tests\v043\test_v043_grammar_and_audit.py:110: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/v043/test_v043_grammar_and_audit.py::test_public_payload_has_no_target_or_audit_leakage
+
+Resolution:
+The OOD task descriptor is now an explicit operation description instead of the
+literal label "HIDDEN_MOD7". The test was updated to derive the descriptor from
+the task and assert that the same descriptor is absent from the public payload
+and present in the evaluator payload. The intent of the test (no hidden-target
+leakage into public data) is unchanged. The full suite was rerun after the fix;
+see pytest_full.txt.

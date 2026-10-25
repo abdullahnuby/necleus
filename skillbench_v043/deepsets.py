@@ -175,8 +175,17 @@ class DeepSetsNumpy:
             for key in grads:
                 grads[key] *= scale
 
+    def evaluate_loss(self, episodes: Sequence[TrainingEpisode]) -> float:
+        if not episodes:
+            raise ValueError("evaluation episodes are empty")
+        support_x, support_y, query_x, query_y = stack_episodes(episodes)
+        logits = self._forward(support_x, support_y, query_x)
+        return float(_bce_with_logits(logits, query_y))
+
     def fit(self, episodes: Sequence[TrainingEpisode], *,
-            validation: Sequence[TrainingEpisode] | None = None) -> list[dict[str, float]]:
+            validation: Sequence[TrainingEpisode] | None = None,
+            checkpoint_prefix: str | Path | None = None,
+            checkpoint_epochs: Iterable[int] | None = None) -> list[dict[str, float]]:
         if not episodes:
             raise ValueError("training episodes are empty")
         support_x, support_y, query_x, query_y = stack_episodes(episodes)
@@ -184,6 +193,7 @@ class DeepSetsNumpy:
         optimizer = Adam(self.params, lr=self.config.learning_rate)
         n = len(episodes)
         self.history = []
+        selected_epochs = set(checkpoint_epochs or ())
         for epoch in range(self.config.epochs):
             order = rng.permutation(n)
             total_loss = 0.0
@@ -204,6 +214,13 @@ class DeepSetsNumpy:
                 row["validation_loss"] = _bce_with_logits(vlogits, vql)
                 row["validation_accuracy"] = float(np.mean((_sigmoid(vlogits) >= 0.5) == (vql == 1)))
             self.history.append(row)
+            if checkpoint_prefix is not None and (epoch + 1) in selected_epochs:
+                prefix = Path(checkpoint_prefix)
+                suffix = prefix.suffix or ".npz"
+                checkpoint_path = prefix.with_name(
+                    f"{prefix.stem}_epoch{epoch + 1}{suffix}"
+                )
+                self.save(checkpoint_path, metadata={"checkpoint_epoch": epoch + 1})
         return self.history
 
     def save(self, path: str | Path, metadata: dict | None = None) -> str:

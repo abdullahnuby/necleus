@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+import hashlib
 import json
 from pathlib import Path
 from typing import Any, Sequence
@@ -59,7 +60,9 @@ def _inspect(seed: int) -> dict[str, Any]:
         ],
         "commands": [
             "inspect", "smoke", "corpus", "dev", "train", "abstention",
-            "new-operation", "correction-retention",
+            "new-operation", "correction-retention", "dev-family",
+            "validate-splits", "train-family", "diagnostics", "remediation",
+            "retention-compare", "summary",
         ],
     }
     return report
@@ -251,6 +254,204 @@ def _correction_retention(args: argparse.Namespace) -> dict[str, Any]:
     }
 
 
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _dev_family(args: argparse.Namespace) -> dict[str, Any]:
+    from .corpus import build_family_aware_development_manifest, write_manifest
+
+    manifest = build_family_aware_development_manifest(seed=args.seed)
+    write_manifest(args.output, manifest)
+    path = Path(args.output)
+    return {
+        "schema": manifest["schema"],
+        "protocol_version": manifest["protocol_version"],
+        "output": str(path),
+        "sha256": _file_sha256(path),
+        "task_count": manifest["task_count"],
+        "family_count": manifest["family_count"],
+        "subset_counts": manifest["subset_counts"],
+        "subset_class_counts": manifest["subset_class_counts"],
+        "ood_operations": [row["operation_id"] for row in manifest["ood_operations"]],
+        "official_test_opened": False,
+    }
+
+
+def _validate_splits(args: argparse.Namespace) -> dict[str, Any]:
+    from .corpus import build_family_aware_development_tasks
+    from .pipeline import load_family_aware_subsets
+
+    records, _, _ = build_family_aware_development_tasks(seed=args.seed)
+    subsets, manifest, audit = load_family_aware_subsets(args.manifest, records)
+    return {
+        "manifest": str(Path(args.manifest)),
+        "manifest_sha256": _file_sha256(Path(args.manifest)),
+        "protocol_version": manifest["protocol_version"],
+        "subset_counts": {name: len(rows) for name, rows in subsets.items()},
+        "split_audit": audit,
+        "official_test_opened": False,
+    }
+
+
+def _train_family(args: argparse.Namespace) -> dict[str, Any]:
+    from .pipeline import run_family_aware_development
+
+    seeds = tuple(int(value) for value in args.seeds.split(",") if value.strip())
+    result = run_family_aware_development(
+        seeds=seeds,
+        epochs=args.epochs,
+        n_episodes=args.episodes,
+        hidden=args.hidden,
+        output_dir=args.output,
+        checkpoint_dir=args.checkpoints,
+        corpus_seed=args.corpus_seed,
+        dev_seed=args.seed,
+        manifest_path=args.manifest,
+        cluster_bootstrap=args.cluster_bootstrap,
+        bootstrap_seed=args.bootstrap_seed,
+    )
+    return {
+        "output": str(Path(args.output) / "development_results.json"),
+        "run_metadata": result["run_metadata"],
+        "subset_task_counts": result["subset_task_counts"],
+        "gate_summary": result["gate_summary"],
+        "thresholds": {
+            str(row["seed"]): {
+                "feasible": row["threshold_feasible"],
+                "threshold": row["threshold"],
+                "diagnostic_fallback": row["diagnostic_fallback_threshold"],
+            }
+            for row in result["seed_results"]
+        },
+        "checkpoints": {
+            str(row["seed"]): row["checkpoint_sha256"] for row in result["seed_results"]
+        },
+        "official_test_opened": False,
+    }
+
+
+def _diagnostics(args: argparse.Namespace) -> dict[str, Any]:
+    from .diagnostics import run_deepsets_diagnostics
+
+    seeds = tuple(int(value) for value in args.seeds.split(",") if value.strip())
+    result = run_deepsets_diagnostics(
+        checkpoint_dir=args.checkpoints,
+        seeds=seeds,
+        manifest_path=args.manifest,
+        output_dir=args.output,
+        checkpoint_pattern=args.pattern,
+        output_name=args.output_name,
+    )
+    return {
+        "output": str(Path(args.output) / args.output_name),
+        "manifest_sha256": result["manifest_sha256"],
+        "seed_count": len(result["seed_results"]),
+        "not_run": result["not_run"],
+        "indicators": {
+            str(row["config"]["seed"]): row["diagnostic_indicators"]
+            for row in result["seed_results"]
+        },
+        "official_test_opened": False,
+    }
+
+
+def _remediation(args: argparse.Namespace) -> dict[str, Any]:
+    from .remediation import run_remediation
+
+    seeds = tuple(int(value) for value in args.seeds.split(",") if value.strip())
+    result = run_remediation(
+        plan_path=args.plan,
+        preregistered_plan_sha256=args.plan_sha256,
+        seeds=seeds,
+        output_dir=args.output,
+        manifest_path=args.manifest,
+        control_checkpoint_dir=args.control_checkpoints,
+        remediation_checkpoint_dir=args.checkpoints,
+        cluster_bootstrap=args.cluster_bootstrap,
+        bootstrap_seed=args.bootstrap_seed,
+    )
+    return {
+        "output": str(Path(args.output) / "remediation_results.json"),
+        "preregistered_plan_sha256": result["preregistered_plan_sha256"],
+        "decision": result["decision"],
+        "experiments": [
+            {
+                "experiment_id": experiment["experiment_id"],
+                "aggregate": experiment["aggregate"],
+            }
+            for experiment in result["experiments"]
+        ],
+        "official_test_opened": False,
+    }
+
+
+def _retention_compare(args: argparse.Namespace) -> dict[str, Any]:
+    from .continual import run_retention_comparison
+
+    seeds = tuple(int(value) for value in args.seeds.split(",") if value.strip())
+    result = run_retention_comparison(
+        n_skills=args.skills,
+        seeds=seeds,
+        strategies=tuple(args.strategies.split(",")),
+        memory_mode=args.memory_mode,
+        output_dir=args.output,
+    )
+    return {
+        "output": str(Path(args.output) / "retention_comparison.json"),
+        "sequence_audit": result["sequence_audit"],
+        "aggregate": result["aggregate"],
+        "decision": result["decision"],
+        "official_test_opened": False,
+    }
+
+
+def _summary(args: argparse.Namespace) -> dict[str, Any]:
+    root = Path(args.output)
+    artifacts: dict[str, Any] = {}
+    definitions = {
+        "development_manifest": "dev_manifest.json",
+        "development_results": "development_results.json",
+        "deepsets_diagnostics_control": "deepsets_diagnostics_v2_control.json",
+        "remediation_results": "remediation_results.json",
+        "retention_comparison": "retention_comparison.json",
+        "new_operation_results": "new_operation_results.json",
+    }
+    for name, filename in definitions.items():
+        path = root / filename
+        if not path.exists():
+            artifacts[name] = {"status": "NOT RUN", "path": str(path)}
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        item: dict[str, Any] = {
+            "status": "AVAILABLE",
+            "path": str(path),
+            "sha256": _file_sha256(path),
+            "source": "existing_artifact",
+        }
+        if "run_metadata" in payload:
+            item["run_metadata"] = payload["run_metadata"]
+        if "decision" in payload:
+            item["decision"] = payload["decision"]
+        if "gate_summary" in payload:
+            item["gate_summary"] = payload["gate_summary"]
+        if "diagnostic_indicators" in payload:
+            item["seed_indicators"] = {
+                str(row["config"]["seed"]): row["diagnostic_indicators"]
+                for row in payload.get("seed_results", [])
+            }
+        if "aggregate" in payload:
+            item["aggregate"] = payload["aggregate"]
+        artifacts[name] = item
+    return {
+        "schema": "nucleus-pulse-v0.43-task010-summary-v1",
+        "official_test_opened": False,
+        "official_test_ready": False,
+        "artifacts": artifacts,
+        "note": "Summary reads existing artifacts and labels them by hash; it never presents stale output as a fresh run.",
+    }
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command")
@@ -307,6 +508,82 @@ def build_parser() -> argparse.ArgumentParser:
     retention_parser.add_argument("--memory-mode", choices=("program", "knn"), default="program")
     retention_parser.add_argument("--output", default="results/v043_development/correction_retention_results.json")
 
+    dev_family_parser = subparsers.add_parser(
+        "dev-family", help="write the frozen family-aware development manifest"
+    )
+    dev_family_parser.add_argument("--seed", type=int, default=430043)
+    dev_family_parser.add_argument("--output", default="results/v043_task010/dev_manifest.json")
+
+    validate_parser = subparsers.add_parser(
+        "validate-splits", help="audit family-disjoint development subsets against a frozen manifest"
+    )
+    validate_parser.add_argument("--seed", type=int, default=430043)
+    validate_parser.add_argument("--manifest", default="results/v043_task010/dev_manifest.json")
+
+    train_family_parser = subparsers.add_parser(
+        "train-family", help="train and evaluate on family-aware development subsets"
+    )
+    train_family_parser.add_argument("--seeds", default="430043,430044,430045")
+    train_family_parser.add_argument("--epochs", type=int, default=10)
+    train_family_parser.add_argument("--episodes", type=int, default=10_000)
+    train_family_parser.add_argument("--hidden", type=int, default=128)
+    train_family_parser.add_argument("--seed", type=int, default=430043)
+    train_family_parser.add_argument("--corpus-seed", type=int, default=430043)
+    train_family_parser.add_argument("--cluster-bootstrap", type=int, default=500)
+    train_family_parser.add_argument("--bootstrap-seed", type=int, default=430043)
+    train_family_parser.add_argument("--manifest", default="results/v043_task010/dev_manifest.json")
+    train_family_parser.add_argument("--output", default="results/v043_task010")
+    train_family_parser.add_argument(
+        "--checkpoints", default=".local_private/v043_task010/checkpoints"
+    )
+
+    diagnostics_parser = subparsers.add_parser(
+        "diagnostics", help="diagnose DeepSets confidence/error structure"
+    )
+    diagnostics_parser.add_argument("--seeds", default="430043,430044,430045")
+    diagnostics_parser.add_argument("--manifest", default="results/v043_task010/dev_manifest.json")
+    diagnostics_parser.add_argument("--output", default="results/v043_task010")
+    diagnostics_parser.add_argument(
+        "--checkpoints", default=".local_private/v043_task010/checkpoints"
+    )
+    diagnostics_parser.add_argument("--pattern", default="deepsets_seed_{seed}.npz")
+    diagnostics_parser.add_argument("--output-name", default="deepsets_diagnostics.json")
+
+    remediation_parser = subparsers.add_parser(
+        "remediation", help="run the preregistered bounded DeepSets remediation cycle"
+    )
+    remediation_parser.add_argument("--seeds", default="430043,430044,430045")
+    remediation_parser.add_argument("--plan", default="docs/V0_43_DEEPSETS_REMEDIATION_PLAN.md")
+    remediation_parser.add_argument("--plan-sha256", default=None)
+    remediation_parser.add_argument("--manifest", default="results/v043_task010/dev_manifest.json")
+    remediation_parser.add_argument("--output", default="results/v043_task010")
+    remediation_parser.add_argument(
+        "--control-checkpoints", default=".local_private/v043_task010/checkpoints"
+    )
+    remediation_parser.add_argument(
+        "--checkpoints", default=".local_private/v043_task010/remediation/checkpoints"
+    )
+    remediation_parser.add_argument("--cluster-bootstrap", type=int, default=500)
+    remediation_parser.add_argument("--bootstrap-seed", type=int, default=430043)
+
+    retention_compare_parser = subparsers.add_parser(
+        "retention-compare", help="compare retention strategies across independent sequences"
+    )
+    retention_compare_parser.add_argument("--skills", type=int, default=20)
+    retention_compare_parser.add_argument("--seeds", default="430043,430044,430045")
+    retention_compare_parser.add_argument(
+        "--strategies", default="control,balanced_replay,balanced_support_replay"
+    )
+    retention_compare_parser.add_argument(
+        "--memory-mode", choices=("program", "knn"), default="program"
+    )
+    retention_compare_parser.add_argument("--output", default="results/v043_task010")
+
+    summary_parser = subparsers.add_parser(
+        "summary", help="summarize existing TASK-010 artifacts with hashes"
+    )
+    summary_parser.add_argument("--output", default="results/v043_task010")
+
     return parser
 
 
@@ -330,6 +607,20 @@ def main(argv: Sequence[str] | None = None) -> dict[str, Any]:
         report = _new_operation(args)
     elif command == "correction-retention":
         report = _correction_retention(args)
+    elif command == "dev-family":
+        report = _dev_family(args)
+    elif command == "validate-splits":
+        report = _validate_splits(args)
+    elif command == "train-family":
+        report = _train_family(args)
+    elif command == "diagnostics":
+        report = _diagnostics(args)
+    elif command == "remediation":
+        report = _remediation(args)
+    elif command == "retention-compare":
+        report = _retention_compare(args)
+    elif command == "summary":
+        report = _summary(args)
     else:  # pragma: no cover - argparse rejects unknown commands
         raise ValueError(f"unknown command: {command}")
     print(json.dumps(report, ensure_ascii=False, indent=2, default=str))

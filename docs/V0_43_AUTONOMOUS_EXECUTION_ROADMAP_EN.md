@@ -1,7 +1,9 @@
 # v0.43 Autonomous Execution Roadmap
 
-**Status:** Execution checkpoint after Phases 0–7. The development pipeline is
-implemented and tested, but the official v0.43 test remains **NOT OPENED** and
+**Status:** Execution checkpoint after Phases 0–7 and `2026-10-25-TASK-010`.
+The development pipeline is implemented and tested, the family-aware development
+protocol is frozen, and the bounded DeepSets remediation and retention
+comparisons are complete. The official v0.43 test remains **NOT OPENED** and
 `official_test_ready=false`.
 
 **Repository:** `https://github.com/abdullahnuby/necleus`
@@ -31,6 +33,7 @@ readiness checklist passes and an external technical review accepts it.
 | `2026-10-24-TASK-007` | Phase 3 corpus, baselines, DeepSets training, development evaluation | COMPLETE (implementation); scientific gate partial | `results/v043_development/development_results.json` |
 | `2026-10-24-TASK-008` | Phase 4 abstention/new-operation, Phase 5 correction/retention | COMPLETE (execution); retention gate failed | `results/v043_development/abstention_results.json`, `new_operation_results.json`, `correction_retention_results.json` |
 | `2026-10-24-TASK-009` | Phase 6 integration/CLI, Phase 7 readiness freeze | COMPLETE (implementation); official test blocked | `docs/V0_43_READINESS_CHECKLIST.md` |
+| `2026-10-25-TASK-010` | Family-aware development protocol, DeepSets diagnosis, bounded remediation, retention comparison | COMPLETE (execution); scientific gates still FAIL | `docs/V0_43_DEEPSETS_DIAGNOSTIC_REPORT.md`, `docs/V0_43_DEEPSETS_REMEDIATION_REPORT.md`, `docs/V0_43_RETENTION_COMPARISON_REPORT.md` |
 
 ---
 
@@ -146,6 +149,17 @@ not a plumbing failure.
 which makes many episodes intrinsically ambiguous. More capable neural training
 or a different corpus curriculum is future work, not evidence of success.
 
+**TASK-010 family-aware follow-up:** the development protocol was frozen as
+`v0.43-family-aware-dev-v1` with 54 tasks and 54 disjoint families (18 `fit`, 18
+`calibration`, 18 `evaluation`; each subset has 5 identifiable, 5 ambiguous, 5
+contradictory, and 3 OOD tasks). The manifest SHA-256 is
+`2b73a94d95513c3316f331f05352689c9557dc90eac2fe6ee8b9de77191a1706`. Under this
+protocol the unchanged control checkpoints again have no feasible threshold on
+any seed; primary identifiable coverage is 0.0 and selective risk is `null`.
+The earlier 0.5729 / 0.0224 / 0.3560 aggregate remains a historical result and
+is not replaced by the new protocol. Evidence:
+`results/v043_task010/development_results.json`.
+
 ---
 
 ## Phase 4 — Abstention and new-operation learning
@@ -186,6 +200,18 @@ a partial success, not a full pass.
 arbitrary operation discovery. The meta-grammar includes the hidden modulus, so
 the result does not establish open-ended invention.
 
+**TASK-010 diagnosis and remediation:** the fixed threshold selector confirms
+that the historical fallback was defective (`risk=None` was treated as zero).
+Even with the fixed selector, the unchanged checkpoints have no feasible
+operating point: identifiable-vs-ambiguous mean-confidence AUC is 0.32, so the
+confidence ordering is reversed. A preregistered bounded cycle then tested a
+20-epoch schedule (E1) and 20,000 episodes (E2) with unchanged architecture and
+gates. All three candidates, including the control, had 0/3 feasible thresholds
+and 0/3 passing seeds; the decision is **FAIL — stop optimization**. Evidence:
+`docs/V0_43_DEEPSETS_DIAGNOSTIC_REPORT.md`,
+`docs/V0_43_DEEPSETS_REMEDIATION_REPORT.md`,
+`results/v043_task010/remediation_results.json`.
+
 ---
 
 ## Phase 5 — Corrective feedback and continual learning
@@ -216,6 +242,23 @@ reach the target.
 **Known limitations:** The in-context and parameter tracks are reported
 separately. A negative result is not redefined as success.
 
+**TASK-010 retention comparison:** three independent, family-disjoint skill
+sequences (20 skills each, one per seed) compared FIFO control, balanced replay,
+and balanced corrections plus support replay. No shared-parameter strategy met
+the joint gate for every seed:
+
+| Strategy | Parameter improvement (mean) | Average forgetting (mean) | Seeds passing |
+|---|---:|---:|---:|
+| control | +2.57 pp | 20.92% | 0 / 3 |
+| balanced replay | +7.02 pp | 22.48% | 0 / 3 |
+| balanced support replay | +5.87 pp | 20.38% | 0 / 3 |
+| memory/program reference | +4.55 pp | 0.00% | separate reference |
+
+The per-skill memory track has no measured forgetting but does not reach the
++10 pp improvement target. Evidence:
+`docs/V0_43_RETENTION_COMPARISON_REPORT.md`,
+`results/v043_task010/retention_comparison.json`.
+
 ---
 
 ## Phase 6 — Integrated development pipeline
@@ -229,9 +272,12 @@ integration tests with small deterministic fixtures.
 `docs/handoff/logs/2026-10-24-TASK-006/pytest_full.txt`.
 
 **Commands:** `inspect`, `smoke`, `corpus`, `dev`, `train`, `abstention`,
-`new-operation`, `correction-retention`. The smoke command writes public payloads
+`new-operation`, `correction-retention`, plus TASK-010 commands `dev-family`,
+`validate-splits`, `train-family`, `diagnostics`, `remediation`,
+`retention-compare`, and `summary`. The smoke command writes public payloads
 under `results/v043_cli_smoke/` and evaluator-private payloads only under
-`.local_private/v043_cli_smoke/`; it refuses exposed task IDs.
+`.local_private/v043_cli_smoke/`; it refuses exposed task IDs. `summary` labels
+missing artifacts as `NOT RUN` rather than presenting stale output.
 
 **Tests:** full suite 155 passed, 0 failed, in 47.03 s; a final post-documentation
 re-run passed 155/155 in 55.29 s. Focused v0.43 and integrity suite passed 32/33
@@ -256,9 +302,11 @@ command that can do so.
 development artifacts; three-seed checkpoints; CLI; full suite; private
 artifacts outside Git; official test not opened.
 
-**What blocks readiness:** DeepSets abstention gate failure; retention
-improvement/forgetting failure; 8-example new-operation partial result; no
-external technical review; no issued official-test commitment.
+**What blocks readiness:** DeepSets abstention gate failure, confirmed under the
+family-aware protocol and unchanged after the bounded remediation cycle; retention
+improvement/forgetting failure under three independent sequences; 8-example
+new-operation partial result; no external technical review; no issued
+official-test commitment.
 
 **Decision:** `official_test_ready=false`. The official v0.43 test must not be
 opened or run. A future task must either improve the failing scientific gates or
@@ -269,11 +317,14 @@ explicitly preregister a narrower claim before external review.
 ## Current checkpoint
 
 - **Latest verified commit at task start:** `f7bd8fd888d41654c62e983d27f76c077c00d5a8`.
-- **Working tree at task start:** clean.
-- **Current task:** `2026-10-24-TASK-006` through `2026-10-24-TASK-009`, executed
-  in one continuous session with separate reports.
-- **Current phase:** Phase 7 readiness freeze.
-- **Exact next action:** commit and push the development evidence, then request
-  external review of `docs/V0_43_READINESS_CHECKLIST.md`.
-- **Do not do next:** open the official v0.43 test, resume STDP, add pulse
-  mechanisms, or reinterpret the failed retention/DeepSets gates as successes.
+- **TASK-010 starting commit:** `d888772b3f4a4b4e8e8142e9073aaa90b8f056c6`.
+- **Working tree at TASK-010 start:** clean.
+- **Current task:** `2026-10-25-TASK-010`, family-aware methodology repair,
+  diagnosis, bounded remediation, and retention audit.
+- **Current phase:** Phase 7 readiness remains **BLOCKED**.
+- **Exact next action:** request external review of the narrower claims in
+  `docs/V0_43_READINESS_CHECKLIST.md`, or preregister a separate
+  architecture/objective change outside this task.
+- **Do not do next:** open the official v0.43 test, reinterpret the failed
+  DeepSets/retention gates as successes, or describe the diagnostic fallback as
+  a valid operating point.
