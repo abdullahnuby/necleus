@@ -1,23 +1,27 @@
-﻿TASK-011 GIT STATUS (captured before handoff commit)
+﻿TASK-011 GIT STATUS (captured before push-evidence commit)
 code_commit: ed35a477e938f936e67b1ab5d65cb70ea036a550
+handoff_commit: ce9c48f11018644506b3c6a8d8a917054fee7136
 
 git status --short:
+ M docs/CHANGELOG.md
  M docs/handoff/LATEST_REPORT.md
-?? docs/handoff/history/2026-10-26-TASK-011.md
-?? docs/handoff/logs/2026-10-26-TASK-011/
+ M docs/handoff/history/2026-10-26-TASK-011.md
+?? docs/handoff/logs/2026-10-26-TASK-011/git_push.txt
 
-code commit stat:
-ed35a47 TASK-011: add reward-free local exploration lab with persistent spiking agent
- .gitattributes                |   5 +
- README.md                     |  16 ++
- docs/CHANGELOG.md             |   9 +
- docs/EXPLORATION_LAB.md       | 388 ++++++++++++++++++++++++++++++++++++
- exploration_lab/__init__.py   |  21 ++
- exploration_lab/__main__.py   |   4 +
- exploration_lab/agent.py      | 426 +++++++++++++++++++++++++++++++++++++++
- exploration_lab/cli.py        | 151 ++++++++++++++
- exploration_lab/encoding.py   |  36 ++++
- exploration_lab/games.py      | 453 ++++++++++++++++++++++++++++++++++++++++++
- exploration_lab/runtime.py    | 389 ++++++++++++++++++++++++++++++++++++
- tests/test_exploration_lab.py | 345 ++++++++++++++++++++++++++++++++
- 12 files changed, 2243 insertions(+)
+substantive commit stat:
+ce9c48f TASK-011: record final handoff, hashes, and validation evidence
+ docs/handoff/LATEST_REPORT.md                      | 225 +++++++++------------
+ docs/handoff/history/2026-10-26-TASK-011.md        | 138 +++++++++++++
+ .../logs/2026-10-26-TASK-011/baseline_state.txt    |  10 +
+ .../logs/2026-10-26-TASK-011/environment.txt       |   9 +
+ .../2026-10-26-TASK-011/git_status_changed.txt     |  23 +++
+ .../logs/2026-10-26-TASK-011/handoff_verify.txt    | Bin 0 -> 242 bytes
+ docs/handoff/logs/2026-10-26-TASK-011/hashes.txt   |  37 ++++
+ .../logs/2026-10-26-TASK-011/leakage_scan.txt      | Bin 0 -> 292 bytes
+ docs/handoff/logs/2026-10-26-TASK-011/plan.md      |  44 ++++
+ .../logs/2026-10-26-TASK-011/py_compile.txt        |   2 +
+ .../2026-10-26-TASK-011/pytest_exploration.txt     | Bin 0 -> 204 bytes
+ .../logs/2026-10-26-TASK-011/pytest_full.txt       | Bin 0 -> 554 bytes
+ .../logs/2026-10-26-TASK-011/resume_summary.txt    |  14 ++
+ .../logs/2026-10-26-TASK-011/smoke_summary.txt     |  18 ++
+ 14 files changed, 389 insertions(+), 131 deletions(-)

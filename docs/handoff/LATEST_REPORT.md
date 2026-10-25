@@ -106,9 +106,12 @@
 
 ## 8. الأدلة والبصمات
 
-- **Commit العمل:** `ed35a477e938f936e67b1ab5d65cb70ea036a550`. سجل الرفع في `docs/handoff/logs/2026-10-26-TASK-011/git_push.txt`.
+- **Commit العمل:** `ed35a477e938f936e67b1ab5d65cb70ea036a550`.
+- **Commit التسليم:** `ce9c48f11018644506b3c6a8d8a917054fee7136`.
+- **الرفع:** `git push origin main` رفع النطاق `9841664..ce9c48f` بنجاح (exit 0). تحقق `git ls-remote origin refs/heads/main` أعاد `ce9c48f11018644506b3c6a8d8a917054fee7136`. التفاصيل في `docs/handoff/logs/2026-10-26-TASK-011/git_push.txt`.
+- **ملاحظة الرفع:** ملف الدليل `git_push.txt` والبصمات المحدّثة يُضافان في commit لوجستي بعد الرفع الأساسي، ويُرفع منفصلًا. لا إعادة كتابة تاريخ ولا force-push.
 - **بصمات الملفات:** `docs/handoff/logs/2026-10-26-TASK-011/hashes.txt`.
-- **سجلات الأوامر:** `py_compile.txt`، `pytest_exploration.txt`، `pytest_full.txt`، `leakage_scan.txt`، `handoff_verify.txt`، `baseline_state.txt`، `environment.txt`، `git_status_changed.txt`.
+- **سجلات الأوامر:** `py_compile.txt`، `pytest_exploration.txt`، `pytest_full.txt`، `leakage_scan.txt`، `handoff_verify.txt`، `baseline_state.txt`، `environment.txt`، `git_status_changed.txt`، `git_push.txt`.
 - **ملخصات الدخان:** `smoke_summary.txt` و`resume_summary.txt` (ملخصات مجمعة فقط، بلا صفوف لعب خام).
 - **بصمات خاصة:** سجل الدخان `946c9d3ea218f547395791a3963c4d02dcae3d705603a4c15a1d9874e5624c3e`، checkpoint الدخان `588c4a7fc3bb501b0bc3d0768b93e5537993e48b4c6353f234d9f74e7e6df6e0`، سجل الاستئناف `6381d620bb8c56c04cc63c69e6b50b9fc962acc9070dad69cd59cf6169deca09`، checkpoint الاستئناف `12447fe85bc6f764fbfc1ae14b6f1b6ed5fc35bc6a90cde8fa76e583193b3c31`.
 - **الوثائق:** `docs/EXPLORATION_LAB.md`، `docs/CHANGELOG.md`، `README.md`.

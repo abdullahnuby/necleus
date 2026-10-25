@@ -1,0 +1,49 @@
+TASK-011 PUSH EVIDENCE
+======================
+
+Substantive commits pushed
+--------------------------
+Command: git push origin main
+Range: 9841664f6eea00ce9c49dac21c276c85f27d679c..ce9c48f11018644506b3c6a8d8a917054fee7136
+Result: 9841664..ce9c48f  main -> main
+Exit code: 0
+
+Commits:
+- ed35a477e938f936e67b1ab5d65cb70ea036a550  TASK-011: add reward-free local exploration lab with persistent spiking agent
+- ce9c48f11018644506b3c6a8d8a917054fee7136  TASK-011: record final handoff, hashes, and validation evidence
+
+Remote verification immediately after push
+------------------------------------------
+Command: git ls-remote origin refs/heads/main
+Output: ce9c48f11018644506b3c6a8d8a917054fee7136	refs/heads/main
+Local HEAD: ce9c48f11018644506b3c6a8d8a917054fee7136
+
+PowerShell note
+---------------
+The captured PowerShell stream labels git's stderr progress text as
+"NativeCommandError". The git process itself exited with code 0, the remote
+ref advanced to ce9c48f11018644506b3c6a8d8a917054fee7136, and the local HEAD
+matched the remote immediately after the push. No force-push was used.
+
+Validation before this push
+---------------------------
+- py_compile: exit code 0.
+- Targeted exploration tests: 17 passed in 0.86s.
+- Full suite: 189 passed in 270.23s.
+- Private leakage scan: PASS, 145 data files, 0 findings.
+- Handoff verification: PASS, 11 history reports, 11 required sections.
+
+Log-only commit
+---------------
+This push-evidence file and the regenerated hashes are added in a log-only
+commit after the substantive push. That log-only commit is pushed separately.
+The substantive commits above were accepted by origin/main before the evidence
+commit was created. No history rewrite and no force-push were used.
+
+Reproducibility note
+--------------------
+docs/handoff/history/2026-10-26-TASK-011.md and
+docs/handoff/logs/2026-10-26-TASK-011/** are marked `-text` in
+`.gitattributes`, so the recorded SHA-256 values refer to the stored bytes
+rather than a later line-ending conversion. Raw gameplay rows and checkpoints
+remain under `.local_private/` and are not committed.
