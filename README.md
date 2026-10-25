@@ -174,6 +174,7 @@ A failed gate is reported as a failure of the specified protocol, not as proof t
 
 - `pulse_core/`: event-driven LIF simulation, per-synapse currents, saturation, inhibition, reference recurrence, temporal tasks, and legacy learning code.
 - `skillbench_v043/`: finite typed Boolean DSL, full enumeration, family definition, deterministic splits, support/query generation, identifiability classification, leakage audit, and a CLI.
+- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. See `docs/EXPLORATION_LAB.md`. It is not a benchmark and makes no learning or skill claim.
 - `experiments/`: runnable scripts for v0.27 through v0.42.
 - `tests/`: unit and integration tests, including the nine v0.43 tests.
 - `results/`: archived outputs, reports, CSV/JSON artifacts, and plots.
@@ -499,6 +500,7 @@ Any missing item means the status is **not ready for an official test**. The pul
 │   ├── generator.py            Splits, support/query generation, OOD and contradictory tasks
 │   ├── audit.py                Leakage and overlap audits
 │   └── cli.py                  `inspect` and `smoke` commands
+├── exploration_lab/            Local reward-free games + persistent spiking exploration loop
 ├── experiments/                Runnable experiment scripts for v0.27–v0.42
 ├── tests/                      Unit and integration tests
 │   └── v043/                   Nine v0.43 grammar/audit/leakage tests
@@ -601,6 +603,20 @@ python experiments/run_stdp_vs_linear_v0_42.py
 ```
 
 The exact command, seed list, and output paths are documented in the corresponding report and protocol files. Results are committed so that a reader can audit them without rerunning.
+
+### 9.6 Run the exploration lab
+
+The exploration lab is separate from the benchmark and has no reward, score, or
+success criterion. It runs locally and writes checkpoints and gameplay logs under
+the Git-ignored `.local_private/` tree.
+
+```powershell
+py -3.14 -m exploration_lab
+```
+
+`Ctrl+C` saves a checkpoint and exits. Use `--delay` to change the display speed,
+`--resume` to continue from a checkpoint, and `--no-render` for a headless run.
+Full commands, persistence rules, and non-claims are in `docs/EXPLORATION_LAB.md`.
 
 ---
 

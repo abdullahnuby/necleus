@@ -6,3 +6,8 @@
 # artifacts. These files were generated on Windows with CRLF newlines.
 results/v043_task010/** -text
 docs/handoff/logs/2026-10-25-TASK-010/** -text
+
+# TASK-011 frozen evidence: preserve exact bytes for the archived history copy
+# and command logs so recorded SHA-256 values match the Git blobs.
+docs/handoff/history/2026-10-26-TASK-011.md -text
+docs/handoff/logs/2026-10-26-TASK-011/** -text
