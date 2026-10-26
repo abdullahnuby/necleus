@@ -55,7 +55,8 @@
 | `py -3.14 scripts/verify_handoff.py` | 0 | PASS قبل تحديث التقرير. | `docs/handoff/logs/2026-10-27-TASK-012/handoff_validator_pre_report.txt` |
 | `py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 5000 --checkpoint-every 1000 --progress-every 1000 --agents 8 --width 32 --height 32 --seed 12012 ...` | 0 | 5,000 خطوة، 8 نسخ، 40,000 clone-step، 45.822 ثانية. | `docs/handoff/logs/2026-10-27-TASK-012/city_run_summary.txt` والملخص الخام تحت `.local_private/` |
 | `py -3.14 -m exploration_lab.city --delay 0 --max-steps 2 --agents 2 --width 12 --height 12 --seed 12012 ...` | 0 | دخان عرض حي: خطوتان، إطاران، 92 خلية مفتوحة، تفاعل واحد. | `docs/handoff/logs/2026-10-27-TASK-012/city_render_smoke.txt` |
-| `git push origin main` | 0 | `92dd0f9..8fd53b4 main -> main`. | `docs/handoff/logs/2026-10-27-TASK-012/git_push_implementation.txt` |
+| `git push origin main` (implementation) | 0 | `92dd0f9..8fd53b4 main -> main`. | `docs/handoff/logs/2026-10-27-TASK-012/git_push_implementation.txt` |
+| `git push origin main` (delivery) | 0 | `8fd53b4..7f569dd main -> main`. | `docs/handoff/logs/2026-10-27-TASK-012/git_push_delivery.txt` |
 
 - **السجلات الخاصة:** سجل JSONL الكامل وcheckpoints الجلسة تحت `.local_private/exploration/city_run_5000/`، وهي مستبعدة من Git. لم تُرفع صفوف لعب خام.
 - **ملاحظة:** `--max-steps` عدّاد عام مطلق، وليس عددًا إضافيًا بعد الاستئناف.
@@ -126,10 +127,11 @@
 ## 8. الأدلة والبصمات
 
 - **Commit العمل:** `8fd53b422932b4c9d7dcbc1250f94bbddc6af0b9` (TASK-012: add shared multi-agent city pilot).
-- **Commit التسليم:** `PENDING` — يُسجَّل بعد commit التقرير والدفع.
-- **الرفع:** `git push origin main` رفع النطاق `92dd0f9..8fd53b4` بنجاح (exit 0). التفاصيل في `docs/handoff/logs/2026-10-27-TASK-012/git_push_implementation.txt`.
+- **Commit التسليم:** `7f569dd2a98482c7153de8f27d8df0ff00bb59da` (TASK-012: record final handoff, hashes, and validation evidence).
+- **الرفع:** `git push origin main` رفع التنفيذ `92dd0f9..8fd53b4` ثم التسليم `8fd53b4..7f569dd` بنجاح (exit 0). تحقق `git ls-remote origin refs/heads/main` أعاد `7f569dd2a98482c7153de8f27d8df0ff00bb59da`. التفاصيل في `git_push_implementation.txt` و`git_push_delivery.txt` و`git_push_final.txt`.
+- **ملاحظة الرفع:** ملف دليل الرفع النهائي والبصمات المحدّثة يُضافان في commit لوجستي بعد الرفع الأساسي، ويُرفع منفصلًا. لا إعادة كتابة تاريخ ولا force-push.
 - **بصمات الملفات:** `docs/handoff/logs/2026-10-27-TASK-012/hashes.txt`.
-- **سجلات الأوامر:** `py_compile.txt`، `tests_city.txt`، `tests_v043.txt`، `tests_full.txt`، `leakage.txt`، `handoff_validator_pre_report.txt`، `handoff_validator.txt`، `baseline_state.txt`، `environment.txt`، `git_status_changed.txt`، `git_push_implementation.txt`، `git_push_final.txt`.
+- **سجلات الأوامر:** `py_compile.txt`، `tests_city.txt`، `tests_v043.txt`، `tests_full.txt`، `leakage.txt`، `handoff_validator_pre_report.txt`، `handoff_validator.txt`، `baseline_state.txt`، `environment.txt`، `git_status_changed.txt`، `git_push_implementation.txt`، `git_push_delivery.txt`، `git_push_final.txt`.
 - **ملخصات الجلسة:** `city_run_summary.txt` (ملخص مجمّع وخريطة نهائية) و`city_render_smoke.txt` (دخان عرض حي).
 - **بصمات خاصة:** checkpoint الجلسة `6833206546e0e0c203a6ecddada35b82097346f3928080cbf48c4066eb19c494`، وسجل الجلسة `a0bccffc423786f256b8957978d43e94da5eb84e06b98808640431e20d4f938e`.
 - **الوثائق:** `docs/EXPLORATION_CITY.md`، `docs/EXPLORATION_LAB.md`، `docs/CHANGELOG.md`، `README.md`.
