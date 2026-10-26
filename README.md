@@ -174,7 +174,7 @@ A failed gate is reported as a failure of the specified protocol, not as proof t
 
 - `pulse_core/`: event-driven LIF simulation, per-synapse currents, saturation, inhibition, reference recurrence, temporal tasks, and legacy learning code.
 - `skillbench_v043/`: finite typed Boolean DSL, full enumeration, family definition, deterministic splits, support/query generation, identifiability classification, leakage audit, and a CLI.
-- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. See `docs/EXPLORATION_LAB.md`. It is not a benchmark and makes no learning or skill claim.
+- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. TASK-012 adds a shared 8-clone city extension with simultaneous movement and collision/interaction logging. See `docs/EXPLORATION_LAB.md` and `docs/EXPLORATION_CITY.md`. It is not a benchmark and makes no learning or skill claim.
 - `experiments/`: runnable scripts for v0.27 through v0.42.
 - `tests/`: unit and integration tests, including the nine v0.43 tests.
 - `results/`: archived outputs, reports, CSV/JSON artifacts, and plots.
@@ -500,7 +500,7 @@ Any missing item means the status is **not ready for an official test**. The pul
 │   ├── generator.py            Splits, support/query generation, OOD and contradictory tasks
 │   ├── audit.py                Leakage and overlap audits
 │   └── cli.py                  `inspect` and `smoke` commands
-├── exploration_lab/            Local reward-free games + persistent spiking exploration loop
+├── exploration_lab/            Local reward-free games + persistent spiking exploration loop + shared city
 ├── experiments/                Runnable experiment scripts for v0.27–v0.42
 ├── tests/                      Unit and integration tests
 │   └── v043/                   Nine v0.43 grammar/audit/leakage tests
@@ -618,6 +618,30 @@ py -3.14 -m exploration_lab
 `--resume` to continue from a checkpoint, and `--no-render` for a headless run.
 Full commands, persistence rules, and non-claims are in `docs/EXPLORATION_LAB.md`.
 
+### 9.7 Run the multi-agent city
+
+`exploration_lab.city` places eight clones of the same spiking agent in one
+32×32 city. The clones start with identical weights and independent RNG streams,
+move simultaneously, and keep their own persistent LIF/STDP state. Blocked
+moves, collisions, proximity events, and action counts are logged only; they are
+not rewards, penalties, correctness labels, or error signals.
+
+```powershell
+py -3.14 -m exploration_lab.city
+```
+
+Headless 5,000-step pilot:
+
+```powershell
+py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 5000 `
+  --checkpoint-every 1000 --progress-every 1000 `
+  --agents 8 --width 32 --height 32 --seed 12012
+```
+
+Raw JSONL rows and checkpoints stay under `.local_private/`. Aggregate pilot
+evidence and limitations are in `docs/EXPLORATION_CITY.md`. The city makes no
+claim of learning, cooperation, competition, or skill.
+
 ---
 
 ## 10. Testing and verification
@@ -627,10 +651,12 @@ Full commands, persistence rules, and non-claims are in `docs/EXPLORATION_LAB.md
 | Check | Command | Result |
 |---|---|---|
 | v0.43 grammar, auditor, leakage | `python -m pytest -q tests/v043` | **9 passed** |
-| Full suite | `python -m pytest -q tests` | **Not pass**: collection error, `ModuleNotFoundError: No module named 'matplotlib'`, exit code 2 |
+| Full suite | `python -m pytest -q tests` | **199 passed** (last verified 2026-10-27; 278.25 s) |
 | Handoff report structure | `python scripts/verify_handoff.py` | **PASS** |
 
-The full-suite failure is an environment limitation: the optional plotting dependency is not installed in the authoring environment. It is recorded as `NOT PASS`, not hidden. It is not evidence that the individual test logic is wrong, and it is not evidence that it is correct either. Install `docs/requirements-dev.txt` and rerun to obtain a complete result.
+The full suite passes in the current authoring environment. Install
+`docs/requirements-dev.txt` before rerunning so optional test dependencies are
+present. The city pilot adds ten focused tests; they are included in the 199.
 
 ### 10.2 What the v0.43 tests cover
 

@@ -1,0 +1,11 @@
+﻿TASK-012 PREFLIGHT
+date_local: 2026-10-27T00:06:07.6997005+03:00
+git_branch: main
+git_head: 92dd0f9a576116aa1b08692bb891f63f05bcf3c8
+origin_main: 92dd0f9a576116aa1b08692bb891f63f05bcf3c8	refs/heads/main
+git_status:
+?? docs/handoff/logs/2026-10-27-TASK-012/
+
+python: Python 3.14.6
+numpy: 2.5.3
+pytest: pytest 8.4.2

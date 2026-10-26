@@ -15,6 +15,10 @@ the terminal, checkpoint periodically, and resume from a checkpoint.
 This is a place for the agent to interact and change. It is not a benchmark, an
 accuracy experiment, or a claim that the agent learns to play well.
 
+TASK-012 adds an optional shared multi-agent city extension. Eight clones of the
+same agent share one city and move simultaneously; collisions and proximity are
+logged only and are not learning signals. See `docs/EXPLORATION_CITY.md`.
+
 ## 2. What this is not
 
 - No reward, score, penalty, curiosity bonus, target action, label, or
@@ -35,10 +39,13 @@ exploration_lab/
 ├── encoding.py    Fixed-size observation to binary spike encoding
 ├── agent.py       Persistent LIF state, local STDP, action selection, serialization
 ├── runtime.py     Continuous loop, game cycling, JSONL log, checkpoints, terminal display
+├── city.py        Shared multi-agent city, simultaneous movement, city runtime and CLI
 ├── cli.py         Command-line interface
 └── __main__.py    `python -m exploration_lab`
 tests/test_exploration_lab.py
+tests/test_exploration_lab_city.py
 docs/EXPLORATION_LAB.md
+docs/EXPLORATION_CITY.md
 ```
 
 ## 4. Games
