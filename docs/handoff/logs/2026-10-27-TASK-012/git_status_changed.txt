@@ -1,0 +1,32 @@
+﻿TASK-012 GIT STATUS (captured before delivery commit)
+code_commit: 8fd53b422932b4c9d7dcbc1250f94bbddc6af0b9
+
+git status --short:
+ M README.md
+ M docs/CHANGELOG.md
+ M docs/handoff/LATEST_REPORT.md
+?? docs/handoff/history/2026-10-27-TASK-012.md
+?? docs/handoff/logs/2026-10-27-TASK-012/git_push_implementation.txt
+?? docs/handoff/logs/2026-10-27-TASK-012/handoff_validator.txt
+?? docs/handoff/logs/2026-10-27-TASK-012/tests_v043.txt
+
+substantive commit stat:
+8fd53b4 TASK-012: add shared multi-agent city pilot
+ .gitattributes                                     |   5 +
+ README.md                                          |  34 +-
+ docs/CHANGELOG.md                                  |   9 +
+ docs/EXPLORATION_CITY.md                           | 182 +++++
+ docs/EXPLORATION_LAB.md                            |   7 +
+ .../logs/2026-10-27-TASK-012/baseline_state.txt    |  11 +
+ .../logs/2026-10-27-TASK-012/city_render_smoke.txt | Bin 0 -> 11860 bytes
+ .../logs/2026-10-27-TASK-012/city_run_summary.txt  |  74 ++
+ .../logs/2026-10-27-TASK-012/environment.txt       |   9 +
+ .../handoff_validator_pre_report.txt               | Bin 0 -> 268 bytes
+ docs/handoff/logs/2026-10-27-TASK-012/leakage.txt  | Bin 0 -> 318 bytes
+ docs/handoff/logs/2026-10-27-TASK-012/plan.md      |  37 +
+ .../logs/2026-10-27-TASK-012/py_compile.txt        | Bin 0 -> 28 bytes
+ .../logs/2026-10-27-TASK-012/tests_city.txt        | Bin 0 -> 230 bytes
+ .../logs/2026-10-27-TASK-012/tests_full.txt        | Bin 0 -> 580 bytes
+ exploration_lab/city.py                            | 882 +++++++++++++++++++++
+ tests/test_exploration_lab_city.py                 | 248 ++++++
+ 17 files changed, 1494 insertions(+), 4 deletions(-)

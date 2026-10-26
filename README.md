@@ -650,13 +650,15 @@ claim of learning, cooperation, competition, or skill.
 
 | Check | Command | Result |
 |---|---|---|
-| v0.43 grammar, auditor, leakage | `python -m pytest -q tests/v043` | **9 passed** |
+| v0.43 tests | `python -m pytest -q tests/v043` | **43 passed** (last verified 2026-10-27; 267.86 s) |
 | Full suite | `python -m pytest -q tests` | **199 passed** (last verified 2026-10-27; 278.25 s) |
 | Handoff report structure | `python scripts/verify_handoff.py` | **PASS** |
 
 The full suite passes in the current authoring environment. Install
 `docs/requirements-dev.txt` before rerunning so optional test dependencies are
 present. The city pilot adds ten focused tests; they are included in the 199.
+The 43-test v0.43 suite is a supporting test set, not the official v0.43 test;
+the official test remains closed.
 
 ### 10.2 What the v0.43 tests cover
 
