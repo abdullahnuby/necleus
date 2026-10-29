@@ -1,16 +1,16 @@
 # Nucleus Exploration Lab
 
-**Task:** 2026-10-26-TASK-011  
+**Task:** 2026-10-26-TASK-011; TASK-012 city extension; TASK-013 local prediction head
 **Status:** engineering implementation complete; no scientific success criterion.
 
 ## 1. What this is
 
 `exploration_lab/` is a local, reward-free perception-action loop. A persistent
 spiking agent observes one of three small games, selects an action from its own
-activity, receives the next observation, and continues. Weights change only
-through local spike-timing-dependent plasticity (STDP) driven by the agent's own
-spikes. The runtime can run indefinitely, display the game and internal state in
-the terminal, checkpoint periodically, and resume from a checkpoint.
+activity, receives the next observation, and continues. Action weights change
+only through local spike-timing-dependent plasticity (STDP) driven by the agent's
+own spikes. The runtime can run indefinitely, display the game and internal state
+in the terminal, checkpoint periodically, and resume from a checkpoint.
 
 This is a place for the agent to interact and change. It is not a benchmark, an
 accuracy experiment, or a claim that the agent learns to play well.
@@ -19,17 +19,25 @@ TASK-012 adds an optional shared multi-agent city extension. Eight clones of the
 same agent share one city and move simultaneously; collisions and proximity are
 logged only and are not learning signals. See `docs/EXPLORATION_CITY.md`.
 
+TASK-013 adds a separate local next-observation prediction head per city clone.
+It learns from its own prediction error, never selects actions, and never updates
+action STDP. See `docs/EXPLORATION_PREDICTION.md`.
+
 ## 2. What this is not
 
 - No reward, score, penalty, curiosity bonus, target action, label, or
-  correctness signal is sent to the learning rule.
+  correctness signal is sent to action STDP or used to select actions.
 - No hand-written game strategy and no pretrained game model.
 - No hyperparameter or checkpoint selection based on wins, scores, survival, or
   any other gameplay outcome.
+- No city outcome, collision, coverage, or interaction count is used to select
+  actions or to update action STDP.
+- TASK-013's prediction error trains only a separate local forward model. It is
+  not a policy gradient, reward, or action-selection signal.
 - No modification of historical v0.42/v0.43 results or the official v0.43 test.
 - No cloud API, LLM service, or external gameplay service.
-- No claim that random movement, weight change, or a passing software test
-  demonstrates learning, intelligence, or skill.
+- No claim that random movement, weight change, prediction-error reduction, or a
+  passing software test demonstrates learning, intelligence, or skill.
 
 ## 3. Layout
 
@@ -39,13 +47,16 @@ exploration_lab/
 ├── encoding.py    Fixed-size observation to binary spike encoding
 ├── agent.py       Persistent LIF state, local STDP, action selection, serialization
 ├── runtime.py     Continuous loop, game cycling, JSONL log, checkpoints, terminal display
+├── prediction.py  Separate local next-observation predictor for the city
 ├── city.py        Shared multi-agent city, simultaneous movement, city runtime and CLI
 ├── cli.py         Command-line interface
 └── __main__.py    `python -m exploration_lab`
 tests/test_exploration_lab.py
 tests/test_exploration_lab_city.py
+tests/test_exploration_lab_prediction.py
 docs/EXPLORATION_LAB.md
 docs/EXPLORATION_CITY.md
+docs/EXPLORATION_PREDICTION.md
 ```
 
 ## 4. Games
@@ -215,12 +226,32 @@ explicit cold start or for tests, but the default runtime does not use it.
 At the first step of a fresh process the network has no previous hidden spikes, so
 the first action may be a logged fallback. This is expected.
 
+### 5.8 Local prediction head (city only)
+
+Each city clone has an optional `LocalPredictor`. It receives the clone's mean
+hidden activity, the chosen action one-hot, and the current 128-feature
+observation, and predicts the next 128-feature observation:
+
+```text
+input_t = [hidden_activity_t, action_one_hot_t, observation_t]
+prediction_t = clip(W @ input_t + b, 0, 1)
+error_t = observation_{t+1} - prediction_t
+W <- (1 - decay) * (W + lr * outer(input_t, error_t))
+```
+
+The update is a local delta rule. It uses no backpropagation, reward, score,
+target action, correctness label, or city outcome. The predictor never writes to
+`SpikingExplorer` weights, never chooses an action, and never updates STDP. Its
+only role is to measure and reduce next-observation prediction error. See
+`docs/EXPLORATION_PREDICTION.md` for the pilot and limitations.
+
 ## 6. Learning-signal boundary
 
 | Component | Receives | Never receives |
 |---|---|---|
-| `SpikingExplorer.act` | observation features, legal action list | reward, score, done, target, label, game outcome |
-| STDP update | pre/post spikes, traces, weights | reward, score, done, target, label, game outcome |
+| `SpikingExplorer.act` | observation features, legal action list | reward, score, done, target, label, game outcome, prediction error |
+| STDP update | pre/post spikes, traces, weights | reward, score, done, target, label, game outcome, prediction error |
+| `LocalPredictor` (city only) | hidden activity, action, current observation, next observation | reward, score, penalty, target action, correctness label, city outcome |
 | Runtime | game observations, `done`, environmental reason | — (it uses `done` only to reset/cycle games) |
 | Game | action integer | agent weights or learning state |
 
@@ -228,6 +259,9 @@ The `done` flag is handled only by `ExplorationRuntime`. It resets the game and
 moves to the next game. It is never passed to the agent or the plasticity rule.
 The game's internal `reason` string (for example `goal_reached`, `missed_paddle`,
 or `food`) is for rendering and logging only; it is not a reward.
+
+The `LocalPredictor` error stays inside its own weight update. There is no path
+from prediction error to action selection, action STDP, or the city.
 
 `RewardSTDPReadout.train_trial()` and other supervised paths in
 `pulse_core/sequential_stdp.py` and `pulse_core/learning.py` are not used.
@@ -248,6 +282,10 @@ Default private paths:
 - all agent state (weights, transients, traces, RNG)
 - JSON-safe snapshots of all three games
 
+The city checkpoint additionally contains one `LocalPredictor` state per clone
+and aggregate prediction counters/recent-MAE windows. Agent checkpoints include
+`last_hidden_activity` so a resumed predictor can use the same input.
+
 Writes are atomic: a temporary file is written and then replaced. The checkpoint
 SHA-256 is logged and printed. On resume, the agent and the current game are
 restored, including mid-episode game state.
@@ -255,9 +293,10 @@ restored, including mid-episode game state.
 `session.jsonl` is chronological and append-only. Each step record contains the
 timestamp, game, episode, action, legal actions, fallback flag, selection reason,
 action scores/probabilities, hidden/action spike counts, weight statistics, the
-observation vector and digest, and the environment `done`/reason. Event records
-cover session start/end, episode end, game switch, checkpoint, interrupt, and
-max-step stop.
+observation vector and digest, and the environment `done`/reason. City step
+records add `prediction_mae`, `prediction_mse`, and `prediction_updates` per
+clone. Event records cover session start/end, episode end, game switch,
+checkpoint, interrupt, and max-step stop.
 
 `.local_private/` is Git-ignored. Gameplay logs and checkpoints are not committed
 or uploaded.
@@ -343,6 +382,7 @@ Run the focused tests:
 
 ```powershell
 py -3.14 -m pytest -q tests/test_exploration_lab.py
+py -3.14 -m pytest -q tests/test_exploration_lab_city.py tests/test_exploration_lab_prediction.py
 ```
 
 The tests check:
@@ -358,7 +398,11 @@ The tests check:
 - runtime short run, JSONL logging, periodic checkpoint, resume, stop, and
   `Ctrl+C` handling;
 - absence of reward/score fields in `StepResult` and step records;
-- absence of reward/outcome parameters in the agent learning API.
+- absence of reward/outcome parameters in the agent learning API;
+- city observation shape, movement, collisions, clone persistence, and
+  checkpoint/resume;
+- local predictor shapes, delta-rule error reduction, fixed-predictor control,
+  checkpoint/resume, and identical control/predictive city trajectories.
 
 Passing these tests verifies software mechanics only. It does **not** establish
 that the agent learned, improved, or plays well.
@@ -374,6 +418,10 @@ that the agent learned, improved, or plays well.
   system, does not replay memories, and makes no retention guarantee.
 - Weights changing is not evidence of useful learning. No gameplay metric is
   optimized or reported as success.
+- The TASK-013 predictor is a small linear forward model. It is not a policy,
+  planner, or reinforcement-learning agent; its error never changes behavior.
+- TASK-013 used one seed and one 5,000-step city run. Prediction-error reduction
+  is not a city performance result.
 - No external network, cloud API, LLM, PyTorch training, or pretrained game model
   is used.
 - The official v0.43 test remains unopened and `official_test_ready=false`.

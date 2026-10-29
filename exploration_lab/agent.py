@@ -109,6 +109,10 @@ class SpikingExplorer:
         self.trace_hidden = np.zeros(cfg.hidden_dim, dtype=np.float64)
         self.trace_action = np.zeros(cfg.action_dim, dtype=np.float64)
         self._previous_hidden_spikes = np.zeros(cfg.hidden_dim, dtype=np.float64)
+        # Mean hidden spike activity over the most recent step.  This is an
+        # observation of the agent's own state for the local prediction head; it
+        # does not change the STDP dynamics or receive any outcome signal.
+        self.last_hidden_activity = np.zeros(cfg.hidden_dim, dtype=np.float64)
         self.last_decision: ActionDecision | None = None
 
     def _validate_config(self) -> None:
@@ -216,6 +220,7 @@ class SpikingExplorer:
         spike_counts = np.zeros(cfg.action_dim, dtype=np.float64)
         max_voltages = np.zeros(cfg.action_dim, dtype=np.float64)
         hidden_count = 0
+        hidden_activity = np.zeros(cfg.hidden_dim, dtype=np.float64)
         previous_hidden = self._previous_hidden_spikes
 
         for tick in range(cfg.ticks_per_step):
@@ -247,6 +252,7 @@ class SpikingExplorer:
             spike_counts += action_spikes
             max_voltages = np.maximum(max_voltages, action_peak)
             hidden_count += int(hidden_spikes.sum())
+            hidden_activity += hidden_spikes
 
             self._apply_stdp(tick_input, hidden_spikes, action_spikes)
             self.trace_input += tick_input
@@ -256,6 +262,7 @@ class SpikingExplorer:
             self.ticks += 1
 
         self._previous_hidden_spikes = previous_hidden
+        self.last_hidden_activity = hidden_activity / cfg.ticks_per_step
         self.steps += 1
         self._apply_stability()
         return spike_counts, max_voltages, hidden_count
@@ -327,6 +334,7 @@ class SpikingExplorer:
         self.trace_hidden.fill(0.0)
         self.trace_action.fill(0.0)
         self._previous_hidden_spikes.fill(0.0)
+        self.last_hidden_activity.fill(0.0)
 
     def weight_stats(self) -> dict[str, float]:
         def stats(matrix: np.ndarray) -> dict[str, float]:
@@ -368,6 +376,7 @@ class SpikingExplorer:
             "trace_hidden": self.trace_hidden.tolist(),
             "trace_action": self.trace_action.tolist(),
             "previous_hidden_spikes": self._previous_hidden_spikes.tolist(),
+            "last_hidden_activity": self.last_hidden_activity.tolist(),
         }
 
     @classmethod
@@ -419,6 +428,10 @@ class SpikingExplorer:
         agent.trace_hidden = vector("trace_hidden", cfg.hidden_dim)
         agent.trace_action = vector("trace_action", cfg.action_dim)
         agent._previous_hidden_spikes = vector("previous_hidden_spikes", cfg.hidden_dim)
+        if "last_hidden_activity" in data:
+            agent.last_hidden_activity = vector("last_hidden_activity", cfg.hidden_dim)
+        else:
+            agent.last_hidden_activity = np.zeros(cfg.hidden_dim, dtype=np.float64)
         agent._rng = _rng_from_json(data["rng"])
         agent.steps = int(data["steps"])
         agent.ticks = int(data["ticks"])

@@ -16,3 +16,8 @@ docs/handoff/logs/2026-10-26-TASK-011/** -text
 # aggregate city logs so recorded SHA-256 values match the Git blobs.
 docs/handoff/history/2026-10-27-TASK-012.md -text
 docs/handoff/logs/2026-10-27-TASK-012/** -text
+
+# TASK-013 frozen evidence: preserve exact bytes for the prediction history copy
+# and task logs so recorded SHA-256 values match the Git blobs.
+docs/handoff/history/2026-10-29-TASK-013.md -text
+docs/handoff/logs/2026-10-29-TASK-013/** -text

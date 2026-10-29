@@ -18,11 +18,12 @@ The repository contains a discrete-time pulse simulator and a benchmark for comp
 | Latest official learning run | **v0.42** (40 seeds, two temporal tasks) |
 | Latest benchmark specification | **v0.43** (design frozen in documentation; not executed) |
 | Latest implemented component | **v0.43-stage1** (task grammar, hypothesis auditor, leakage checks) |
+| Latest engineering task | **TASK-013** exploration local prediction head (no behavior change) |
 | Official v0.43 test | **Not open** |
 | Pulse simulator | Implemented; mechanism-level validation only |
 | Meta-learner, feedback loop, retention tests | **Not implemented** |
-| `tests/v043` | **9 passed** |
-| Full `tests/` suite | **Not runnable in the authoring environment** without optional dependencies (`matplotlib`) |
+| `tests/v043` | **43 passed** |
+| Full `tests/` suite | **207 passed** (last verified 2026-10-29; 277.18 s) |
 
 The latest committed state and the complete audit trail are in [`docs/handoff/LATEST_REPORT.md`](docs/handoff/LATEST_REPORT.md).
 
@@ -174,9 +175,9 @@ A failed gate is reported as a failure of the specified protocol, not as proof t
 
 - `pulse_core/`: event-driven LIF simulation, per-synapse currents, saturation, inhibition, reference recurrence, temporal tasks, and legacy learning code.
 - `skillbench_v043/`: finite typed Boolean DSL, full enumeration, family definition, deterministic splits, support/query generation, identifiability classification, leakage audit, and a CLI.
-- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. TASK-012 adds a shared 8-clone city extension with simultaneous movement and collision/interaction logging. See `docs/EXPLORATION_LAB.md` and `docs/EXPLORATION_CITY.md`. It is not a benchmark and makes no learning or skill claim.
+- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. TASK-012 adds a shared 8-clone city extension with simultaneous movement and collision/interaction logging. TASK-013 adds a separate local next-observation prediction head per clone; it never selects actions or updates action STDP. See `docs/EXPLORATION_LAB.md`, `docs/EXPLORATION_CITY.md`, and `docs/EXPLORATION_PREDICTION.md`. It is not a benchmark and makes no learning or skill claim.
 - `experiments/`: runnable scripts for v0.27 through v0.42.
-- `tests/`: unit and integration tests, including the nine v0.43 tests.
+- `tests/`: unit and integration tests, including the v0.43 tests.
 - `results/`: archived outputs, reports, CSV/JSON artifacts, and plots.
 - `docs/`: specifications, protocols, architecture notes, changelog, and the mandatory handoff system.
 - `scripts/`: handoff validator, optional Brian2 comparison, and post-run analysis helpers.
@@ -299,6 +300,24 @@ The v0.30–v0.35 runs examined learning curves, incremental windows, repeated p
 
 - **v0.35:** The first run was excluded. The EMA was updated before the first tick's gain was computed, making the initial gain slightly less than 1.0. The order was corrected, hashes were refrozen, and all 40 seeds were rerun from scratch. Only corrected results are reported.
 - **v0.42.1:** The interpretation of v0.42 was corrected without changing the raw results or the protocol. The original report describes a difference between two pipelines; it does not isolate the causal effect of STDP.
+
+### 5.7 Exploration city: local prediction-error pilot (engineering only)
+
+TASK-013 added a separate local next-observation predictor to the exploration
+city. In a fixed 8-clone, 5,000-step run (seed `12012`), the fixed-predictor
+control and the learning predictor had identical city/agent trajectories; only
+the predictor state and prediction error differed.
+
+| Condition | Predictor updates per clone | Mean MAE | MAE, final 500 steps |
+|---|---:|---:|---:|
+| Control (`lr=0`) | 0 | 0.303368 | 0.319501 |
+| Predictive (`lr=0.001`) | 5,000 | 0.067836 | 0.045719 |
+
+The final-500 MAE reduction relative to the fixed-predictor control is
+`0.856904` (descriptive only). This is not evidence of navigation, cooperation,
+competition, or skill learning: prediction error never selects actions or updates
+action STDP. Design and limitations are in
+`docs/EXPLORATION_PREDICTION.md`.
 
 ---
 
@@ -624,23 +643,38 @@ Full commands, persistence rules, and non-claims are in `docs/EXPLORATION_LAB.md
 32×32 city. The clones start with identical weights and independent RNG streams,
 move simultaneously, and keep their own persistent LIF/STDP state. Blocked
 moves, collisions, proximity events, and action counts are logged only; they are
-not rewards, penalties, correctness labels, or error signals.
+not rewards, penalties, correctness labels, or targets for action STDP.
+
+TASK-013 adds a separate local next-observation prediction head per clone. It
+learns from its own prediction error and never selects actions or updates action
+STDP. The city/agent trajectory is unchanged by prediction learning.
 
 ```powershell
 py -3.14 -m exploration_lab.city
 ```
 
-Headless 5,000-step pilot:
+Headless 5,000-step pilot with the predictor fixed (TASK-012 condition):
 
 ```powershell
 py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 5000 `
   --checkpoint-every 1000 --progress-every 1000 `
-  --agents 8 --width 32 --height 32 --seed 12012
+  --agents 8 --width 32 --height 32 --seed 12012 `
+  --prediction-learning-rate 0
+```
+
+Headless prediction pilot:
+
+```powershell
+py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 5000 `
+  --checkpoint-every 1000 --progress-every 1000 `
+  --agents 8 --width 32 --height 32 --seed 12012 `
+  --prediction-learning-rate 0.001
 ```
 
 Raw JSONL rows and checkpoints stay under `.local_private/`. Aggregate pilot
-evidence and limitations are in `docs/EXPLORATION_CITY.md`. The city makes no
-claim of learning, cooperation, competition, or skill.
+evidence and limitations are in `docs/EXPLORATION_CITY.md` and
+`docs/EXPLORATION_PREDICTION.md`. The city makes no claim of learning,
+cooperation, competition, or skill.
 
 ---
 
@@ -651,14 +685,15 @@ claim of learning, cooperation, competition, or skill.
 | Check | Command | Result |
 |---|---|---|
 | v0.43 tests | `python -m pytest -q tests/v043` | **43 passed** (last verified 2026-10-27; 267.86 s) |
-| Full suite | `python -m pytest -q tests` | **199 passed** (last verified 2026-10-27; 278.25 s) |
+| Full suite | `python -m pytest -q tests` | **207 passed** (last verified 2026-10-29; 277.18 s) |
 | Handoff report structure | `python scripts/verify_handoff.py` | **PASS** |
 
 The full suite passes in the current authoring environment. Install
 `docs/requirements-dev.txt` before rerunning so optional test dependencies are
-present. The city pilot adds ten focused tests; they are included in the 199.
-The 43-test v0.43 suite is a supporting test set, not the official v0.43 test;
-the official test remains closed.
+present. The city pilot adds ten focused tests and TASK-013 adds eight
+prediction/integration tests; they are included in the 207. The 43-test v0.43
+suite is a supporting test set, not the official v0.43 test; the official test
+remains closed.
 
 ### 10.2 What the v0.43 tests cover
 
@@ -713,7 +748,8 @@ This repository is public and includes the stage-1 smoke artifacts, including `r
 ### 11.6 Reproducibility limits
 
 - The optional Brian2 comparison was **not run**.
-- The full test suite was **not completed** in the authoring environment.
+- The full suite passes in the authoring environment (`207 passed`, 2026-10-29);
+  this is one environment, not external replication.
 - Some historical experiment code (v0.16–v0.21) is not included; the v0.42 report states this explicitly.
 - No external replication of any result has been performed.
 
@@ -729,7 +765,7 @@ This repository is public and includes the stage-1 smoke artifacts, including `r
 6. **No confirmed benefit for local adaptive inhibition.** v0.37 and v0.41 show small descriptive effects, often with intervals that include zero.
 7. **No confirmed benefit for `tau=8`.** v0.39 found a difference of −0.124 pp with an interval including zero.
 8. **The v0.29 forgetting comparison is inconclusive.** No seed met the eligibility gate.
-9. **The full test suite does not pass in the authoring environment.** The failure is a missing optional dependency, not a completed test run.
+9. **The full test suite passes in the authoring environment.** The optional Brian2 comparison was not run, and no external replication has been performed.
 10. **No external replication.** No claim has reached the highest evidence level.
 
 ---
@@ -760,6 +796,9 @@ Only after a reproducible practical benefit is shown should the pulse layer be r
 - [`README.md`](README.md): this document.
 - [`docs/README.md`](docs/README.md): English documentation index.
 - [`docs/handoff/LATEST_REPORT.md`](docs/handoff/LATEST_REPORT.md): latest task report and audit trail.
+- [`docs/EXPLORATION_LAB.md`](docs/EXPLORATION_LAB.md): exploration loop, agent, and learning-signal boundary.
+- [`docs/EXPLORATION_CITY.md`](docs/EXPLORATION_CITY.md): shared multi-agent city pilot.
+- [`docs/EXPLORATION_PREDICTION.md`](docs/EXPLORATION_PREDICTION.md): TASK-013 local prediction-error pilot.
 - [`AGENTS.md`](AGENTS.md): entry-point instructions for the OpenCode agent.
 - [`OPENCODE_RULES.md`](OPENCODE_RULES.md): detailed mandatory workflow, handoff, and repository-sync rules.
 

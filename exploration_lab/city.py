@@ -5,15 +5,20 @@ clones of :class:`exploration_lab.agent.SpikingExplorer`.  Each clone has its ow
 persistent LIF state and independent RNG stream, but all clones start from the
 same weights.  They share one environment and move simultaneously.
 
-Important scope note: blocked moves, collisions, proximity events, and action
-counts are *observed and logged only*.  They are not rewards, penalties,
-correctness labels, or error signals, and they are never passed to the learning
-rule.  Weight changes still come only from local spike-timing-dependent
-plasticity inside each clone.
+Scope note: blocked moves, collisions, proximity events, and action counts are
+*observed and logged only*.  They are not rewards, penalties, or correctness
+labels and are never passed to the action-learning rule.  Action weights still
+change only through local spike-timing-dependent plasticity inside each clone.
+
+TASK-013 adds a separate local prediction head per clone.  It is trained by a
+self-supervised next-observation prediction error, using only its own prediction
+error and presynaptic activity.  Prediction error never selects actions and never
+updates the action STDP pathway; it is a local forward-model learning signal, not
+a reward or a city outcome.
 """
 from __future__ import annotations
 
-from collections import Counter
+from collections import Counter, deque
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 import argparse
@@ -31,6 +36,7 @@ import numpy as np
 
 from .agent import ActionDecision, AgentConfig, SpikingExplorer
 from .games import FEATURE_DIM, Observation
+from .prediction import LocalPredictor, PredictionConfig, PredictionMetrics
 from .runtime import JsonlLogger, format_duration, sha256_file, utc_now
 
 CITY_SCHEMA = "nucleus-exploration-city-v1"
@@ -459,6 +465,10 @@ class CityRuntimeConfig:
     render: bool = True
     progress_every: int = 500
     clone_seed_stride: int = 1009
+    prediction_learning_rate: float = 0.001
+    prediction_weight_max: float = 2.0
+    prediction_weight_decay: float = 1e-6
+    prediction_window: int = 500
 
 
 class CityTerminalRenderer:
@@ -497,6 +507,18 @@ class CityTerminalRenderer:
             f"input->hidden mean={divergence['input_hidden_mean']:.6f} "
             f"hidden->action mean={divergence['hidden_action_mean']:.6f}"
         )
+        if runtime.predictors:
+            recent_errors = [
+                predictor.last_metrics.mae
+                for predictor in runtime.predictors
+                if predictor.last_metrics is not None
+            ]
+            if recent_errors:
+                lines.append(
+                    "local prediction MAE: "
+                    f"mean={float(np.mean(recent_errors)):.6f} "
+                    f"min={min(recent_errors):.6f} max={max(recent_errors):.6f}"
+                )
         lines.append(f"checkpoint: {runtime.checkpoint_path}")
         if runtime.last_checkpoint_message:
             lines.append(f"checkpoint event: {runtime.last_checkpoint_message}")
@@ -541,9 +563,21 @@ class CityRuntime:
         self.session_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + os.urandom(3).hex()
         self._resumed_from: str | None = None
         self.initial_weights_identical = False
+        self.predictors: list[LocalPredictor] = []
+        self.prediction_config: PredictionConfig | None = None
+        self.prediction_window = max(1, int(config.prediction_window))
+        self.prediction_initial_weights_identical = False
+        self.prediction_steps = 0
+        self.prediction_initial_steps = 0
+        self.prediction_initial_mae_sum: list[float] = []
+        self.prediction_mae_total: list[float] = []
+        self.prediction_mse_total: list[float] = []
+        self.prediction_recent_mae: list[deque[float]] = []
+        resume_payload: dict[str, Any] | None = None
 
         if resume_path is not None:
             payload = json.loads(Path(resume_path).read_text(encoding="utf-8"))
+            resume_payload = payload
             if payload.get("schema") != CITY_CHECKPOINT_SCHEMA:
                 raise ValueError("unsupported city runtime checkpoint schema")
             city_payload = payload["city"]
@@ -587,6 +621,7 @@ class CityRuntime:
                 for agent in self.agents[1:]
             )
 
+        self._setup_prediction(resume_payload)
         self.logger = JsonlLogger(self.log_path)
         self.renderer = CityTerminalRenderer(ansi=config.render)
 
@@ -607,13 +642,189 @@ class CityRuntime:
         if len(self.events) > 8:
             self.events = self.events[-8:]
 
+    def _new_predictors(self) -> list[LocalPredictor]:
+        if not self.agents:
+            return []
+        base = self.agents[0].config
+        config = PredictionConfig(
+            hidden_dim=base.hidden_dim,
+            action_dim=base.action_dim,
+            input_dim=FEATURE_DIM,
+            learning_rate=self.config.prediction_learning_rate,
+            weight_max=self.config.prediction_weight_max,
+            weight_decay=self.config.prediction_weight_decay,
+        )
+        prototype = LocalPredictor(config, seed=0)
+        state = prototype.state_dict()
+        return [LocalPredictor.from_state_dict(state) for _ in self.agents]
+
+    def _prediction_weights_identical(self) -> bool:
+        if len(self.predictors) < 2:
+            return True
+        first = self.predictors[0]
+        return all(
+            np.array_equal(first.weights, predictor.weights)
+            and np.array_equal(first.bias, predictor.bias)
+            for predictor in self.predictors[1:]
+        )
+
+    def _setup_prediction(self, resume_payload: dict[str, Any] | None) -> None:
+        count = len(self.agents)
+        self.prediction_initial_mae_sum = [0.0 for _ in range(count)]
+        self.prediction_mae_total = [0.0 for _ in range(count)]
+        self.prediction_mse_total = [0.0 for _ in range(count)]
+        self.prediction_recent_mae = [
+            deque(maxlen=self.prediction_window) for _ in range(count)
+        ]
+        predictors_payload = (resume_payload or {}).get("predictors")
+        if isinstance(predictors_payload, list) and len(predictors_payload) == count:
+            self.predictors = [
+                LocalPredictor.from_state_dict(state) for state in predictors_payload
+            ]
+        else:
+            self.predictors = self._new_predictors()
+        self.prediction_config = self.predictors[0].config if self.predictors else None
+        metrics = (resume_payload or {}).get("prediction_metrics", {})
+        if isinstance(metrics, dict):
+            self.prediction_steps = max(0, int(metrics.get("steps", 0)))
+            self.prediction_initial_steps = min(
+                self.prediction_window,
+                max(0, int(metrics.get("initial_steps", 0))),
+            )
+            initial_sums = metrics.get("initial_mae_sum", [])
+            mae_totals = metrics.get("mae_total", [])
+            mse_totals = metrics.get("mse_total", [])
+            recent = metrics.get("recent_mae", [])
+            for index in range(count):
+                if index < len(initial_sums):
+                    self.prediction_initial_mae_sum[index] = float(initial_sums[index])
+                if index < len(mae_totals):
+                    self.prediction_mae_total[index] = float(mae_totals[index])
+                if index < len(mse_totals):
+                    self.prediction_mse_total[index] = float(mse_totals[index])
+                if index < len(recent) and isinstance(recent[index], list):
+                    self.prediction_recent_mae[index].extend(
+                        float(value)
+                        for value in recent[index][-self.prediction_window :]
+                    )
+        self.prediction_initial_weights_identical = self._prediction_weights_identical()
+
+    def _record_prediction_metrics(self, metrics: Sequence[PredictionMetrics]) -> None:
+        if not metrics:
+            return
+        self.prediction_steps += 1
+        for index, metric in enumerate(metrics[: len(self.prediction_mae_total)]):
+            self.prediction_mae_total[index] += metric.mae
+            self.prediction_mse_total[index] += metric.mse
+            self.prediction_recent_mae[index].append(metric.mae)
+            if self.prediction_initial_steps < self.prediction_window:
+                self.prediction_initial_mae_sum[index] += metric.mae
+        if self.prediction_initial_steps < self.prediction_window:
+            self.prediction_initial_steps += 1
+
+    def prediction_summary(self) -> dict[str, Any]:
+        if not self.predictors:
+            return {"enabled": False, "note": "No prediction head is active."}
+        per_agent: list[dict[str, Any]] = []
+        for index, predictor in enumerate(self.predictors):
+            steps = self.prediction_steps
+            mean_mae = self.prediction_mae_total[index] / steps if steps else None
+            mean_mse = self.prediction_mse_total[index] / steps if steps else None
+            initial_mae = (
+                self.prediction_initial_mae_sum[index] / self.prediction_initial_steps
+                if self.prediction_initial_steps
+                else None
+            )
+            recent = self.prediction_recent_mae[index]
+            final_mae = float(np.mean(recent)) if recent else None
+            change = (
+                final_mae - initial_mae
+                if final_mae is not None and initial_mae is not None
+                else None
+            )
+            reduction = (
+                (initial_mae - final_mae) / initial_mae
+                if initial_mae is not None and initial_mae > 0.0 and final_mae is not None
+                else None
+            )
+            per_agent.append(
+                {
+                    "agent": index,
+                    "mae_mean": mean_mae,
+                    "mse_mean": mean_mse,
+                    "initial_mae": initial_mae,
+                    "final_mae": final_mae,
+                    "mae_change": change,
+                    "mae_reduction_ratio": reduction,
+                    "prediction_updates": predictor.total_updates,
+                    "weight_stats": predictor.weight_stats(),
+                }
+            )
+
+        def aggregate(key: str) -> float | None:
+            values = [entry[key] for entry in per_agent if entry[key] is not None]
+            return float(np.mean(values)) if values else None
+
+        mean_initial = aggregate("initial_mae")
+        mean_final = aggregate("final_mae")
+        return {
+            "enabled": True,
+            "kind": "self-supervised local next-observation prediction",
+            "config": asdict(self.prediction_config) if self.prediction_config else None,
+            "steps": self.prediction_steps,
+            "initial_window": self.prediction_window,
+            "initial_steps": self.prediction_initial_steps,
+            "per_agent": per_agent,
+            "mean_mae": aggregate("mae_mean"),
+            "mean_mse": aggregate("mse_mean"),
+            "initial_mae": mean_initial,
+            "final_mae": mean_final,
+            "mae_change": (
+                mean_final - mean_initial
+                if mean_final is not None and mean_initial is not None
+                else None
+            ),
+            "mae_reduction_ratio": (
+                (mean_initial - mean_final) / mean_initial
+                if mean_initial is not None and mean_initial > 0.0 and mean_final is not None
+                else None
+            ),
+            "prediction_updates": [predictor.total_updates for predictor in self.predictors],
+            "weight_stats": [predictor.weight_stats() for predictor in self.predictors],
+            "initial_weights_identical": self.prediction_initial_weights_identical,
+            "current_weights_identical": self._prediction_weights_identical(),
+            "initial_window_note": (
+                "The initial window is the first N steps. In the predictive condition "
+                "it already contains predictor updates; use the fixed-predictor control "
+                "for a no-learning baseline."
+            ),
+            "note": (
+                "Self-supervised local next-observation prediction error only. "
+                "It never selects actions, never updates action STDP, and is not "
+                "a reward, score, penalty, or city outcome."
+            ),
+        }
+
     def step_once(self) -> CityStepResult:
         observations = self.city.observe_all()
         decisions = [
             agent.act(observation.features, CITY_ACTIONS)
             for agent, observation in zip(self.agents, observations)
         ]
+        for predictor, observation, agent, decision in zip(
+            self.predictors, observations, self.agents, decisions
+        ):
+            predictor.predict(
+                observation.features,
+                agent.last_hidden_activity,
+                decision.action,
+            )
         result = self.city.step([decision.action for decision in decisions])
+        prediction_metrics = [
+            predictor.observe_next(observation.features)
+            for predictor, observation in zip(self.predictors, result.observations)
+        ]
+        self._record_prediction_metrics(prediction_metrics)
         self.step_count = self.city.step_count
         self.fallback_count += sum(1 for decision in decisions if decision.random_fallback)
         for index, decision in enumerate(decisions):
@@ -635,6 +846,9 @@ class CityRuntime:
             "fallback": [decision.random_fallback for decision in decisions],
             "hidden_spikes": [decision.hidden_spikes for decision in decisions],
             "action_spikes": [list(decision.action_spikes) for decision in decisions],
+            "prediction_mae": [metric.mae for metric in prediction_metrics],
+            "prediction_mse": [metric.mse for metric in prediction_metrics],
+            "prediction_updates": [metric.prediction_updates for metric in prediction_metrics],
             "observation_summaries": [observation.summary for observation in observations],
             "interaction_events_total": self.city.interaction_events,
             "collision_events_total": self.city.collision_events,
@@ -654,6 +868,15 @@ class CityRuntime:
             "config": asdict(self.config),
             "city": self.city.snapshot(),
             "agents": [agent.state_dict() for agent in self.agents],
+            "predictors": [predictor.state_dict() for predictor in self.predictors],
+            "prediction_metrics": {
+                "steps": self.prediction_steps,
+                "initial_steps": self.prediction_initial_steps,
+                "initial_mae_sum": self.prediction_initial_mae_sum,
+                "mae_total": self.prediction_mae_total,
+                "mse_total": self.prediction_mse_total,
+                "recent_mae": [list(values) for values in self.prediction_recent_mae],
+            },
             "step": self.step_count,
             "fallback_count": self.fallback_count,
             "checkpoints_saved": self.checkpoints_saved,
@@ -735,15 +958,18 @@ class CityRuntime:
             "weight_divergence": divergence,
             "pairwise_weight_divergence": pairwise,
             "weight_stats": [agent.weight_stats() for agent in self.agents],
+            "prediction": self.prediction_summary(),
             "checkpoints_saved": self.checkpoints_saved,
             "log_path": str(self.log_path),
             "checkpoint_path": str(self.checkpoint_path),
             "checkpoint_sha256": sha256_file(self.checkpoint_path) if self.checkpoint_path.is_file() else None,
             "log_sha256": sha256_file(self.log_path) if self.log_path.is_file() else None,
             "note": (
-                "Operational multi-agent counters only. No reward, score, penalty, "
-                "correctness signal, or error signal is used. This is not evidence of "
-                "learning, intelligence, cooperation, competition, or skill."
+                "Action STDP uses no reward, score, penalty, correctness signal, or "
+                "city outcome. A separate local predictor is trained by self-supervised "
+                "next-observation prediction error; it never selects actions or updates "
+                "the action pathway. This is not evidence of learning, intelligence, "
+                "cooperation, competition, or skill."
             ),
         }
 
@@ -755,6 +981,8 @@ class CityRuntime:
             seed=self.config.seed,
             delay=self.config.delay,
             checkpoint_every=self.config.checkpoint_every,
+            prediction_learning_rate=self.config.prediction_learning_rate,
+            prediction_window=self.prediction_window,
             resumed_from=self._resumed_from,
             step=self.step_count,
         )
@@ -766,10 +994,20 @@ class CityRuntime:
                 if self.config.render:
                     self.renderer.render(self)
                 elif self.config.progress_every and self.step_count % self.config.progress_every == 0:
+                    recent_errors = [
+                        predictor.last_metrics.mae
+                        for predictor in self.predictors
+                        if predictor.last_metrics is not None
+                    ]
+                    prediction_text = (
+                        f" pred_mae={float(np.mean(recent_errors)):.6f}"
+                        if recent_errors
+                        else ""
+                    )
                     print(
                         f"step={self.step_count} interactions={self.city.interaction_events} "
                         f"collisions={self.city.collision_events} blocked={self.city.blocked_moves} "
-                        f"fallback={self.fallback_count}",
+                        f"fallback={self.fallback_count}{prediction_text}",
                         flush=True,
                     )
                 if self.config.checkpoint_every and self.step_count % self.config.checkpoint_every == 0:
@@ -792,8 +1030,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="python -m exploration_lab.city",
         description=(
-            "Shared multi-agent city with cloned reward-free spiking agents. "
-            "Collisions and interactions are logged, never used as learning signals."
+            "Shared multi-agent city with cloned spiking agents. Action STDP is "
+            "reward-free; a separate local predictor learns from self-supervised "
+            "next-observation prediction error and never selects actions."
         ),
     )
     parser.add_argument("--agents", type=int, default=8, help="number of clones (default: 8)")
@@ -819,6 +1058,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--depression-rate", type=float, default=0.0021, help="STDP depression rate")
     parser.add_argument("--temperature", type=float, default=0.6, help="softmax temperature")
     parser.add_argument("--weight-max", type=float, default=1.0, help="maximum plastic weight")
+    parser.add_argument("--prediction-learning-rate", type=float, default=0.001,
+                        help="local prediction-head learning rate; 0 fixes the predictor")
+    parser.add_argument("--prediction-weight-max", type=float, default=2.0,
+                        help="maximum absolute prediction weight")
+    parser.add_argument("--prediction-weight-decay", type=float, default=1e-6,
+                        help="prediction weight decay per update")
+    parser.add_argument("--prediction-window", type=int, default=500,
+                        help="initial/final MAE window in steps")
     return parser
 
 
@@ -828,6 +1075,16 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("--agents must be positive")
     if args.max_steps < 0 or args.checkpoint_every < 0 or args.delay < 0 or args.progress_every < 0:
         raise SystemExit("step, checkpoint, delay, and progress values must be non-negative")
+    if (
+        args.prediction_learning_rate < 0.0
+        or args.prediction_weight_max <= 0.0
+        or args.prediction_weight_decay < 0.0
+        or args.prediction_window <= 0
+    ):
+        raise SystemExit(
+            "prediction learning rate/decay must be non-negative, weight max positive, "
+            "and prediction window positive"
+        )
 
     if args.resume is not None:
         if not args.resume.is_file():
@@ -853,6 +1110,10 @@ def main(argv: list[str] | None = None) -> int:
         checkpoint_every=args.checkpoint_every,
         render=not args.no_render,
         progress_every=args.progress_every,
+        prediction_learning_rate=args.prediction_learning_rate,
+        prediction_weight_max=args.prediction_weight_max,
+        prediction_weight_decay=args.prediction_weight_decay,
+        prediction_window=args.prediction_window,
     )
     runtime = CityRuntime(
         config,
@@ -868,7 +1129,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"checkpoint: {runtime.checkpoint_path}")
     if runtime._resumed_from:
         print(f"resumed: {runtime._resumed_from} at step {runtime.step_count}")
-    print("No reward, score, penalty, correctness signal, or error signal is sent to the learning rule.")
+    print("Action STDP receives no reward, score, penalty, correctness signal, or city outcome.")
+    print("A separate local predictor learns from next-observation prediction error and never selects actions.")
     print("Ctrl+C saves a checkpoint and exits.")
     print()
     summary = runtime.run()

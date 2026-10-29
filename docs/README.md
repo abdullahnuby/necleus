@@ -47,6 +47,16 @@ The benchmark code is in [`../skillbench_v043/`](../skillbench_v043/) and its te
 
 The simulator is in [`../pulse_core/`](../pulse_core/). The model uses the standard library; `sequential_stdp.py` requires NumPy.
 
+## Exploration lab
+
+| Document | Purpose |
+|---|---|
+| [`EXPLORATION_LAB.md`](EXPLORATION_LAB.md) | Local exploration loop, persistent spiking agent, action STDP, checkpoints, and learning-signal boundary |
+| [`EXPLORATION_CITY.md`](EXPLORATION_CITY.md) | Shared 8-clone city, movement, collisions, interactions, and TASK-012 pilot |
+| [`EXPLORATION_PREDICTION.md`](EXPLORATION_PREDICTION.md) | TASK-013 separate local next-observation predictor, pilot results, and non-claims |
+
+The exploration code is in [`../exploration_lab/`](../exploration_lab/). It is separate from the v0.43 benchmark and makes no learning or skill claim.
+
 ## Experiment protocols
 
 Each protocol fixes the question, seeds, data, baselines, and success criteria before the run.
