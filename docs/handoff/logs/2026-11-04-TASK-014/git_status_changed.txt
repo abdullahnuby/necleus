@@ -1,0 +1,5 @@
+COMMAND: git status --short
+ M docs/handoff/LATEST_REPORT.md
+?? docs/handoff/history/2026-11-04-TASK-014.md
+?? docs/handoff/logs/2026-11-04-TASK-014/handoff_validator.txt
+EXIT=0

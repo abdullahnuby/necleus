@@ -1,0 +1,6 @@
+COMMAND: py -3.14 scripts/verify_handoff.py
+HANDOFF VERIFICATION: PASS
+ - latest: docs\handoff\LATEST_REPORT.md
+ - history reports: 14
+ - required sections: 11
+EXIT=0
