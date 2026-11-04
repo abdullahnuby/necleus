@@ -1,0 +1,30 @@
+TASK-013 SHA-256 EVIDENCE
+Bytes are read from the Git index for staged paths; committed paths are read from HEAD.
+docs/handoff/history/2026-10-29-TASK-013.md and docs/handoff/logs/2026-10-29-TASK-013/** are frozen with -text.
+
+6c2365912702aaf6782cafef5b52c4e5eddc532a47f5c1b4e657b4604909fe8c  .gitattributes
+ae4c7a6dd9f22736d9e32ad8eb36824ef36d704f2f7e9257a5dd0def3d069ddf  README.md
+d3cffc69a194098850d45d854b630bf0cce2752994cf655cac068b6fa413fc3c  docs/CHANGELOG.md
+100c4675e273f1cb3cb8e9187037cdbe495a8c76065828ef071c8248b3349b62  docs/EXPLORATION_CITY.md
+05a8932b101a867869e9a48abcf5b9a129b94063f2656b97e45ef056d8ab1d74  docs/EXPLORATION_LAB.md
+7801c4b0bd56f67ad98d121849b41c672c6640b82f8ef86d24c493716ba9e137  docs/EXPLORATION_PREDICTION.md
+c186a81ee96c1fde0e4d97ced0267e298b12ad980414edf930a1004cbdfbf369  docs/README.md
+75a1e2b99593022cc67d60dc4e00bc6e2adaa7ca0232c22f36ce63dcc9e9d249  docs/handoff/LATEST_REPORT.md
+75a1e2b99593022cc67d60dc4e00bc6e2adaa7ca0232c22f36ce63dcc9e9d249  docs/handoff/history/2026-10-29-TASK-013.md
+0771624c89faed1d78d9bb7ec575a9c32332144412d063200a80094b5a5d7deb  docs/handoff/logs/2026-10-29-TASK-013/baseline_state.txt
+74c21c951e62e9d91a6f683809ac8f897961d6dcb71b83ab8df34daf8651d0c7  docs/handoff/logs/2026-10-29-TASK-013/comparison_verification.txt
+7171ec2978c630ccd04bb20e391a4cb05eb0d53ab6fbf7b1b5ece92236622d65  docs/handoff/logs/2026-10-29-TASK-013/environment.txt
+15ba91033e706e309e9b8db0eeebbcb57207037fd63ea924aad3905891f0ac10  docs/handoff/logs/2026-10-29-TASK-013/git_push_implementation.txt
+70fdedca3424696eb5a0cab89fcdb929c2785120a01c0d4f072f72ce2e8d2b34  docs/handoff/logs/2026-10-29-TASK-013/git_status_changed.txt
+698ec9095c592cae8b03bea0c64069824508279a5a5a6c7d962e4e526257bef9  docs/handoff/logs/2026-10-29-TASK-013/handoff_validator.txt
+153a174cef0dfde5d33bdefbb69017ee787050afceeab2dfc4f41a5283b229f4  docs/handoff/logs/2026-10-29-TASK-013/handoff_validator_pre_report.txt
+881f8df8b8846e0f9d364b63827ef5598751aa999df72b0f44d893e41d1fdf04  docs/handoff/logs/2026-10-29-TASK-013/leakage_scan.txt
+39d1e926d3e0304cc81705aea697d41420f0f4719acb3bc7e32b4ff30ca87a29  docs/handoff/logs/2026-10-29-TASK-013/plan.md
+6a98cb92d1c029bfc11446e71dbfd28fda5b97408ad45e73be7d9ecf9399e062  docs/handoff/logs/2026-10-29-TASK-013/py_compile.txt
+459e4faeb7401099993d7d8afee78c1fb5de53f0edcaf4cbca8003535940cfc9  docs/handoff/logs/2026-10-29-TASK-013/pytest_full.txt
+a5a02873be571d28e306e3bbced68e02af982023ba4424e81df4efc5e832fd9e  docs/handoff/logs/2026-10-29-TASK-013/tests_lab.txt
+9e965c7b98298816afd2448a051c7c323a9bfb4cd9de1cf1bf69ab9cb2c38281  docs/handoff/logs/2026-10-29-TASK-013/tests_prediction_city.txt
+b906fe2a3e9e1703fc118158fb9c8722ef175e56878d24a3969b5f17573047f7  exploration_lab/agent.py
+21f9a83399362e1a4de366857a7180ce38320060a738c05012d43b8d2a1cd6d6  exploration_lab/city.py
+f6fb0681d0bac13fc6bb20e78e15d60d3ef1ee85be21f3c1006ccc351cdb5520  exploration_lab/prediction.py
+a4af6812f4dedd5541a2be1649626a0c966e50b60f1317ae68e64e81517b91d6  tests/test_exploration_lab_prediction.py
