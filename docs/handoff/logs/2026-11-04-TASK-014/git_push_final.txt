@@ -1,0 +1,27 @@
+TASK-014 PUSH EVIDENCE
+======================
+
+Command: git push origin main
+Local HEAD before push: 150d2e804bc6e6d0b2cc8c2175eb677c9b871578
+Exit code: 0
+
+git stdout:
+(empty)
+
+git stderr:
+To https://github.com/abdullahnuby/necleus.git
+   5b55af2..150d2e8  main -> main
+
+Remote verification immediately after push
+------------------------------------------
+Command: git ls-remote origin refs/heads/main
+Exit code: 0
+Output: 150d2e804bc6e6d0b2cc8c2175eb677c9b871578	refs/heads/main
+Local HEAD after push: 150d2e804bc6e6d0b2cc8c2175eb677c9b871578
+
+Notes
+-----
+No force-push and no history rewrite were used.
+This file records the substantive delivery push. A later log-only commit
+adds this evidence file and the refreshed hashes; that log-only commit is
+pushed separately.
