@@ -1,0 +1,52 @@
+TASK-013 PUSH EVIDENCE
+======================
+
+Substantive commits pushed
+--------------------------
+Command: git push origin main
+Implementation range: c0abcfdd943b0b9b23249b65808dfde321970a1d..4b54d8159ad189434b955ef24a4830394600dd53
+Implementation result: c0abcfd..4b54d81  main -> main
+Delivery range: 4b54d8159ad189434b955ef24a4830394600dd53..3447d72d8fc33a4729c020a631744a9aa696a86b
+Delivery result: 4b54d81..3447d72  main -> main
+Exit code: 0
+
+Commits:
+- 4b54d8159ad189434b955ef24a4830394600dd53  TASK-013: add local next-observation prediction head to exploration city
+- 3447d72d8fc33a4729c020a631744a9aa696a86b  TASK-013: record final handoff, prediction comparison, and validation evidence
+
+Remote verification immediately after delivery push
+----------------------------------------------------
+Command: git ls-remote origin refs/heads/main
+Output: 3447d72d8fc33a4729c020a631744a9aa696a86b	refs/heads/main
+Local HEAD: 3447d72d8fc33a4729c020a631744a9aa696a86b
+
+PowerShell note
+---------------
+The captured PowerShell stream labels git's stderr progress text as
+"NativeCommandError". The git process itself exited with code 0, the remote
+ref advanced, and the local HEAD matched the remote immediately after each
+push. No force-push was used.
+
+Validation before the delivery push
+-----------------------------------
+- py_compile: exit code 0.
+- Targeted prediction + city tests: 18 passed in 5.08s.
+- Lab tests: 17 passed in 1.60s.
+- Full suite: 207 passed in 277.18s.
+- Private leakage scan: PASS, 145 data files, 0 findings.
+- Handoff verification: PASS, 13 history reports, 11 required sections.
+
+Log-only commit
+---------------
+This push-evidence file and the regenerated hashes are added in a log-only
+commit after the substantive pushes. That log-only commit is pushed separately.
+The substantive commits above were accepted by origin/main before the evidence
+commit was created. No history rewrite and no force-push were used.
+
+Reproducibility note
+--------------------
+docs/handoff/history/2026-10-29-TASK-013.md and
+docs/handoff/logs/2026-10-29-TASK-013/** are marked `-text` in
+`.gitattributes`, so the recorded SHA-256 values refer to the stored bytes
+rather than a later line-ending conversion. Raw city JSONL rows and
+checkpoints remain under `.local_private/` and are not committed.

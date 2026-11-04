@@ -1,7 +1,7 @@
 # تقرير تسليم — 2026-10-29-TASK-013
 
 - **معرف المهمة:** 2026-10-29-TASK-013
-- **التاريخ والوقت المحلي:** 2026-11-04 16:55 +02:00 (توقيت الجهاز المحلي؛ بدأت المهمة في 2026-10-29)
+- **التاريخ والوقت المحلي:** 2026-11-04 17:04 +02:00 (توقيت الجهاز المحلي؛ بدأت المهمة في 2026-10-29)
 - **المهمة:** إضافة رأس تنبؤ محلي منفصل لكل نسخة في مدينة الوكلاء، يتعلم من خطأ توقع الملاحظة التالية دون أن يختار الأفعال أو يعدّل STDP.
 - **الحالة:** التنفيذ الهندسي والتجربة الوصفية مكتملان. لا توجد بوابة نجاح علمي، ولا ادعاء تعلّم أو ملاحة أو تعاون أو تنافس أو مهارة.
 
@@ -62,7 +62,7 @@
 | `py -3.14 -m exploration_lab.city --agents 8 --width 32 --height 32 --seed 12012 --max-steps 5000 --no-render --delay 0 --checkpoint-every 1000 --progress-every 1000 --prediction-learning-rate 0 ...` | 0 | التحكم: 5,000 خطوة، 52.607 ثانية. | `.local_private/exploration/task013_runs_final/control/console.txt` والسجلات الخام هناك |
 | `py -3.14 -m exploration_lab.city --agents 8 --width 32 --height 32 --seed 12012 --max-steps 5000 --no-render --delay 0 --checkpoint-every 1000 --progress-every 1000 --prediction-learning-rate 0.001 ...` | 0 | التنبؤي: 5,000 خطوة، 73.408 ثانية. | `.local_private/exploration/task013_runs_final/predictive/console.txt` والسجلات الخام هناك |
 | `git push origin main` (implementation) | 0 | `c0abcfd..4b54d81 main -> main`. | `docs/handoff/logs/2026-10-29-TASK-013/git_push_implementation.txt` |
-| `git push origin main` (delivery) | 0 | يُسجَّل بعد الرفع. | `docs/handoff/logs/2026-10-29-TASK-013/git_push_delivery.txt` |
+| `git push origin main` (delivery) | 0 | `4b54d81..3447d72 main -> main`. | `docs/handoff/logs/2026-10-29-TASK-013/git_push_delivery.txt` |
 
 - **السجلات الخاصة:** سجلات JSONL وcheckpoints الخام تحت `.local_private/exploration/task013_runs_final/`، وهي مستبعدة من Git. لم تُرفع صفوف تشغيل خام.
 - **ملاحظة:** `--max-steps` عدّاد عام مطلق. التشغيلان استُخدما في مجلدين نظيفين بعد اكتشاف إضافة سجلات قديمة إلى ملفات سابقة.
@@ -140,8 +140,9 @@
 
 - **Commit البداية:** `c0abcfdd943b0b9b23249b65808dfde321970a1d`.
 - **Commit العمل:** `4b54d8159ad189434b955ef24a4830394600dd53` (TASK-013: add local next-observation prediction head to exploration city).
-- **Commit التسليم:** يُسجَّل بعد رفع هذا التقرير.
-- **الرفع:** `git push origin main` رفع التنفيذ `c0abcfd..4b54d81` بنجاح (exit 0)؛ تحقق `git ls-remote` أعاد `4b54d8159ad189434b955ef24a4830394600dd53`. التفاصيل في `git_push_implementation.txt`.
+- **Commit التسليم:** `3447d72d8fc33a4729c020a631744a9aa696a86b` (TASK-013: record final handoff, prediction comparison, and validation evidence).
+- **الرفع:** `git push origin main` رفع التنفيذ `c0abcfd..4b54d81` ثم التسليم `4b54d81..3447d72` بنجاح (exit 0). تحقق `git ls-remote origin refs/heads/main` بعد التسليم أعاد `3447d72d8fc33a4729c020a631744a9aa696a86b`. التفاصيل في `git_push_implementation.txt` و`git_push_delivery.txt`.
+- **Commit لوجستي:** يُضاف بعده ملف `git_push_final.txt` والبصمات المحدّثة في commit لوجستي منفصل، ثم يُرفع. لا إعادة كتابة تاريخ ولا force-push.
 - **ملاحظة الرفع:** PowerShell يصنّف نص تقدم git على stderr كـ`NativeCommandError`؛ عملية git نفسها خرجت بـ0 وتقدم `origin/main`. لا force-push.
 - **بصمات الملفات:** `docs/handoff/logs/2026-10-29-TASK-013/hashes.txt`.
 - **سجلات الأوامر:** `plan.md`، `baseline_state.txt`، `environment.txt`، `py_compile.txt`، `tests_prediction_city.txt`، `tests_lab.txt`، `pytest_full.txt`، `leakage_scan.txt`، `handoff_validator_pre_report.txt`، `git_status_changed.txt`، `comparison_verification.txt`، `git_push_implementation.txt`.
