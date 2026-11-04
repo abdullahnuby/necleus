@@ -1,0 +1,4 @@
+legacy: step=60 city_match=True agents_match=True predictors_match=True counters_match=True final_log_match=True
+adaptive: step=60 city_match=True agents_match=True predictors_match=True counters_match=True final_log_match=True
+PASS: continuous and resumed final states are exactly equal in both modes
+EXIT=0

@@ -15,11 +15,17 @@ self-supervised next-observation prediction error, using only its own prediction
 error and presynaptic activity.  Prediction error never selects actions and never
 updates the action STDP pathway; it is a local forward-model learning signal, not
 a reward or a city outcome.
+
+TASK-014 optionally feeds the signed feature-level prediction residual from the
+previous transition into a dedicated positive/negative residual input pathway of
+the same clone on the next perception-action cycle.  Legacy mode keeps TASK-013
+behavior exactly; adaptive mode enables the pathway.  No clone shares residuals or
+predictor weights, and no reward or action-correctness signal is introduced.
 """
 from __future__ import annotations
 
 from collections import Counter, deque
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 import argparse
 import hashlib
@@ -34,9 +40,15 @@ from typing import Any, Callable, Iterable, Sequence
 
 import numpy as np
 
-from .agent import ActionDecision, AgentConfig, SpikingExplorer
+from .agent import (
+    LEGACY_CHECKPOINT_SCHEMA,
+    ActionDecision,
+    AgentConfig,
+    SpikingExplorer,
+)
 from .games import FEATURE_DIM, Observation
 from .prediction import LocalPredictor, PredictionConfig, PredictionMetrics
+from .residual import ResidualConfig, residual_summary
 from .runtime import JsonlLogger, format_duration, sha256_file, utc_now
 
 CITY_SCHEMA = "nucleus-exploration-city-v1"
@@ -469,6 +481,10 @@ class CityRuntimeConfig:
     prediction_weight_max: float = 2.0
     prediction_weight_decay: float = 1e-6
     prediction_window: int = 500
+    residual_feedback: bool = False
+    allow_legacy_migration: bool = False
+    log_max_bytes: int = 16 * 1024 * 1024
+    log_backup_count: int = 3
 
 
 class CityTerminalRenderer:
@@ -484,12 +500,14 @@ class CityTerminalRenderer:
 
     def frame(self, runtime: "CityRuntime") -> str:
         city_stats = runtime.city.stats()
+        mode = "adaptive residual feedback" if runtime.config.residual_feedback else "legacy (no residual feedback)"
         lines = [
             "NUCLEUS EXPLORATION CITY - shared, reward-free multi-agent loop",
             "=" * 78,
-            f"step: {runtime.step_count:<7} agents: {runtime.config.agent_count:<3} "
+            f"step: {runtime.step_count:<7} agents: {len(runtime.agents):<3} "
             f"elapsed: {format_duration(runtime.elapsed_seconds)}   "
             f"speed: {runtime.config.delay:.3f}s/step",
+            f"mode: {mode}   predictor: local next-observation",
             f"open cells: {city_stats['open_cells']}   interactions: "
             f"{city_stats['interaction_events']}   collisions: "
             f"{city_stats['collision_events']}   blocked: {city_stats['blocked_moves']}",
@@ -513,12 +531,33 @@ class CityTerminalRenderer:
                 for predictor in runtime.predictors
                 if predictor.last_metrics is not None
             ]
+            recent_residuals = [
+                float(np.abs(predictor.last_residual).mean())
+                for predictor in runtime.predictors
+                if predictor.last_residual is not None
+            ]
             if recent_errors:
                 lines.append(
                     "local prediction MAE: "
                     f"mean={float(np.mean(recent_errors)):.6f} "
                     f"min={min(recent_errors):.6f} max={max(recent_errors):.6f}"
                 )
+            if recent_residuals:
+                lines.append(
+                    "signed prediction residual: "
+                    f"abs_mean={float(np.mean(recent_residuals)):.6f} "
+                    f"max_abs={max(float(np.abs(p.last_residual).max()) for p in runtime.predictors if p.last_residual is not None):.6f}"
+                )
+        if runtime.config.residual_feedback:
+            current = [
+                agent.last_residual_current_abs_mean for agent in runtime.agents
+            ]
+            lines.append(
+                "residual pathway: positive/negative -> hidden   "
+                f"last current abs mean={float(np.mean(current)):.6f}"
+            )
+        else:
+            lines.append("residual pathway: disabled (legacy)")
         lines.append(f"checkpoint: {runtime.checkpoint_path}")
         if runtime.last_checkpoint_message:
             lines.append(f"checkpoint event: {runtime.last_checkpoint_message}")
@@ -530,6 +569,29 @@ class CityTerminalRenderer:
 
 class CityRuntime:
     """Owns the city, clones, chronological log, checkpoint, and display."""
+
+    _AUTHORITATIVE_FIELDS = (
+        "seed",
+        "width",
+        "height",
+        "agent_count",
+        "clone_seed_stride",
+        "prediction_learning_rate",
+        "prediction_weight_max",
+        "prediction_weight_decay",
+        "prediction_window",
+        "residual_feedback",
+    )
+    _OVERRIDE_FIELDS = (
+        "max_steps",
+        "delay",
+        "render",
+        "checkpoint_every",
+        "progress_every",
+        "log_max_bytes",
+        "log_backup_count",
+        "allow_legacy_migration",
+    )
 
     def __init__(
         self,
@@ -543,6 +605,7 @@ class CityRuntime:
         on_step: Callable[["CityRuntime"], None] | None = None,
     ) -> None:
         self.config = config
+        self._validate_runtime_config(config)
         self.checkpoint_path = Path(checkpoint_path)
         self.log_path = Path(log_path)
         self.summary_path = Path(summary_path) if summary_path else self.checkpoint_path.parent / "city_summary.json"
@@ -573,31 +636,77 @@ class CityRuntime:
         self.prediction_mae_total: list[float] = []
         self.prediction_mse_total: list[float] = []
         self.prediction_recent_mae: list[deque[float]] = []
+        self.prediction_migration_note: str | None = None
         resume_payload: dict[str, Any] | None = None
 
         if resume_path is not None:
             payload = json.loads(Path(resume_path).read_text(encoding="utf-8"))
+            if not isinstance(payload, dict):
+                raise ValueError("city checkpoint must be a JSON object")
             resume_payload = payload
             if payload.get("schema") != CITY_CHECKPOINT_SCHEMA:
                 raise ValueError("unsupported city runtime checkpoint schema")
-            city_payload = payload["city"]
-            city_config = CityConfig(**city_payload["config"])
+            checkpoint_config = self._checkpoint_config(payload)
+            self.config = self._merge_resume_config(checkpoint_config, config)
+            self.prediction_window = max(1, int(self.config.prediction_window))
+            city_payload = payload.get("city")
+            if not isinstance(city_payload, dict):
+                raise ValueError("checkpoint is missing the city snapshot")
+            try:
+                city_config = CityConfig(**city_payload["config"])
+            except (KeyError, TypeError, ValueError) as exc:
+                raise ValueError(f"invalid checkpoint city config: {exc}") from exc
+            if (
+                city_config.width != self.config.width
+                or city_config.height != self.config.height
+                or city_config.agent_count != self.config.agent_count
+            ):
+                raise ValueError(
+                    "checkpoint city dimensions/agent count do not match the runtime config"
+                )
             self.city = City(city_config, seed=0)
             self.city.restore(city_payload)
-            self.agents = [SpikingExplorer.from_state_dict(state) for state in payload["agents"]]
-            if len(self.agents) != self.city.config.agent_count:
-                raise ValueError("checkpoint agent count does not match city agent count")
-            self.step_count = int(payload["step"])
-            self.fallback_count = int(payload.get("fallback_count", 0))
-            self.checkpoints_saved = int(payload.get("checkpoints_saved", 0))
-            counters = payload.get("counters", {})
-            self.action_counts = Counter({str(key): int(value) for key, value in counters.get("action_counts", {}).items()})
-            self.per_agent_action_counts = [
-                Counter({str(key): int(value) for key, value in counts.items()})
-                for counts in counters.get("per_agent_action_counts", [])
-            ][: len(self.agents)]
-            while len(self.per_agent_action_counts) < len(self.agents):
-                self.per_agent_action_counts.append(Counter())
+            agent_states = payload.get("agents")
+            if not isinstance(agent_states, list):
+                raise ValueError("checkpoint is missing the agent list")
+            if len(agent_states) != self.city.config.agent_count:
+                raise ValueError(
+                    "checkpoint agent list length does not match city agent count"
+                )
+            if self.config.residual_feedback:
+                for index, state in enumerate(agent_states):
+                    if not isinstance(state, dict):
+                        raise ValueError(f"agent checkpoint {index} is not an object")
+                    if state.get("schema") == LEGACY_CHECKPOINT_SCHEMA:
+                        raise ValueError(
+                            "adaptive residual feedback requires agent checkpoint v2; "
+                            f"agent {index} is legacy v1 and has no residual pathway. "
+                            "Resume in legacy mode or start a new adaptive session."
+                        )
+            self.agents = [
+                SpikingExplorer.from_state_dict(
+                    state,
+                    allow_legacy_migration=self.config.allow_legacy_migration,
+                )
+                for state in agent_states
+            ]
+            try:
+                self.step_count = int(payload["step"])
+                self.fallback_count = int(payload.get("fallback_count", 0))
+                self.checkpoints_saved = int(payload.get("checkpoints_saved", 0))
+            except (KeyError, TypeError, ValueError) as exc:
+                raise ValueError(f"invalid checkpoint counters: {exc}") from exc
+            if self.step_count < 0:
+                raise ValueError("checkpoint step count must be non-negative")
+            if self.step_count != self.city.step_count:
+                raise ValueError(
+                    "checkpoint step count does not match the restored city step count"
+                )
+            if self.fallback_count < 0:
+                raise ValueError("checkpoint fallback_count must be non-negative")
+            if self.checkpoints_saved < 0:
+                raise ValueError("checkpoint checkpoints_saved must be non-negative")
+            self._restore_counters(payload, len(self.agents))
             self._resumed_from = str(resume_path)
             self.initial_weights_identical = bool(payload.get("initial_weights_identical", False))
         else:
@@ -607,7 +716,13 @@ class CityRuntime:
                 agent_count=config.agent_count,
             )
             self.city = City(city_config, seed=config.seed)
-            prototype = SpikingExplorer(agent_config or AgentConfig(), seed=config.seed)
+            base_agent_config = agent_config or AgentConfig()
+            if base_agent_config.residual_enabled != config.residual_feedback:
+                base_agent_config = replace(
+                    base_agent_config,
+                    residual_enabled=config.residual_feedback,
+                )
+            prototype = SpikingExplorer(base_agent_config, seed=config.seed)
             base_state = prototype.state_dict()
             self.agents = []
             for index in range(config.agent_count):
@@ -618,12 +733,161 @@ class CityRuntime:
                 np.array_equal(self.agents[0].w_input_hidden, agent.w_input_hidden)
                 and np.array_equal(self.agents[0].w_hidden_hidden, agent.w_hidden_hidden)
                 and np.array_equal(self.agents[0].w_hidden_action, agent.w_hidden_action)
+                and np.array_equal(
+                    self.agents[0].w_residual_pos_hidden,
+                    agent.w_residual_pos_hidden,
+                )
+                and np.array_equal(
+                    self.agents[0].w_residual_neg_hidden,
+                    agent.w_residual_neg_hidden,
+                )
                 for agent in self.agents[1:]
             )
 
+        self._validate_agent_configs()
+        self._validate_runtime_config(self.config)
         self._setup_prediction(resume_payload)
-        self.logger = JsonlLogger(self.log_path)
-        self.renderer = CityTerminalRenderer(ansi=config.render)
+        self.logger = JsonlLogger(
+            self.log_path,
+            max_bytes=self.config.log_max_bytes,
+            backup_count=self.config.log_backup_count,
+            session_id=self.session_id,
+        )
+        self.renderer = CityTerminalRenderer(ansi=self.config.render)
+
+    @staticmethod
+    def _validate_runtime_config(config: CityRuntimeConfig) -> None:
+        if config.width < 12 or config.height < 12:
+            raise ValueError("city must be at least 12x12")
+        if config.agent_count <= 0:
+            raise ValueError("agent_count must be positive")
+        if config.max_steps < 0 or config.checkpoint_every < 0 or config.progress_every < 0:
+            raise ValueError("step/checkpoint/progress values must be non-negative")
+        if not np.isfinite(config.delay) or config.delay < 0.0:
+            raise ValueError("delay must be non-negative and finite")
+        if not np.isfinite(config.prediction_learning_rate) or config.prediction_learning_rate < 0.0:
+            raise ValueError("prediction_learning_rate must be non-negative and finite")
+        if not np.isfinite(config.prediction_weight_max) or config.prediction_weight_max <= 0.0:
+            raise ValueError("prediction_weight_max must be positive and finite")
+        if not np.isfinite(config.prediction_weight_decay) or config.prediction_weight_decay < 0.0:
+            raise ValueError("prediction_weight_decay must be non-negative and finite")
+        if config.prediction_window <= 0:
+            raise ValueError("prediction_window must be positive")
+        if config.log_max_bytes < 0 or config.log_backup_count < 0:
+            raise ValueError("log rotation values must be non-negative")
+        if config.log_max_bytes > 0 and config.log_backup_count < 1:
+            raise ValueError("log rotation requires log_backup_count >= 1")
+
+    @staticmethod
+    def _checkpoint_config(payload: dict[str, Any]) -> CityRuntimeConfig:
+        if not isinstance(payload, dict):
+            raise ValueError("city checkpoint must be a JSON object")
+        data = payload.get("config")
+        if not isinstance(data, dict):
+            raise ValueError("checkpoint is missing the runtime configuration")
+        try:
+            return CityRuntimeConfig(**data)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"checkpoint runtime configuration is incompatible: {exc}") from exc
+
+    def _merge_resume_config(
+        self,
+        checkpoint_config: CityRuntimeConfig,
+        requested: CityRuntimeConfig,
+    ) -> CityRuntimeConfig:
+        mismatches: list[str] = []
+        for field in self._AUTHORITATIVE_FIELDS:
+            requested_value = getattr(requested, field)
+            saved_value = getattr(checkpoint_config, field)
+            if requested_value != saved_value:
+                mismatches.append(
+                    f"{field}: requested={requested_value!r} checkpoint={saved_value!r}"
+                )
+        if mismatches:
+            raise ValueError(
+                "resume configuration mismatch; checkpoint architecture is authoritative: "
+                + "; ".join(mismatches)
+                + ". Only display/session controls may be overridden: "
+                + ", ".join(self._OVERRIDE_FIELDS)
+            )
+        return replace(
+            checkpoint_config,
+            max_steps=requested.max_steps,
+            delay=requested.delay,
+            render=requested.render,
+            checkpoint_every=requested.checkpoint_every,
+            progress_every=requested.progress_every,
+            log_max_bytes=requested.log_max_bytes,
+            log_backup_count=requested.log_backup_count,
+            allow_legacy_migration=requested.allow_legacy_migration,
+        )
+
+    def _restore_counters(self, payload: dict[str, Any], count: int) -> None:
+        counters = payload.get("counters", {})
+        if counters is None:
+            counters = {}
+        if not isinstance(counters, dict):
+            raise ValueError("checkpoint counters must be an object")
+        action_counts = counters.get("action_counts", {})
+        if not isinstance(action_counts, dict):
+            raise ValueError("checkpoint action_counts must be an object")
+        self.action_counts = Counter()
+        for key, value in action_counts.items():
+            number = int(value)
+            if number < 0:
+                raise ValueError("checkpoint action_counts must be non-negative")
+            self.action_counts[str(key)] = number
+        per_agent = counters.get("per_agent_action_counts")
+        if per_agent is None:
+            self.per_agent_action_counts = [Counter() for _ in range(count)]
+            return
+        if not isinstance(per_agent, list) or len(per_agent) != count:
+            raise ValueError(
+                "checkpoint per_agent_action_counts must contain one object per agent"
+            )
+        restored: list[Counter[str]] = []
+        for index, counts in enumerate(per_agent):
+            if not isinstance(counts, dict):
+                raise ValueError(
+                    f"checkpoint per_agent_action_counts[{index}] must be an object"
+                )
+            counter: Counter[str] = Counter()
+            for key, value in counts.items():
+                number = int(value)
+                if number < 0:
+                    raise ValueError("checkpoint per-agent action counts must be non-negative")
+                counter[str(key)] = number
+            restored.append(counter)
+        self.per_agent_action_counts = restored
+
+    def _validate_agent_configs(self) -> None:
+        if not self.agents:
+            raise ValueError("city runtime requires at least one agent")
+        if len(self.agents) != self.city.config.agent_count:
+            raise ValueError("agent count does not match the city configuration")
+        base = self.agents[0].config
+        for index, agent in enumerate(self.agents):
+            if agent.config != base:
+                raise ValueError(
+                    f"agent {index} configuration differs from agent 0; "
+                    "refusing to resume a heterogeneous city"
+                )
+        if base.residual_enabled != self.config.residual_feedback:
+            raise ValueError(
+                "residual feedback mode does not match the agent configuration: "
+                f"runtime={self.config.residual_feedback} agent={base.residual_enabled}"
+            )
+
+    def _expected_prediction_config(self) -> PredictionConfig:
+        base = self.agents[0].config
+        return PredictionConfig(
+            hidden_dim=base.hidden_dim,
+            action_dim=base.action_dim,
+            input_dim=FEATURE_DIM,
+            learning_rate=self.config.prediction_learning_rate,
+            weight_max=self.config.prediction_weight_max,
+            weight_decay=self.config.prediction_weight_decay,
+        )
 
     @property
     def elapsed_seconds(self) -> float:
@@ -645,15 +909,7 @@ class CityRuntime:
     def _new_predictors(self) -> list[LocalPredictor]:
         if not self.agents:
             return []
-        base = self.agents[0].config
-        config = PredictionConfig(
-            hidden_dim=base.hidden_dim,
-            action_dim=base.action_dim,
-            input_dim=FEATURE_DIM,
-            learning_rate=self.config.prediction_learning_rate,
-            weight_max=self.config.prediction_weight_max,
-            weight_decay=self.config.prediction_weight_decay,
-        )
+        config = self._expected_prediction_config()
         prototype = LocalPredictor(config, seed=0)
         state = prototype.state_dict()
         return [LocalPredictor.from_state_dict(state) for _ in self.agents]
@@ -676,38 +932,143 @@ class CityRuntime:
         self.prediction_recent_mae = [
             deque(maxlen=self.prediction_window) for _ in range(count)
         ]
-        predictors_payload = (resume_payload or {}).get("predictors")
-        if isinstance(predictors_payload, list) and len(predictors_payload) == count:
-            self.predictors = [
-                LocalPredictor.from_state_dict(state) for state in predictors_payload
-            ]
+        expected = self._expected_prediction_config()
+        if resume_payload is not None:
+            predictors_payload = resume_payload.get("predictors")
+            if predictors_payload is None:
+                if not self.config.allow_legacy_migration:
+                    raise ValueError(
+                        "checkpoint has no predictor list; pass "
+                        "allow_legacy_migration=True to initialize predictors "
+                        "explicitly without discarding the agent state"
+                    )
+                self.predictors = self._new_predictors()
+                self.prediction_migration_note = (
+                    "checkpoint had no predictor list; new local predictors were "
+                    "initialized explicitly because allow_legacy_migration=True"
+                )
+            else:
+                if not isinstance(predictors_payload, list):
+                    raise ValueError("checkpoint predictors must be a list")
+                if len(predictors_payload) != count:
+                    raise ValueError(
+                        "checkpoint predictor count does not match agent count: "
+                        f"{len(predictors_payload)} != {count}"
+                    )
+                self.predictors = []
+                for index, state in enumerate(predictors_payload):
+                    try:
+                        self.predictors.append(LocalPredictor.from_state_dict(state))
+                    except (KeyError, TypeError, ValueError) as exc:
+                        raise ValueError(f"predictor {index} is invalid: {exc}") from exc
+            for index, predictor in enumerate(self.predictors):
+                if predictor.config != expected:
+                    raise ValueError(
+                        f"predictor {index} config does not match checkpoint runtime "
+                        f"config: {predictor.config} != {expected}"
+                    )
         else:
             self.predictors = self._new_predictors()
         self.prediction_config = self.predictors[0].config if self.predictors else None
-        metrics = (resume_payload or {}).get("prediction_metrics", {})
-        if isinstance(metrics, dict):
-            self.prediction_steps = max(0, int(metrics.get("steps", 0)))
-            self.prediction_initial_steps = min(
-                self.prediction_window,
-                max(0, int(metrics.get("initial_steps", 0))),
+
+        metrics_present = bool(
+            resume_payload is not None and "prediction_metrics" in resume_payload
+        )
+        if (
+            resume_payload is not None
+            and resume_payload.get("predictors") is not None
+            and not metrics_present
+        ):
+            raise ValueError(
+                "checkpoint has predictors but no prediction_metrics; refusing to "
+                "continue with incomplete predictor statistics"
             )
-            initial_sums = metrics.get("initial_mae_sum", [])
-            mae_totals = metrics.get("mae_total", [])
-            mse_totals = metrics.get("mse_total", [])
-            recent = metrics.get("recent_mae", [])
-            for index in range(count):
-                if index < len(initial_sums):
-                    self.prediction_initial_mae_sum[index] = float(initial_sums[index])
-                if index < len(mae_totals):
-                    self.prediction_mae_total[index] = float(mae_totals[index])
-                if index < len(mse_totals):
-                    self.prediction_mse_total[index] = float(mse_totals[index])
-                if index < len(recent) and isinstance(recent[index], list):
-                    self.prediction_recent_mae[index].extend(
-                        float(value)
-                        for value in recent[index][-self.prediction_window :]
-                    )
+        metrics = (resume_payload or {}).get("prediction_metrics", {})
+        if metrics is None:
+            metrics = {}
+        if not isinstance(metrics, dict):
+            raise ValueError("checkpoint prediction_metrics must be an object")
+        if metrics_present:
+            self._restore_prediction_metrics(metrics, count)
+        if resume_payload is not None:
+            note = resume_payload.get("prediction_migration_note")
+            if note is not None and not isinstance(note, str):
+                raise ValueError("checkpoint prediction_migration_note must be a string or null")
+            if self.prediction_migration_note is None:
+                self.prediction_migration_note = note
         self.prediction_initial_weights_identical = self._prediction_weights_identical()
+
+    def _restore_prediction_metrics(self, metrics: dict[str, Any], count: int) -> None:
+        try:
+            steps = int(metrics.get("steps", 0))
+            initial_steps = int(metrics.get("initial_steps", 0))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"invalid prediction step counters: {exc}") from exc
+        if steps < 0 or initial_steps < 0:
+            raise ValueError("prediction step counters must be non-negative")
+        if steps != self.step_count:
+            raise ValueError(
+                "prediction step counter does not match the restored city step count: "
+                f"{steps} != {self.step_count}"
+            )
+        if initial_steps > steps:
+            raise ValueError("prediction initial_steps cannot exceed prediction steps")
+        if initial_steps > self.prediction_window:
+            raise ValueError(
+                "prediction initial_steps cannot exceed the restored prediction window"
+            )
+        self.prediction_steps = steps
+        self.prediction_initial_steps = initial_steps
+
+        def numeric_list(key: str) -> list[float]:
+            values = metrics.get(key, [])
+            if not isinstance(values, list) or len(values) != count:
+                raise ValueError(
+                    f"prediction {key} must contain one numeric value per agent"
+                )
+            result: list[float] = []
+            for value in values:
+                try:
+                    number = float(value)
+                except (TypeError, ValueError) as exc:
+                    raise ValueError(f"prediction {key} contains a non-numeric value") from exc
+                if not np.isfinite(number) or number < 0.0:
+                    raise ValueError(
+                        f"prediction {key} must contain finite non-negative values"
+                    )
+                result.append(number)
+            return result
+
+        self.prediction_initial_mae_sum = numeric_list("initial_mae_sum")
+        self.prediction_mae_total = numeric_list("mae_total")
+        self.prediction_mse_total = numeric_list("mse_total")
+        recent = metrics.get("recent_mae", [])
+        if not isinstance(recent, list) or len(recent) != count:
+            raise ValueError("prediction recent_mae must contain one list per agent")
+        for index, values in enumerate(recent):
+            if not isinstance(values, list) or len(values) > self.prediction_window:
+                raise ValueError(
+                    f"prediction recent_mae[{index}] is not a bounded list"
+                )
+            restored: list[float] = []
+            for value in values:
+                try:
+                    number = float(value)
+                except (TypeError, ValueError) as exc:
+                    raise ValueError(
+                        f"prediction recent_mae[{index}] contains a non-numeric value"
+                    ) from exc
+                if not np.isfinite(number) or number < 0.0:
+                    raise ValueError(
+                        f"prediction recent_mae[{index}] must be finite and non-negative"
+                    )
+                restored.append(number)
+            self.prediction_recent_mae[index].extend(restored)
+        for index, predictor in enumerate(self.predictors):
+            if predictor.steps != self.prediction_steps:
+                raise ValueError(
+                    f"predictor {index} step counter does not match prediction_metrics"
+                )
 
     def _record_prediction_metrics(self, metrics: Sequence[PredictionMetrics]) -> None:
         if not metrics:
@@ -757,6 +1118,10 @@ class CityRuntime:
                     "mae_change": change,
                     "mae_reduction_ratio": reduction,
                     "prediction_updates": predictor.total_updates,
+                    "last_residual": residual_summary(
+                        predictor.last_residual,
+                        ResidualConfig(input_dim=FEATURE_DIM),
+                    ),
                     "weight_stats": predictor.weight_stats(),
                 }
             )
@@ -793,6 +1158,7 @@ class CityRuntime:
             "weight_stats": [predictor.weight_stats() for predictor in self.predictors],
             "initial_weights_identical": self.prediction_initial_weights_identical,
             "current_weights_identical": self._prediction_weights_identical(),
+            "migration_note": self.prediction_migration_note,
             "initial_window_note": (
                 "The initial window is the first N steps. In the predictive condition "
                 "it already contains predictor updates; use the fixed-predictor control "
@@ -800,13 +1166,22 @@ class CityRuntime:
             ),
             "note": (
                 "Self-supervised local next-observation prediction error only. "
-                "It never selects actions, never updates action STDP, and is not "
-                "a reward, score, penalty, or city outcome."
+                "In legacy mode it never selects actions or updates action STDP. "
+                "In adaptive mode its signed residual enters the same clone's "
+                "separate fixed pathway on the next step; it still never updates "
+                "action STDP and is not a reward, score, penalty, or city outcome."
             ),
         }
 
     def step_once(self) -> CityStepResult:
+        if len(self.predictors) != len(self.agents):
+            raise RuntimeError(
+                "predictor count does not match agent count: "
+                f"{len(self.predictors)} != {len(self.agents)}"
+            )
         observations = self.city.observe_all()
+        if len(observations) != len(self.agents):
+            raise RuntimeError("city observation count does not match agent count")
         decisions = [
             agent.act(observation.features, CITY_ACTIONS)
             for agent, observation in zip(self.agents, observations)
@@ -824,6 +1199,13 @@ class CityRuntime:
             predictor.observe_next(observation.features)
             for predictor, observation in zip(self.predictors, result.observations)
         ]
+        if self.config.residual_feedback:
+            for index, (agent, predictor) in enumerate(zip(self.agents, self.predictors)):
+                if predictor.last_residual is None:
+                    raise RuntimeError(
+                        f"predictor {index} did not produce a residual after the transition"
+                    )
+                agent.set_prediction_residual(predictor.last_residual)
         self._record_prediction_metrics(prediction_metrics)
         self.step_count = self.city.step_count
         self.fallback_count += sum(1 for decision in decisions if decision.random_fallback)
@@ -832,11 +1214,20 @@ class CityRuntime:
             self.action_counts[name] += 1
             self.per_agent_action_counts[index][name] += 1
         self.last_decisions = decisions
+        residual_inputs = [
+            residual_summary(agent.last_residual_input, ResidualConfig(input_dim=FEATURE_DIM))
+            for agent in self.agents
+        ]
+        prediction_residuals = [
+            residual_summary(predictor.last_residual, ResidualConfig(input_dim=FEATURE_DIM))
+            for predictor in self.predictors
+        ]
         record = {
             "ts_utc": utc_now(),
             "session_id": self.session_id,
             "event": "city_step",
             "step": self.step_count,
+            "residual_feedback": self.config.residual_feedback,
             "positions": [list(position) for position in result.positions],
             "actions": [CITY_ACTION_NAMES[action] for action in result.actions],
             "moved": list(result.moved),
@@ -849,6 +1240,33 @@ class CityRuntime:
             "prediction_mae": [metric.mae for metric in prediction_metrics],
             "prediction_mse": [metric.mse for metric in prediction_metrics],
             "prediction_updates": [metric.prediction_updates for metric in prediction_metrics],
+            "prediction_residual_abs_mean": [
+                summary["abs_mean"] for summary in prediction_residuals
+            ],
+            "prediction_residual_signed_mean": [
+                summary["signed_mean"] for summary in prediction_residuals
+            ],
+            "prediction_residual_positive_mean": [
+                summary["positive_mean"] for summary in prediction_residuals
+            ],
+            "prediction_residual_negative_mean": [
+                summary["negative_mean"] for summary in prediction_residuals
+            ],
+            "prediction_residual_max_abs": [
+                summary["max_abs"] for summary in prediction_residuals
+            ],
+            "residual_input_abs_mean": [
+                summary["abs_mean"] for summary in residual_inputs
+            ],
+            "residual_input_signed_mean": [
+                summary["signed_mean"] for summary in residual_inputs
+            ],
+            "residual_input_max_abs": [
+                summary["max_abs"] for summary in residual_inputs
+            ],
+            "residual_current_abs_mean": [
+                float(agent.last_residual_current_abs_mean) for agent in self.agents
+            ],
             "observation_summaries": [observation.summary for observation in observations],
             "interaction_events_total": self.city.interaction_events,
             "collision_events_total": self.city.collision_events,
@@ -866,6 +1284,11 @@ class CityRuntime:
             "schema": CITY_CHECKPOINT_SCHEMA,
             "created_utc": utc_now(),
             "config": asdict(self.config),
+            "agent_config": asdict(self.agents[0].config) if self.agents else None,
+            "prediction_config": (
+                asdict(self.prediction_config) if self.prediction_config else None
+            ),
+            "prediction_migration_note": self.prediction_migration_note,
             "city": self.city.snapshot(),
             "agents": [agent.state_dict() for agent in self.agents],
             "predictors": [predictor.state_dict() for predictor in self.predictors],
@@ -897,9 +1320,17 @@ class CityRuntime:
 
     def weight_divergence(self) -> dict[str, float]:
         if len(self.agents) < 2:
-            return {"input_hidden_mean": 0.0, "hidden_action_mean": 0.0, "max_pair_mean": 0.0}
+            return {
+                "input_hidden_mean": 0.0,
+                "hidden_action_mean": 0.0,
+                "residual_pos_hidden_mean": 0.0,
+                "residual_neg_hidden_mean": 0.0,
+                "max_pair_mean": 0.0,
+            }
         input_differences: list[float] = []
         action_differences: list[float] = []
+        residual_pos_differences: list[float] = []
+        residual_neg_differences: list[float] = []
         for first in range(len(self.agents)):
             for second in range(first + 1, len(self.agents)):
                 input_differences.append(
@@ -908,11 +1339,111 @@ class CityRuntime:
                 action_differences.append(
                     float(np.abs(self.agents[first].w_hidden_action - self.agents[second].w_hidden_action).mean())
                 )
+                residual_pos_differences.append(
+                    float(
+                        np.abs(
+                            self.agents[first].w_residual_pos_hidden
+                            - self.agents[second].w_residual_pos_hidden
+                        ).mean()
+                    )
+                )
+                residual_neg_differences.append(
+                    float(
+                        np.abs(
+                            self.agents[first].w_residual_neg_hidden
+                            - self.agents[second].w_residual_neg_hidden
+                        ).mean()
+                    )
+                )
         return {
             "input_hidden_mean": float(np.mean(input_differences)),
             "hidden_action_mean": float(np.mean(action_differences)),
-            "max_pair_mean": float(max(input_differences + action_differences)),
+            "residual_pos_hidden_mean": float(np.mean(residual_pos_differences)),
+            "residual_neg_hidden_mean": float(np.mean(residual_neg_differences)),
+            "max_pair_mean": float(
+                max(
+                    input_differences
+                    + action_differences
+                    + residual_pos_differences
+                    + residual_neg_differences
+                )
+            ),
         }
+
+    def residual_feedback_summary(self) -> dict[str, Any]:
+        per_agent: list[dict[str, Any]] = []
+        for index, agent in enumerate(self.agents):
+            stats = agent.weight_stats()
+            per_agent.append(
+                {
+                    "agent": index,
+                    "enabled": bool(agent.config.residual_enabled),
+                    "pending_residual": residual_summary(
+                        agent.pending_residual,
+                        ResidualConfig(input_dim=FEATURE_DIM),
+                    ),
+                    "last_residual_input": residual_summary(
+                        agent.last_residual_input,
+                        ResidualConfig(input_dim=FEATURE_DIM),
+                    ),
+                    "last_residual_current_abs_mean": float(
+                        agent.last_residual_current_abs_mean
+                    ),
+                    "residual_pos_abs_mean": stats["residual_pos_abs_mean"],
+                    "residual_neg_abs_mean": stats["residual_neg_abs_mean"],
+                }
+            )
+        pending = [
+            entry["pending_residual"]["abs_mean"]
+            for entry in per_agent
+            if entry["enabled"]
+        ]
+        used = [
+            entry["last_residual_input"]["abs_mean"]
+            for entry in per_agent
+            if entry["enabled"]
+        ]
+        current = [
+            entry["last_residual_current_abs_mean"]
+            for entry in per_agent
+            if entry["enabled"]
+        ]
+        return {
+            "enabled": bool(self.config.residual_feedback),
+            "mode": "adaptive" if self.config.residual_feedback else "legacy",
+            "channels": ["positive", "negative"],
+            "projection": "separate fixed non-plastic residual matrices into hidden neurons",
+            "timing": (
+                "residual from the previous transition is consumed once at the next "
+                "act(); no residual is delivered before that transition"
+            ),
+            "per_agent": per_agent,
+            "pending_residual_abs_mean": float(np.mean(pending)) if pending else 0.0,
+            "last_residual_input_abs_mean": float(np.mean(used)) if used else 0.0,
+            "last_residual_current_abs_mean": float(np.mean(current)) if current else 0.0,
+            "note": (
+                "Signed feature-level prediction residual only. It is not a reward, "
+                "score, penalty, correctness label, target action, or action bonus."
+            ),
+        }
+
+    def _log_segment_info(self) -> list[dict[str, Any]]:
+        segments: list[dict[str, Any]] = []
+        for path in self.logger.segment_paths():
+            if not path.is_file():
+                continue
+            segments.append(
+                {
+                    "path": str(path),
+                    "bytes": path.stat().st_size,
+                    "sha256": sha256_file(path),
+                }
+            )
+        return segments
+
+    def close(self) -> None:
+        """Close the append-only log handle without saving a checkpoint."""
+        self.logger.close()
 
     def summary(self) -> dict[str, Any]:
         city_stats = self.city.stats()
@@ -931,6 +1462,18 @@ class CityRuntime:
                         "hidden_action_mean_abs_diff": float(
                             np.abs(self.agents[first].w_hidden_action - self.agents[second].w_hidden_action).mean()
                         ),
+                        "residual_pos_hidden_mean_abs_diff": float(
+                            np.abs(
+                                self.agents[first].w_residual_pos_hidden
+                                - self.agents[second].w_residual_pos_hidden
+                            ).mean()
+                        ),
+                        "residual_neg_hidden_mean_abs_diff": float(
+                            np.abs(
+                                self.agents[first].w_residual_neg_hidden
+                                - self.agents[second].w_residual_neg_hidden
+                            ).mean()
+                        ),
                     }
                 )
         return {
@@ -942,6 +1485,8 @@ class CityRuntime:
             "elapsed_seconds": round(self.elapsed_seconds, 3),
             "runtime_config": asdict(self.config),
             "agent_config": asdict(self.agents[0].config) if self.agents else None,
+            "mode": "adaptive" if self.config.residual_feedback else "legacy",
+            "residual_feedback": bool(self.config.residual_feedback),
             "city": city_stats,
             "fallback_actions": self.fallback_count,
             "action_counts": dict(sorted(self.action_counts.items())),
@@ -959,17 +1504,20 @@ class CityRuntime:
             "pairwise_weight_divergence": pairwise,
             "weight_stats": [agent.weight_stats() for agent in self.agents],
             "prediction": self.prediction_summary(),
+            "residual": self.residual_feedback_summary(),
             "checkpoints_saved": self.checkpoints_saved,
             "log_path": str(self.log_path),
+            "log_segments": self._log_segment_info(),
             "checkpoint_path": str(self.checkpoint_path),
             "checkpoint_sha256": sha256_file(self.checkpoint_path) if self.checkpoint_path.is_file() else None,
             "log_sha256": sha256_file(self.log_path) if self.log_path.is_file() else None,
             "note": (
                 "Action STDP uses no reward, score, penalty, correctness signal, or "
                 "city outcome. A separate local predictor is trained by self-supervised "
-                "next-observation prediction error; it never selects actions or updates "
-                "the action pathway. This is not evidence of learning, intelligence, "
-                "cooperation, competition, or skill."
+                "next-observation prediction error. In adaptive mode its signed residual "
+                "enters the same clone's separate residual pathway on the next step; "
+                "in legacy mode that pathway is disabled. This is not evidence of "
+                "learning, intelligence, cooperation, competition, or skill."
             ),
         }
 
@@ -983,6 +1531,10 @@ class CityRuntime:
             checkpoint_every=self.config.checkpoint_every,
             prediction_learning_rate=self.config.prediction_learning_rate,
             prediction_window=self.prediction_window,
+            residual_feedback=self.config.residual_feedback,
+            log_max_bytes=self.config.log_max_bytes,
+            log_backup_count=self.config.log_backup_count,
+            allow_legacy_migration=self.config.allow_legacy_migration,
             resumed_from=self._resumed_from,
             step=self.step_count,
         )
@@ -999,15 +1551,27 @@ class CityRuntime:
                         for predictor in self.predictors
                         if predictor.last_metrics is not None
                     ]
+                    recent_residuals = [
+                        float(np.abs(predictor.last_residual).mean())
+                        for predictor in self.predictors
+                        if predictor.last_residual is not None
+                    ]
                     prediction_text = (
                         f" pred_mae={float(np.mean(recent_errors)):.6f}"
                         if recent_errors
                         else ""
                     )
+                    residual_text = (
+                        f" residual_abs={float(np.mean(recent_residuals)):.6f}"
+                        if recent_residuals
+                        else ""
+                    )
                     print(
-                        f"step={self.step_count} interactions={self.city.interaction_events} "
+                        f"step={self.step_count} mode="
+                        f"{'adaptive' if self.config.residual_feedback else 'legacy'} "
+                        f"interactions={self.city.interaction_events} "
                         f"collisions={self.city.collision_events} blocked={self.city.blocked_moves} "
-                        f"fallback={self.fallback_count}{prediction_text}",
+                        f"fallback={self.fallback_count}{prediction_text}{residual_text}",
                         flush=True,
                     )
                 if self.config.checkpoint_every and self.step_count % self.config.checkpoint_every == 0:
@@ -1032,16 +1596,24 @@ def build_parser() -> argparse.ArgumentParser:
         description=(
             "Shared multi-agent city with cloned spiking agents. Action STDP is "
             "reward-free; a separate local predictor learns from self-supervised "
-            "next-observation prediction error and never selects actions."
+            "next-observation prediction error. Adaptive mode optionally feeds the "
+            "signed residual into a separate internal pathway."
         ),
     )
-    parser.add_argument("--agents", type=int, default=8, help="number of clones (default: 8)")
-    parser.add_argument("--width", type=int, default=32, help="city width (default: 32)")
-    parser.add_argument("--height", type=int, default=32, help="city height (default: 32)")
-    parser.add_argument("--seed", type=int, default=12012, help="initial RNG seed (default: 12012)")
-    parser.add_argument("--delay", type=float, default=0.05, help="seconds between steps; 0 = maximum speed")
-    parser.add_argument("--max-steps", type=int, default=0, help="stop after N steps; 0 = run until Ctrl+C")
-    parser.add_argument("--checkpoint-every", type=int, default=500, help="checkpoint interval in steps")
+    parser.add_argument("--agents", type=int, default=argparse.SUPPRESS,
+                        help="number of clones for a new run (default: 8)")
+    parser.add_argument("--width", type=int, default=argparse.SUPPRESS,
+                        help="city width for a new run (default: 32)")
+    parser.add_argument("--height", type=int, default=argparse.SUPPRESS,
+                        help="city height for a new run (default: 32)")
+    parser.add_argument("--seed", type=int, default=argparse.SUPPRESS,
+                        help="initial RNG seed for a new run (default: 12012)")
+    parser.add_argument("--delay", type=float, default=0.05,
+                        help="seconds between steps; 0 = maximum speed")
+    parser.add_argument("--max-steps", type=int, default=0,
+                        help="stop after N steps; 0 = run until Ctrl+C")
+    parser.add_argument("--checkpoint-every", type=int, default=500,
+                        help="checkpoint interval in steps")
     parser.add_argument("--checkpoint", type=Path,
                         default=Path(".local_private/exploration/city/checkpoint.json"),
                         help="checkpoint path")
@@ -1049,86 +1621,203 @@ def build_parser() -> argparse.ArgumentParser:
                         default=Path(".local_private/exploration/city/session.jsonl"),
                         help="chronological JSONL log")
     parser.add_argument("--summary", type=Path, default=None, help="session summary path")
-    parser.add_argument("--resume", type=Path, default=None, help="restore a city checkpoint before running")
+    parser.add_argument("--resume", type=Path, default=None,
+                        help="restore a city checkpoint before running")
     parser.add_argument("--no-render", action="store_true", help="disable the live terminal display")
-    parser.add_argument("--progress-every", type=int, default=500, help="headless progress interval")
-    parser.add_argument("--hidden", type=int, default=64, help="hidden neuron count for a new run")
-    parser.add_argument("--ticks-per-step", type=int, default=4, help="internal ticks per step")
-    parser.add_argument("--learning-rate", type=float, default=0.0020, help="STDP potentiation rate")
-    parser.add_argument("--depression-rate", type=float, default=0.0021, help="STDP depression rate")
-    parser.add_argument("--temperature", type=float, default=0.6, help="softmax temperature")
-    parser.add_argument("--weight-max", type=float, default=1.0, help="maximum plastic weight")
-    parser.add_argument("--prediction-learning-rate", type=float, default=0.001,
-                        help="local prediction-head learning rate; 0 fixes the predictor")
-    parser.add_argument("--prediction-weight-max", type=float, default=2.0,
-                        help="maximum absolute prediction weight")
-    parser.add_argument("--prediction-weight-decay", type=float, default=1e-6,
-                        help="prediction weight decay per update")
-    parser.add_argument("--prediction-window", type=int, default=500,
-                        help="initial/final MAE window in steps")
+    parser.add_argument("--progress-every", type=int, default=500,
+                        help="headless progress interval")
+    parser.add_argument("--hidden", type=int, default=argparse.SUPPRESS,
+                        help="hidden neuron count for a new run (default: 64)")
+    parser.add_argument("--ticks-per-step", type=int, default=argparse.SUPPRESS,
+                        help="internal ticks per step for a new run (default: 4)")
+    parser.add_argument("--learning-rate", type=float, default=argparse.SUPPRESS,
+                        help="STDP potentiation rate for a new run (default: 0.0020)")
+    parser.add_argument("--depression-rate", type=float, default=argparse.SUPPRESS,
+                        help="STDP depression rate for a new run (default: 0.0021)")
+    parser.add_argument("--temperature", type=float, default=argparse.SUPPRESS,
+                        help="softmax temperature for a new run (default: 0.6)")
+    parser.add_argument("--weight-max", type=float, default=argparse.SUPPRESS,
+                        help="maximum plastic weight for a new run (default: 1.0)")
+    parser.add_argument("--prediction-learning-rate", type=float, default=argparse.SUPPRESS,
+                        help="local prediction-head learning rate for a new run; "
+                             "0 fixes the predictor (default: 0.001)")
+    parser.add_argument("--prediction-weight-max", type=float, default=argparse.SUPPRESS,
+                        help="maximum absolute prediction weight for a new run (default: 2.0)")
+    parser.add_argument("--prediction-weight-decay", type=float, default=argparse.SUPPRESS,
+                        help="prediction weight decay per update for a new run (default: 1e-6)")
+    parser.add_argument("--prediction-window", type=int, default=argparse.SUPPRESS,
+                        help="initial/final MAE window in steps for a new run (default: 500)")
+    parser.add_argument(
+        "--residual-feedback",
+        action=argparse.BooleanOptionalAction,
+        default=argparse.SUPPRESS,
+        help=(
+            "enable adaptive signed prediction-residual feedback into the agent's "
+            "separate internal pathway (default: disabled legacy mode)"
+        ),
+    )
+    parser.add_argument(
+        "--allow-legacy-migration",
+        action="store_true",
+        help=(
+            "explicitly allow legacy v1 agent checkpoints to initialize zero "
+            "residual weights, or old checkpoints without a predictor list to "
+            "initialize predictors; never silently replaces learned state"
+        ),
+    )
+    parser.add_argument(
+        "--log-max-bytes",
+        type=int,
+        default=16 * 1024 * 1024,
+        help="rotate JSONL logs after this many bytes; 0 disables rotation",
+    )
+    parser.add_argument(
+        "--log-backup-count",
+        type=int,
+        default=3,
+        help="number of rotated JSONL backups to retain",
+    )
     return parser
+
+
+def _arg(args: argparse.Namespace, name: str, default: Any) -> Any:
+    return getattr(args, name, default)
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.agents <= 0:
+    if args.resume is not None:
+        if not args.resume.is_file():
+            raise SystemExit(f"checkpoint not found: {args.resume}")
+        try:
+            payload = json.loads(args.resume.read_text(encoding="utf-8"))
+            checkpoint_config = CityRuntime._checkpoint_config(payload)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            raise SystemExit(f"cannot read checkpoint configuration: {exc}") from exc
+
+        explicit_architecture = {
+            "agents": "agent_count",
+            "width": "width",
+            "height": "height",
+            "seed": "seed",
+            "prediction_learning_rate": "prediction_learning_rate",
+            "prediction_weight_max": "prediction_weight_max",
+            "prediction_weight_decay": "prediction_weight_decay",
+            "prediction_window": "prediction_window",
+            "residual_feedback": "residual_feedback",
+        }
+        for flag, field in explicit_architecture.items():
+            if hasattr(args, flag):
+                requested = getattr(args, flag)
+                saved = getattr(checkpoint_config, field)
+                if requested != saved:
+                    raise SystemExit(
+                        f"--{flag.replace('_', '-')}={requested!r} conflicts with "
+                        f"checkpoint {field}={saved!r}; checkpoint architecture is "
+                        "authoritative"
+                    )
+        for flag in (
+            "hidden",
+            "ticks_per_step",
+            "learning_rate",
+            "depression_rate",
+            "temperature",
+            "weight_max",
+        ):
+            if hasattr(args, flag):
+                raise SystemExit(
+                    f"--{flag.replace('_', '-')} cannot override agent architecture "
+                    "when resuming; the checkpoint is authoritative"
+                )
+        config = replace(
+            checkpoint_config,
+            max_steps=args.max_steps,
+            delay=args.delay,
+            render=not args.no_render,
+            checkpoint_every=args.checkpoint_every,
+            progress_every=args.progress_every,
+            log_max_bytes=args.log_max_bytes,
+            log_backup_count=args.log_backup_count,
+            allow_legacy_migration=args.allow_legacy_migration,
+        )
+        agent_config = None
+    else:
+        config = CityRuntimeConfig(
+            seed=_arg(args, "seed", 12012),
+            width=_arg(args, "width", 32),
+            height=_arg(args, "height", 32),
+            agent_count=_arg(args, "agents", 8),
+            max_steps=args.max_steps,
+            delay=args.delay,
+            checkpoint_every=args.checkpoint_every,
+            render=not args.no_render,
+            progress_every=args.progress_every,
+            prediction_learning_rate=_arg(args, "prediction_learning_rate", 0.001),
+            prediction_weight_max=_arg(args, "prediction_weight_max", 2.0),
+            prediction_weight_decay=_arg(args, "prediction_weight_decay", 1e-6),
+            prediction_window=_arg(args, "prediction_window", 500),
+            residual_feedback=_arg(args, "residual_feedback", False),
+            allow_legacy_migration=args.allow_legacy_migration,
+            log_max_bytes=args.log_max_bytes,
+            log_backup_count=args.log_backup_count,
+        )
+        agent_config = AgentConfig(
+            hidden_dim=_arg(args, "hidden", 64),
+            ticks_per_step=_arg(args, "ticks_per_step", 4),
+            lr_ltp=_arg(args, "learning_rate", 0.0020),
+            lr_ltd=_arg(args, "depression_rate", 0.0021),
+            temperature=_arg(args, "temperature", 0.6),
+            weight_max=_arg(args, "weight_max", 1.0),
+            residual_enabled=config.residual_feedback,
+        )
+
+    if config.agent_count <= 0:
         raise SystemExit("--agents must be positive")
-    if args.max_steps < 0 or args.checkpoint_every < 0 or args.delay < 0 or args.progress_every < 0:
+    if config.max_steps < 0 or config.checkpoint_every < 0 or config.delay < 0 or config.progress_every < 0:
         raise SystemExit("step, checkpoint, delay, and progress values must be non-negative")
     if (
-        args.prediction_learning_rate < 0.0
-        or args.prediction_weight_max <= 0.0
-        or args.prediction_weight_decay < 0.0
-        or args.prediction_window <= 0
+        config.prediction_learning_rate < 0.0
+        or config.prediction_weight_max <= 0.0
+        or config.prediction_weight_decay < 0.0
+        or config.prediction_window <= 0
     ):
         raise SystemExit(
             "prediction learning rate/decay must be non-negative, weight max positive, "
             "and prediction window positive"
         )
+    if config.log_max_bytes < 0 or config.log_backup_count < 0:
+        raise SystemExit("log rotation values must be non-negative")
+    if config.log_max_bytes > 0 and config.log_backup_count < 1:
+        raise SystemExit("--log-backup-count must be at least 1 when rotation is enabled")
 
-    if args.resume is not None:
-        if not args.resume.is_file():
-            raise SystemExit(f"checkpoint not found: {args.resume}")
-        agent_config = None
-    else:
-        agent_config = AgentConfig(
-            hidden_dim=args.hidden,
-            ticks_per_step=args.ticks_per_step,
-            lr_ltp=args.learning_rate,
-            lr_ltd=args.depression_rate,
-            temperature=args.temperature,
-            weight_max=args.weight_max,
+    try:
+        runtime = CityRuntime(
+            config,
+            checkpoint_path=args.checkpoint,
+            log_path=args.log,
+            summary_path=args.summary,
+            agent_config=agent_config,
+            resume_path=args.resume,
         )
-
-    config = CityRuntimeConfig(
-        seed=args.seed,
-        width=args.width,
-        height=args.height,
-        agent_count=args.agents,
-        max_steps=args.max_steps,
-        delay=args.delay,
-        checkpoint_every=args.checkpoint_every,
-        render=not args.no_render,
-        progress_every=args.progress_every,
-        prediction_learning_rate=args.prediction_learning_rate,
-        prediction_weight_max=args.prediction_weight_max,
-        prediction_weight_decay=args.prediction_weight_decay,
-        prediction_window=args.prediction_window,
-    )
-    runtime = CityRuntime(
-        config,
-        checkpoint_path=args.checkpoint,
-        log_path=args.log,
-        summary_path=args.summary,
-        agent_config=agent_config,
-        resume_path=args.resume,
-    )
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        raise SystemExit(f"cannot start city runtime: {exc}") from exc
     print("Nucleus Exploration City")
     print(f"agents: {len(runtime.agents)}   city: {runtime.city.config.width}x{runtime.city.config.height}")
-    print(f"log: {runtime.log_path}")
+    print(
+        "mode: "
+        + (
+            "adaptive signed residual feedback"
+            if runtime.config.residual_feedback
+            else "legacy (residual feedback disabled)"
+        )
+    )
+    print(f"log: {runtime.log_path}   rotation: {runtime.config.log_max_bytes} bytes/"
+          f"{runtime.config.log_backup_count} backups")
     print(f"checkpoint: {runtime.checkpoint_path}")
     if runtime._resumed_from:
         print(f"resumed: {runtime._resumed_from} at step {runtime.step_count}")
+    if runtime.prediction_migration_note:
+        print(f"migration: {runtime.prediction_migration_note}")
     print("Action STDP receives no reward, score, penalty, correctness signal, or city outcome.")
     print("A separate local predictor learns from next-observation prediction error and never selects actions.")
     print("Ctrl+C saves a checkpoint and exits.")

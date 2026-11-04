@@ -18,12 +18,12 @@ The repository contains a discrete-time pulse simulator and a benchmark for comp
 | Latest official learning run | **v0.42** (40 seeds, two temporal tasks) |
 | Latest benchmark specification | **v0.43** (design frozen in documentation; not executed) |
 | Latest implemented component | **v0.43-stage1** (task grammar, hypothesis auditor, leakage checks) |
-| Latest engineering task | **TASK-013** exploration local prediction head (no behavior change) |
+| Latest engineering task | **TASK-014** optional signed residual feedback in the exploration city (legacy default) |
 | Official v0.43 test | **Not open** |
 | Pulse simulator | Implemented; mechanism-level validation only |
 | Meta-learner, feedback loop, retention tests | **Not implemented** |
 | `tests/v043` | **43 passed** |
-| Full `tests/` suite | **207 passed** (last verified 2026-10-29; 277.18 s) |
+| Full `tests/` suite | **225 passed** (last verified 2026-11-05; 224.20 s) |
 
 The latest committed state and the complete audit trail are in [`docs/handoff/LATEST_REPORT.md`](docs/handoff/LATEST_REPORT.md).
 
@@ -54,7 +54,7 @@ The latest committed state and the complete audit trail are in [`docs/handoff/LA
 
 Nucleus Pulse began as an exploration of event-driven spiking computation: signals travel as discrete pulses through individual synapses rather than as dense vectors through a layered network. The simulator implements per-synapse currents, leaky integrate-and-fire cells, synaptic saturation, inhibition, conduction delays, and a temporal coincidence (AND) cell.
 
-The project then shifted its center of gravity. A series of learning experiments (v0.28–v0.42) compared pulse-based readers and reservoir representations against strong supervised baselines. Those experiments produced useful negative and diagnostic results, but they did not establish a general learning advantage for the pulse layer. The project therefore moved to a more fundamental question:
+The project then shifted its center of gravity. A series of learning experiments (v0.28â€“v0.42) compared pulse-based readers and reservoir representations against strong supervised baselines. Those experiments produced useful negative and diagnostic results, but they did not establish a general learning advantage for the pulse layer. The project therefore moved to a more fundamental question:
 
 > Can a system induce a compositional program from a few examples, recognize when the examples are insufficient, detect operations outside its library, learn a new operation from additional examples, and improve through corrective feedback without forgetting earlier skills?
 
@@ -157,7 +157,7 @@ A failed gate is reported as a failure of the specified protocol, not as proof t
 | v0.30 | Learning curve: decodability and sample efficiency across feature sets | L4 learning run |
 | v0.31 | Incremental learning with 4, 8, and 16 temporal windows | L4 learning run |
 | v0.32 | Effect of repeated passes over the same training data | L4 learning run |
-| v0.33 | Heterogeneous recurrent delays (1–4 ticks) versus a one-tick delay | L4 learning run |
+| v0.33 | Heterogeneous recurrent delays (1â€“4 ticks) versus a one-tick delay | L4 learning run |
 | v0.34 | Dale-style inhibitory structure (25% inhibitory sources) | L4 learning run |
 | v0.35 | Activity-adaptive inhibitory gain | L4; the first run was discarded after an EMA ordering bug and all seeds were rerun |
 | v0.36 | Official local adaptive inhibition run (slope 6 selected on development) | L4 learning run |
@@ -175,7 +175,7 @@ A failed gate is reported as a failure of the specified protocol, not as proof t
 
 - `pulse_core/`: event-driven LIF simulation, per-synapse currents, saturation, inhibition, reference recurrence, temporal tasks, and legacy learning code.
 - `skillbench_v043/`: finite typed Boolean DSL, full enumeration, family definition, deterministic splits, support/query generation, identifiability classification, leakage audit, and a CLI.
-- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. TASK-012 adds a shared 8-clone city extension with simultaneous movement and collision/interaction logging. TASK-013 adds a separate local next-observation prediction head per clone; it never selects actions or updates action STDP. See `docs/EXPLORATION_LAB.md`, `docs/EXPLORATION_CITY.md`, and `docs/EXPLORATION_PREDICTION.md`. It is not a benchmark and makes no learning or skill claim.
+- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. TASK-012 adds a shared 8-clone city extension with simultaneous movement and collision/interaction logging. TASK-013 adds a separate local next-observation prediction head per clone; it never selects actions or updates action STDP. TASK-014 optionally feeds the signed prediction residual into a separate fixed residual pathway on the next step; legacy mode remains the default and no reward or target signal is introduced. See `docs/EXPLORATION_LAB.md`, `docs/EXPLORATION_CITY.md`, and `docs/EXPLORATION_PREDICTION.md`. It is not a benchmark and makes no learning or skill claim.
 - `experiments/`: runnable scripts for v0.27 through v0.42.
 - `tests/`: unit and integration tests, including the v0.43 tests.
 - `results/`: archived outputs, reports, CSV/JSON artifacts, and plots.
@@ -224,7 +224,7 @@ This section reports the results that most directly shaped the project. Each sub
 **Protocol.**
 
 - 40 independent seeds: `5200..5239`.
-- Two tasks: `sync` (synchrony) and `order` (A before B by 2–4 spikes).
+- Two tasks: `sync` (synchrony) and `order` (A before B by 2â€“4 spikes).
 - 200 balanced training examples per task and seed, with nested prefixes at 50 and 100.
 - 1,000 independent balanced test examples per task and seed.
 - Both readers receive the same frozen reservoir features: spike rates over 16 windows, 384 features.
@@ -234,32 +234,32 @@ This section reports the results that most directly shaped the project. Each sub
 
 **Result at 200 examples.**
 
-| Training examples | STDP accuracy (95% CI) | Linear accuracy (95% CI) | Difference, STDP − linear (pp, 95% CI) |
+| Training examples | STDP accuracy (95% CI) | Linear accuracy (95% CI) | Difference, STDP âˆ’ linear (pp, 95% CI) |
 |---:|---:|---:|---:|
-| 50 | 50.96% [50.56, 51.38] | 63.17% [62.35, 63.97] | −12.20 [−13.04, −11.35] |
-| 100 | 51.40% [51.02, 51.77] | 66.76% [65.90, 67.58] | −15.36 [−16.23, −14.51] |
-| 200 | 52.26% [51.71, 52.82] | 71.06% [70.31, 71.81] | −18.81 [−19.71, −17.91] |
+| 50 | 50.96% [50.56, 51.38] | 63.17% [62.35, 63.97] | âˆ’12.20 [âˆ’13.04, âˆ’11.35] |
+| 100 | 51.40% [51.02, 51.77] | 66.76% [65.90, 67.58] | âˆ’15.36 [âˆ’16.23, âˆ’14.51] |
+| 200 | 52.26% [51.71, 52.82] | 71.06% [70.31, 71.81] | âˆ’18.81 [âˆ’19.71, âˆ’17.91] |
 
-At 200 examples by task: `sync` 51.56% versus 73.74% (−22.18 pp); `order` 52.95% versus 68.39% (−15.44 pp).
+At 200 examples by task: `sync` 51.56% versus 73.74% (âˆ’22.18 pp); `order` 52.95% versus 68.39% (âˆ’15.44 pp).
 
 **Preregistered decision.** The gate required STDP to exceed the linear reader by at least +2 pp with a confidence interval excluding zero. It did not. The STDP reader stayed close to chance and the gap widened with more examples. The project stopped the STDP ablation series.
 
-**What this does not show.** The comparison is not a clean causal estimate of the STDP rule. The STDP path used one pass per example, while the linear path used iterative LBFGS optimization and standardization. The −18.81 pp difference belongs to these two training pipelines, not to STDP in isolation. The v0.42.1 note records this correction explicitly.
+**What this does not show.** The comparison is not a clean causal estimate of the STDP rule. The STDP path used one pass per example, while the linear path used iterative LBFGS optimization and standardization. The âˆ’18.81 pp difference belongs to these two training pipelines, not to STDP in isolation. The v0.42.1 note records this correction explicitly.
 
 ### 5.2 v0.41: input-gain sensitivity across development seeds
 
-**Question.** Does scaling input weights by 0.75× or 1.25× change reservoir activity, and does local adaptive inhibition reduce that sensitivity relative to fixed inhibition?
+**Question.** Does scaling input weights by 0.75أ— or 1.25أ— change reservoir activity, and does local adaptive inhibition reduce that sensitivity relative to fixed inhibition?
 
 **Protocol.**
 
 - Eight development seeds: `14111, 14129, 14147, 14165, 14183, 14201, 14219, 14237`.
 - Two tasks: `sync` and `order`.
 - 32 balanced sequences per seed and task from the training pool only.
-- Input scales: 0.75×, 1.0×, 1.25×.
-- Two conditions: fixed inhibition and local adaptive inhibition (slope 2.0, EMA tau 4.0, target rate 0.13, gain bounds 0.5–2.0).
+- Input scales: 0.75أ—, 1.0أ—, 1.25أ—.
+- Two conditions: fixed inhibition and local adaptive inhibition (slope 2.0, EMA tau 4.0, target rate 0.13, gain bounds 0.5â€“2.0).
 - 96 records total. No reader was trained; no validation or test set was created.
 
-**Result.** Local adaptive inhibition reduced the spike-count sensitivity metric by −0.35 pp for `sync` (95% CI [−1.18, +0.43]) and −1.48 pp for `order` (95% CI [−3.82, +0.11]). Both intervals include zero. Feature variability did not improve: the relative L2 change increased slightly under local inhibition (`sync` +0.0158 [0.0065, 0.0281]; `order` +0.0121 [−0.0005, 0.0228]).
+**Result.** Local adaptive inhibition reduced the spike-count sensitivity metric by âˆ’0.35 pp for `sync` (95% CI [âˆ’1.18, +0.43]) and âˆ’1.48 pp for `order` (95% CI [âˆ’3.82, +0.11]). Both intervals include zero. Feature variability did not improve: the relative L2 change increased slightly under local inhibition (`sync` +0.0158 [0.0065, 0.0281]; `order` +0.0121 [âˆ’0.0005, 0.0228]).
 
 **Interpretation.** This is a component diagnostic, not a learning result. It does not establish better robustness, accuracy, or energy efficiency. It does show that reducing spike-count variation does not automatically make the temporal representation more stable.
 
@@ -269,7 +269,7 @@ At 200 examples by task: `sync` 51.56% versus 73.74% (−22.18 pp); `order` 52.9
 
 **Protocol.** 40 seeds (`12000..12039`), two conditions, 6,000 unique training examples, 1,000 validation, and 1,000 independent test examples per task and seed. The primary endpoint was fixed at 10 passes. The test set was used for evaluation only.
 
-**Result.** The balanced test accuracy difference (`tau=8 − tau=4`, averaged over tasks within each seed) was **−0.124 pp**, with a 95% CI of **[−0.301, +0.043]**. Seed differences were 20 positive, 19 negative, and 1 zero. The interval includes zero.
+**Result.** The balanced test accuracy difference (`tau=8 âˆ’ tau=4`, averaged over tasks within each seed) was **âˆ’0.124 pp**, with a 95% CI of **[âˆ’0.301, +0.043]**. Seed differences were 20 positive, 19 negative, and 1 zero. The interval includes zero.
 
 **Interpretation.** No confirmed advantage for `tau=8`. The development-set preference did not replicate as a test-set advantage.
 
@@ -280,9 +280,9 @@ At 200 examples by task: `sync` 51.56% versus 73.74% (−22.18 pp); `order` 52.9
 **Result at 10 passes (local adaptive minus fixed inhibition).**
 
 - `sync`: **+0.27 pp** [0.03, 0.52].
-- `order`: **+0.15 pp** [−0.14, +0.43].
+- `order`: **+0.15 pp** [âˆ’0.14, +0.43].
 
-The 85% validation threshold was reached by 7/40 `sync` seeds with fixed inhibition and 8/40 with local inhibition; no `order` seed reached it under any condition. Activity was similar across conditions (about 96–97 spikes per example).
+The 85% validation threshold was reached by 7/40 `sync` seeds with fixed inhibition and 8/40 with local inhibition; no `order` seed reached it under any condition. Activity was similar across conditions (about 96â€“97 spikes per example).
 
 **Interpretation.** The local mechanism produced a small descriptive improvement in `sync` and an inconclusive difference in `order`. It did not produce a broadly robust learning advantage.
 
@@ -296,7 +296,7 @@ The 85% validation threshold was reached by 7/40 `sync` seeds with fixed inhibit
 
 ### 5.6 Earlier work and corrections
 
-The v0.30–v0.35 runs examined learning curves, incremental windows, repeated passes, heterogeneous delays, Dale-style inhibition, and activity-adaptive inhibition. Their reports are the authoritative source for their numbers. Two integrity notes are worth highlighting:
+The v0.30â€“v0.35 runs examined learning curves, incremental windows, repeated passes, heterogeneous delays, Dale-style inhibition, and activity-adaptive inhibition. Their reports are the authoritative source for their numbers. Two integrity notes are worth highlighting:
 
 - **v0.35:** The first run was excluded. The EMA was updated before the first tick's gain was computed, making the initial gain slightly less than 1.0. The order was corrected, hashes were refrozen, and all 40 seeds were rerun from scratch. Only corrected results are reported.
 - **v0.42.1:** The interpretation of v0.42 was corrected without changing the raw results or the protocol. The original report describes a difference between two pipelines; it does not isolate the causal effect of STDP.
@@ -315,9 +315,19 @@ the predictor state and prediction error differed.
 
 The final-500 MAE reduction relative to the fixed-predictor control is
 `0.856904` (descriptive only). This is not evidence of navigation, cooperation,
-competition, or skill learning: prediction error never selects actions or updates
-action STDP. Design and limitations are in
+competition, or skill learning: in legacy mode prediction error never selects
+actions or updates action STDP. Design and limitations are in
 `docs/EXPLORATION_PREDICTION.md`.
+
+TASK-014 added an optional adaptive mode. It splits the signed residual into
+positive and negative channels, projects them through separate fixed matrices,
+and delivers the result once on the next `act()` call. The default remains legacy
+TASK-013 behavior; adaptive mode is enabled with `--residual-feedback`. The
+residual is not a reward, score, penalty, correctness label, target action, or
+direct action-probability bonus. Checkpoint schema v2 preserves the residual and
+predictor state; v1 checkpoints require explicit `--allow-legacy-migration`.
+Deterministic smoke runs confirmed exact checkpoint continuation in both modes.
+No behavioral improvement is claimed.
 
 ---
 
@@ -375,7 +385,7 @@ The learning experiments use a frozen reservoir and a readout trained on spike-r
 The tasks are synthetic temporal classification tasks:
 
 - `sync`: detect synchronous input events;
-- `order`: detect whether event A precedes event B by 2–4 spikes.
+- `order`: detect whether event A precedes event B by 2â€“4 spikes.
 
 The reservoir itself does not learn from labels. This isolates the readout comparison from representation learning, but it also means the experiments do not test a fully plastic spiking network.
 
@@ -397,7 +407,7 @@ The public task payload does not contain the target AST, the family identity, ev
 ### 7.1 Grammar and domain
 
 - Input domain: `x0, x1` each in `0..99`, for 10,000 distinct input points.
-- Atoms: `LT(x_i, t)` with `t ∈ {25, 50, 75}`, plus `EVEN(x_i)`, `DIV3(x_i)`, and `DIV5(x_i)`, for `i ∈ {0,1}`. Twelve atoms in total.
+- Atoms: `LT(x_i, t)` with `t âˆˆ {25, 50, 75}`, plus `EVEN(x_i)`, `DIV3(x_i)`, and `DIV5(x_i)`, for `i âˆˆ {0,1}`. Twelve atoms in total.
 - Literal: an atom or `NOT(atom)`.
 - Expression: a literal, a binary operation (`AND`, `OR`, `XOR`) over two literals, or a nested shape with two binary nodes over atoms.
 - Maximum AST depth: 3. At most two binary nodes. `NOT` is not allowed over a compound expression.
@@ -439,10 +449,10 @@ Every task is assigned to one of four preregistered classes before evaluation:
 
 | Class | Definition | Correct behavior | Gate |
 |---|---|---|---|
-| `IN_SCOPE_IDENTIFIABLE` | Exactly one semantic class remains consistent with the support set within the query scope. | Answer | Coverage ≥ 90%; selective risk ≤ 5% |
-| `IN_SCOPE_AMBIGUOUS` | Two or more semantic classes remain consistent and disagree on at least 20% of discriminative queries. | Abstain | Abstention ≥ 90%; false acceptance ≤ 10% |
-| `OUT_OF_SCOPE` | The query requires an operation absent from the current library. | Abstain before instruction | Abstention ≥ 90%; false acceptance ≤ 10% |
-| `CONTRADICTORY_SUPPORT` | No program in the grammar explains all support examples. | Abstain | Abstention ≥ 90% |
+| `IN_SCOPE_IDENTIFIABLE` | Exactly one semantic class remains consistent with the support set within the query scope. | Answer | Coverage â‰¥ 90%; selective risk â‰¤ 5% |
+| `IN_SCOPE_AMBIGUOUS` | Two or more semantic classes remain consistent and disagree on at least 20% of discriminative queries. | Abstain | Abstention â‰¥ 90%; false acceptance â‰¤ 10% |
+| `OUT_OF_SCOPE` | The query requires an operation absent from the current library. | Abstain before instruction | Abstention â‰¥ 90%; false acceptance â‰¤ 10% |
+| `CONTRADICTORY_SUPPORT` | No program in the grammar explains all support examples. | Abstain | Abstention â‰¥ 90% |
 
 The auditor computes, for each task:
 
@@ -461,7 +471,7 @@ The benchmark requires equal-information baselines:
 2. **Support retrieval**: nearest support example, measuring how far memorization goes.
 3. **Per-task linear or tree model** fitted on the support set only; a low-data reference, not the only learning baseline.
 4. **Compositional program induction**: search or inference within the declared grammar using the task support.
-5. **Neural meta-learning baseline (DeepSets)**: each support example is encoded by a two-hidden-layer MLP `φ` (128 units, ReLU) that receives the input and label; the eight encodings are mean-pooled; the pooled context and query representation pass through a two-hidden-layer MLP `ρ` (128 units, ReLU) to a binary logit. The network trains on at least 10,000 task episodes from at least 100 training families. It never receives the task ID, target AST, or evaluation query labels.
+5. **Neural meta-learning baseline (DeepSets)**: each support example is encoded by a two-hidden-layer MLP `د†` (128 units, ReLU) that receives the input and label; the eight encodings are mean-pooled; the pooled context and query representation pass through a two-hidden-layer MLP `دپ` (128 units, ReLU) to a binary logit. The network trains on at least 10,000 task episodes from at least 100 training families. It never receives the task ID, target AST, or evaluation query labels.
 6. **Oracle evaluator**: knows the true program only to audit generator and interpreter correctness; it is not a competitor or a learning result.
 
 ### 7.6 Error correction and retention
@@ -470,7 +480,7 @@ The static "8 examples, then 100 questions" protocol is not sufficient to measur
 
 1. **Round 0:** 8 support examples, then 50 balanced interaction queries. A new evaluation set is held by the evaluator and never shown to the system.
 2. **Selective feedback:** after each interaction query, the system receives the correct label only if its answer was wrong. Correct answers reveal nothing new.
-3. **Rounds 1–3:** 50 new interaction queries per round, with the same selective correction. The system may update its state or parameters according to a frozen algorithm.
+3. **Rounds 1â€“3:** 50 new interaction queries per round, with the same selective correction. The system may update its state or parameters according to a frozen algorithm.
 4. **Evaluation after each round:** a fixed set of 100 new queries that never enters any update. The same set is used across rounds so that differences are paired.
 5. **Sequential skills:** at least 20 skills are learned in sequence from train/continual families separate from test. After each new skill, frozen evaluation queries for earlier skills are re-administered without replaying their support examples.
 6. **New operation:** before instruction, the system must abstain according to the out-of-scope gate. It then receives 8, 16, and 32 input-output examples and is evaluated on new fixed queries after each level.
@@ -508,33 +518,33 @@ Any missing item means the status is **not ready for an official test**. The pul
 
 ```text
 .
-├── pulse_core/                 Event-driven LIF simulator, tasks, learning, reference recurrence
-│   ├── model.py                Synapses, cells, network, per-synapse currents
-│   ├── reference.py            Independent discrete-recurrence reference
-│   ├── tasks.py                Synthetic temporal tasks (sync, order)
-│   ├── learning.py             Legacy supervised coincidence learner
-│   └── sequential_stdp.py      Sequential STDP experiments
-├── skillbench_v043/            v0.43 finite DSL benchmark
-│   ├── dsl.py                  Grammar, enumeration, normalization, family identity
-│   ├── generator.py            Splits, support/query generation, OOD and contradictory tasks
-│   ├── audit.py                Leakage and overlap audits
-│   └── cli.py                  `inspect` and `smoke` commands
-├── exploration_lab/            Local reward-free games + persistent spiking exploration loop + shared city
-├── experiments/                Runnable experiment scripts for v0.27–v0.42
-├── tests/                      Unit and integration tests
-│   └── v043/                   Nine v0.43 grammar/audit/leakage tests
-├── results/                    Frozen outputs, reports, CSV/JSON, plots
-├── docs/                       Specifications, protocols, architecture, changelog, handoff
-│   ├── handoff/                LATEST_REPORT.md, history, logs, template
-│   ├── V0_43_BENCHMARK_SPEC_AR.md
-│   ├── NEXT_STAGE_V0_43_PLAN_AR.md
-│   ├── IMPLEMENTATION_STAGE1_V0_43_AR.md
-│   └── architecture_ar.md
-├── scripts/                    Handoff validator, optional Brian2 comparison, analysis helpers
-├── AGENTS.md                   OpenCode entry-point instructions
-├── OPENCODE_RULES.md           Detailed mandatory workflow and sync rules
-├── .gitattributes              LF policy for byte-identical clones
-└── .gitignore                  Cache, environment, and editor exclusions
+â”œâ”€â”€ pulse_core/                 Event-driven LIF simulator, tasks, learning, reference recurrence
+â”‚   â”œâ”€â”€ model.py                Synapses, cells, network, per-synapse currents
+â”‚   â”œâ”€â”€ reference.py            Independent discrete-recurrence reference
+â”‚   â”œâ”€â”€ tasks.py                Synthetic temporal tasks (sync, order)
+â”‚   â”œâ”€â”€ learning.py             Legacy supervised coincidence learner
+â”‚   â””â”€â”€ sequential_stdp.py      Sequential STDP experiments
+â”œâ”€â”€ skillbench_v043/            v0.43 finite DSL benchmark
+â”‚   â”œâ”€â”€ dsl.py                  Grammar, enumeration, normalization, family identity
+â”‚   â”œâ”€â”€ generator.py            Splits, support/query generation, OOD and contradictory tasks
+â”‚   â”œâ”€â”€ audit.py                Leakage and overlap audits
+â”‚   â””â”€â”€ cli.py                  `inspect` and `smoke` commands
+â”œâ”€â”€ exploration_lab/            Local reward-free games + persistent spiking exploration loop + shared city
+â”œâ”€â”€ experiments/                Runnable experiment scripts for v0.27â€“v0.42
+â”œâ”€â”€ tests/                      Unit and integration tests
+â”‚   â””â”€â”€ v043/                   Nine v0.43 grammar/audit/leakage tests
+â”œâ”€â”€ results/                    Frozen outputs, reports, CSV/JSON, plots
+â”œâ”€â”€ docs/                       Specifications, protocols, architecture, changelog, handoff
+â”‚   â”œâ”€â”€ handoff/                LATEST_REPORT.md, history, logs, template
+â”‚   â”œâ”€â”€ V0_43_BENCHMARK_SPEC_AR.md
+â”‚   â”œâ”€â”€ NEXT_STAGE_V0_43_PLAN_AR.md
+â”‚   â”œâ”€â”€ IMPLEMENTATION_STAGE1_V0_43_AR.md
+â”‚   â””â”€â”€ architecture_ar.md
+â”œâ”€â”€ scripts/                    Handoff validator, optional Brian2 comparison, analysis helpers
+â”œâ”€â”€ AGENTS.md                   OpenCode entry-point instructions
+â”œâ”€â”€ OPENCODE_RULES.md           Detailed mandatory workflow and sync rules
+â”œâ”€â”€ .gitattributes              LF policy for byte-identical clones
+â””â”€â”€ .gitignore                  Cache, environment, and editor exclusions
 ```
 
 ---
@@ -640,18 +650,25 @@ Full commands, persistence rules, and non-claims are in `docs/EXPLORATION_LAB.md
 ### 9.7 Run the multi-agent city
 
 `exploration_lab.city` places eight clones of the same spiking agent in one
-32×32 city. The clones start with identical weights and independent RNG streams,
+32أ—32 city. The clones start with identical weights and independent RNG streams,
 move simultaneously, and keep their own persistent LIF/STDP state. Blocked
 moves, collisions, proximity events, and action counts are logged only; they are
 not rewards, penalties, correctness labels, or targets for action STDP.
 
 TASK-013 adds a separate local next-observation prediction head per clone. It
 learns from its own prediction error and never selects actions or updates action
-STDP. The city/agent trajectory is unchanged by prediction learning.
+STDP. TASK-014 optionally routes the signed residual through a separate fixed
+positive/negative pathway on the next step. The default remains legacy TASK-013
+behavior; adaptive mode is explicit.
 
 ```powershell
 py -3.14 -m exploration_lab.city
+py -3.14 -m exploration_lab.city --residual-feedback
 ```
+
+Use `--resume <checkpoint>` to continue. On resume, checkpoint architecture and
+prediction settings are authoritative; only display/session controls may change.
+Legacy v1 checkpoints require `--allow-legacy-migration`.
 
 Headless 5,000-step pilot with the predictor fixed (TASK-012 condition):
 
@@ -671,6 +688,17 @@ py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 5000 `
   --prediction-learning-rate 0.001
 ```
 
+Headless adaptive residual-feedback smoke:
+
+```powershell
+py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 200 `
+  --agents 4 --width 16 --height 16 --seed 31415 --hidden 32 `
+  --prediction-learning-rate 0.001 --residual-feedback `
+  --checkpoint .local_private/exploration/city_adaptive/checkpoint.json `
+  --log .local_private/exploration/city_adaptive/session.jsonl `
+  --summary .local_private/exploration/city_adaptive/summary.json
+```
+
 Raw JSONL rows and checkpoints stay under `.local_private/`. Aggregate pilot
 evidence and limitations are in `docs/EXPLORATION_CITY.md` and
 `docs/EXPLORATION_PREDICTION.md`. The city makes no claim of learning,
@@ -685,15 +713,15 @@ cooperation, competition, or skill.
 | Check | Command | Result |
 |---|---|---|
 | v0.43 tests | `python -m pytest -q tests/v043` | **43 passed** (last verified 2026-10-27; 267.86 s) |
-| Full suite | `python -m pytest -q tests` | **207 passed** (last verified 2026-10-29; 277.18 s) |
+| Full suite | `python -m pytest -q tests` | **225 passed** (last verified 2026-11-05; 224.20 s) |
 | Handoff report structure | `python scripts/verify_handoff.py` | **PASS** |
 
 The full suite passes in the current authoring environment. Install
 `docs/requirements-dev.txt` before rerunning so optional test dependencies are
-present. The city pilot adds ten focused tests and TASK-013 adds eight
-prediction/integration tests; they are included in the 207. The 43-test v0.43
-suite is a supporting test set, not the official v0.43 test; the official test
-remains closed.
+present. The city pilot adds ten focused tests, TASK-013 adds eight
+prediction/integration tests, and TASK-014 adds eighteen residual-feedback tests;
+they are included in the 225. The 43-test v0.43 suite is a supporting test set,
+not the official v0.43 test; the official test remains closed.
 
 ### 10.2 What the v0.43 tests cover
 
@@ -748,9 +776,9 @@ This repository is public and includes the stage-1 smoke artifacts, including `r
 ### 11.6 Reproducibility limits
 
 - The optional Brian2 comparison was **not run**.
-- The full suite passes in the authoring environment (`207 passed`, 2026-10-29);
+- The full suite passes in the authoring environment (`225 passed`, 2026-11-05);
   this is one environment, not external replication.
-- Some historical experiment code (v0.16–v0.21) is not included; the v0.42 report states this explicitly.
+- Some historical experiment code (v0.16â€“v0.21) is not included; the v0.42 report states this explicitly.
 - No external replication of any result has been performed.
 
 ---
@@ -763,7 +791,7 @@ This repository is public and includes the stage-1 smoke artifacts, including `r
 4. **No general program-induction claim.** v0.43-stage1 covers a deliberately bounded grammar. Results will not automatically transfer to richer languages.
 5. **No learning result for v0.43.** Stage 1 tests tools, splits, and leakage checks. It does not train a meta-learner or evaluate accuracy.
 6. **No confirmed benefit for local adaptive inhibition.** v0.37 and v0.41 show small descriptive effects, often with intervals that include zero.
-7. **No confirmed benefit for `tau=8`.** v0.39 found a difference of −0.124 pp with an interval including zero.
+7. **No confirmed benefit for `tau=8`.** v0.39 found a difference of âˆ’0.124 pp with an interval including zero.
 8. **The v0.29 forgetting comparison is inconclusive.** No seed met the eligibility gate.
 9. **The full test suite passes in the authoring environment.** The optional Brian2 comparison was not run, and no external replication has been performed.
 10. **No external replication.** No claim has reached the highest evidence level.

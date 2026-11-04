@@ -9,8 +9,10 @@ The head predicts the next 128-feature observation from three local signals:
 It is trained with a local delta rule (LMS): each prediction neuron updates its
 incoming weights using its own error and the presynaptic activity.  There is no
 backpropagation, no reward, no score, no target action, and no city outcome.  The
-prediction error is never used to select actions or to update the action STDP
-pathway; it only trains this local forward model.
+prediction error is never used as a reward or to update the action STDP pathway.
+TASK-014 optionally exposes the signed feature-level residual to the same clone's
+separate residual-input pathway on the next perception-action cycle; the predictor
+itself still learns only from its own next-observation error.
 
 This is deliberately a small, inspectable model.  It is not a claim that the
 clone learns useful behavior or a world model in the reinforcement-learning
@@ -72,6 +74,9 @@ class LocalPredictor:
         self._last_input: np.ndarray | None = None
         self._last_prediction: np.ndarray | None = None
         self.last_metrics: PredictionMetrics | None = None
+        # Signed feature-level residual from the most recent observe_next().
+        # It is persisted for diagnostics/continuation and is never a reward.
+        self.last_residual: np.ndarray | None = None
 
     def _validate_config(self) -> None:
         cfg = self.config
@@ -79,14 +84,14 @@ class LocalPredictor:
             raise ValueError(f"input_dim must equal the city feature size {FEATURE_DIM}")
         if cfg.hidden_dim <= 0 or cfg.action_dim <= 0:
             raise ValueError("hidden_dim and action_dim must be positive")
-        if cfg.learning_rate < 0.0:
-            raise ValueError("learning_rate must be non-negative")
-        if cfg.weight_max <= 0.0:
-            raise ValueError("weight_max must be positive")
-        if cfg.weight_decay < 0.0:
-            raise ValueError("weight_decay must be non-negative")
-        if cfg.init_scale < 0.0:
-            raise ValueError("init_scale must be non-negative")
+        if not np.isfinite(cfg.learning_rate) or cfg.learning_rate < 0.0:
+            raise ValueError("learning_rate must be non-negative and finite")
+        if not np.isfinite(cfg.weight_max) or cfg.weight_max <= 0.0:
+            raise ValueError("weight_max must be positive and finite")
+        if not np.isfinite(cfg.weight_decay) or cfg.weight_decay < 0.0:
+            raise ValueError("weight_decay must be non-negative and finite")
+        if not np.isfinite(cfg.init_scale) or cfg.init_scale < 0.0:
+            raise ValueError("init_scale must be non-negative and finite")
 
     def _build_input(
         self,
@@ -133,6 +138,7 @@ class LocalPredictor:
         if not np.all(np.isfinite(target)):
             raise ValueError("next observation contains non-finite values")
         error = target - self._last_prediction
+        self.last_residual = error.copy()
         mae = float(np.abs(error).mean())
         mse = float(np.mean(error * error))
         if self.config.learning_rate > 0.0:
@@ -169,25 +175,78 @@ class LocalPredictor:
             "bias": self.bias.tolist(),
             "steps": self.steps,
             "total_updates": self.total_updates,
+            "last_residual": (
+                self.last_residual.tolist() if self.last_residual is not None else None
+            ),
         }
 
     @classmethod
     def from_state_dict(cls, data: dict[str, Any]) -> "LocalPredictor":
+        if not isinstance(data, dict):
+            raise ValueError("prediction checkpoint must be a JSON object")
         if data.get("schema") != PREDICTION_SCHEMA:
             raise ValueError("unsupported prediction checkpoint schema")
-        config = PredictionConfig(**data["config"])
+        try:
+            config = PredictionConfig(**data["config"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError(f"invalid prediction config: {exc}") from exc
         predictor = cls(config, seed=0)
-        weights = np.asarray(data["weights"], dtype=np.float64)
-        bias = np.asarray(data["bias"], dtype=np.float64)
+        try:
+            weights = np.asarray(data["weights"], dtype=np.float64)
+            bias = np.asarray(data["bias"], dtype=np.float64)
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError(f"invalid prediction tensors: {exc}") from exc
         if weights.shape != (config.predictor_dim, config.input_dim):
-            raise ValueError(f"prediction weights have shape {weights.shape}, expected "
-                             f"({config.predictor_dim}, {config.input_dim})")
+            raise ValueError(
+                f"prediction weights have shape {weights.shape}, expected "
+                f"({config.predictor_dim}, {config.input_dim})"
+            )
         if bias.shape != (config.input_dim,):
-            raise ValueError(f"prediction bias has shape {bias.shape}, expected ({config.input_dim},)")
+            raise ValueError(
+                f"prediction bias has shape {bias.shape}, expected ({config.input_dim},)"
+            )
         if not np.all(np.isfinite(weights)) or not np.all(np.isfinite(bias)):
             raise ValueError("prediction checkpoint contains non-finite values")
+        tolerance = 1e-9
+        if np.any(weights < -config.weight_max - tolerance) or np.any(
+            weights > config.weight_max + tolerance
+        ):
+            raise ValueError(
+                f"prediction weights are outside [{-config.weight_max}, {config.weight_max}]"
+            )
+        if np.any(bias < -1.0 - tolerance) or np.any(bias > 1.0 + tolerance):
+            raise ValueError("prediction bias is outside [-1, 1]")
+
+        try:
+            steps = int(data["steps"])
+            total_updates = int(data["total_updates"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError(f"invalid prediction counters: {exc}") from exc
+        if steps < 0 or total_updates < 0:
+            raise ValueError("prediction counters must be non-negative")
+        if total_updates > steps:
+            raise ValueError("prediction total_updates cannot exceed steps")
+
+        last_residual = data.get("last_residual")
+        if last_residual is not None:
+            try:
+                residual = np.asarray(last_residual, dtype=np.float64)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"last_residual is not numeric: {exc}") from exc
+            if residual.shape != (config.input_dim,):
+                raise ValueError(
+                    f"last_residual has shape {residual.shape}, expected ({config.input_dim},)"
+                )
+            if not np.all(np.isfinite(residual)):
+                raise ValueError("last_residual contains non-finite values")
+            if np.any(residual < -1.0 - tolerance) or np.any(residual > 1.0 + tolerance):
+                raise ValueError("last_residual is outside [-1, 1]")
+            predictor.last_residual = np.clip(residual, -1.0, 1.0)
+        else:
+            predictor.last_residual = None
+
         predictor.weights = weights
         predictor.bias = bias
-        predictor.steps = int(data["steps"])
-        predictor.total_updates = int(data["total_updates"])
+        predictor.steps = steps
+        predictor.total_updates = total_updates
         return predictor

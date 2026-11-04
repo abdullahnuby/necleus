@@ -1,7 +1,9 @@
 # Nucleus Exploration Lab
 
-**Task:** 2026-10-26-TASK-011; TASK-012 city extension; TASK-013 local prediction head
-**Status:** engineering implementation complete; no scientific success criterion.
+**Task:** 2026-10-26-TASK-011; TASK-012 city extension; TASK-013 local prediction
+head; TASK-014 signed residual feedback
+**Status:** engineering implementation and checkpoint/resume validation complete;
+no scientific success criterion.
 
 ## 1. What this is
 
@@ -23,6 +25,12 @@ TASK-013 adds a separate local next-observation prediction head per city clone.
 It learns from its own prediction error, never selects actions, and never updates
 action STDP. See `docs/EXPLORATION_PREDICTION.md`.
 
+TASK-014 optionally feeds the previous transition's signed prediction residual
+into a dedicated fixed positive/negative input pathway in the same clone on the
+next step. It is disabled by default (legacy TASK-013 behavior) and enabled with
+`--residual-feedback`. The residual is not a reward, score, penalty, correctness
+label, target action, or direct action-probability bonus.
+
 ## 2. What this is not
 
 - No reward, score, penalty, curiosity bonus, target action, label, or
@@ -33,7 +41,11 @@ action STDP. See `docs/EXPLORATION_PREDICTION.md`.
 - No city outcome, collision, coverage, or interaction count is used to select
   actions or to update action STDP.
 - TASK-013's prediction error trains only a separate local forward model. It is
-  not a policy gradient, reward, or action-selection signal.
+  not a policy gradient, reward, or direct action-selection signal.
+- TASK-014's optional residual feedback is a signed feature-level prediction
+  error entering a separate fixed internal pathway on the next step. It is not a
+  reward, score, penalty, correctness label, target action, or direct
+  action-probability bonus, and it does not update action STDP.
 - No modification of historical v0.42/v0.43 results or the official v0.43 test.
 - No cloud API, LLM service, or external gameplay service.
 - No claim that random movement, weight change, prediction-error reduction, or a
@@ -43,17 +55,19 @@ action STDP. See `docs/EXPLORATION_PREDICTION.md`.
 
 ```text
 exploration_lab/
-├── games.py       Unified game interface, GridWorld, Snake, Pong Lite
-├── encoding.py    Fixed-size observation to binary spike encoding
-├── agent.py       Persistent LIF state, local STDP, action selection, serialization
-├── runtime.py     Continuous loop, game cycling, JSONL log, checkpoints, terminal display
-├── prediction.py  Separate local next-observation predictor for the city
-├── city.py        Shared multi-agent city, simultaneous movement, city runtime and CLI
-├── cli.py         Command-line interface
-└── __main__.py    `python -m exploration_lab`
+â”œâ”€â”€ games.py       Unified game interface, GridWorld, Snake, Pong Lite
+â”œâ”€â”€ encoding.py    Fixed-size observation to binary spike encoding
+â”œâ”€â”€ agent.py       Persistent LIF state, local STDP, action selection, serialization
+â”œâ”€â”€ runtime.py     Continuous loop, game cycling, JSONL log, checkpoints, terminal display
+â”œâ”€â”€ prediction.py  Separate local next-observation predictor for the city
+â”œâ”€â”€ residual.py    Signed residual channels and summary helpers
+â”œâ”€â”€ city.py        Shared multi-agent city, simultaneous movement, city runtime and CLI
+â”œâ”€â”€ cli.py         Command-line interface
+â””â”€â”€ __main__.py    `python -m exploration_lab`
 tests/test_exploration_lab.py
 tests/test_exploration_lab_city.py
 tests/test_exploration_lab_prediction.py
+tests/test_exploration_lab_residual.py
 docs/EXPLORATION_LAB.md
 docs/EXPLORATION_CITY.md
 docs/EXPLORATION_PREDICTION.md
@@ -78,9 +92,9 @@ or score field.
 
 | Game | Grid | Actions | Episode end |
 |---|---|---|---|
-| GridWorld | 7×7, border/interior walls, one goal | up, down, left, right | goal reached or 80 steps |
-| Snake | 8×8, growing body, food | up, down, left, right | wall/self collision, grid filled, or 200 steps |
-| Pong Lite | 16×9 field, vertical paddle, bouncing ball | up, down, stay | missed paddle or 600 steps |
+| GridWorld | 7أ—7, border/interior walls, one goal | up, down, left, right | goal reached or 80 steps |
+| Snake | 8أ—8, growing body, food | up, down, left, right | wall/self collision, grid filled, or 200 steps |
+| Pong Lite | 16أ—9 field, vertical paddle, bouncing ball | up, down, stay | missed paddle or 600 steps |
 
 The games are lightweight Python/NumPy-free rule loops. No game engine or
 graphics dependency is used. Each game owns a `random.Random` instance and
@@ -139,10 +153,10 @@ not a reward or a game-specific signal.
 
 Two synapse groups are plastic:
 
-- observation input → hidden neurons (`W_ih`)
-- hidden neurons → action readout neurons (`W_ha`)
+- observation input â†’ hidden neurons (`W_ih`)
+- hidden neurons â†’ action readout neurons (`W_ha`)
 
-Hidden→hidden recurrent synapses are fixed random sparse connections and are not
+Hiddenâ†’hidden recurrent synapses are fixed random sparse connections and are not
 plastic.
 
 The rule is pair-based STDP with exponential traces. At each tick, traces decay
@@ -245,14 +259,49 @@ target action, correctness label, or city outcome. The predictor never writes to
 only role is to measure and reduce next-observation prediction error. See
 `docs/EXPLORATION_PREDICTION.md` for the pilot and limitations.
 
+### 5.9 Signed residual pathway (city, adaptive mode only)
+
+TASK-014 keeps the predictor as the only component trained by prediction error,
+but optionally lets the previous transition's signed feature residual influence
+the clone's next internal activity:
+
+```text
+residual_t = observation_{t+1} - prediction_t
+positive_t = max(residual_t, 0)
+negative_t = max(-residual_t, 0)
+residual_current = clip(W_residual_pos @ positive_t
+                        + W_residual_neg @ negative_t, -1, 1)
+```
+
+`W_residual_pos` is non-negative, `W_residual_neg` is non-positive, and both are
+fixed. They are initialized from a separate deterministic generator so enabling
+the pathway does not perturb observation, recurrent, action, or action-sampling
+RNG state. The residual current is added to hidden input on the first internal
+tick of the next `act()` call only. It is then cleared. It cannot affect the
+action that produced the residual, and it is never added to the observation
+vector, action STDP, or action probabilities directly.
+
+Legacy mode (the default) does not deliver the residual at all and preserves
+TASK-013 behavior. Adaptive mode is explicit:
+
+```powershell
+py -3.14 -m exploration_lab.city --residual-feedback
+```
+
+The pathway is fixed, not reward-shaped, and not tuned by coverage, collisions,
+blocked moves, interactions, wins/losses, MAE, action distributions, or any
+gameplay outcome. The scale (`0.05`) and current clip (`[-1, 1]`) are numerical
+stability bounds.
+
 ## 6. Learning-signal boundary
 
 | Component | Receives | Never receives |
 |---|---|---|
-| `SpikingExplorer.act` | observation features, legal action list | reward, score, done, target, label, game outcome, prediction error |
+| `SpikingExplorer.act` | observation features, legal action list, optional one-shot residual current | reward, score, done, target, label, game outcome, correctness label |
 | STDP update | pre/post spikes, traces, weights | reward, score, done, target, label, game outcome, prediction error |
 | `LocalPredictor` (city only) | hidden activity, action, current observation, next observation | reward, score, penalty, target action, correctness label, city outcome |
-| Runtime | game observations, `done`, environmental reason | — (it uses `done` only to reset/cycle games) |
+| Residual pathway (city, adaptive only) | signed prediction residual from the previous transition | reward, score, penalty, target action, correctness label, city outcome |
+| Runtime | game observations, `done`, environmental reason | â€” (it uses `done` only to reset/cycle games) |
 | Game | action integer | agent weights or learning state |
 
 The `done` flag is handled only by `ExplorationRuntime`. It resets the game and
@@ -260,8 +309,12 @@ moves to the next game. It is never passed to the agent or the plasticity rule.
 The game's internal `reason` string (for example `goal_reached`, `missed_paddle`,
 or `food`) is for rendering and logging only; it is not a reward.
 
-The `LocalPredictor` error stays inside its own weight update. There is no path
-from prediction error to action selection, action STDP, or the city.
+In legacy mode the `LocalPredictor` error stays inside its own weight update; it
+has no path to action selection, action STDP, or the city. In adaptive mode the
+signed residual is delivered once to the next `act()` through the separate fixed
+residual pathway. That is an explicitly authorized internal input, not a reward
+or a direct action-probability bonus; it never updates STDP or the predictor's
+targets.
 
 `RewardSTDPReadout.train_trial()` and other supervised paths in
 `pulse_core/sequential_stdp.py` and `pulse_core/learning.py` are not used.
@@ -284,7 +337,26 @@ Default private paths:
 
 The city checkpoint additionally contains one `LocalPredictor` state per clone
 and aggregate prediction counters/recent-MAE windows. Agent checkpoints include
-`last_hidden_activity` so a resumed predictor can use the same input.
+`last_hidden_activity` so a resumed predictor can use the same input. TASK-014
+bumps the city agent checkpoint schema to v2 and adds:
+
+- the residual configuration and the two fixed residual matrices;
+- the pending residual waiting for the next `act()` and the last residual input;
+- predictor `last_residual`, step counters, and migration notes;
+- exact-continuation state for city, agents, predictors, RNG streams, and
+  counters.
+
+A v1 checkpoint is rejected unless `--allow-legacy-migration` is supplied. The
+migration preserves all old learned observation/recurrent/action state and
+initializes only the new residual matrices to zero. Adaptive mode rejects a v1
+agent checkpoint because it has no residual-pathway state. Malformed predictor
+lists, shapes, non-finite values, out-of-range weights/biases, inconsistent step
+counters, or missing prediction metrics are rejected with a precise message.
+
+On city resume, checkpoint city dimensions, agent count, seed, clone stride,
+prediction settings, and residual mode are authoritative. Only session/display
+controls (`--max-steps`, `--delay`, `--no-render`, `--checkpoint-every`,
+`--progress-every`, log rotation, and migration policy) may differ.
 
 Writes are atomic: a temporary file is written and then replaced. The checkpoint
 SHA-256 is logged and printed. On resume, the agent and the current game are
@@ -294,12 +366,16 @@ restored, including mid-episode game state.
 timestamp, game, episode, action, legal actions, fallback flag, selection reason,
 action scores/probabilities, hidden/action spike counts, weight statistics, the
 observation vector and digest, and the environment `done`/reason. City step
-records add `prediction_mae`, `prediction_mse`, and `prediction_updates` per
-clone. Event records cover session start/end, episode end, game switch,
-checkpoint, interrupt, and max-step stop.
+records add `prediction_mae`, `prediction_mse`, `prediction_updates`, residual
+summary fields, and the residual input consumed on that step. Event records cover
+session start/end, episode end, game switch, checkpoint, interrupt, max-step stop,
+and log rotation.
 
-`.local_private/` is Git-ignored. Gameplay logs and checkpoints are not committed
-or uploaded.
+City logs support safe size rotation: `--log-max-bytes` (0 disables) and
+`--log-backup-count`. The base path remains the current segment; numbered backups
+are retained. Rotation never splits a JSON line and records `session_id`,
+`log_segment`, and a `log_rotation` event. All raw logs stay under
+`.local_private/`, which is Git-ignored; they are not committed or uploaded.
 
 ## 8. Runtime commands
 
@@ -325,6 +401,19 @@ Resume:
 
 ```powershell
 py -3.14 -m exploration_lab --resume .local_private/exploration/checkpoint.json
+```
+
+Run the multi-agent city with TASK-014 residual feedback enabled:
+
+```powershell
+py -3.14 -m exploration_lab.city --residual-feedback
+```
+
+Without `--residual-feedback`, the city keeps legacy TASK-013 behavior. Resume a
+city checkpoint with:
+
+```powershell
+py -3.14 -m exploration_lab.city --resume .local_private/exploration/city/checkpoint.json
 ```
 
 Headless short run (for verification, not a performance result):
@@ -354,14 +443,18 @@ The live frame includes:
 - selection reason and random-fallback flag
 - action scores and probabilities
 - hidden and action spike counts
-- input→hidden and hidden→action weight summaries
+- inputâ†’hidden and hiddenâ†’action weight summaries
 - checkpoint path and latest checkpoint event
 - recent runtime events
 - ASCII game board
 
-The JSONL log contains the same information per step plus the full observation
-vector. The session summary contains counters and weight statistics only. It is
-explicitly labelled as operational, not as a measure of learning or skill.
+The city runtime additionally shows the active mode (`legacy` or `adaptive`),
+the last action and residual summary, internal activity, prediction diagnostics,
+speed, save/resume state, and safe `Ctrl+C` behavior. The JSONL log contains the
+same information per step plus the full observation vector. The session summary
+contains counters, weight statistics, prediction metrics, residual summaries,
+and log-segment hashes. It is explicitly labelled as operational, not as a
+measure of learning or skill.
 
 ## 10. Reuse and differences from `pulse_core`
 
@@ -382,7 +475,7 @@ Run the focused tests:
 
 ```powershell
 py -3.14 -m pytest -q tests/test_exploration_lab.py
-py -3.14 -m pytest -q tests/test_exploration_lab_city.py tests/test_exploration_lab_prediction.py
+py -3.14 -m pytest -q tests/test_exploration_lab_city.py tests/test_exploration_lab_prediction.py tests/test_exploration_lab_residual.py
 ```
 
 The tests check:
@@ -402,10 +495,15 @@ The tests check:
 - city observation shape, movement, collisions, clone persistence, and
   checkpoint/resume;
 - local predictor shapes, delta-rule error reduction, fixed-predictor control,
-  checkpoint/resume, and identical control/predictive city trajectories.
+  checkpoint/resume, and identical control/predictive city trajectories;
+- TASK-014 residual encoding, one-step timing, pathway isolation, state
+  round-trip, bounds, predictor isolation, malformed predictor rejection,
+  config-consistency checks, legacy regression, and JSONL rotation.
 
-Passing these tests verifies software mechanics only. It does **not** establish
-that the agent learned, improved, or plays well.
+The TASK-014 full suite was `225 passed in 224.20s` on 2026-11-05; the focused
+exploration subset was `53 passed`. Passing these tests verifies software
+mechanics only. It does **not** establish that the agent learned, improved, or
+plays well.
 
 ## 12. Limitations and non-claims
 
@@ -419,9 +517,13 @@ that the agent learned, improved, or plays well.
 - Weights changing is not evidence of useful learning. No gameplay metric is
   optimized or reported as success.
 - The TASK-013 predictor is a small linear forward model. It is not a policy,
-  planner, or reinforcement-learning agent; its error never changes behavior.
-- TASK-013 used one seed and one 5,000-step city run. Prediction-error reduction
-  is not a city performance result.
+  planner, or reinforcement-learning agent.
+- TASK-014's residual pathway is fixed and local. It can influence the next
+  internal activity, but it is not a reward, target, correctness signal, or
+  direct action-probability bonus. No behavioral benefit is claimed.
+- TASK-013 used one seed and one 5,000-step city run. TASK-014 used deterministic
+  checkpoint/resume smoke runs, not a multi-seed scientific experiment. Neither
+  establishes a city performance result.
 - No external network, cloud API, LLM, PyTorch training, or pretrained game model
   is used.
 - The official v0.43 test remains unopened and `official_test_ready=false`.
@@ -433,7 +535,7 @@ that the agent learned, improved, or plays well.
 The engineering deliverable is present when:
 
 1. all three local games run through a common interface;
-2. the agent executes observation → internal state → action → environment step →
+2. the agent executes observation â†’ internal state â†’ action â†’ environment step â†’
    updated state continuously;
 3. agent state and weights persist across episodes and can be saved/restored;
 4. the runtime can run indefinitely, display behavior, checkpoint periodically,

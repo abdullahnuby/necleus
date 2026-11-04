@@ -38,17 +38,107 @@ def sha256_file(path: Path) -> str:
 
 
 class JsonlLogger:
-    def __init__(self, path: Path) -> None:
-        self.path = path
-        path.parent.mkdir(parents=True, exist_ok=True)
-        self._handle = path.open("a", encoding="utf-8")
+    """Append-only JSONL writer with optional line-safe size rotation.
 
-    def write(self, record: dict[str, Any]) -> None:
+    Rotation keeps the base path as the current segment and moves older segments
+    to numbered backups (``.1`` is the newest backup, increasing suffixes are
+    older).  A line is never split across files.  Every record receives the stable
+    ``session_id`` when one is supplied and a ``log_segment`` index when rotation
+    is enabled.  The first record of a new segment is a ``log_rotation`` event.
+    """
+
+    def __init__(
+        self,
+        path: Path,
+        *,
+        max_bytes: int = 0,
+        backup_count: int = 3,
+        session_id: str | None = None,
+    ) -> None:
+        self.path = Path(path)
+        self.max_bytes = int(max_bytes)
+        self.backup_count = int(backup_count)
+        self.session_id = session_id
+        if self.max_bytes < 0:
+            raise ValueError("log max_bytes must be non-negative")
+        if self.backup_count < 0:
+            raise ValueError("log backup_count must be non-negative")
+        if self.max_bytes > 0 and self.backup_count < 1:
+            raise ValueError("log rotation requires backup_count >= 1")
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.segment = self._next_segment()
+        self._handle = self.path.open("a", encoding="utf-8")
+
+    def _next_segment(self) -> int:
+        prefix = self.path.name + "."
+        indices: list[int] = []
+        for candidate in self.path.parent.glob(self.path.name + ".*"):
+            suffix = candidate.name[len(prefix):]
+            if suffix.isdigit():
+                indices.append(int(suffix))
+        return max(indices) + 1 if indices else 0
+
+    def _decorate(self, record: dict[str, Any]) -> dict[str, Any]:
+        decorated = dict(record)
+        if self.session_id is not None:
+            decorated.setdefault("session_id", self.session_id)
+        if self.max_bytes > 0:
+            decorated.setdefault("log_segment", self.segment)
+        return decorated
+
+    def _write_line(self, record: dict[str, Any]) -> None:
         self._handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
         self._handle.flush()
 
+    def write(self, record: dict[str, Any]) -> None:
+        self._write_line(self._decorate(record))
+        if self.max_bytes > 0:
+            try:
+                size = self.path.stat().st_size
+            except OSError:
+                size = 0
+            if size >= self.max_bytes:
+                self._rotate()
+
+    def _rotate(self) -> None:
+        self._handle.close()
+        oldest = self.path.with_name(f"{self.path.name}.{self.backup_count}")
+        if oldest.exists():
+            oldest.unlink()
+        for index in range(self.backup_count - 1, 0, -1):
+            source = self.path.with_name(f"{self.path.name}.{index}")
+            target = self.path.with_name(f"{self.path.name}.{index + 1}")
+            if source.exists():
+                source.replace(target)
+        previous = self.path.with_name(f"{self.path.name}.1")
+        if self.path.exists():
+            self.path.replace(previous)
+        self.segment += 1
+        self._handle = self.path.open("a", encoding="utf-8")
+        self._write_line(
+            self._decorate(
+                {
+                    "ts_utc": utc_now(),
+                    "event": "log_rotation",
+                    "previous_segment": str(previous),
+                }
+            )
+        )
+
+    def segment_paths(self) -> list[Path]:
+        """Return existing segments in chronological order (oldest first)."""
+        paths: list[Path] = []
+        for index in range(self.backup_count, 0, -1):
+            candidate = self.path.with_name(f"{self.path.name}.{index}")
+            if candidate.is_file():
+                paths.append(candidate)
+        if self.path.is_file():
+            paths.append(self.path)
+        return paths
+
     def close(self) -> None:
         self._handle.close()
+
 
 
 @dataclass(frozen=True)

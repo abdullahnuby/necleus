@@ -1,7 +1,14 @@
-# Nucleus Exploration — Local Prediction Error
+# Nucleus Exploration â€” Local Prediction Error
 
-**Task:** 2026-10-29-TASK-013
-**Status:** engineering implementation and descriptive pilot complete; no success gate.
+**Task:** 2026-10-29-TASK-013; 2026-11-04-TASK-014 residual-feedback extension
+**Status:** TASK-013 implementation/pilot complete; TASK-014 engineering and
+checkpoint/resume smoke validation complete; no success gate.
+
+TASK-014 extends TASK-013 with an optional, explicitly signed residual pathway.
+The predictor remains the only component trained by prediction error. In legacy
+mode the city keeps TASK-013 behavior; adaptive mode feeds the previous
+transition's signed feature-level residual into the same clone's separate fixed
+input pathway on the next step. Section 11 documents the extension.
 
 ## 1. What changed
 
@@ -265,3 +272,99 @@ docs/EXPLORATION_PREDICTION.md                This document
 docs/EXPLORATION_CITY.md                      City extension pointer
 docs/handoff/logs/2026-10-29-TASK-013/        Task evidence
 ```
+
+## 11. TASK-014: signed residual feedback
+
+TASK-014 keeps the TASK-013 predictor and its learning rule. It changes only how
+the predictor's residual can influence the same clone's next internal activity.
+Legacy mode is the default and preserves TASK-013 behavior. Adaptive mode is
+explicitly enabled with `--residual-feedback`.
+
+### 11.1 Signal
+
+For clone `i` at city step `t`:
+
+```text
+residual_t = observation_{t+1} - prediction_t
+positive_t = max(residual_t, 0)
+negative_t = max(-residual_t, 0)
+residual_current_t = clip(W_res_pos @ positive_t
+                          + W_res_neg @ negative_t, -1, 1)
+```
+
+The residual is not collapsed to a scalar surprise, reward, or correctness
+label. Positive and negative deviations use separate channels, so the sign and
+feature identity are preserved. `W_res_pos` is non-negative and `W_res_neg` is
+non-positive; both are fixed and are not updated by prediction error or any other
+signal.
+
+### 11.2 Timing and isolation
+
+- The residual is computed only after the transition that produced it.
+- It is stored as one pending residual on the clone.
+- The next `act()` consumes it exactly once on the first internal tick.
+- It cannot affect the action that produced it.
+- It is never concatenated into the observation vector.
+- It never updates action STDP or action probabilities directly.
+- Each clone has its own residual state, matrices, predictor, and RNG. There is
+  no cross-clone residual or weight sharing.
+- The predictor remains the only component trained by prediction error.
+
+The residual projection uses a separate deterministic generator, so enabling the
+pathway does not perturb the observation, recurrent, action, or action-sampling
+RNG streams. The residual scale (`0.05`) and current clip (`[-1, 1]`) are
+numerical-stability choices, not values selected by prediction MAE, coverage,
+collisions, interactions, wins/losses, action distributions, or any gameplay
+outcome.
+
+### 11.3 Persistence and resume
+
+Agent checkpoints use schema v2. A v2 state includes the residual configuration,
+both fixed matrices, the pending residual, the last residual input, and all
+pre-existing agent state. Predictor state includes `last_residual`, step
+counters, and its config. City checkpoints include predictor metrics and the
+migration note.
+
+A v1 agent checkpoint is rejected unless `--allow-legacy-migration` is supplied.
+Migration preserves every old learned observation/recurrent/action value and
+initializes only the new residual matrices to zero. Adaptive mode rejects v1
+because it has no residual-pathway state. On resume, checkpoint city dimensions,
+agent count, seed, clone stride, prediction settings, and residual mode are
+authoritative; only display/session controls may change. Malformed or mismatched
+predictor lists, shapes, non-finite values, out-of-bounds weights/biases,
+inconsistent counters, and missing metrics are rejected with a precise message.
+
+### 11.4 Logging and rotation
+
+City step records add per-clone prediction residuals, residual summaries, and the
+residual input consumed on that step. JSONL logs support size rotation through
+`--log-max-bytes` and `--log-backup-count`. The base path remains the current
+segment, numbered backups are retained, lines are never split, and each record
+carries `session_id` and `log_segment`; a `log_rotation` event marks each
+rotation. Raw logs stay under `.local_private/` and are not committed.
+
+### 11.5 Verification
+
+- Focused exploration subset: `53 passed` (`tests/test_exploration_lab.py`,
+  `tests/test_exploration_lab_city.py`, `tests/test_exploration_lab_prediction.py`,
+  `tests/test_exploration_lab_residual.py`).
+- Full suite: `225 passed in 224.20s` on 2026-11-05.
+- Deterministic legacy and adaptive smoke runs: a 40-step checkpoint resumed to
+  step 60 matched an independent 60-step continuous run exactly in city, agent,
+  predictor, counters, and final `city_step` log record.
+- Legacy TASK-013 v1 checkpoint: resumed only with `--allow-legacy-migration`;
+  adaptive request against it was rejected.
+- Log rotation and malformed-predictor rejection are covered by tests.
+
+These are engineering checks. They do not establish that residual feedback
+improves prediction, navigation, cooperation, competition, or skill.
+
+### 11.6 Adaptive command
+
+```powershell
+py -3.14 -m exploration_lab.city --residual-feedback
+```
+
+The default without that flag remains legacy TASK-013 behavior. The
+fixed-predictor control remains available with
+`--prediction-learning-rate 0`.

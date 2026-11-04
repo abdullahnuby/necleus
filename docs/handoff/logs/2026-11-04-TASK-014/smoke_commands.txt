@@ -1,0 +1,41 @@
+TASK-014 deterministic smoke commands
+====================================
+
+Common arguments:
+  --agents 2 --width 12 --height 12 --seed 31415 --hidden 16
+  --ticks-per-step 2 --prediction-window 20 --log-max-bytes 0
+  --checkpoint-every 0 --progress-every 0 --delay 0 --no-render
+
+Legacy mode (default, no --residual-feedback):
+1. Continuous run, 60 steps:
+   py -3.14 -m exploration_lab.city <common> --max-steps 60
+     --checkpoint .local_private/exploration/task014_smoke/legacy_cont/checkpoint.json
+     --log .local_private/exploration/task014_smoke/legacy_cont/session.jsonl
+     --summary .local_private/exploration/task014_smoke/legacy_cont/summary.json
+   EXIT=0
+2. Prefix run, 40 steps:
+   py -3.14 -m exploration_lab.city <common> --max-steps 40
+     --checkpoint .local_private/exploration/task014_smoke/legacy_prefix/checkpoint.json
+     --log .local_private/exploration/task014_smoke/legacy_prefix/session.jsonl
+     --summary .local_private/exploration/task014_smoke/legacy_prefix/summary.json
+   EXIT=0
+3. Resume prefix to step 60:
+   py -3.14 -m exploration_lab.city
+     --resume .local_private/exploration/task014_smoke/legacy_prefix/checkpoint.json
+     --max-steps 60 --log-max-bytes 0 --checkpoint-every 0
+     --progress-every 0 --delay 0 --no-render
+     --checkpoint .local_private/exploration/task014_smoke/legacy_resume/checkpoint.json
+     --log .local_private/exploration/task014_smoke/legacy_resume/session.jsonl
+     --summary .local_private/exploration/task014_smoke/legacy_resume/summary.json
+   EXIT=0
+
+Adaptive mode (add --residual-feedback to new runs):
+1. Continuous run, 60 steps: same as legacy with --residual-feedback, EXIT=0.
+2. Prefix run, 40 steps: same as legacy with --residual-feedback, EXIT=0.
+3. Resume prefix to step 60: same as legacy resume, without an explicit mode
+   flag so the checkpoint mode is authoritative, EXIT=0.
+
+Comparison:
+  py -3.14 .local_private/exploration/task014_smoke/compare_resume.py
+  EXIT=0
+  See smoke_comparison.txt for the exact equality fields.

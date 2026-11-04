@@ -1,12 +1,20 @@
 # Nucleus Exploration City
 
-**Task:** 2026-10-27-TASK-012; TASK-013 prediction extension
-**Status:** engineering pilot complete; no scientific success criterion.
+**Task:** 2026-10-27-TASK-012; TASK-013 prediction extension; TASK-014 residual
+feedback extension
+**Status:** engineering pilot and checkpoint/resume validation complete; no
+scientific success criterion.
 
 TASK-013 adds a separate, local next-observation prediction head to each clone.
 It is documented in `docs/EXPLORATION_PREDICTION.md`. It does not change action
 STDP, action selection, or the city; its only learning signal is its own
 next-observation prediction error.
+
+TASK-014 optionally routes that signed prediction residual through a dedicated
+positive/negative input pathway in the same clone on the next step. The default
+is still legacy TASK-013 behavior. Adaptive mode is enabled explicitly with
+`--residual-feedback`. Residual feedback is not a reward, score, penalty,
+correctness label, target action, or direct action-probability bonus.
 
 ## 1. What this is
 
@@ -37,12 +45,17 @@ claim that clones learn to cooperate, compete, or navigate.
 - No modification of historical v0.42/v0.43 results or the official v0.43 test.
 - No claim that movement, collisions, coverage, or weight change demonstrates
   learning, intelligence, cooperation, competition, or skill.
+- TASK-014 does not tune the residual scale or pathway by coverage, collisions,
+  blocked moves, interactions, wins/losses, MAE, action distributions, or any
+  gameplay outcome.
 
 TASK-011 and TASK-012 explicitly excluded error signals. The user authorized a
 new scope for TASK-013: a **separate local prediction head** may learn from its
 own next-observation prediction error. That error never selects actions, never
 updates action STDP, and is not a reward or a city outcome. See
-`docs/EXPLORATION_PREDICTION.md`.
+`docs/EXPLORATION_PREDICTION.md`. TASK-014 then authorized the signed residual
+to enter a separate internal pathway on the following step; it still does not
+select actions directly, update action STDP, or use reward/target labels.
 
 ## 3. City layout
 
@@ -109,6 +122,18 @@ is no episode reset. Action learning remains pair-based STDP from the existing
 TASK-013 adds one separate `LocalPredictor` per clone. It is trained after the
 city step by local next-observation error and never writes to agent weights.
 
+TASK-014 adds two fixed residual projection matrices per adaptive clone:
+`w_residual_pos_hidden` in `[0, 0.05]` and `w_residual_neg_hidden` in
+`[-0.05, 0]`. They are initialized from a separate deterministic generator, so
+enabling the pathway does not alter observation, recurrent, action, or
+action-sampling RNG state. The pathway is not plastic; the predictor remains the
+only predictive learner. A residual is consumed once by the next `act()` and is
+not allowed to affect the action that produced it. Agent checkpoints use schema
+v2. Legacy v1 checkpoints are rejected unless
+`--allow-legacy-migration` is supplied, in which case the old learned
+observation/recurrent/action state is preserved and only the new residual
+matrices start at zero. Adaptive mode never accepts a v1 agent checkpoint.
+
 ## 7. Runtime
 
 Run the default 8-clone city until `Ctrl+C`:
@@ -120,10 +145,10 @@ py -3.14 -m exploration_lab.city
 Run the exact 5,000-step TASK-012 pilot headlessly with the predictor fixed:
 
 ```powershell
-py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 5000 ^
-  --checkpoint-every 1000 --progress-every 1000 ^
-  --agents 8 --width 32 --height 32 --seed 12012 ^
-  --prediction-learning-rate 0 ^
+py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 5000 `
+  --checkpoint-every 1000 --progress-every 1000 `
+  --agents 8 --width 32 --height 32 --seed 12012 `
+  --prediction-learning-rate 0 `
   --checkpoint .local_private/exploration/city/checkpoint.json ^
   --log .local_private/exploration/city/session.jsonl ^
   --summary .local_private/exploration/city/summary.json
@@ -139,8 +164,36 @@ TASK-013 adds these predictor flags:
 ```
 
 The default predictor learning rate is `0.001`. Use `--prediction-learning-rate 0`
-when reproducing the TASK-012 fixed-predictor condition. The predictor never
-changes the city/agent trajectory; see `docs/EXPLORATION_PREDICTION.md`.
+when reproducing the TASK-012 fixed-predictor condition. In legacy mode the
+predictor never changes the city/agent trajectory. In adaptive mode its residual
+enters the separate fixed pathway described below; it still never updates action
+STDP or chooses an action directly. See `docs/EXPLORATION_PREDICTION.md`.
+
+TASK-014 adds the residual-feedback switch and log rotation controls:
+
+```text
+--residual-feedback / --no-residual-feedback   # default: disabled legacy mode
+--allow-legacy-migration                       # explicit v1/old-checkpoint migration
+--log-max-bytes 16777216                       # 0 disables rotation
+--log-backup-count 3
+```
+
+Adaptive launch command (residual feedback enabled, indefinite by default):
+
+```powershell
+py -3.14 -m exploration_lab.city --residual-feedback
+```
+
+Headless adaptive smoke command:
+
+```powershell
+py -3.14 -m exploration_lab.city --no-render --delay 0 --max-steps 200 `
+  --agents 4 --width 16 --height 16 --seed 31415 --hidden 32 `
+  --prediction-learning-rate 0.001 --residual-feedback `
+  --checkpoint .local_private/exploration/city_adaptive/checkpoint.json `
+  --log .local_private/exploration/city_adaptive/session.jsonl `
+  --summary .local_private/exploration/city_adaptive/summary.json
+```
 
 Resume from a checkpoint:
 
@@ -148,9 +201,20 @@ Resume from a checkpoint:
 py -3.14 -m exploration_lab.city --resume .local_private/exploration/city/checkpoint.json
 ```
 
+On resume, checkpoint city dimensions, agent count, seed, clone stride,
+prediction settings, and residual mode are authoritative. Only display/session
+controls may change: `--max-steps`, `--delay`, `--no-render`, `--checkpoint-every`,
+`--progress-every`, `--log-max-bytes`, `--log-backup-count`, and
+`--allow-legacy-migration`. Explicit conflicting architecture flags are rejected
+with a precise message. Adaptive mode rejects legacy v1 agent checkpoints; legacy
+mode requires `--allow-legacy-migration` to migrate them.
+
 `--max-steps` is an absolute global step counter. `Ctrl+C` saves a checkpoint
 and exits. Raw JSONL rows and checkpoints stay under `.local_private/`, which is
-Git-ignored; only aggregate summaries are committed.
+Git-ignored; only aggregate summaries are committed. JSONL rotation keeps the
+base file as the current segment, writes numbered backups, never splits a line,
+and adds `session_id`, `log_segment`, and a `log_rotation` event so chronological
+continuity is explicit.
 
 ## 8. Pilot results
 
@@ -201,6 +265,30 @@ learn a city task. Full design, per-clone values, hashes, and limitations are in
 `docs/EXPLORATION_PREDICTION.md`; verification is in
 `docs/handoff/logs/2026-10-29-TASK-013/comparison_verification.txt`.
 
+### TASK-014 residual-feedback engineering validation
+
+TASK-014 does **not** report a new scientific performance result. Its validation
+is deterministic and mechanical:
+
+- legacy and adaptive 60-step smoke runs were executed with 2 clones, a 12x12
+  city, seed `31415`, hidden size 16, and 2 internal ticks;
+- a 40-step checkpoint was resumed to step 60 and compared against an
+  independent 60-step continuous run;
+- city snapshot, agent state, predictor state, counters, prediction metrics,
+  and the final `city_step` log record were exactly equal in both modes;
+- the old TASK-013 v1 checkpoint resumed in legacy mode only with
+  `--allow-legacy-migration`, preserving old weights and zero-initializing the
+  new residual matrices;
+- requesting adaptive mode against that legacy checkpoint was rejected;
+- JSONL rotation was covered by tests and preserves parseable lines and
+  chronological sequence numbers across segments.
+
+Evidence is in `docs/handoff/logs/2026-11-04-TASK-014/`. The residual matrices
+are fixed, and their scale (`0.05`) and current clip (`[-1, 1]`) were chosen for
+numerical stability, not by selecting a city or prediction score. No claim is
+made that adaptive feedback improves navigation, coverage, cooperation,
+competition, or skill.
+
 ## 9. Limitations
 
 - Action STDP receives no reward, score, penalty, correctness signal, or city
@@ -210,13 +298,18 @@ learn a city task. Full design, per-clone values, hashes, and limitations are in
   not explicit targets or action signals.
 - The TASK-013 predictor learns only next-observation error. It cannot improve
   navigation, cooperation, competition, or any city outcome.
-- Coverage, interaction counts, prediction error, and weight divergence are
-  operational counters, not performance metrics.
+- TASK-014's residual pathway is fixed and local. It has no reward, target,
+  correctness, or outcome signal. Its effect on behavior was not evaluated as a
+  performance claim.
+- Coverage, interaction counts, prediction error, residual magnitude, and weight
+  divergence are operational counters, not performance metrics.
 - A longer run may drift, collapse activity, or produce different counters; this
   pilot is not a long-horizon study.
 - `Ctrl+C` is covered by the runtime path and unit tests, but was not manually
   pressed in an interactive terminal during this pilot.
-- TASK-013 used one seed and one 5,000-step run; no variance estimate is made.
+- TASK-013 used one seed and one 5,000-step run; TASK-014 used deterministic
+  engineering smoke runs, not a multi-seed scientific experiment. No variance
+  estimate or behavioral benefit is claimed.
 - The official v0.43 test remains closed.
 
 ## 10. Files
@@ -224,18 +317,22 @@ learn a city task. Full design, per-clone values, hashes, and limitations are in
 ```text
 exploration_lab/city.py                        City, clones, runtime, CLI
 exploration_lab/prediction.py                  Local prediction head
+exploration_lab/residual.py                    Signed residual channels and summaries
 tests/test_exploration_lab_city.py             Ten city tests
 tests/test_exploration_lab_prediction.py       Eight prediction/integration tests
+tests/test_exploration_lab_residual.py         Eighteen TASK-014 residual tests
 docs/EXPLORATION_CITY.md                       This document
-docs/EXPLORATION_PREDICTION.md                 TASK-013 design and results
+docs/EXPLORATION_PREDICTION.md                 Prediction design and TASK-014 extension
 docs/handoff/logs/2026-10-27-TASK-012/         TASK-012 aggregate evidence
 docs/handoff/logs/2026-10-29-TASK-013/         TASK-013 evidence
+docs/handoff/logs/2026-11-04-TASK-014/         TASK-014 engineering evidence
 ```
 
 ## 11. Next step
 
-TASK-013 implemented the separate, explicitly authorized prediction-error pilot;
-see `docs/EXPLORATION_PREDICTION.md`. Any further use of prediction error to
-change actions or behavior needs a new explicit task scope. Do not tune
-checkpoints or hyperparameters by coverage, collisions, interaction counts, or
-MAE and present that as a city result.
+TASK-013 implemented the separate, explicitly authorized prediction-error pilot,
+and TASK-014 implemented the explicitly authorized residual pathway. Any further
+use of prediction error to select actions, shape rewards, or claim a behavioral
+benefit needs a new explicit task scope with preregistered controls. Do not tune
+checkpoints or hyperparameters by coverage, collisions, interaction counts,
+residual magnitude, or MAE and present that as a city result.

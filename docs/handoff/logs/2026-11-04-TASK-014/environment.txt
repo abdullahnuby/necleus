@@ -1,0 +1,13 @@
+Python 3.14.6
+python 3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]
+numpy 2.5.3
+pytest 8.4.2
+
+
+Caption        : Microsoft Windows 10 Enterprise LTSC
+Version        : 10.0.19044
+OSArchitecture : 64-bit
+
+
+
+

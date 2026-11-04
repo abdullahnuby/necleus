@@ -1,0 +1,4 @@
+COMMAND: C:\Users\Abdullah\AppData\Local\Programs\Python\Python314\python.exe -m pytest tests/test_exploration_lab.py tests/test_exploration_lab_city.py tests/test_exploration_lab_prediction.py tests/test_exploration_lab_residual.py -q
+.....................................................                    [100%]
+53 passed in 3.78s
+EXIT=0

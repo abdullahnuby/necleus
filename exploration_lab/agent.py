@@ -17,6 +17,14 @@ The update uses only the agent's own pre/post spike times.  It never receives a
 reward, score, done flag, target action, label, or game outcome.  Weights are
 clipped to ``[0, weight_max]``, decayed slightly, and periodically column-scaled
 to a bounded total.  Those are numerical stability constraints, not a policy.
+
+TASK-014 adds an optional third input pathway for the signed next-observation
+prediction residual.  The residual is split into non-negative positive/negative
+channels and projected through two separate fixed matrices into the hidden
+neurons.  It is delivered only on the next ``act()`` call, after the transition
+that produced it, and is never merged into the observation vector.  The pathway is
+fixed (not reward-shaped and not tuned against gameplay); the local predictor is
+still the only predictive component that learns.
 """
 from __future__ import annotations
 
@@ -31,8 +39,10 @@ from pulse_core.model import LIFNeuron
 
 from .encoding import DEFAULT_SPIKE_THRESHOLD, spikes_from_features
 from .games import FEATURE_DIM
+from .residual import ResidualConfig, split_residual
 
-CHECKPOINT_SCHEMA = "nucleus-exploration-agent-v1"
+CHECKPOINT_SCHEMA = "nucleus-exploration-agent-v2"
+LEGACY_CHECKPOINT_SCHEMA = "nucleus-exploration-agent-v1"
 
 
 @dataclass(frozen=True)
@@ -59,6 +69,9 @@ class AgentConfig:
     temperature: float = 0.6
     min_activity_signal: float = 0.05
     spike_threshold: float = DEFAULT_SPIKE_THRESHOLD
+    residual_enabled: bool = False
+    residual_weight_scale: float = 0.05
+    residual_current_max: float = 1.0
 
 
 @dataclass(frozen=True)
@@ -99,6 +112,20 @@ class SpikingExplorer:
         self.w_hidden_hidden = self._random_recurrent(cfg.hidden_dim)
         self.w_hidden_action = self._random_matrix(cfg.hidden_dim, cfg.action_dim, 0.0, 0.12)
 
+        # TASK-014 residual pathway.  The two matrices are deliberately separate
+        # from the observation/recurrent/action pathways.  Positive-channel
+        # weights are non-negative and negative-channel weights are non-positive,
+        # so the sign of the residual is preserved.  They are fixed sensory
+        # projections, not a reward or action-selection rule.
+        self.w_residual_pos_hidden = np.zeros((cfg.input_dim, cfg.hidden_dim), dtype=np.float64)
+        self.w_residual_neg_hidden = np.zeros((cfg.input_dim, cfg.hidden_dim), dtype=np.float64)
+        if cfg.residual_enabled:
+            self._init_residual_weights(seed)
+        self.pending_residual: np.ndarray | None = None
+        self.last_residual_input: np.ndarray | None = None
+        self.last_residual_current_abs_mean = 0.0
+        self.migration_note: str | None = None
+
         self.v_hidden = np.zeros(cfg.hidden_dim, dtype=np.float64)
         self.v_action = np.zeros(cfg.action_dim, dtype=np.float64)
         self.i_hidden = np.zeros(cfg.hidden_dim, dtype=np.float64)
@@ -131,12 +158,31 @@ class SpikingExplorer:
             raise ValueError("spike_threshold must be in (0, 1]")
         if cfg.weight_max <= 0 or cfg.max_column_sum <= 0:
             raise ValueError("weight bounds must be positive")
+        if not np.isfinite(cfg.residual_weight_scale) or cfg.residual_weight_scale < 0.0:
+            raise ValueError("residual_weight_scale must be non-negative and finite")
+        if not np.isfinite(cfg.residual_current_max) or cfg.residual_current_max <= 0.0:
+            raise ValueError("residual_current_max must be positive and finite")
 
     def _random_matrix(self, rows: int, cols: int, low: float, high: float) -> np.ndarray:
         return np.asarray(
             [[self._rng.uniform(low, high) for _ in range(cols)] for _ in range(rows)],
             dtype=np.float64,
         )
+
+    def _init_residual_weights(self, seed: int | None) -> None:
+        """Initialize the fixed residual projection without touching action RNG.
+
+        A separate deterministic generator is used so enabling the residual
+        pathway does not change the observation weights or the action-sampling RNG
+        stream.  That keeps legacy and adaptive runs comparable and makes the
+        pathway's contribution identifiable.
+        """
+        cfg = self.config
+        residual_rng = random.Random((seed if seed is not None else 0) ^ 0x5EED5EED)
+        for i in range(cfg.input_dim):
+            for j in range(cfg.hidden_dim):
+                self.w_residual_pos_hidden[i, j] = residual_rng.uniform(0.0, cfg.residual_weight_scale)
+                self.w_residual_neg_hidden[i, j] = -residual_rng.uniform(0.0, cfg.residual_weight_scale)
 
     def _random_recurrent(self, size: int) -> np.ndarray:
         matrix = np.zeros((size, size), dtype=np.float64)
@@ -150,11 +196,30 @@ class SpikingExplorer:
     # Dynamics and plasticity
     # ------------------------------------------------------------------
 
+    def set_prediction_residual(self, residual: Iterable[float]) -> None:
+        """Store the signed residual from the previous transition for the next act.
+
+        The value is clipped to the fixed residual range and consumed exactly once
+        by the next :meth:`act` call.  Calling this on a legacy agent is an error,
+        because legacy mode must not have a residual pathway.
+        """
+        if not self.config.residual_enabled:
+            raise ValueError("residual pathway is disabled for this agent")
+        positive, negative = split_residual(residual, ResidualConfig(input_dim=self.config.input_dim))
+        self.pending_residual = positive - negative
+
+    def clear_prediction_residual(self) -> None:
+        """Discard any residual waiting for the next action cycle."""
+        self.pending_residual = None
+
     def act(self, features: Iterable[float], legal_actions: Sequence[int]) -> ActionDecision:
         """Run internal ticks, apply local STDP, and select one legal action.
 
         ``features`` is the current observation only.  No outcome information is
-        accepted by this method.
+        accepted by this method.  In adaptive mode, a residual stored by
+        :meth:`set_prediction_residual` from the previous transition is consumed
+        exactly once at the first internal tick.  No residual is available before
+        that transition has been observed.
         """
         legal = tuple(int(a) for a in legal_actions)
         if not legal:
@@ -162,8 +227,27 @@ class SpikingExplorer:
         if any(a < 0 or a >= self.config.action_dim for a in legal):
             raise ValueError("legal action outside action_dim")
 
+        residual_positive: np.ndarray | None = None
+        residual_negative: np.ndarray | None = None
+        if self.config.residual_enabled and self.pending_residual is not None:
+            residual_positive, residual_negative = split_residual(
+                self.pending_residual,
+                ResidualConfig(input_dim=self.config.input_dim),
+            )
+            self.last_residual_input = self.pending_residual.copy()
+        else:
+            self.last_residual_input = (
+                np.zeros(self.config.input_dim, dtype=np.float64)
+                if self.config.residual_enabled
+                else None
+            )
+        # One-shot delivery: the residual belongs to this cycle only.
+        self.pending_residual = None
+
         input_spikes = spikes_from_features(features, self.config.spike_threshold)
-        spike_counts, max_voltages, hidden_count = self._run_ticks(input_spikes)
+        spike_counts, max_voltages, hidden_count = self._run_ticks(
+            input_spikes, residual_positive, residual_negative
+        )
         scores = spike_counts + max_voltages
 
         masked = np.asarray([scores[a] for a in legal], dtype=np.float64)
@@ -201,9 +285,27 @@ class SpikingExplorer:
         self.last_decision = decision
         return decision
 
-    def _run_ticks(self, input_spikes: np.ndarray) -> tuple[np.ndarray, np.ndarray, int]:
+    def _run_ticks(
+        self,
+        input_spikes: np.ndarray,
+        residual_positive: np.ndarray | None = None,
+        residual_negative: np.ndarray | None = None,
+    ) -> tuple[np.ndarray, np.ndarray, int]:
         cfg = self.config
         trace_decay = math.exp(-1.0 / cfg.trace_tau)
+
+        residual_current: np.ndarray | None = None
+        if cfg.residual_enabled and residual_positive is not None and residual_negative is not None:
+            pos_current = self.w_residual_pos_hidden.T @ residual_positive
+            neg_current = self.w_residual_neg_hidden.T @ residual_negative
+            residual_current = np.clip(
+                pos_current + neg_current,
+                -cfg.residual_current_max,
+                cfg.residual_current_max,
+            )
+        self.last_residual_current_abs_mean = (
+            float(np.abs(residual_current).mean()) if residual_current is not None else 0.0
+        )
 
         # Reuse the documented LIF time constants from the core model.
         hidden_neuron = LIFNeuron("hidden", tau_mem=cfg.tau_mem, tau_syn=cfg.tau_syn,
@@ -234,6 +336,8 @@ class SpikingExplorer:
             self.i_action += cfg.action_bias_current
             if tick == 0:
                 self.i_hidden += self.w_input_hidden.T @ tick_input
+                if residual_current is not None:
+                    self.i_hidden += residual_current
             self.i_hidden += self.w_hidden_hidden.T @ previous_hidden
             self.i_action += self.w_hidden_action.T @ previous_hidden
 
@@ -335,8 +439,11 @@ class SpikingExplorer:
         self.trace_action.fill(0.0)
         self._previous_hidden_spikes.fill(0.0)
         self.last_hidden_activity.fill(0.0)
+        self.pending_residual = None
+        self.last_residual_input = None
+        self.last_residual_current_abs_mean = 0.0
 
-    def weight_stats(self) -> dict[str, float]:
+    def weight_stats(self) -> dict[str, Any]:
         def stats(matrix: np.ndarray) -> dict[str, float]:
             return {
                 "mean": float(matrix.mean()),
@@ -348,6 +455,22 @@ class SpikingExplorer:
             "input_hidden": stats(self.w_input_hidden),
             "hidden_action": stats(self.w_hidden_action),
             "hidden_hidden_abs_mean": float(np.abs(self.w_hidden_hidden).mean()),
+            "residual_pos_hidden": stats(self.w_residual_pos_hidden),
+            "residual_neg_hidden": stats(self.w_residual_neg_hidden),
+            "residual_pos_abs_mean": float(np.abs(self.w_residual_pos_hidden).mean()),
+            "residual_neg_abs_mean": float(np.abs(self.w_residual_neg_hidden).mean()),
+            "residual_enabled": bool(self.config.residual_enabled),
+            "pending_residual_abs_mean": (
+                float(np.abs(self.pending_residual).mean())
+                if self.pending_residual is not None
+                else 0.0
+            ),
+            "last_residual_abs_mean": (
+                float(np.abs(self.last_residual_input).mean())
+                if self.last_residual_input is not None
+                else 0.0
+            ),
+            "last_residual_current_abs_mean": float(self.last_residual_current_abs_mean),
             "total_weight_updates": float(self.total_weight_updates),
         }
 
@@ -359,6 +482,7 @@ class SpikingExplorer:
         return {
             "schema": CHECKPOINT_SCHEMA,
             "config": asdict(self.config),
+            "migration_note": self.migration_note,
             "rng": _rng_to_json(self._rng),
             "steps": self.steps,
             "ticks": self.ticks,
@@ -366,6 +490,8 @@ class SpikingExplorer:
             "w_input_hidden": self.w_input_hidden.tolist(),
             "w_hidden_hidden": self.w_hidden_hidden.tolist(),
             "w_hidden_action": self.w_hidden_action.tolist(),
+            "w_residual_pos_hidden": self.w_residual_pos_hidden.tolist(),
+            "w_residual_neg_hidden": self.w_residual_neg_hidden.tolist(),
             "v_hidden": self.v_hidden.tolist(),
             "v_action": self.v_action.tolist(),
             "i_hidden": self.i_hidden.tolist(),
@@ -377,37 +503,152 @@ class SpikingExplorer:
             "trace_action": self.trace_action.tolist(),
             "previous_hidden_spikes": self._previous_hidden_spikes.tolist(),
             "last_hidden_activity": self.last_hidden_activity.tolist(),
+            "pending_residual": (
+                self.pending_residual.tolist() if self.pending_residual is not None else None
+            ),
+            "last_residual_input": (
+                self.last_residual_input.tolist() if self.last_residual_input is not None else None
+            ),
         }
 
     @classmethod
-    def from_state_dict(cls, data: dict[str, Any]) -> "SpikingExplorer":
-        if data.get("schema") != CHECKPOINT_SCHEMA:
-            raise ValueError("unsupported agent checkpoint schema")
-        config = AgentConfig(**data["config"])
+    def from_state_dict(
+        cls,
+        data: dict[str, Any],
+        *,
+        allow_legacy_migration: bool = False,
+    ) -> "SpikingExplorer":
+        if not isinstance(data, dict):
+            raise ValueError("agent checkpoint must be a JSON object")
+        schema = data.get("schema")
+        legacy = schema == LEGACY_CHECKPOINT_SCHEMA
+        if legacy:
+            if not allow_legacy_migration:
+                raise ValueError(
+                    "legacy agent checkpoint v1 has no residual-pathway state; "
+                    "pass allow_legacy_migration=True to preserve the old learned "
+                    "weights and initialize zero residual weights explicitly"
+                )
+            config_data = dict(data.get("config", {}))
+            # A v1 checkpoint predates the residual pathway.  Force legacy mode
+            # even if a malformed payload carries a newer field.
+            config_data["residual_enabled"] = False
+        elif schema == CHECKPOINT_SCHEMA:
+            config_data = dict(data.get("config", {}))
+        else:
+            raise ValueError(f"unsupported agent checkpoint schema: {schema!r}")
+
+        try:
+            config = AgentConfig(**config_data)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"invalid agent configuration: {exc}") from exc
         agent = cls(config, seed=0)
         cfg = agent.config
 
-        def matrix(key: str, shape: tuple[int, int], low: float | None, high: float | None) -> np.ndarray:
-            value = np.asarray(data[key], dtype=np.float64)
+        def raw_value(key: str) -> Any:
+            try:
+                return data[key]
+            except KeyError as exc:
+                raise ValueError(f"agent checkpoint is missing {key}") from exc
+
+        def matrix(
+            key: str,
+            shape: tuple[int, int],
+            low: float | None,
+            high: float | None,
+        ) -> np.ndarray:
+            try:
+                value = np.asarray(raw_value(key), dtype=np.float64)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{key} is not a numeric matrix: {exc}") from exc
             if value.shape != shape:
                 raise ValueError(f"{key} has shape {value.shape}, expected {shape}")
             if not np.all(np.isfinite(value)):
                 raise ValueError(f"{key} contains non-finite values")
-            if low is not None and high is not None and (value.min() < low - 1e-9 or value.max() > high + 1e-9):
+            if low is not None and high is not None and (
+                value.min() < low - 1e-9 or value.max() > high + 1e-9
+            ):
                 raise ValueError(f"{key} is outside [{low}, {high}]")
             return value
 
-        agent.w_input_hidden = matrix("w_input_hidden", (cfg.input_dim, cfg.hidden_dim), 0.0, cfg.weight_max)
-        agent.w_hidden_hidden = matrix("w_hidden_hidden", (cfg.hidden_dim, cfg.hidden_dim), None, None)
-        agent.w_hidden_action = matrix("w_hidden_action", (cfg.hidden_dim, cfg.action_dim), 0.0, cfg.weight_max)
+        agent.w_input_hidden = matrix(
+            "w_input_hidden", (cfg.input_dim, cfg.hidden_dim), 0.0, cfg.weight_max
+        )
+        agent.w_hidden_hidden = matrix(
+            "w_hidden_hidden", (cfg.hidden_dim, cfg.hidden_dim), None, None
+        )
+        agent.w_hidden_action = matrix(
+            "w_hidden_action", (cfg.hidden_dim, cfg.action_dim), 0.0, cfg.weight_max
+        )
+
+        if legacy:
+            # Explicit migration: all original learned weights are restored above;
+            # only the new residual pathway starts at zero.
+            agent.w_residual_pos_hidden = np.zeros(
+                (cfg.input_dim, cfg.hidden_dim), dtype=np.float64
+            )
+            agent.w_residual_neg_hidden = np.zeros(
+                (cfg.input_dim, cfg.hidden_dim), dtype=np.float64
+            )
+            agent.migration_note = (
+                "migrated from agent checkpoint v1: observation/recurrent/action "
+                "weights and all runtime state preserved; residual pathway initialized "
+                "to zero because v1 had no residual state"
+            )
+        else:
+            agent.w_residual_pos_hidden = matrix(
+                "w_residual_pos_hidden",
+                (cfg.input_dim, cfg.hidden_dim),
+                0.0,
+                cfg.residual_weight_scale,
+            )
+            agent.w_residual_neg_hidden = matrix(
+                "w_residual_neg_hidden",
+                (cfg.input_dim, cfg.hidden_dim),
+                -cfg.residual_weight_scale,
+                0.0,
+            )
+            note = data.get("migration_note")
+            if note is not None and not isinstance(note, str):
+                raise ValueError("migration_note must be a string or null")
+            agent.migration_note = note
+
+        if not cfg.residual_enabled:
+            if np.any(np.abs(agent.w_residual_pos_hidden) > 1e-12) or np.any(
+                np.abs(agent.w_residual_neg_hidden) > 1e-12
+            ):
+                raise ValueError(
+                    "residual weights are non-zero while residual_enabled is false"
+                )
 
         def vector(key: str, size: int) -> np.ndarray:
-            value = np.asarray(data[key], dtype=np.float64)
+            try:
+                value = np.asarray(raw_value(key), dtype=np.float64)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{key} is not a numeric vector: {exc}") from exc
             if value.shape != (size,):
                 raise ValueError(f"{key} has shape {value.shape}, expected ({size},)")
             if not np.all(np.isfinite(value)):
                 raise ValueError(f"{key} contains non-finite values")
             return value
+
+        def optional_residual(key: str) -> np.ndarray | None:
+            raw = data.get(key)
+            if raw is None:
+                return None
+            try:
+                value = np.asarray(raw, dtype=np.float64)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{key} is not a numeric residual: {exc}") from exc
+            if value.shape != (cfg.input_dim,):
+                raise ValueError(f"{key} has shape {value.shape}, expected ({cfg.input_dim},)")
+            if not np.all(np.isfinite(value)):
+                raise ValueError(f"{key} contains non-finite values")
+            if np.any(value < -1.0 - 1e-9) or np.any(value > 1.0 + 1e-9):
+                raise ValueError(f"{key} is outside the residual range [-1, 1]")
+            if not cfg.residual_enabled:
+                raise ValueError(f"{key} is present while residual_enabled is false")
+            return np.clip(value, -1.0, 1.0)
 
         agent.v_hidden = vector("v_hidden", cfg.hidden_dim)
         agent.v_action = vector("v_action", cfg.action_dim)
@@ -415,7 +656,10 @@ class SpikingExplorer:
         agent.i_action = vector("i_action", cfg.action_dim)
 
         def refractory(key: str, size: int) -> np.ndarray:
-            value = np.asarray(data[key], dtype=np.int64)
+            try:
+                value = np.asarray(raw_value(key), dtype=np.int64)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{key} is not a numeric counter vector: {exc}") from exc
             if value.shape != (size,):
                 raise ValueError(f"{key} has shape {value.shape}, expected ({size},)")
             if np.any(value < 0):
@@ -432,8 +676,22 @@ class SpikingExplorer:
             agent.last_hidden_activity = vector("last_hidden_activity", cfg.hidden_dim)
         else:
             agent.last_hidden_activity = np.zeros(cfg.hidden_dim, dtype=np.float64)
-        agent._rng = _rng_from_json(data["rng"])
-        agent.steps = int(data["steps"])
-        agent.ticks = int(data["ticks"])
-        agent.total_weight_updates = int(data["total_weight_updates"])
+
+        agent.pending_residual = optional_residual("pending_residual")
+        agent.last_residual_input = optional_residual("last_residual_input")
+        agent.last_residual_current_abs_mean = 0.0
+
+        try:
+            agent._rng = _rng_from_json(data["rng"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError(f"invalid agent RNG state: {exc}") from exc
+
+        try:
+            agent.steps = int(data["steps"])
+            agent.ticks = int(data["ticks"])
+            agent.total_weight_updates = int(data["total_weight_updates"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError(f"invalid agent counter state: {exc}") from exc
+        if agent.steps < 0 or agent.ticks < 0 or agent.total_weight_updates < 0:
+            raise ValueError("agent counters must be non-negative")
         return agent

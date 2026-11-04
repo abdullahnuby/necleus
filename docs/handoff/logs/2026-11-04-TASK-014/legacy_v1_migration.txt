@@ -1,0 +1,1493 @@
+=== legacy v1 resume with explicit migration ===
+COMMAND: 'C:\Users\Abdullah\AppData\Local\Programs\Python\Python314\python.exe' -m exploration_lab.city --resume .local_private/exploration/task013_runs_final/predictive/checkpoint.json --allow-legacy-migration --max-steps 5001 --delay 0 --checkpoint-every 0 --progress-every 0 --no-render --checkpoint .local_private/exploration/task014_legacy_probe/ckpt.json --log .local_private/exploration/task014_legacy_probe/session.jsonl --summary .local_private/exploration/task014_legacy_probe/summary.json
+Nucleus Exploration City
+agents: 8   city: 32x32
+mode: legacy (residual feedback disabled)
+log: .local_private\exploration\task014_legacy_probe\session.jsonl   rotation: 16777216 bytes/3 backups
+checkpoint: .local_private\exploration\task014_legacy_probe\ckpt.json
+resumed: .local_private\exploration\task013_runs_final\predictive\checkpoint.json at step 5000
+Action STDP receives no reward, score, penalty, correctness signal, or city outcome.
+A separate local predictor learns from next-observation prediction error and never selects actions.
+Ctrl+C saves a checkpoint and exits.
+
+
+CITY SESSION SUMMARY
+{
+  "session_id": "20261104T223702Z-6583c8",
+  "resumed_from": ".local_private\\exploration\\task013_runs_final\\predictive\\checkpoint.json",
+  "steps": 5001,
+  "agent_count": 8,
+  "total_agent_steps": 40008,
+  "elapsed_seconds": 0.619,
+  "runtime_config": {
+    "seed": 12012,
+    "width": 32,
+    "height": 32,
+    "agent_count": 8,
+    "max_steps": 5001,
+    "delay": 0.0,
+    "checkpoint_every": 0,
+    "render": false,
+    "progress_every": 0,
+    "clone_seed_stride": 1009,
+    "prediction_learning_rate": 0.001,
+    "prediction_weight_max": 2.0,
+    "prediction_weight_decay": 1e-06,
+    "prediction_window": 500,
+    "residual_feedback": false,
+    "allow_legacy_migration": true,
+    "log_max_bytes": 16777216,
+    "log_backup_count": 3
+  },
+  "agent_config": {
+    "input_dim": 128,
+    "hidden_dim": 64,
+    "action_dim": 4,
+    "ticks_per_step": 4,
+    "hidden_threshold": 1.8,
+    "action_threshold": 0.5,
+    "hidden_refractory": 1,
+    "action_refractory": 1,
+    "hidden_bias_current": 0.15,
+    "action_bias_current": 0.02,
+    "tau_mem": 2.0,
+    "tau_syn": 6.0,
+    "lr_ltp": 0.002,
+    "lr_ltd": 0.0021,
+    "trace_tau": 8.0,
+    "weight_max": 1.0,
+    "weight_decay": 1e-05,
+    "max_column_sum": 8.0,
+    "homeostasis_every": 50,
+    "temperature": 0.6,
+    "min_activity_signal": 0.05,
+    "spike_threshold": 0.5,
+    "residual_enabled": false,
+    "residual_weight_scale": 0.05,
+    "residual_current_max": 1.0
+  },
+  "mode": "legacy",
+  "residual_feedback": false,
+  "city": {
+    "width": 32,
+    "height": 32,
+    "agent_count": 8,
+    "open_cells": 532,
+    "wall_cells": 492,
+    "plaza_cells": 49,
+    "step_count": 5001,
+    "blocked_moves": 21130,
+    "collision_events": 126,
+    "interaction_events": 2987,
+    "agent_blocked_counts": [
+      953,
+      1196,
+      4108,
+      1069,
+      3375,
+      3984,
+      4273,
+      2172
+    ],
+    "agent_collision_counts": [
+      17,
+      17,
+      11,
+      18,
+      4,
+      23,
+      15,
+      21
+    ],
+    "unique_cells_per_agent": [
+      263,
+      350,
+      124,
+      331,
+      205,
+      147,
+      105,
+      98
+    ],
+    "union_unique_cells": 511
+  },
+  "fallback_actions": 7,
+  "action_counts": {
+    "down": 11378,
+    "left": 6009,
+    "right": 11336,
+    "up": 11285
+  },
+  "per_agent_action_counts": [
+    {
+      "down": 2192,
+      "left": 292,
+      "right": 286,
+      "up": 2231
+    },
+    {
+      "down": 1290,
+      "left": 1351,
+      "right": 1178,
+      "up": 1182
+    },
+    {
+      "down": 473,
+      "left": 451,
+      "right": 256,
+      "up": 3821
+    },
+    {
+      "down": 1170,
+      "left": 1190,
+      "right": 1217,
+      "up": 1424
+    },
+    {
+      "down": 3654,
+      "left": 382,
+      "right": 395,
+      "up": 570
+    },
+    {
+      "down": 308,
+      "left": 333,
+      "right": 4049,
+      "up": 311
+    },
+    {
+      "down": 2146,
+      "left": 238,
+      "right": 2413,
+      "up": 204
+    },
+    {
+      "down": 145,
+      "left": 1772,
+      "right": 1542,
+      "up": 1542
+    }
+  ],
+  "interaction_pair_counts": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "count": 73
+    },
+    {
+      "pair": [
+        0,
+        2
+      ],
+      "count": 1
+    },
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "count": 159
+    },
+    {
+      "pair": [
+        0,
+        4
+      ],
+      "count": 21
+    },
+    {
+      "pair": [
+        0,
+        5
+      ],
+      "count": 115
+    },
+    {
+      "pair": [
+        0,
+        6
+      ],
+      "count": 37
+    },
+    {
+      "pair": [
+        0,
+        7
+      ],
+      "count": 34
+    },
+    {
+      "pair": [
+        1,
+        2
+      ],
+      "count": 11
+    },
+    {
+      "pair": [
+        1,
+        3
+      ],
+      "count": 57
+    },
+    {
+      "pair": [
+        1,
+        4
+      ],
+      "count": 232
+    },
+    {
+      "pair": [
+        1,
+        5
+      ],
+      "count": 122
+    },
+    {
+      "pair": [
+        1,
+        6
+      ],
+      "count": 36
+    },
+    {
+      "pair": [
+        1,
+        7
+      ],
+      "count": 8
+    },
+    {
+      "pair": [
+        2,
+        3
+      ],
+      "count": 13
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "count": 8
+    },
+    {
+      "pair": [
+        2,
+        5
+      ],
+      "count": 1
+    },
+    {
+      "pair": [
+        2,
+        6
+      ],
+      "count": 23
+    },
+    {
+      "pair": [
+        2,
+        7
+      ],
+      "count": 882
+    },
+    {
+      "pair": [
+        3,
+        4
+      ],
+      "count": 7
+    },
+    {
+      "pair": [
+        3,
+        5
+      ],
+      "count": 75
+    },
+    {
+      "pair": [
+        3,
+        6
+      ],
+      "count": 37
+    },
+    {
+      "pair": [
+        3,
+        7
+      ],
+      "count": 54
+    },
+    {
+      "pair": [
+        4,
+        5
+      ],
+      "count": 43
+    },
+    {
+      "pair": [
+        4,
+        6
+      ],
+      "count": 777
+    },
+    {
+      "pair": [
+        4,
+        7
+      ],
+      "count": 16
+    },
+    {
+      "pair": [
+        5,
+        6
+      ],
+      "count": 5
+    },
+    {
+      "pair": [
+        5,
+        7
+      ],
+      "count": 9
+    },
+    {
+      "pair": [
+        6,
+        7
+      ],
+      "count": 131
+    }
+  ],
+  "unique_cells_per_agent": [
+    263,
+    350,
+    124,
+    331,
+    205,
+    147,
+    105,
+    98
+  ],
+  "union_unique_cells": 511,
+  "coverage_ratio": 0.9605263157894737,
+  "final_positions": [
+    [
+      13,
+      15
+    ],
+    [
+      9,
+      30
+    ],
+    [
+      6,
+      1
+    ],
+    [
+      30,
+      1
+    ],
+    [
+      15,
+      30
+    ],
+    [
+      30,
+      24
+    ],
+    [
+      16,
+      30
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "initial_weights_identical": true,
+  "weight_divergence": {
+    "input_hidden_mean": 0.01815070689422286,
+    "hidden_action_mean": 0.016687317478239126,
+    "residual_pos_hidden_mean": 0.0,
+    "residual_neg_hidden_mean": 0.0,
+    "max_pair_mean": 0.03696060440643796
+  },
+  "pairwise_weight_divergence": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "input_hidden_mean_abs_diff": 0.021779819283997016,
+      "hidden_action_mean_abs_diff": 0.014768836626435774,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        0,
+        2
+      ],
+      "input_hidden_mean_abs_diff": 0.020788704404039755,
+      "hidden_action_mean_abs_diff": 0.01581290138997353,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "input_hidden_mean_abs_diff": 0.022174924780899247,
+      "hidden_action_mean_abs_diff": 0.014735173740125541,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        0,
+        4
+      ],
+      "input_hidden_mean_abs_diff": 0.022609707955754316,
+      "hidden_action_mean_abs_diff": 0.01770247659411021,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        0,
+        5
+      ],
+      "input_hidden_mean_abs_diff": 0.025074892804938242,
+      "hidden_action_mean_abs_diff": 0.021064410238519758,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        0,
+        6
+      ],
+      "input_hidden_mean_abs_diff": 0.021271361071558106,
+      "hidden_action_mean_abs_diff": 0.019941217118149085,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        0,
+        7
+      ],
+      "input_hidden_mean_abs_diff": 0.022972934589949028,
+      "hidden_action_mean_abs_diff": 0.03696060440643796,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        1,
+        2
+      ],
+      "input_hidden_mean_abs_diff": 0.016534416832677843,
+      "hidden_action_mean_abs_diff": 0.007189929209357347,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        1,
+        3
+      ],
+      "input_hidden_mean_abs_diff": 0.01627710643129196,
+      "hidden_action_mean_abs_diff": 0.002086159501375579,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        1,
+        4
+      ],
+      "input_hidden_mean_abs_diff": 0.015492604931577308,
+      "hidden_action_mean_abs_diff": 0.008645131406941897,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        1,
+        5
+      ],
+      "input_hidden_mean_abs_diff": 0.019281235706922768,
+      "hidden_action_mean_abs_diff": 0.008094718884274451,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        1,
+        6
+      ],
+      "input_hidden_mean_abs_diff": 0.014894988173668411,
+      "hidden_action_mean_abs_diff": 0.009574945585572456,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        1,
+        7
+      ],
+      "input_hidden_mean_abs_diff": 0.01884260458901989,
+      "hidden_action_mean_abs_diff": 0.028615565578606596,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        2,
+        3
+      ],
+      "input_hidden_mean_abs_diff": 0.015433301381257791,
+      "hidden_action_mean_abs_diff": 0.007010115936027192,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "input_hidden_mean_abs_diff": 0.015962013897690287,
+      "hidden_action_mean_abs_diff": 0.012779064674191128,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        2,
+        5
+      ],
+      "input_hidden_mean_abs_diff": 0.018258308402978277,
+      "hidden_action_mean_abs_diff": 0.01295009284331574,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        2,
+        6
+      ],
+      "input_hidden_mean_abs_diff": 0.015168027467012147,
+      "hidden_action_mean_abs_diff": 0.014127977412684737,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        2,
+        7
+      ],
+      "input_hidden_mean_abs_diff": 0.014924514885833896,
+      "hidden_action_mean_abs_diff": 0.02698770019623385,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        3,
+        4
+      ],
+      "input_hidden_mean_abs_diff": 0.017033801710351536,
+      "hidden_action_mean_abs_diff": 0.00885603953312277,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        3,
+        5
+      ],
+      "input_hidden_mean_abs_diff": 0.018289097896730937,
+      "hidden_action_mean_abs_diff": 0.008406472803462177,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        3,
+        6
+      ],
+      "input_hidden_mean_abs_diff": 0.015814516912620025,
+      "hidden_action_mean_abs_diff": 0.01010523554382137,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        3,
+        7
+      ],
+      "input_hidden_mean_abs_diff": 0.018139596957862797,
+      "hidden_action_mean_abs_diff": 0.028153062211799085,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        4,
+        5
+      ],
+      "input_hidden_mean_abs_diff": 0.016862448907281384,
+      "hidden_action_mean_abs_diff": 0.014538598321008112,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        4,
+        6
+      ],
+      "input_hidden_mean_abs_diff": 0.012221032191102522,
+      "hidden_action_mean_abs_diff": 0.010255825243704388,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        4,
+        7
+      ],
+      "input_hidden_mean_abs_diff": 0.018663292585559252,
+      "hidden_action_mean_abs_diff": 0.03516877075358845,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        5,
+        6
+      ],
+      "input_hidden_mean_abs_diff": 0.015921751058305414,
+      "hidden_action_mean_abs_diff": 0.009348282101253876,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        5,
+        7
+      ],
+      "input_hidden_mean_abs_diff": 0.019942072869535248,
+      "hidden_action_mean_abs_diff": 0.030035574712426225,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    },
+    {
+      "pair": [
+        6,
+        7
+      ],
+      "input_hidden_mean_abs_diff": 0.017590714357824815,
+      "hidden_action_mean_abs_diff": 0.03333000682417628,
+      "residual_pos_hidden_mean_abs_diff": 0.0,
+      "residual_neg_hidden_mean_abs_diff": 0.0
+    }
+  ],
+  "weight_stats": [
+    {
+      "input_hidden": {
+        "mean": 0.05276745178359972,
+        "std": 0.04331294647770276,
+        "min": 0.0,
+        "max": 0.39971532848647234
+      },
+      "hidden_action": {
+        "mean": 0.014598054049394849,
+        "std": 0.04048725666895221,
+        "min": 0.0,
+        "max": 0.26506922591673815
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 18823.0
+    },
+    {
+      "input_hidden": {
+        "mean": 0.04557772340789807,
+        "std": 0.039344902603486456,
+        "min": 0.0,
+        "max": 0.3328775685504732
+      },
+      "hidden_action": {
+        "mean": 0.0009014386510672458,
+        "std": 0.003851405259396281,
+        "min": 0.0,
+        "max": 0.029645703093475775
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 18257.0
+    },
+    {
+      "input_hidden": {
+        "mean": 0.041978138349982264,
+        "std": 0.03707939196446855,
+        "min": 0.0,
+        "max": 0.2121533938834999
+      },
+      "hidden_action": {
+        "mean": 0.007129050427151631,
+        "std": 0.011187200523708014,
+        "min": 0.0,
+        "max": 0.06872683410931608
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 17737.0
+    },
+    {
+      "input_hidden": {
+        "mean": 0.04259110000986844,
+        "std": 0.04030072889597933,
+        "min": 0.0,
+        "max": 0.30983756516347943
+      },
+      "hidden_action": {
+        "mean": 0.001384549615271303,
+        "std": 0.004739428408500332,
+        "min": 0.0,
+        "max": 0.030000929864511854
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 18249.0
+    },
+    {
+      "input_hidden": {
+        "mean": 0.041484114261928745,
+        "std": 0.0393450948051898,
+        "min": 0.0,
+        "max": 0.23678608274635238
+      },
+      "hidden_action": {
+        "mean": 0.008497010433829116,
+        "std": 0.018240944529437492,
+        "min": 0.0,
+        "max": 0.12676399884176892
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 17690.0
+    },
+    {
+      "input_hidden": {
+        "mean": 0.041145363601324564,
+        "std": 0.046049737407168584,
+        "min": 0.0,
+        "max": 0.3114051397255697
+      },
+      "hidden_action": {
+        "mean": 0.008168991485882227,
+        "std": 0.015119365378366818,
+        "min": 0.0,
+        "max": 0.08087217843380227
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 17887.0
+    },
+    {
+      "input_hidden": {
+        "mean": 0.04259530527673964,
+        "std": 0.037623470649689766,
+        "min": 0.0,
+        "max": 0.18256078182317195
+      },
+      "hidden_action": {
+        "mean": 0.009838995052685925,
+        "std": 0.01307980879103878,
+        "min": 0.0,
+        "max": 0.07204941953024896
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 17415.0
+    },
+    {
+      "input_hidden": {
+        "mean": 0.04590710557053592,
+        "std": 0.0533718232410714,
+        "min": 0.0,
+        "max": 0.793691723775507
+      },
+      "hidden_action": {
+        "mean": 0.028851602068009782,
+        "std": 0.0760581849509968,
+        "min": 0.0,
+        "max": 0.4178627735814906
+      },
+      "hidden_hidden_abs_mean": 0.014217809657065173,
+      "residual_pos_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_neg_hidden": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "residual_pos_abs_mean": 0.0,
+      "residual_neg_abs_mean": 0.0,
+      "residual_enabled": false,
+      "pending_residual_abs_mean": 0.0,
+      "last_residual_abs_mean": 0.0,
+      "last_residual_current_abs_mean": 0.0,
+      "total_weight_updates": 19185.0
+    }
+  ],
+  "prediction": {
+    "enabled": true,
+    "kind": "self-supervised local next-observation prediction",
+    "config": {
+      "hidden_dim": 64,
+      "action_dim": 4,
+      "input_dim": 128,
+      "learning_rate": 0.001,
+      "weight_max": 2.0,
+      "weight_decay": 1e-06,
+      "init_scale": 0.01
+    },
+    "steps": 5001,
+    "initial_window": 500,
+    "initial_steps": 500,
+    "per_agent": [
+      {
+        "agent": 0,
+        "mae_mean": 0.0961628432480384,
+        "mse_mean": 0.041225792711295596,
+        "initial_mae": 0.16334815969975008,
+        "final_mae": 0.07114133783858587,
+        "mae_change": -0.09220682186116422,
+        "mae_reduction_ratio": 0.5644803224636836,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.07078262954976453,
+          "signed_mean": -0.006982526900271593,
+          "positive_mean": 0.031900051324746465,
+          "negative_mean": 0.038882578225018054,
+          "max_abs": 0.5847190378493088
+        },
+        "weight_stats": {
+          "mean": 0.0026830925627188856,
+          "std": 0.01876781838172183,
+          "min": -0.25161741052275877,
+          "max": 0.31203396388709687,
+          "bias_abs_mean": 0.010804890953815108,
+          "total_updates": 5001.0
+        }
+      },
+      {
+        "agent": 1,
+        "mae_mean": 0.10974261849744418,
+        "mse_mean": 0.04964778432533322,
+        "initial_mae": 0.16506085993737585,
+        "final_mae": 0.09054690909352756,
+        "mae_change": -0.07451395084384829,
+        "mae_reduction_ratio": 0.451433191806458,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.04683631193664613,
+          "signed_mean": 0.012428641003768316,
+          "positive_mean": 0.02963247647020722,
+          "negative_mean": 0.017203835466438906,
+          "max_abs": 0.4625093133133828
+        },
+        "weight_stats": {
+          "mean": 0.0032556539577408565,
+          "std": 0.017386892734895076,
+          "min": -0.17192843062990554,
+          "max": 0.21868137563745355,
+          "bias_abs_mean": 0.010090633063914854,
+          "total_updates": 5001.0
+        }
+      },
+      {
+        "agent": 2,
+        "mae_mean": 0.04665060482029743,
+        "mse_mean": 0.019801407628421874,
+        "initial_mae": 0.0863760053275204,
+        "final_mae": 0.03727189884124184,
+        "mae_change": -0.04910410648627857,
+        "mae_reduction_ratio": 0.5684924453276774,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.06445448065347371,
+          "signed_mean": -0.002694831668379815,
+          "positive_mean": 0.030879824492546948,
+          "negative_mean": 0.033574656160926766,
+          "max_abs": 0.8397801166352075
+        },
+        "weight_stats": {
+          "mean": 0.003668835511810424,
+          "std": 0.01544888121363902,
+          "min": -0.14933819754822256,
+          "max": 0.2539318382054717,
+          "bias_abs_mean": 0.015408105349340959,
+          "total_updates": 5001.0
+        }
+      },
+      {
+        "agent": 3,
+        "mae_mean": 0.10508676063741111,
+        "mse_mean": 0.04689447179869972,
+        "initial_mae": 0.1685468069673637,
+        "final_mae": 0.06757585790638142,
+        "mae_change": -0.10097094906098229,
+        "mae_reduction_ratio": 0.5990677063406703,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.009582817893820135,
+          "signed_mean": 0.004335265163369842,
+          "positive_mean": 0.00695904152859499,
+          "negative_mean": 0.002623776365225147,
+          "max_abs": 0.30897712174175607
+        },
+        "weight_stats": {
+          "mean": 0.003512677315661277,
+          "std": 0.01761770122137769,
+          "min": -0.1654355172002222,
+          "max": 0.21826784901302235,
+          "bias_abs_mean": 0.010403700609567038,
+          "total_updates": 5001.0
+        }
+      },
+      {
+        "agent": 4,
+        "mae_mean": 0.05320938467009745,
+        "mse_mean": 0.023038970134031438,
+        "initial_mae": 0.15534877355865587,
+        "final_mae": 0.024109339246434564,
+        "mae_change": -0.1312394343122213,
+        "mae_reduction_ratio": 0.8448050879698031,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.029860630617532503,
+          "signed_mean": 0.001045243664486253,
+          "positive_mean": 0.015452937141009381,
+          "negative_mean": 0.014407693476523127,
+          "max_abs": 0.7270702231734911
+        },
+        "weight_stats": {
+          "mean": 0.003713072259368054,
+          "std": 0.015298458112623285,
+          "min": -0.16504449322780398,
+          "max": 0.1831932413603674,
+          "bias_abs_mean": 0.013700823649789015,
+          "total_updates": 5001.0
+        }
+      },
+      {
+        "agent": 5,
+        "mae_mean": 0.035053110774403845,
+        "mse_mean": 0.015191950616602275,
+        "initial_mae": 0.1632766108455744,
+        "final_mae": 0.011881783882085292,
+        "mae_change": -0.1513948269634891,
+        "mae_reduction_ratio": 0.9272291124824793,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.015460848281862189,
+          "signed_mean": 0.002129036536081259,
+          "positive_mean": 0.008794942408971725,
+          "negative_mean": 0.006665905872890465,
+          "max_abs": 0.0907744324212082
+        },
+        "weight_stats": {
+          "mean": 0.003942095731512196,
+          "std": 0.013727493068409037,
+          "min": -0.14716854898032777,
+          "max": 0.17327492906321876,
+          "bias_abs_mean": 0.016052010859472377,
+          "total_updates": 5001.0
+        }
+      },
+      {
+        "agent": 6,
+        "mae_mean": 0.029724589689964196,
+        "mse_mean": 0.013281411021042439,
+        "initial_mae": 0.15117897376063896,
+        "final_mae": 0.01762718505109486,
+        "mae_change": -0.1335517887095441,
+        "mae_reduction_ratio": 0.8834018738676985,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.05159610857263422,
+          "signed_mean": -0.0014261814028453034,
+          "positive_mean": 0.025084963584894465,
+          "negative_mean": 0.026511144987739765,
+          "max_abs": 0.6100486837983272
+        },
+        "weight_stats": {
+          "mean": 0.003570210305113902,
+          "std": 0.011787695186090626,
+          "min": -0.13336702510860277,
+          "max": 0.15440644924747574,
+          "bias_abs_mean": 0.012925987762778214,
+          "total_updates": 5001.0
+        }
+      },
+      {
+        "agent": 7,
+        "mae_mean": 0.06701310792490835,
+        "mse_mean": 0.030946686603907696,
+        "initial_mae": 0.13077143182313483,
+        "final_mae": 0.04574709737761145,
+        "mae_change": -0.08502433444552338,
+        "mae_reduction_ratio": 0.6501751434557719,
+        "prediction_updates": 5001,
+        "last_residual": {
+          "abs_mean": 0.024168341681532625,
+          "signed_mean": 0.0022543851366385636,
+          "positive_mean": 0.013211363409085592,
+          "negative_mean": 0.010956978272447028,
+          "max_abs": 0.28821704709832974
+        },
+        "weight_stats": {
+          "mean": 0.003587008545322956,
+          "std": 0.014176913829975733,
+          "min": -0.20580446284411422,
+          "max": 0.2159830612524012,
+          "bias_abs_mean": 0.01287939934712359,
+          "total_updates": 5001.0
+        }
+      }
+    ],
+    "mean_mae": 0.06783037753282062,
+    "mean_mse": 0.030003559354916783,
+    "initial_mae": 0.14798845274000177,
+    "final_mae": 0.045737676154620356,
+    "mae_change": -0.10225077658538143,
+    "mae_reduction_ratio": 0.690937533923839,
+    "prediction_updates": [
+      5001,
+      5001,
+      5001,
+      5001,
+      5001,
+      5001,
+      5001,
+      5001
+    ],
+    "weight_stats": [
+      {
+        "mean": 0.0026830925627188856,
+        "std": 0.01876781838172183,
+        "min": -0.25161741052275877,
+        "max": 0.31203396388709687,
+        "bias_abs_mean": 0.010804890953815108,
+        "total_updates": 5001.0
+      },
+      {
+        "mean": 0.0032556539577408565,
+        "std": 0.017386892734895076,
+        "min": -0.17192843062990554,
+        "max": 0.21868137563745355,
+        "bias_abs_mean": 0.010090633063914854,
+        "total_updates": 5001.0
+      },
+      {
+        "mean": 0.003668835511810424,
+        "std": 0.01544888121363902,
+        "min": -0.14933819754822256,
+        "max": 0.2539318382054717,
+        "bias_abs_mean": 0.015408105349340959,
+        "total_updates": 5001.0
+      },
+      {
+        "mean": 0.003512677315661277,
+        "std": 0.01761770122137769,
+        "min": -0.1654355172002222,
+        "max": 0.21826784901302235,
+        "bias_abs_mean": 0.010403700609567038,
+        "total_updates": 5001.0
+      },
+      {
+        "mean": 0.003713072259368054,
+        "std": 0.015298458112623285,
+        "min": -0.16504449322780398,
+        "max": 0.1831932413603674,
+        "bias_abs_mean": 0.013700823649789015,
+        "total_updates": 5001.0
+      },
+      {
+        "mean": 0.003942095731512196,
+        "std": 0.013727493068409037,
+        "min": -0.14716854898032777,
+        "max": 0.17327492906321876,
+        "bias_abs_mean": 0.016052010859472377,
+        "total_updates": 5001.0
+      },
+      {
+        "mean": 0.003570210305113902,
+        "std": 0.011787695186090626,
+        "min": -0.13336702510860277,
+        "max": 0.15440644924747574,
+        "bias_abs_mean": 0.012925987762778214,
+        "total_updates": 5001.0
+      },
+      {
+        "mean": 0.003587008545322956,
+        "std": 0.014176913829975733,
+        "min": -0.20580446284411422,
+        "max": 0.2159830612524012,
+        "bias_abs_mean": 0.01287939934712359,
+        "total_updates": 5001.0
+      }
+    ],
+    "initial_weights_identical": false,
+    "current_weights_identical": false,
+    "migration_note": null,
+    "initial_window_note": "The initial window is the first N steps. In the predictive condition it already contains predictor updates; use the fixed-predictor control for a no-learning baseline.",
+    "note": "Self-supervised local next-observation prediction error only. In legacy mode it never selects actions or updates action STDP. In adaptive mode its signed residual enters the same clone's separate fixed pathway on the next step; it still never updates action STDP and is not a reward, score, penalty, or city outcome."
+  },
+  "residual": {
+    "enabled": false,
+    "mode": "legacy",
+    "channels": [
+      "positive",
+      "negative"
+    ],
+    "projection": "separate fixed non-plastic residual matrices into hidden neurons",
+    "timing": "residual from the previous transition is consumed once at the next act(); no residual is delivered before that transition",
+    "per_agent": [
+      {
+        "agent": 0,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      },
+      {
+        "agent": 1,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      },
+      {
+        "agent": 2,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      },
+      {
+        "agent": 3,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      },
+      {
+        "agent": 4,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      },
+      {
+        "agent": 5,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      },
+      {
+        "agent": 6,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      },
+      {
+        "agent": 7,
+        "enabled": false,
+        "pending_residual": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_input": {
+          "abs_mean": 0.0,
+          "signed_mean": 0.0,
+          "positive_mean": 0.0,
+          "negative_mean": 0.0,
+          "max_abs": 0.0
+        },
+        "last_residual_current_abs_mean": 0.0,
+        "residual_pos_abs_mean": 0.0,
+        "residual_neg_abs_mean": 0.0
+      }
+    ],
+    "pending_residual_abs_mean": 0.0,
+    "last_residual_input_abs_mean": 0.0,
+    "last_residual_current_abs_mean": 0.0,
+    "note": "Signed feature-level prediction residual only. It is not a reward, score, penalty, correctness label, target action, or action bonus."
+  },
+  "checkpoints_saved": 7,
+  "log_path": ".local_private\\exploration\\task014_legacy_probe\\session.jsonl",
+  "log_segments": [
+    {
+      "path": ".local_private\\exploration\\task014_legacy_probe\\session.jsonl",
+      "bytes": 8882,
+      "sha256": "8d8f7e3a92734c57234cf35af99cd0bfee647eccb39405b9e91f0b5a3f92336d"
+    }
+  ],
+  "checkpoint_path": ".local_private\\exploration\\task014_legacy_probe\\ckpt.json",
+  "checkpoint_sha256": "16cb36015a528215422322756509fbdb4058b4fc146b220d3f53657868ed3388",
+  "log_sha256": "8d8f7e3a92734c57234cf35af99cd0bfee647eccb39405b9e91f0b5a3f92336d",
+  "note": "Action STDP uses no reward, score, penalty, correctness signal, or city outcome. A separate local predictor is trained by self-supervised next-observation prediction error. In adaptive mode its signed residual enters the same clone's separate residual pathway on the next step; in legacy mode that pathway is disabled. This is not evidence of learning, intelligence, cooperation, competition, or skill."
+}
+EXIT=0
+
+=== legacy v1 resume without migration ===
+COMMAND: 'C:\Users\Abdullah\AppData\Local\Programs\Python\Python314\python.exe' -m exploration_lab.city --resume .local_private/exploration/task013_runs_final/predictive/checkpoint.json --max-steps 5001 --delay 0 --no-render
+cannot start city runtime: legacy agent checkpoint v1 has no residual-pathway state; pass allow_legacy_migration=True to preserve the old learned weights and initialize zero residual weights explicitly
+EXIT=1
+
+=== adaptive request against legacy v1 checkpoint ===
+COMMAND: 'C:\Users\Abdullah\AppData\Local\Programs\Python\Python314\python.exe' -m exploration_lab.city --resume .local_private/exploration/task013_runs_final/predictive/checkpoint.json --allow-legacy-migration --residual-feedback --max-steps 5001 --delay 0 --no-render
+--residual-feedback=True conflicts with checkpoint residual_feedback=False; checkpoint architecture is authoritative
+EXIT=1
+

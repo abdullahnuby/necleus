@@ -1,0 +1,8 @@
+COMMAND: py -3.14 scripts/check_private_leakage.py
+{
+  "status": "PASS",
+  "scanned_data_files": 145,
+  "findings": [],
+  "local_private_tree": ".local_private/ (ignored and not scanned)"
+}
+EXIT=0

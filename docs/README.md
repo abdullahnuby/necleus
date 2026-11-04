@@ -30,7 +30,7 @@ The comprehensive project overview is the repository root **[`README.md`](../REA
 | [`V0_43_ERROR_CORRECTION_AND_RETENTION_PROTOCOL_AR.md`](V0_43_ERROR_CORRECTION_AND_RETENTION_PROTOCOL_AR.md) | Three-round correction protocol and forgetting measurements |
 | [`V0_43_PREREGISTRATION_CHECKLIST_AR.md`](V0_43_PREREGISTRATION_CHECKLIST_AR.md) | Readiness checklist that must pass before the official test |
 | [`V0_43_STAGE2_IDENTIFIABILITY_CENSUS_PROTOCOL_AR.md`](V0_43_STAGE2_IDENTIFIABILITY_CENSUS_PROTOCOL_AR.md) | Aborted stage-2 identifiability census protocol; no results were produced |
-| [`V0_43_AUTONOMOUS_EXECUTION_ROADMAP_EN.md`](V0_43_AUTONOMOUS_EXECUTION_ROADMAP_EN.md) | Execution record for Phases 0–7, including failed scientific gates |
+| [`V0_43_AUTONOMOUS_EXECUTION_ROADMAP_EN.md`](V0_43_AUTONOMOUS_EXECUTION_ROADMAP_EN.md) | Execution record for Phases 0â€“7, including failed scientific gates |
 | [`BENCHMARK_INTEGRITY_V0_43.md`](BENCHMARK_INTEGRITY_V0_43.md) | Exposed smoke artifacts, local preservation, disqualification, and recurrence guards |
 | [`V0_43_READINESS_CHECKLIST.md`](V0_43_READINESS_CHECKLIST.md) | PASS/FAIL/BLOCKED readiness review; official test remains closed |
 | [`V0_43_OFFICIAL_TEST_COMMITMENT_PLAN.md`](V0_43_OFFICIAL_TEST_COMMITMENT_PLAN.md) | Commitment plan; not issued because readiness is blocked |
@@ -52,8 +52,8 @@ The simulator is in [`../pulse_core/`](../pulse_core/). The model uses the stand
 | Document | Purpose |
 |---|---|
 | [`EXPLORATION_LAB.md`](EXPLORATION_LAB.md) | Local exploration loop, persistent spiking agent, action STDP, checkpoints, and learning-signal boundary |
-| [`EXPLORATION_CITY.md`](EXPLORATION_CITY.md) | Shared 8-clone city, movement, collisions, interactions, and TASK-012 pilot |
-| [`EXPLORATION_PREDICTION.md`](EXPLORATION_PREDICTION.md) | TASK-013 separate local next-observation predictor, pilot results, and non-claims |
+| [`EXPLORATION_CITY.md`](EXPLORATION_CITY.md) | Shared 8-clone city, movement, collisions, interactions, TASK-012 pilot, and TASK-014 residual mode |
+| [`EXPLORATION_PREDICTION.md`](EXPLORATION_PREDICTION.md) | TASK-013 predictor, pilot results, TASK-014 signed residual feedback, and non-claims |
 
 The exploration code is in [`../exploration_lab/`](../exploration_lab/). It is separate from the v0.43 benchmark and makes no learning or skill claim.
 

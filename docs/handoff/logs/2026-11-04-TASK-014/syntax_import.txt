@@ -1,0 +1,7 @@
+COMMAND: py -3.14 -m py_compile exploration_lab/agent.py exploration_lab/city.py exploration_lab/prediction.py exploration_lab/runtime.py exploration_lab/residual.py exploration_lab/games.py exploration_lab/encoding.py exploration_lab/cli.py exploration_lab/__main__.py
+
+EXIT=0
+
+COMMAND: py -3.14 -c "import exploration_lab.agent, exploration_lab.city, exploration_lab.prediction, exploration_lab.runtime, exploration_lab.residual, exploration_lab.cli; print(\"imports OK\")"
+imports OK
+EXIT=0
