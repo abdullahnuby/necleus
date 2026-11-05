@@ -75,7 +75,7 @@
 
 ## 8. الأدلة والبصمات
 
-- **Commit النهاية:** `0c5eabbe6fd9332ded7fe25b39edb8ae56f95cf0` (تنفيذ TASK-014). يُسجَّل commit التسليم النهائي في `git_push_final.txt` بعد الرفع.
+- **Commit التنفيذ الأساسي:** `0c5eabbe6fd9332ded7fe25b39edb8ae56f95cf0` (جوهر TASK-014). **Commit التوضيح النهائي:** `5d0d496cf77cad80d230e5dfe6f9181ac8ea1d7e`. دليل الرفع في `git_push_final.txt`.
 - **بصمات SHA-256:** `docs/handoff/logs/2026-11-04-TASK-014/hashes.txt`.
 - **السجلات والتقارير:** `docs/handoff/logs/2026-11-04-TASK-014/`، `docs/handoff/LATEST_REPORT.md`، `docs/handoff/history/2026-11-04-TASK-014.md`.
 - **دليل الدخان:** `smoke_commands.txt` و`smoke_comparison.txt`، وكلاهما يسجل نتائج التشغيل الفعلية.
