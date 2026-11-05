@@ -51,8 +51,8 @@ claim that clones learn to cooperate, compete, or navigate.
 
 TASK-011 and TASK-012 explicitly excluded error signals. The user authorized a
 new scope for TASK-013: a **separate local prediction head** may learn from its
-own next-observation prediction error. That error never selects actions, never
-updates action STDP, and is not a reward or a city outcome. See
+own next-observation prediction error. In legacy mode that error never selects
+actions, never updates action STDP, and is not a reward or a city outcome. See
 `docs/EXPLORATION_PREDICTION.md`. TASK-014 then authorized the signed residual
 to enter a separate internal pathway on the following step; it still does not
 select actions directly, update action STDP, or use reward/target labels.

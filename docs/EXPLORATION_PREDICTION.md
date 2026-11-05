@@ -21,7 +21,7 @@ The change is deliberately narrow:
 - each city clone gets a separate **local predictive head**;
 - the head predicts the next 128-feature observation;
 - it learns from its own next-observation prediction error;
-- it never selects actions;
+- in legacy mode it has no path to action selection;
 - it never updates the action STDP pathway;
 - no reward, score, penalty, target action, correctness label, or city outcome
   is used as a learning signal.
@@ -240,8 +240,10 @@ prediction_metrics: aggregate counters and the recent-MAE window
 
 The city summary adds a `prediction` object with the predictor config, per-clone
 MAE/MSE, first/last window values, update counts, weight statistics, and
-`current_weights_identical`. The `prediction` object explicitly states that the
-error is self-supervised and never selects actions or updates action STDP.
+`current_weights_identical`. The `prediction` object states that the error is
+self-supervised and never updates action STDP. In legacy mode it also has no
+path to action selection; adaptive mode routes the signed residual through the
+separate fixed pathway described in section 11.
 
 ## 9. Limitations and non-claims
 
@@ -348,7 +350,7 @@ rotation. Raw logs stay under `.local_private/` and are not committed.
 - Focused exploration subset: `53 passed` (`tests/test_exploration_lab.py`,
   `tests/test_exploration_lab_city.py`, `tests/test_exploration_lab_prediction.py`,
   `tests/test_exploration_lab_residual.py`).
-- Full suite: `225 passed in 224.20s` on 2026-11-05.
+- Full suite: `225 passed in 317.89s` on 2026-11-05.
 - Deterministic legacy and adaptive smoke runs: a 40-step checkpoint resumed to
   step 60 matched an independent 60-step continuous run exactly in city, agent,
   predictor, counters, and final `city_step` log record.

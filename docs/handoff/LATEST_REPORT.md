@@ -46,8 +46,8 @@
 |---|---|---|---|
 | `py -3.14 -m py_compile exploration_lab/agent.py exploration_lab/city.py exploration_lab/prediction.py exploration_lab/runtime.py exploration_lab/residual.py exploration_lab/games.py exploration_lab/encoding.py exploration_lab/cli.py exploration_lab/__main__.py` | 0 | نجح تجميع كل ملفات المختبر المعدلة. | `docs/handoff/logs/2026-11-04-TASK-014/syntax_import.txt` |
 | `py -3.14 -c "import exploration_lab.agent, exploration_lab.city, exploration_lab.prediction, exploration_lab.runtime, exploration_lab.residual, exploration_lab.cli"` | 0 | نجح الاستيراد وطُبع `imports OK`. | `docs/handoff/logs/2026-11-04-TASK-014/syntax_import.txt` |
-| `py -3.14 -m pytest tests/test_exploration_lab.py tests/test_exploration_lab_city.py tests/test_exploration_lab_prediction.py tests/test_exploration_lab_residual.py -q` | 0 | `53 passed in 3.78s`. | `docs/handoff/logs/2026-11-04-TASK-014/tests_targeted.txt` |
-| `py -3.14 -m pytest -q tests` | 0 | `225 passed in 224.20s (0:03:44)`. | `docs/handoff/logs/2026-11-04-TASK-014/pytest_full.txt` |
+| `py -3.14 -m pytest tests/test_exploration_lab.py tests/test_exploration_lab_city.py tests/test_exploration_lab_prediction.py tests/test_exploration_lab_residual.py -q` | 0 | `53 passed in 4.67s`. | `docs/handoff/logs/2026-11-04-TASK-014/tests_targeted.txt` |
+| `py -3.14 -m pytest -q tests` | 0 | `225 passed in 317.89s (0:05:17)`. | `docs/handoff/logs/2026-11-04-TASK-014/pytest_full.txt` |
 | `py -3.14 scripts/check_private_leakage.py` | 0 | `PASS`، 145 ملف بيانات، 0 نتائج. | `docs/handoff/logs/2026-11-04-TASK-014/leakage_scan.txt` |
 | ست جلسات دخان حتمية legacy/adaptive ثم استئناف 40→60 ومقارنة بتشغيل مستمر 60. | 0 | تطابق تام في المدينة والوكلاء وpredictors والعدادات وآخر سجل `city_step`. | `docs/handoff/logs/2026-11-04-TASK-014/smoke_commands.txt` و`smoke_comparison.txt` |
 | استئناف checkpoint TASK-013 v1 مع `--allow-legacy-migration`. | 0 | نجح legacy من الخطوة 5000 إلى 5001 مع حفظ الأوزان القديمة وتصفير مصفوفات الباقي. | `docs/handoff/logs/2026-11-04-TASK-014/legacy_v1_migration.txt` |
@@ -58,8 +58,8 @@
 ## 5. الاختبارات
 
 - **الأمر:** `py -3.14 -m pytest -q tests`.
-- **النتيجة:** 225 ناجحًا، 0 فاشل، 0 متجاوز، في 224.20 ثانية.
-- **الاختبارات المركزة:** 53 ناجحًا في 3.78 ثانية، منها 18 اختبارًا جديدًا في `tests/test_exploration_lab_residual.py`.
+- **النتيجة:** 225 ناجحًا، 0 فاشل، 0 متجاوز، في 317.89 ثانية.
+- **الاختبارات المركزة:** 53 ناجحًا في 4.67 ثانية، منها 18 اختبارًا جديدًا في `tests/test_exploration_lab_residual.py`.
 - **NOT RUN:** لم يُضغط `Ctrl+C` يدويًا في طرفية تفاعلية؛ المسار مغطى باختبارات runtime، لكن العرض التفاعلي اليدوي لم يُشغَّل. لم تُجرَ تجربة علمية متعددة البذور. لم يُفتح الاختبار الرسمي v0.43 ولم تُشغَّل تجارب v0.42/v0.43.
 - **ملاحظة:** تشغيل `pytest` من جذر المستودع جمع سجلات نصية UTF-16 قديمة وأظهر خطأ فك ترميز؛ لذلك استُخدم الأمر المحدد `py -3.14 -m pytest -q tests`، وهو الأمر الرسمي للمجموعة الكاملة.
 

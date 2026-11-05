@@ -22,8 +22,8 @@ same agent share one city and move simultaneously; collisions and proximity are
 logged only and are not learning signals. See `docs/EXPLORATION_CITY.md`.
 
 TASK-013 adds a separate local next-observation prediction head per city clone.
-It learns from its own prediction error, never selects actions, and never updates
-action STDP. See `docs/EXPLORATION_PREDICTION.md`.
+In legacy mode it learns from its own prediction error, never selects actions,
+and never updates action STDP. See `docs/EXPLORATION_PREDICTION.md`.
 
 TASK-014 optionally feeds the previous transition's signed prediction residual
 into a dedicated fixed positive/negative input pathway in the same clone on the
@@ -500,7 +500,7 @@ The tests check:
   round-trip, bounds, predictor isolation, malformed predictor rejection,
   config-consistency checks, legacy regression, and JSONL rotation.
 
-The TASK-014 full suite was `225 passed in 224.20s` on 2026-11-05; the focused
+The TASK-014 full suite was `225 passed in 317.89s` on 2026-11-05; the focused
 exploration subset was `53 passed`. Passing these tests verifies software
 mechanics only. It does **not** establish that the agent learned, improved, or
 plays well.

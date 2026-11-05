@@ -12,15 +12,16 @@ change only through local spike-timing-dependent plasticity inside each clone.
 
 TASK-013 adds a separate local prediction head per clone.  It is trained by a
 self-supervised next-observation prediction error, using only its own prediction
-error and presynaptic activity.  Prediction error never selects actions and never
-updates the action STDP pathway; it is a local forward-model learning signal, not
-a reward or a city outcome.
+error and presynaptic activity.  Prediction error trains only that local forward
+model; it never updates the action STDP pathway and is not a reward or a city
+outcome.  In legacy mode the predictor has no path to action selection.
 
 TASK-014 optionally feeds the signed feature-level prediction residual from the
 previous transition into a dedicated positive/negative residual input pathway of
 the same clone on the next perception-action cycle.  Legacy mode keeps TASK-013
 behavior exactly; adaptive mode enables the pathway.  No clone shares residuals or
-predictor weights, and no reward or action-correctness signal is introduced.
+predictor weights, and no reward or action-correctness signal is introduced.  The
+residual is never a direct action-probability bonus.
 """
 from __future__ import annotations
 
@@ -1819,7 +1820,15 @@ def main(argv: list[str] | None = None) -> int:
     if runtime.prediction_migration_note:
         print(f"migration: {runtime.prediction_migration_note}")
     print("Action STDP receives no reward, score, penalty, correctness signal, or city outcome.")
-    print("A separate local predictor learns from next-observation prediction error and never selects actions.")
+    print(
+        "A separate local predictor learns from next-observation prediction error; "
+        "it never updates action STDP and is not a reward."
+    )
+    if runtime.config.residual_feedback:
+        print(
+            "Adaptive mode routes the signed residual into a separate fixed "
+            "internal pathway on the next step."
+        )
     print("Ctrl+C saves a checkpoint and exits.")
     print()
     summary = runtime.run()

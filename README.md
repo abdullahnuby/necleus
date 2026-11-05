@@ -23,7 +23,7 @@ The repository contains a discrete-time pulse simulator and a benchmark for comp
 | Pulse simulator | Implemented; mechanism-level validation only |
 | Meta-learner, feedback loop, retention tests | **Not implemented** |
 | `tests/v043` | **43 passed** |
-| Full `tests/` suite | **225 passed** (last verified 2026-11-05; 224.20 s) |
+| Full `tests/` suite | **225 passed** (last verified 2026-11-05; 317.89 s) |
 
 The latest committed state and the complete audit trail are in [`docs/handoff/LATEST_REPORT.md`](docs/handoff/LATEST_REPORT.md).
 
@@ -175,7 +175,7 @@ A failed gate is reported as a failure of the specified protocol, not as proof t
 
 - `pulse_core/`: event-driven LIF simulation, per-synapse currents, saturation, inhibition, reference recurrence, temporal tasks, and legacy learning code.
 - `skillbench_v043/`: finite typed Boolean DSL, full enumeration, family definition, deterministic splits, support/query generation, identifiability classification, leakage audit, and a CLI.
-- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. TASK-012 adds a shared 8-clone city extension with simultaneous movement and collision/interaction logging. TASK-013 adds a separate local next-observation prediction head per clone; it never selects actions or updates action STDP. TASK-014 optionally feeds the signed prediction residual into a separate fixed residual pathway on the next step; legacy mode remains the default and no reward or target signal is introduced. See `docs/EXPLORATION_LAB.md`, `docs/EXPLORATION_CITY.md`, and `docs/EXPLORATION_PREDICTION.md`. It is not a benchmark and makes no learning or skill claim.
+- `exploration_lab/`: a separate local, reward-free exploration loop with three small games, a persistent step-based spiking agent, local STDP, checkpoint/resume, and a live terminal display. TASK-012 adds a shared 8-clone city extension with simultaneous movement and collision/interaction logging. TASK-013 adds a separate local next-observation prediction head per clone; in legacy mode it has no path to action selection and it never updates action STDP. TASK-014 optionally feeds the signed prediction residual into a separate fixed residual pathway on the next step; legacy mode remains the default and no reward or target signal is introduced. See `docs/EXPLORATION_LAB.md`, `docs/EXPLORATION_CITY.md`, and `docs/EXPLORATION_PREDICTION.md`. It is not a benchmark and makes no learning or skill claim.
 - `experiments/`: runnable scripts for v0.27 through v0.42.
 - `tests/`: unit and integration tests, including the v0.43 tests.
 - `results/`: archived outputs, reports, CSV/JSON artifacts, and plots.
@@ -655,11 +655,11 @@ move simultaneously, and keep their own persistent LIF/STDP state. Blocked
 moves, collisions, proximity events, and action counts are logged only; they are
 not rewards, penalties, correctness labels, or targets for action STDP.
 
-TASK-013 adds a separate local next-observation prediction head per clone. It
-learns from its own prediction error and never selects actions or updates action
-STDP. TASK-014 optionally routes the signed residual through a separate fixed
-positive/negative pathway on the next step. The default remains legacy TASK-013
-behavior; adaptive mode is explicit.
+TASK-013 adds a separate local next-observation prediction head per clone. In
+legacy mode it learns from its own prediction error and has no path to action
+selection; it never updates action STDP. TASK-014 optionally routes the signed
+residual through a separate fixed positive/negative pathway on the next step.
+The default remains legacy TASK-013 behavior; adaptive mode is explicit.
 
 ```powershell
 py -3.14 -m exploration_lab.city
@@ -713,7 +713,7 @@ cooperation, competition, or skill.
 | Check | Command | Result |
 |---|---|---|
 | v0.43 tests | `python -m pytest -q tests/v043` | **43 passed** (last verified 2026-10-27; 267.86 s) |
-| Full suite | `python -m pytest -q tests` | **225 passed** (last verified 2026-11-05; 224.20 s) |
+| Full suite | `python -m pytest -q tests` | **225 passed** (last verified 2026-11-05; 317.89 s) |
 | Handoff report structure | `python scripts/verify_handoff.py` | **PASS** |
 
 The full suite passes in the current authoring environment. Install
