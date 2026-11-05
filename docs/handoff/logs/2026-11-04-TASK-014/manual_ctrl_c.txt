@@ -1,0 +1,80 @@
+TASK-014 manual adaptive runtime and Ctrl+C evidence
+====================================================
+
+The interactive session was launched by the user, not by the agent. The exact
+command line of the first run was not captured. The recorded runtime config and
+session artifacts show adaptive mode (residual_feedback=true), 8 agents,
+32x32 city, seed 12012, delay 0.05, render enabled, and no --max-steps limit.
+
+First run
+---------
+Session ID: 20261105T213416Z-894dea
+Steps reached: 157
+Elapsed seconds: 18.198
+Checkpoint path: .local_private/exploration/city/checkpoint.json
+Checkpoints saved: 1
+Checkpoint city schema: nucleus-exploration-city-runtime-v1
+Checkpoint agent schema: nucleus-exploration-agent-v2
+Agents in checkpoint: 8
+Predictors in checkpoint: 8
+
+Recorded terminal/runtime state from the log:
+- mode: adaptive signed residual feedback
+- residual.enabled: true
+- residual.mode: adaptive
+- residual last_residual_current_abs_mean: 0.06868787403614758
+- residual pending_residual_abs_mean: 0.1452520469570358
+- prediction.steps: 157
+- prediction prediction_updates: 157 for each of 8 agents
+- prediction initial_mae: 0.17059165339543508
+- prediction final_mae: 0.1705916533954351
+- initial_weights_identical: true
+- current predictor weights identical: false
+- fallback_actions: 7
+- blocked_moves: 322
+- collision_events: 26
+- interaction_events: 407
+- union_unique_cells: 197
+- coverage_ratio: 0.37030075187969924
+
+The final log events at step 157 were:
+
+  {"event": "keyboard_interrupt", "log_segment": 0, "session_id": "20261105T213416Z-894dea", "step": 157, "ts_utc": "2026-11-05T21:34:33+00:00"}
+  {"event": "checkpoint", "log_segment": 0, "path": ".local_private\\exploration\\city\\checkpoint.json", "session_id": "20261105T213416Z-894dea", "step": 157, "ts_utc": "2026-11-05T21:34:34+00:00"}
+  {"event": "session_end", "log_segment": 0, "session_id": "20261105T213416Z-894dea", "step": 157, "ts_utc": "2026-11-05T21:34:34+00:00"}
+
+The process exit code of this first run was not captured. The presence of the
+keyboard_interrupt, checkpoint, and session_end events, the saved checkpoint,
+and the absence of an error event show that Ctrl+C was handled and a final
+checkpoint was written.
+
+Resume verification
+-------------------
+The saved checkpoint was resumed with:
+
+  py -3.14 -m exploration_lab.city --resume .local_private/exploration/city/checkpoint.json --max-steps 160 --delay 0 --no-render --checkpoint-every 0 --progress-every 0 --checkpoint .local_private/exploration/city_manual_resume/checkpoint.json --log .local_private/exploration/city_manual_resume/session.jsonl --summary .local_private/exploration/city_manual_resume/city_summary.json
+
+Result:
+- exit code: 0
+- resumed_from: .local_private/exploration/city/checkpoint.json
+- resumed at step: 157
+- final step: 160
+- mode: adaptive
+- residual_feedback: true
+- prediction.steps: 160
+- checkpoints_saved: 2
+- runtime output reported:
+  "resumed: .local_private/exploration/city/checkpoint.json at step 157"
+
+This resume run used a separate checkpoint, log, and summary path; the original
+manual checkpoint was not overwritten by the resume run. No explicit
+--residual-feedback flag was passed on resume, so the checkpoint mode was
+authoritative.
+
+Scope note
+----------
+This is runtime-safety and persistence evidence only. The manual run is short and
+shows no measurable predictor MAE improvement (initial and final MAE are
+effectively equal at this horizon). It is not a learning, intelligence,
+cooperation, competition, coverage, or skill result. No reward, score, penalty,
+correctness label, target action, or city outcome was used by action STDP.
