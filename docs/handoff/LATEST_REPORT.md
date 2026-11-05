@@ -50,7 +50,7 @@
 | `py -3.14 -m pytest -q tests` | 0 | `225 passed in 317.89s (0:05:17)`. | `docs/handoff/logs/2026-11-04-TASK-014/pytest_full.txt` |
 | `py -3.14 scripts/check_private_leakage.py` | 0 | `PASS`، 145 ملف بيانات، 0 نتائج. | `docs/handoff/logs/2026-11-04-TASK-014/leakage_scan.txt` |
 | ست جلسات دخان حتمية legacy/adaptive ثم استئناف 40→60 ومقارنة بتشغيل مستمر 60. | 0 | تطابق تام في المدينة والوكلاء وpredictors والعدادات وآخر سجل `city_step`. | `docs/handoff/logs/2026-11-04-TASK-014/smoke_commands.txt` و`smoke_comparison.txt` |
-| تشغيل يدوي adaptive حتى الخطوة 157 ثم `Ctrl+C`، ثم استئناف إلى 160. | غير ملتقط للأول، 0 للاستئناف | `keyboard_interrupt` ثم `checkpoint` ثم `session_end`؛ نجح الاستئناف إلى الخطوة 160 مع mode=adaptive. | `docs/handoff/logs/2026-11-04-TASK-014/manual_ctrl_c.txt` |
+| تشغيلان يدويان: legacy عند 237 خطوة ثم adaptive عند 157 خطوة، ثم `Ctrl+C` واستئناف الأخير إلى 160. | غير ملتقط للأولين، 0 للاستئناف | كلاهما سجل `keyboard_interrupt` ثم `checkpoint` ثم `session_end`؛ نجح الاستئناف إلى الخطوة 160 مع mode=adaptive. | `docs/handoff/logs/2026-11-04-TASK-014/manual_ctrl_c.txt` |
 | استئناف checkpoint TASK-013 v1 مع `--allow-legacy-migration`. | 0 | نجح legacy من الخطوة 5000 إلى 5001 مع حفظ الأوزان القديمة وتصفير مصفوفات الباقي. | `docs/handoff/logs/2026-11-04-TASK-014/legacy_v1_migration.txt` |
 | استئناف v1 بدون ترحيل، ثم طلب adaptive على v1. | 1 و1 | رُفض الطلبان برسالتين دقيقتين، دون كتابة حالة. | `docs/handoff/logs/2026-11-04-TASK-014/legacy_v1_migration.txt` |
 | `py -3.14 scripts/verify_handoff.py` | 0 | `HANDOFF VERIFICATION: PASS`. | `docs/handoff/logs/2026-11-04-TASK-014/handoff_validator.txt` |
@@ -61,7 +61,7 @@
 - **الأمر:** `py -3.14 -m pytest -q tests`.
 - **النتيجة:** 225 ناجحًا، 0 فاشل، 0 متجاوز، في 317.89 ثانية.
 - **الاختبارات المركزة:** 53 ناجحًا في 4.67 ثانية، منها 18 اختبارًا جديدًا في `tests/test_exploration_lab_residual.py`.
-- **تشغيل يدوي adaptive:** شُغّل من المستخدم حتى الخطوة 157، ثم ضُغط `Ctrl+C`؛ سُجّل `keyboard_interrupt` ثم `checkpoint` ثم `session_end`، وحُفظ checkpoint v2. أعيد استئناف هذا الـcheckpoint في مسار منفصل إلى الخطوة 160 بنجاح وبرمز خروج 0، دون تمرير `--residual-feedback` (وضع الcheckpoint authoritative). التفاصيل في `manual_ctrl_c.txt`. رمز خروج التشغيل الأول لم يُلتقط.
+- **تشغيل يدوي:** شُغّل من المستخدم مرتين: legacy عند 237 خطوة ثم adaptive عند 157 خطوة، وكلاهما انتهى بـ`Ctrl+C` مع `keyboard_interrupt` ثم `checkpoint` ثم `session_end`؛ التقرير المحفوظ يخص الجلسة الأخيرة adaptive. أعيد استئناف checkpoint الأخير في مسار منفصل إلى الخطوة 160 بنجاح وبرمز خروج 0، دون تمرير `--residual-feedback` (وضع الcheckpoint authoritative). التفاصيل في `manual_ctrl_c.txt`. رمزا خروج التشغيلين اليدويين لم يُلتقطا.
 - **NOT RUN:** لم تُجرَ تجربة علمية متعددة البذور. لم يُفتح الاختبار الرسمي v0.43 ولم تُشغَّل تجارب v0.42/v0.43.
 - **ملاحظة:** تشغيل `pytest` من جذر المستودع جمع سجلات نصية UTF-16 قديمة وأظهر خطأ فك ترميز؛ لذلك استُخدم الأمر المحدد `py -3.14 -m pytest -q tests`، وهو الأمر الرسمي للمجموعة الكاملة.
 

@@ -1,14 +1,29 @@
 TASK-014 manual adaptive runtime and Ctrl+C evidence
 ====================================================
 
-The interactive session was launched by the user, not by the agent. The exact
-command line of the first run was not captured. The recorded runtime config and
-session artifacts show adaptive mode (residual_feedback=true), 8 agents,
-32x32 city, seed 12012, delay 0.05, render enabled, and no --max-steps limit.
+The interactive sessions were launched by the user, not by the agent. The exact
+command lines were not captured. The append-only session log contains two
+manual runs, both ending with Ctrl+C: Run 1 in legacy mode and Run 2 in adaptive
+mode. The retained city_summary.json belongs to Run 2 (adaptive). Both runs used
+8 agents, a 32x32 city, seed 12012, delay 0.05, render enabled, and no
+--max-steps limit.
 
-First run
----------
+Run 1 (earlier, legacy)
+-----------------------
+Session ID: 20261105T213335Z-4782f2
+Mode: legacy (residual_feedback=false on every city_step)
+Steps reached: 237
+Start timestamp: 2026-11-05T21:33:35+00:00
+End timestamp: 2026-11-05T21:34:07+00:00
+Events: session_start=1, city_step=237, keyboard_interrupt=1,
+        checkpoint=1, session_end=1
+The summary file of this run was overwritten by Run 2, so its detailed metrics
+are not retained. Its exit code was not captured.
+
+Run 2 (latest, adaptive; the retained city_summary.json)
+-------------------------------------------------------
 Session ID: 20261105T213416Z-894dea
+Mode: adaptive (residual_feedback=true)
 Steps reached: 157
 Elapsed seconds: 18.198
 Checkpoint path: .local_private/exploration/city/checkpoint.json
@@ -43,14 +58,14 @@ The final log events at step 157 were:
   {"event": "checkpoint", "log_segment": 0, "path": ".local_private\\exploration\\city\\checkpoint.json", "session_id": "20261105T213416Z-894dea", "step": 157, "ts_utc": "2026-11-05T21:34:34+00:00"}
   {"event": "session_end", "log_segment": 0, "session_id": "20261105T213416Z-894dea", "step": 157, "ts_utc": "2026-11-05T21:34:34+00:00"}
 
-The process exit code of this first run was not captured. The presence of the
-keyboard_interrupt, checkpoint, and session_end events, the saved checkpoint,
-and the absence of an error event show that Ctrl+C was handled and a final
-checkpoint was written.
+The exit codes of the two manual runs were not captured. For both runs, the
+presence of the keyboard_interrupt, checkpoint, and session_end events and the
+absence of an error event show that Ctrl+C was handled and a final checkpoint
+was written.
 
 Resume verification
 -------------------
-The saved checkpoint was resumed with:
+The checkpoint written by Run 2 (step 157) was resumed with:
 
   py -3.14 -m exploration_lab.city --resume .local_private/exploration/city/checkpoint.json --max-steps 160 --delay 0 --no-render --checkpoint-every 0 --progress-every 0 --checkpoint .local_private/exploration/city_manual_resume/checkpoint.json --log .local_private/exploration/city_manual_resume/session.jsonl --summary .local_private/exploration/city_manual_resume/city_summary.json
 
